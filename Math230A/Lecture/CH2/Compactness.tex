@@ -1,2 +1,61 @@
 \documentclass[a4paper]{article}
-\input{preamble}
+\input{../../../preamble}
+
+\date{}
+\title{\flushleft \textbf{Compactness}}
+\begin{document}
+	\maketitle
+	
+	\begin{definition}[Compact]
+		Let $(X,d)$ be a metric space and let $K \subseteq X$. $K$ is said to be compact if every open cover of $K$ has a finite subcover. That is, if $\{O_\alpha\}_{\alpha \in \Lambda}$ is any open cover of $K$, then
+		$$\exists \alpha_1, ..., \alpha_n \text{ such that } K \subseteq O_{\alpha_1} \cup ... \cup O_{\alpha_n} $$
+	\end{definition}
+	
+	\begin{example}
+		Let $(X,d)$ be a metric space and let $E \subseteq X$. \\
+		If $E$ is finite, then $E$ is compact.
+	\end{example}
+	The reason is as follows:\\
+	Let $\{O_\alpha\}_{\alpha \in \Lambda}$ be any open cover of $E$. Our goal is to show that this open cover has a finite subcover. \\
+	If $E= \emptyset$, there is nothing to prove. \\
+	If $E \not = \emptyset$, denote the elements of $E$ by $x_1,...x_n:$ $$E=\{x_1,...,x_n\}$$.
+	We have:
+	\begin{align*}
+		x_1 \in E \subseteq \bigcup \limits_{\alpha \in \Lambda} O_\alpha &\implies \exists \alpha_1 \in \Lambda \text { such that } x_1 \in O_{\alpha_1} \\
+		x_2 \in E \subseteq \bigcup \limits_{\alpha \in \Lambda} O_\alpha &\implies \exists \alpha_2\in \Lambda \text { such that } x_2 \in O_{\alpha_2} \\
+		\vdots \\
+		x_n \in E \subseteq \bigcup \limits_{\alpha \in \Lambda} O_\alpha &\implies \exists \alpha_n\in \Lambda \text { such that } x_n \in O_{\alpha_n} 
+	\end{align*}
+	Hence,
+	$$E = {x_1, ..., x_n} \subseteq O_{\alpha_1} \cup ... \cup O_{\alpha_n}$$
+	So, $O_{\alpha_1},...,O_{\alpha_n}$ is a finite subcover of $E$. \qed \\
+	
+	\begin{example}
+		Consider $( \mathbb{R} , | |)$ and let $E=\{ \frac{1}{n} : n \in \mathbb{N} \} \cup \{0\}$. \\
+		Prove that $E$ is compact. (In general, if $a_n \rightarrow a$ in $\mathbb{R}$ then $F=\{a_n : n \in \mathbb{N} \} \cup \{a\}$ is compact.)
+	\end{example}
+	\begin{proof}
+		\label{prf:proof_3}
+		Let $\{O_\alpha\}_{alpha\in \Lambda}$ be any open cover of $E$. Our goal is to show that this open cover has a finite subcover.
+		\begin{align*}
+			\begin{rcases}
+				0 \in E \\
+				E \subseteq \bigcup \limits_{\alpha \in \Lambda} O_\alpha
+			\end{rcases}
+			&\implies 0\in \bigcup \limits_{\alpha \in \Lambda} O_\alpha \implies \exists \alpha_0 \in \Lambda \text{ such that } 0 \in O_{\alpha_0}  \tag{I} \\
+			\begin{rcases}
+				0 \in O_{\alpha_0} \\
+				O_{\alpha_0} is open
+			\end{rcases}
+			&\implies \exists \epsilon > 0 \text{ such that } (-\epsilon, \epsilon) \subseteq O_{\alpha_0}
+		\end{align*}
+		By the archimedean property of $\mathbb{R}$,
+		$$ \exists m \in \mathbb{N} \text{ such that } \frac{1}{n} < \epsilon$$
+		so
+		$$\forall n \geq m ~~~ \frac{1}{n} < \epsilon.$$
+		Hence
+		\begin{equation}
+			\forall n \geq m ~~~ \frac{1}{n} \in (-\epsilon, \epsilon) \subseteq O_{\alpha_0} \tag{II}
+		\end{equation}
+	\end{proof}
+\end{document}
