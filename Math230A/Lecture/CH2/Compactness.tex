@@ -69,4 +69,56 @@
 		By ($I$), ($II$), and ($III$), we have $$E \subseteq O_{\alpha_0} \cup ... \cup O_{\alpha_{m-1}}$$
 		Thus, $\{O_\alpha\}_{\alpha\in \Lambda}$ has a finite subcover. Therefore $E$ is compact. \qed
 	\end{proof}
+	
+	\begin{remark}
+		If $X$ itself is compact, we say $(X,d)$ is a compact metric space.
+		If $\ocover{O}$ is any collection of open sets such that $X= \unioncollect{O},$ then
+		$$\exists \alpha_{1}, ..., \alpha_n \in \Lambda \st X = O_{\alpha_1} \cup ... \cup O_{\alpha_n}.$$
+	\end{remark}
+	
+	\begin{theorem}
+		Compact subsets of metric spaces are closed.
+	\end{theorem}
+	\begin{proof}
+		\routineMS and let $K\subseteq X$ be compact. We want to show that $K$ is closed. It is enough to show that $K^c$ is open. To this end, we need to show that every point of $K^c$ is an interior point. \\
+		Let $a\in K^c$. Our goal is to show that $$\exists \epsilon > 0 \st \nbhd{\epsilon}{a} \subseteq K^c.$$
+		That is, we want to show that $$\exists \epsilon > 0 \st \nbhd{\epsilon}{a} \cap K = \emptyset.$$
+		We have
+		\begin{align*}
+			a \in K^c &\implies a \not \in K \\
+			&\implies \forall x \in K ~~ d(x,a) > 0.
+		\end{align*}
+		For all $x\in K$, let $$\epsilon_x = \frac{1}{4}d(x,a).$$
+		Clearlly, $$\forall x \in K ~~ \nbhd{\epsilon_x}{x} \cap \nbhd{\epsilon_x}{a} = \emptyset.$$
+		Notice that $$\{\nbhd{\epsilon_x}{x}\}_{x\in K} \text { is an open cover of } K.$$
+		Since $K$ is compact, there is a finite subcover $$\exists x_1,..., x_n \in K \st K \subseteq \nbhd{\epsilon_{x_1}}{x_1} \cup ... \cup \nbhd{\epsilon_{x_n}}{x_n}$$
+		and of course
+		$$\begin{cases}
+			\nbhd{\epsilon_{x_1}}{x_1}\cap \nbhd{\epsilon_{x_n}}{a} = \emptyset \\
+			\vdots \\
+			\nbhd{\epsilon_{x_n}}{x_n}\cap \nbhd{\epsilon_{x_n}}{a} = \emptyset
+		\end{cases}$$
+		Let $\epsilon=\min\{\epsilon_{x_1}, ..., \epsilon_{x_n}\}$. Clearly,
+		$$\nbhd{\epsilon}{a} \subseteq \nbhd{\epsilon_{x_i}}{a} ~~ \forall 1 \leq i \leq n.$$
+		Hence
+		$$\begin{cases}
+			\nbhd{\epsilon_{x_1}}{x_1} \cap \nbhd{\epsilon}{a} = \emptyset \\
+			\vdots \\
+			\nbhd{\epsilon_{x_n}}{x_n} \cap \nbhd{\epsilon}{a} = \emptyset
+		\end{cases}$$
+		Therefore
+		$$
+		\nbhd{\epsilon}{a} \cap [ \nbhd{\epsilon_{x_1}}{x_1}\cup ... \cup \nbhd{\epsilon_{x_n}}{x_n}] =\emptyset.
+		$$
+		So,
+		$$
+			\nbhd{\epsilon}{a} \cap K = \emptyset.
+		$$
+		\qed
+	\end{proof}
+	
+	\begin{note}
+			So, it has been shown that compact $\implies$ closed and bounded $\checkmark$. However, it is not necessarily the case that closed and bounded $\implies$ compact.
+	\end{note}
+
 \end{document}
