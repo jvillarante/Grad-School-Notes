@@ -120,5 +120,50 @@
 	\begin{note}
 			So, it has been shown that compact $\implies$ closed and bounded $\checkmark$. However, it is not necessarily the case that closed and bounded $\implies$ compact.
 	\end{note}
-
+	
+	\begin{theorem}
+		\routineMS and let \routineCompact. Let $E\subseteq K$ be closed. Then $E$ is compact.
+	\end{theorem}
+	
+	\begin{proof}
+		Let $\ocover{O}$ be an open cover of $E$. Our goal is to show that this cover has a finite subcover. Not that $$E \text{ is closed} \implies E^c \text{ is open}.$$
+		We have $$E \subseteq K \subseteq X = E\cup E^c \subseteq \left(\unioncollect{O}\right) \cup E^c$$
+		Therefore, $E^c$ together with $\ocover{O}$ is an open cover for the compact set $K$. Since $K$ is compact, this open cover has a finite subcover:
+		$$\exists \alpha_1,...,\alpha_n \in \Lambda \st K\subseteq O_{\alpha_1} \cup ... \cup O_{\alpha_n} \cup E^c.$$
+		Considering $E\subseteq K,$ we can write
+		$$E \subseteq O_{\alpha_1}\cup ... \cup O_{\alpha_n} \cup E^c.$$
+		However, $E\cap E^c = \emptyset$, so
+		$$E \subseteq O_{\alpha_1} \cup... \cup O_{\alpha_n}.$$
+		So, $O_{\alpha_1} ,... , O_{\alpha_n}$ can be considered as the finite subcover that we were looking for. \qed
+	\end{proof}
+	
+	\begin{corollary}
+		If $F$ is closed and $K$ is compact, then $F\cap K$ is compact. ($F\cap K$ is a closed subset of the compact set $K$)
+	\end{corollary}
+	
+	Consider $X=\R$ and $Y=[0, \infty)$ ($Y$ is a subspace of $X$). Then
+	$$[0, \epsilon) \text{ is open in } Y \text{ because } [0,\epsilon) = (-\epsilon, \epsilon)\cap Y.$$
+	
+	\begin{theorem}
+		\routineMS and let $K\subseteq Y \subseteq X$ with $Y \not = \emptyset$. $K$ is compact relative to $X$ if and only if $K$ is compact relative to $Y$.
+	\end{theorem}
+	
+	\begin{proof}
+		$(\Leftarrow)$ Suppose $K$ is compact relative to $Y$. We want to show $K$ is compact relative $X$. Let $\ocover{O}$ be a collection of open sets in $X$ that covers $K$. Our goal is to show that this cover has a finite subcover. Note that
+		$$K=K\cap Y \subseteq \left( \unioncollect{O} \right)\cap Y = \bigcup \limits_{\alpha \in \Lambda} \left(O_\alpha \cap Y \right).$$
+		By Theorem 2.30, for each $\alpha \in \Lambda$, $O_\alpha \cap Y$ is an open set in the metric space $(Y,d^Y).$ So, $\{O_\alpha \cap Y\}_{\alpha \in \Lambda}$ is a collection of open sets in $(Y,d^Y)$ that covers $K$. Since $K$ is compact relative to $Y$, there exists a finite subcover:
+		\begin{align*}
+			\exists \alpha_1,...,\alpha_n \in \Lambda \st K &\subseteq (O_{\alpha_1}\cap Y)\cup...\cup(O_{\alpha_n}\cap Y) \\
+			&\subseteq(O_{\alpha_1}\cup ... \cup O_{\alpha_n})\cap Y \\
+			&\subseteq O_{\alpha_1}\cup ... \cup O_{\alpha_n}\\
+			&\implies K \subseteq O_{\alpha_1}\cup ... \cup O_{\alpha_n} \text{(we have a finite subcover)}
+		\end{align*}
+		
+		$(\Rightarrow)$ Now suppose $K$ is compact relative to $X$. We want to show $K$ is compact relative to $Y$. Let $\ocover{G}$ be a collection of open sets in $(Y, d^Y)$ that covers $K$. Our goal is to show that this cover has a finite subcover. It follows from Theorem 2.30 that
+		$$\forall \alpha \in \Lambda ~~ \exists O_{\alpha_{\text{open}}} \subseteq X \st G_\alpha = O_\alpha \cap Y.$$
+		We have
+		$$K \subseteq \unioncollect{G} = \bigcup \limits_{\alpha \in \Lambda} \left(O_\alpha \cap Y\right) = \left(\unioncollect{O}\right) \cap Y \subseteq \unioncollect{O}.$$
+		So, 
+	\end{proof}
+	
 \end{document}
