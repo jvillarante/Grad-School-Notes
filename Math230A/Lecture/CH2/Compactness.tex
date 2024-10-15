@@ -163,7 +163,86 @@
 		$$\forall \alpha \in \Lambda ~~ \exists O_{\alpha_{\text{open}}} \subseteq X \st G_\alpha = O_\alpha \cap Y.$$
 		We have
 		$$K \subseteq \unioncollect{G} = \bigcup \limits_{\alpha \in \Lambda} \left(O_\alpha \cap Y\right) = \left(\unioncollect{O}\right) \cap Y \subseteq \unioncollect{O}.$$
-		So, 
+		So, $\ocover{O}$ is an open cover for $K$ in the metric space $(X,d)$. Since $K$ is compact, $$\exists \alpha_1,...,\alpha_n \in \Lambda \st K \subseteq O_{\alpha_1}\cup... \cup O_{\alpha_n}.$$
+		Therefore, $$K=K\cap Y \subseteq (O_{\alpha_1}\cup ... \cup O_{\alpha_n})\cap y = (O_{\alpha_1}\cap Y)\cup ... \cup (O_{\alpha_n}\cap Y) = G_{\alpha_1}\cup...\cup G_{\alpha_n}.$$
+		(We have found the finite subcover we were looking for) \qed
 	\end{proof}
 	
+	Consider $X=\R$ and $Y=(0,\infty).$ \\
+	$(0, 2]$ is closed and bounded in $Y$, but it is not closed and bounded in $\R$.
+	$$(0,2]=[-2,2]\cap Y$$
+	
+	\begin{theorem}
+		If $E$ is an infinite subset of a compact set $K$, then $E$ has a limit point in $K$. $E'\cap K \not = \emptyset)$.
+	\end{theorem}
+	
+	\begin{proof}
+		Assume foolishly that $E'\cap K = \emptyset$; for every point you select in $K$, that point will not be a limit point of $E$. That is,
+		$$
+		\begin{cases}
+			\forall a \in E &a\not \in E' \\
+			\forall b \in K \backslash E &b\not \in E'
+		\end{cases}
+		$$
+		Therefore,
+		$$
+		\begin{cases}
+			\forall a \in E ~\exists \epsilon_a > 0 \st \nbhd{\epsilon_a}{a}\cap (E \backslash \{a\})=\emptyset \\
+			\forall b \in K \backslash E ~\exists \delta_b > 0 \st \nbhd{\delta_b}{b}\cap (E \backslash \{b\})=\emptyset \\
+		\end{cases}
+		$$
+		Thus
+		$$
+		\begin{cases}
+			\forall a \in E ~\exists \epsilon_a > 0 \st \nbhd{\epsilon_a}{a}\cap E = \{a\} \\
+			\forall b \in K \backslash E ~\exists \delta_b > 0 \st \nbhd{\epsilon_b}{b}\cap E = \emptyset
+		\end{cases}
+		$$
+		Clearly, $K \subseteq \left( \bigcup \limits_{a\in E} \nbhd{\epsilon_a}{a}
+		\right) \cup \left( \bigcup \limits_{b\in K\backslash E} \nbhd{\delta_b}{b}\right).$ Since $K$ is compact,
+		
+		$$\exists a_1,...,a_n \in E, b_1,...,b_n \in K \backslash E \st \\ E \subseteq K \subseteq \left(\nbhd{\epsilon_{a_1}}{a_1}\cup...\cup \nbhd{\epsilon_{a_n}}{a_n}\right)\cup \left(\nbhd{\delta_{b_1}}{b_1}\cup...\cup \nbhd{\delta_{b_n}}{b_n}\right) $$
+		
+		Since for all $b\in K \backslash E$, $\nbhd{\delta_b}{b}\cap E = \emptyset,$ we can conclude that
+		$$E \subseteq \left( \nbhd{\epsilon_{a_1}}{a_1} \cup...\cup \nbhd{\epsilon_{a_n}}{a_n} \right)$$
+		Hence, 
+		
+		\begin{align*}
+			E &= E \cap \left[ N_{\epsilon_{a_1}}a_1 \cup ... \cup N_{\epsilon_{a_n}}a_n \right] \\
+				&= \left [E\cap \nbhd{\epsilon_{a_1}}{a_1} \right] \cup ... \cup \left[ E \cap \nbhd{\epsilon_{a_n}}{a_n}\right] \\
+				&= \{a_1\} \cup ... \cup \{a_n\} \\
+				&= \{a_1,...,a_n\}.
+		\end{align*}
+		
+		This contradicts the assumption that E is infinite. \qed
+	\end{proof}
+	
+	\begin{remark}
+		\begin{enumerate}
+			\item $K$ is compact
+			\item Every infinite subset of $K$ has a limit point in $K$
+			\item Every sequence in $K$ has a subsequence that converges to a point in $K$
+		\end{enumerate}
+	\end{remark}
+	$\overset{A_1}{[1, \infty]}, \overset{A_2}{[2, \infty]}, \overset{A_3}{[3,\infty]}, \overset{A_4}{[4,\infty]},...$
+	\begin{align*}A_2\cap A_3 \cap A_4 &= [4, \infty) = A_4 \\
+	A_1 \cap A_3 \cap A_4&= A_4 \\
+	\bigcap \limits_{n=1}^\infty A_n = \emptyset
+	\end{align*}
+	
+	\begin{theorem}
+		\routineMS, and let $\{K_\alpha\}_{\alpha \in \Lambda}$ be a collection of compact sets. Every finite intersection is nonempty.
+	\end{theorem}
+	\begin{proof}
+		Assume for contradiction that $\bigcap \limits_{\alpha \in \Lambda} K_\alpha = \emptyset.$ Let $\alpha_0 \in \Lambda$. We have
+		$$K_{\alpha_0} \cap \left(\bigcap \limits_{\alpha \not = \alpha_0} K_alpha \right) = \emptyset$$
+		So,
+		$$k_{alpha_0}  \subseteq \left(\bigcup \limits_{\alpha \in \Lambda, \alpha \not = \alpha_0} K_\alpha \right)^c
+		\implies K_{\alpha_0} \subseteq \bigcup \limits_{a\alpha \in Lambda, \alpha \not = \alpha_0} K_\alpha ^c$$
+		So, ${\ocover{K^c}} _{,\alpha \not = \alpha_0}$ is an open cover of $K_{\alpha_0}$. Since $K_{\alpha_0}$ is compact,
+		$$\exists \alpha_1, ..., \alpha_n \st K_{\alpha_0} \subseteq K_{\alpha_1}^c \cap ... \cap K_{\alpha_n}^c \subseteq \left( \bigcap \limits_{i = 1}^n K_{\alpha_i} \right)^c$$
+		So,
+		$$K_{\alpha_0} \cap \left(\bigcap \limits_{i=1}^n K_{\alpha_i} \right) = \emptyset.$$
+		This contradicts the assumption that every finite intersection is nonempty. \qed
+	\end{proof}
 \end{document}
