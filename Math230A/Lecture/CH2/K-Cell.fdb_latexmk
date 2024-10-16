@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1729046948.52775 "/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math230A/Lecture/CH2/K-Cell.tex" "K-Cell.pdf" "K-Cell" 1729046949.36551 0
+["pdflatex"] 1729117384.8733 "/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math230A/Lecture/CH2/K-Cell.tex" "K-Cell.pdf" "K-Cell" 1729117385.78606 0
   "../../../preamble.tex" 1729045008.28169 11431 69ac909d7f20a37df22005164121b5c3 ""
-  "/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math230A/Lecture/CH2/K-Cell.tex" 1729046948.42087 5543 ba5297c9330c124921d41641577a3c60 ""
+  "/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math230A/Lecture/CH2/K-Cell.tex" 1729117384.73516 6973 f2a0385388532a822fdd34b9c7a5a53a ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -163,8 +163,8 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1727399713.53839 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1727399659 8221424 86100e4f43ff9c31a82e9f0bbca110dc ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "K-Cell.aux" 1729046949.29752 69 2132dee006a3d7056eb661ea36703872 "pdflatex"
-  "K-Cell.tex" 1729046948.42087 5543 ba5297c9330c124921d41641577a3c60 ""
+  "K-Cell.aux" 1729117385.71253 69 2132dee006a3d7056eb661ea36703872 "pdflatex"
+  "K-Cell.tex" 1729117384.73516 6973 f2a0385388532a822fdd34b9c7a5a53a ""
   "images/K.png" 1728958576.79693 39703 b98ef3f30679ec29b0bb5d628a1670cf ""
   (generated)
   "K-Cell.aux"

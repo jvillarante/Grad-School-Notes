@@ -114,4 +114,38 @@
 		\implies I_n \subseteq G_{\alpha_0}$$
 		This contradicts $(iii)$. \qed
 	\end{proof}
+
+	\begin{theorem}[Heine-Borel Theorem]
+		Let $E\subseteq \R^k$. The following statements are equivalent:
+		\begin{enumerate}
+			\item $E$ is closed and bounded.
+			\item $E$ is compact.
+			\item Every infinite subset of $E$ has a limit point in $E$.
+		\end{enumerate}
+	\end{theorem}
+	\begin{proof}
+		We will show $1. \implies 2. \implies 3. \implies 1.$ \\
+		$1. \implies 2.:$ Suppose $E$ is closed and bounded. We want to show that $E$ is compact. Since $E$ is bounded,
+		there exists a k-cell, $I$, that containes $E$. We have
+		$$\begin{rcases}
+			E \subseteq I \\
+			I \text{ is compact } \\
+			E \text{ is closed }
+		\end{rcases}
+		\implies E \text{ is compact.}$$
+
+		$2. \implies 3.:$ Supposed $E$ is compact. We want to show $E$ is limit point compact. This was proved last time, in Theorem 2.37. $$$$
+
+		$3. \implies 1.$ Suppose $E$ is limit point compact. We want to show that $E$ is closed and bounded. This will be done in HW 6.
+		\qed
+	\end{proof}
+
+	\begin{theorem}(Bolzano-Weierstrass Theorem)
+		If $E\subseteq \R^k$, $E$ is infinite, and $E$ is bounded, then $E'\not = \emptyset.$
+	\end{theorem}
+	\begin{proof}
+		If $E$ is bounded, then there exists a k-cell $I$ such that $E\subseteq I$. By Theorem 2.40, $I$ is compact. By Theorem 2.41, $I$ is
+		limit point compact. So every infinite set in $I$ has a limit point in $I$. In particular, $E$ has a limit point in $I$. So, $E' \not = \emptyset$.
+		\qed
+	\end{proof}
 \end{document}
