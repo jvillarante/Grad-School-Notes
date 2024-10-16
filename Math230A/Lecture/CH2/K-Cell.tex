@@ -1,0 +1,117 @@
+\documentclass[a4paper]{article}
+\input{../../../preamble}
+\graphicspath{{images/}}
+
+\date{}
+\title{\flushleft \textbf{K-Cell}}
+
+\begin{document}
+	\maketitle
+	Last time, we talked about:
+	\begin{enumerate}
+		\item Compact $\implies$ closed and bounded.
+		\item Closed subsets of compact sets are compact.
+		\item If $\ocover{K}$ is compact and every finite intersection is nonempty, then $\bigcap \limits_{\alpha \in \Lambda} K_\alpha \not = \emptyset$
+	\end{enumerate}
+	
+	\begin{corollary}
+		If $K_1 \supseteq K_2 \supseteq K_3 \supseteq K_4 \supseteq ...$ is a sequence of nonempty compact sets, then $\bigcap \limits_{i=1}^\infty K_n$ is nonempty.
+	\end{corollary}
+	
+	\begin{property}[Nested Interval Property]
+		If $I_n=[a_n,b_n]$ is a sequence of closed intervals in $\R$ \st $I_1 \supseteq I_2 \supseteq I_3 \supseteq ...,$ then $\bigcap \limits_{n=1}^\infty I_n$ is nonempty.
+	\end{property}
+	
+	In $\R ^k$, closed and bounded implies compactness.
+	
+	\begin{definition}[K-Cell]
+		The set $I = [a_1,b_1 ] \times ... \times [a_k, b_k]$ is called a k-cell in $\R ^k$.
+	\end{definition}
+	
+	For example, $I=[a_1, b_1] \times [a_2, b_2]$ in $\R ^2$ \\:
+	\includegraphics[width= 100pt, center]{K.png}
+	
+	\begin{theorem} (Nested Cell Property)
+		If $I_1 \supseteq I_2 \supseteq I_3 \supseteq ...$ is a nested sequence of k-cells, then $\bigcap \limits_{n=1}^\infty I_n \not = \emptyset$.
+	\end{theorem}
+	\begin{proof}
+		For each $n\in \N$, let
+		$$I_n = [a_1 ^{(1)}, b_1 ^{(1)}] \times ... \times [a_k ^{(k)}, b_k ^{(k)}].$$
+		Also, let
+		$$ \forall n \in \N ~~\forall 1 \leq i \leq k ~~A_i ^{(i)} = [a_i ^{(n)}, b_i^{(n)}].$$
+		So, 
+		$$ \forall n \in \N ~~I_n = A_1^{(n)} \times ... \times A_k ^{(n)}.$$
+		Since for each $n \in \N$, $I_n \supseteq I_{n+1},$ we have
+		$$\forall 1 \leq i \leq k ~~ A_i ^{(n)} \supseteq A_i^{(n+1)}$$
+		That is,
+		\begin{align*}
+			I_1 &= A_1^{(1)} \times ... \times A_k ^{(1)} \\
+			I_2 &= A_2 ^{(2)} \times ... \times A_k^{(2)} \\
+			\vdots \\
+			I_n &= A_n^{(1)} \times ... \times A_n^{(n)} \\
+			\vdots
+		\end{align*}
+		Hence, it follows from the nested interval property that
+		$$\exists x_1 \in \bigcap \limits_{n=1}^\infty A_1^{(n)}, \exists x_2 \in \bigcap \limits_{n=1}^\infty A_2^{(n)}, ... \exists x_k \in \bigcap \limits{n=1}^{\infty} A_k ^{(n)}$$
+		Thus,
+		\begin{align*}
+			(x_1,...,x_n) &\in \left[\bigcap \limits_{n=1}^\infty A_1^{(n)}\right] \times \left[\bigcap \limits_{n=1}^\infty A_2^{(n)}\right] \times... \times \left[\bigcap \limits_{n=1}^\infty A_k^{(n)}\right] \\
+			&\subseteq \bigcap \limits_{n=1}^\infty \left[A_1^{(1)} \times ... \times A_k^{(n)}\right] \\
+			&= \bigcap \limits_{n=1}^\infty I_n
+		\end{align*}
+		So, $\bigcap \limits_{n=1}^\infty I_n \not = \emptyset.$ \qed
+	\end{proof}
+	
+	\begin{theorem}
+		Every k-cell in $\R ^k$ is compact.
+	\end{theorem}
+
+	\begin{proof}
+		Here we will prove the claim for 2-cells. The proof for a general k-cell is completely analogous.
+		Let $I = [a_1,b_1] \times [a_2,b_2]$ be a 2-cell. Let $\varrow{a}=(a_1,a_2)$ and $\varrow{b}=(b_1,b_2)$.
+		Let $\delta = d(\varrow{a}, \varrow{b})= ||\varrow{a} - \varrow{b}||_2 = sqrt{(a_1-b_1)^2+(a_2-b_2)^2}.$
+		Noe that if $\varrow{x}=(x_1,x_2)$ and $\varrow{y}=(y_1,y_2)$ are any two points in I, then
+		$$\begin{cases}
+			x_1,y_1 \in [a_1,b_1] &\implies |x_1 - y_1| \leq |b_1 - a_1| \\
+			x_2,y_2 \in [a_2,b_2] &\implies |x_2 - y_2| \leq |b_2 - a_2| \\
+		\end{cases}
+		\implies \sqrt{|x_1-y_1|^2+|x_2-y_2|^2} \leq \sqrt{|a_1-b_1|^2+|a_2-b_2|^2} = \delta$$
+		So, $$d(\varrow{x}, \varrow{y}) \leq \delta.$$
+		Let's assume for contradiction that $I$ is not compact. So, there exists an open cover $\ocover{G}$ of $I$ that does not have a finite subcover.
+		For each $1 \leq i \leq 2$, divide $[a_i, b_i]$ into two subintervals of equal length:
+		$$c_i= \frac{a_i + b_i}{2}, ~~ [a_i,b_i]=[a_i, c_i] \cup [c_i, b_i]$$
+		These subintervals determine four 2-cells. There is at least one of these four 2-cells that is not covered by any finite subcollection of $\ocover{G}$.
+		Let's call it $I_1$. Notice that
+		$$\forall \varrow{x}, \varrow{y} \in I_1 ~~ ||\varrow{x}, \varrow{y}||_2 \leq \frac{\delta}{2}.$$
+		Now, subdivide $I_1$ into four 2-cells and continue this process. We will obtain a sequence of 2-cells
+		$$I_1, I_2, I_3, ... $$
+		such that
+		\begin{align*}
+			&(i) I \supseteq I_1 \supseteq I_2 \supseteq ... \\
+			&(ii) \forall \varrow{x}, \varrow{y} \in I_n ~~ ||\varrow{x}-\varrow{y}|| \leq \frac{\delta}{2^n} \\
+			&(iii) \forall n \in \N, I_n \text{ cannot be covered by a finite subcollection of } \ocover{G}.
+		\end{align*}
+		By the nested cell property,
+		$$\exists \varrow{x}^* \in I\cap I_1 \cap I_2 \cap...$$
+		In particular,
+		$$\varrow{x}^* \in I \subseteq \ocover{G} \implies \exists \alpha_0 \st \varrow{x}^* \in G_{\alpha_0}$$
+		We have
+		$$\begin{rcases}
+			\varrow{x}^* \in G_{\alpha_0} \\
+			G_{\alpha_0} \text{ is open}
+		\end{rcases}
+		\implies \exists r > 0 \st N_r(\varrow{x}^*) \subseteq G_{\alpha_0}$$
+		Choose $n\in \N \st \frac{\delta}{2^n} < r.$ We claim that $I_n \in \nbhd{r}{\varrow{x}^*}.$ Indeed,
+		suppose $\varrow{y}\in I_n$, we have $$\begin{cases}
+			\varrow{y}\in I_n \\
+			\varrow{x}^* \in I_n
+		\end{cases}$$
+		so $||\varrow{y} - \varrow{x}|| \leq \frac{\delta}{2^n} < r.$ Hence $\varrow{y} \in \nbhd{r}{\varrow{x}^*}.$ We have
+		$$\begin{rcases}
+			I_n \subseteq \nbhd{r}{\varrow{x}^*} \\
+			\nbhd{r}{\varrow{x}^*} \subseteq G_{\alpha_0}
+		\end{rcases}
+		\implies I_n \subseteq G_{\alpha_0}$$
+		This contradicts $(iii)$. \qed
+	\end{proof}
+\end{document}

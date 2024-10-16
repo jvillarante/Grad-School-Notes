@@ -1,4 +1,6 @@
 %\documentclass{tuftebook}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox}
 \usepackage{amsthm}
 \usepackage[many]{tcolorbox}
 \usepackage[margin=0.75in]{geometry}
@@ -41,11 +43,18 @@
 \definecolor{proofcolor}{RGB}{0,0,0}
 
 % Dark orange and Dark Red rgb
-\definecolor{theorembordercolor}{RGB}{151, 63, 5}
-\definecolor{theorembackgroundcolor}{RGB}{248, 241, 234}
+%\definecolor{theorembordercolor}{RGB}{151, 63, 5}
+%\definecolor{theorembackgroundcolor}{RGB}{248, 241, 234}
+\definecolor{theorembordercolor}{RGB}{255, 165, 0}
+\definecolor{theorembackgroundcolor}{RGB}{254, 249, 243}
 
-\definecolor{examplebordercolor}{RGB}{0, 110, 184}
-\definecolor{examplebackgroundcolor}{RGB}{240, 244, 250}
+%\definecolor{examplebordercolor}{RGB}{0, 110, 184}
+%\definecolor{examplebackgroundcolor}{RGB}{240, 244, 250}
+
+\definecolor{examplebordercolor}{RGB}{199, 0, 57}
+\definecolor{examplebackgroundcolor}{RGB}{248, 241, 234}
+
+\definecolor{remarkbordercolor}{RGB}{0, 110, 184}
 
 \definecolor{definitionbordercolor}{RGB}{0, 150, 85}
 \definecolor{definitionbackgroundcolor}{RGB}{239, 247, 243}
@@ -73,6 +82,12 @@
 {}{\;}{0.25em}
 {{\sffamily\bfseries\color{examplebordercolor}\thmname{#1}.}
 	\thmnote{\normalfont\color{black}~(#3)}}
+	
+\newtheoremstyle{remark}
+{0pt}{0pt}{\normalfont}{0pt}
+{}{\;}{0.25em}
+{{\sffamily\bfseries\color{remarkbordercolor}\thmname{#1}.}
+	\thmnote{\normalfont\color{black}~(#3)}}	
 
 \newtheoremstyle{property}
 {0pt}{0pt}{\normalfont}{0pt}
@@ -95,8 +110,8 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{postulate}{Postulate}
 \newtheorem{conjecture}{Conjecture}
-\newtheorem{corollary}{Corollary}
-\newtheorem{lemma}{Lemma}
+%\newtheorem{corollary}{Corollary}
+%\newtheorem{lemma}{Lemma}
 \newtheorem{conclusion}{Conclusion}
 
 \tcolorboxenvironment{theorem}{
@@ -117,18 +132,18 @@
 	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
 	borderline west={0.5mm}{0mm}{theorembordercolor}, arc=.5mm
 }
-\tcolorboxenvironment{corollary}{
-	enhanced jigsaw, pad at break*=1mm, breakable,
-	left=4mm, right=4mm, top=1mm, bottom=1mm,
-	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
-	borderline west={0.5mm}{0mm}{theorembordercolor}, arc=.5mm
-}
-\tcolorboxenvironment{lemma}{
-	enhanced jigsaw, pad at break*=1mm, breakable,
-	left=4mm, right=4mm, top=1mm, bottom=1mm,
-	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
-	borderline west={0.5mm}{0mm}{theorembordercolor}, arc=.5mm
-}
+%\tcolorboxenvironment{corollary}{
+%	enhanced jigsaw, pad at break*=1mm, breakable,
+%	left=4mm, right=4mm, top=1mm, bottom=1mm,
+%	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
+%	borderline west={0.5mm}{0mm}{theorembordercolor}, arc=.5mm
+%}
+%\tcolorboxenvironment{lemma}{
+%	enhanced jigsaw, pad at break*=1mm, breakable,
+%	left=4mm, right=4mm, top=1mm, bottom=1mm,
+%	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
+%	borderline west={0.5mm}{0mm}{theorembordercolor}, arc=.5mm
+%}
 \tcolorboxenvironment{conclusion}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
@@ -164,8 +179,8 @@
 
 \theoremstyle{example}
 \newtheorem*{example}{Example}
-\newtheorem*{remark}{Remark}
-\newtheorem*{note}{Note}
+%\newtheorem*{remark}{Remark}
+%\newtheorem*{note}{Note}
 
 \tcolorboxenvironment{example}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
@@ -173,17 +188,28 @@
 	colback=examplebackgroundcolor, boxrule=0pt, frame hidden,
 	borderline west={0.5mm}{0mm}{examplebordercolor}, arc=.5mm
 }
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+\newtheorem*{note}{Note}
 \tcolorboxenvironment{remark}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
 	colback=white, boxrule=0pt, frame hidden,
-	borderline west={0.5mm}{0mm}{examplebordercolor}, arc=.5mm
+	borderline west={0.5mm}{0mm}{remarkbordercolor},
+	borderline east={0.5mm}{0mm}{remarkbordercolor},
+	borderline north={0.5mm}{0mm}{remarkbordercolor},
+	borderline south={0.5mm}{0mm}{remarkbordercolor},
+	 arc=.5mm
 }
 \tcolorboxenvironment{note}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
 	colback=white, boxrule=0pt, frame hidden,
-	borderline west={0.5mm}{0mm}{examplebordercolor}, arc=.5mm
+	borderline west={0.5mm}{0mm}{remarkbordercolor},
+	borderline east={0.5mm}{0mm}{remarkbordercolor},
+	borderline north={0.5mm}{0mm}{remarkbordercolor},
+	borderline south={0.5mm}{0mm}{remarkbordercolor}, arc=.5mm
 }
 
 
@@ -194,6 +220,8 @@
 \theoremstyle{property}
 \newtheorem{property}{Property}
 \newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
 
 \tcolorboxenvironment{property}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
@@ -202,6 +230,18 @@
 	borderline west={0.5mm}{0mm}{propertybordercolor}, arc=.5mm
 }
 \tcolorboxenvironment{proposition}{
+	enhanced jigsaw, pad at break*=1mm, breakable,
+	left=4mm, right=4mm, top=1mm, bottom=1mm,
+	colback=propertybackgroundcolor, boxrule=0pt, frame hidden,
+	borderline west={0.5mm}{0mm}{propertybordercolor}, arc=.5mm
+}
+\tcolorboxenvironment{corollary}{
+	enhanced jigsaw, pad at break*=1mm, breakable,
+	left=4mm, right=4mm, top=1mm, bottom=1mm,
+	colback=propertybackgroundcolor, boxrule=0pt, frame hidden,
+	borderline west={0.5mm}{0mm}{propertybordercolor}, arc=.5mm
+}
+\tcolorboxenvironment{lemma}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
 	colback=propertybackgroundcolor, boxrule=0pt, frame hidden,
@@ -238,15 +278,15 @@
 \AddToHook{env/review/after}{\colorlet{proofcolor}{definitionbordercolor}}
 
 \AddToHook{env/example/after}{\colorlet{proofcolor}{examplebordercolor}}
-\AddToHook{env/remark/after}{\colorlet{proofcolor}{examplebordercolor}}
-\AddToHook{env/note/after}{\colorlet{proofcolor}{examplebordercolor}}
+\AddToHook{env/remark/after}{\colorlet{proofcolor}{remarkbordercolor}}
+\AddToHook{env/note/after}{\colorlet{proofcolor}{remarkbordercolor}}
 
 \AddToHook{env/property/after}{\colorlet{proofcolor}{propertybordercolor}}
 \AddToHook{env/proposition/after}{\colorlet{proofcolor}{propertybordercolor}}
 
 \AddToHook{env/formula/after}{\colorlet{proofcolor}{formulabordercolor}}
 
-\renewcommand{\qedsymbol}{Q.E.D.}
+\renewcommand{\qedsymbol}{$\square$}
 \let\qedsymbolMyOriginal\qedsymbol
 \renewcommand{\qedsymbol}{
 	\color{proofcolor}\qedsymbolMyOriginal
@@ -300,3 +340,38 @@
 		fonttitle=\sffamily,
 		breakable
 		]}{\end{tcolorbox}}
+	
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%% Analysis Commands
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Open Cover
+\newcommand{\ocover}[1]{
+	\{#1_\alpha \}_{\alpha \in \Lambda}
+}
+\newcommand{\unioncollect}[1]{
+	\bigcup \limits_{\alpha \in \Lambda} #1 _\alpha
+}
+\newcommand{\st}{
+	\text{ such that }
+}
+
+\newcommand{\routineMS} {
+	\text{Let $(X,d)$ be a metric space}
+}
+
+\newcommand{\routineCompact}{
+	\text{$K \subseteq X$ be compact}
+}
+
+\newcommand{\nbhd}[2] {
+	N_{#1}(#2)
+}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\varrow}[1]{\overrightarrow{#1}}
