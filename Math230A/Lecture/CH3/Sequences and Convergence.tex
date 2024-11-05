@@ -1,0 +1,126 @@
+\documentclass[a4paper]{article}
+\input{../../../preamble}
+
+\date{}
+\title{\flushleft \textbf{Sequences and Convergence}}
+\begin{document}
+    \maketitle
+
+    \begin{definition} (Convergence of a Sequence)
+        \routineMS and let $(x_n)$ be a sequence in $X$.
+        $(x_n)$ converges to a limit $x\in X$ if and only if for every $\epsilon > 0$, we
+        can find $N \in \N \st$ if $n > N, ~~ d(x_n, x) < \epsilon.$
+    \end{definition}
+    \begin{notation} $\\$
+        \begin{enumerate}
+            \item $x_n \rightarrow x$ as $n\rightarrow \infty$
+            \item $x_n \rightarrow x$
+            \item $\lim_{x\to\infty} x_n = x$
+        \end{enumerate}
+    \end{notation}
+
+    \begin{remark}
+        \begin{enumerate}[(i)]
+            \item $x_n \to x \iff \forall \epsilon > 0 ~~ \exists N \in \Z \st \forall n > N ~~ d(x_n,x) < \epsilon.$
+            \item If $(x_n)$ does not converge, we say it diverges.
+            \item $x_n \to x \iff \forall \epsilon > 0 ~~ \exists N \in \Z \st \forall n > N ~~d(x_n, x) < \epsilon \\ x_n \to x \iff \forall \epsilon > 0 ~~ \exists N \in \R \st \forall n > N ~~d(x_n, x) < \epsilon$
+        \end{enumerate}
+    \end{remark}
+
+    \begin{definition} (Bounded Sequence)
+        \routineMS and let $(x_n)$ be a seqence in $X$. $(x_n)$ is said to be bounded if the set $\{x_n : n \in \N\}$ is a bounded set in the metric space $X$.
+        \begin{align*}
+        (x_n) \text{ is bounded } &\iff \exists q\in X ~\exists r > 0 \st \{x_n : n \in \N\} \subseteq \nbhd{r}{q} \\ &\iff \exists q \in X ~\exists r > 0 \st d(x,q) < r
+        \end{align*}
+    \end{definition}
+
+    \begin{example}
+        Consider $\R$ equipped with the standard metric.
+        \begin{enumerate}[(i)]
+            \item $x_n = (-1)^n:$ this sequence is bounded, has a finite range $\{-1, 1\}$, and diverges.
+            \item $x_n = \frac{1}{n}:$ this sequence is bounded, has an infinite range, and converges to $0$.
+            \item $x_n = 1:$ this sequence is bounded, has a finite range, and converges to 1.
+            \item $x_n=n^2:$ this sequence is undbounded, has an infinite range, and diverges.
+        \end{enumerate}
+    \end{example}
+
+    \begin{example}
+        Consider $Y= (0, \infty)$ with the induced metric from $\R$.
+        $x_n = \frac{1}{n}:$ this sequence is bounded, has infinite range, and diverges.
+    \end{example}
+
+    \begin{theorem}(An equivalent characterization of convergence)
+        \routineMS.
+        $$x_n \to x \iff \forall \epsilon > 0 ~\nbhd{\epsilon}{x} \text{ contains $x_n$ for all but at most finitely many $n$.}$$
+    \end{theorem}
+    \begin{proof}
+        \begin{align*}
+            x_n \to x &\iff \forall \epsilon > 0 ~\exists N \in \N \st \forall n > N ~d(x_n, x) < \epsilon \\
+            &\iff \forall \epsilon > 0 ~\exists N \in \N \st \forall n > N ~x_n \in \nbhd{\epsilon}{x} \\
+            &\iff \forall \epsilon > 0 ~\exists N \in \N \st \nbhd{\epsilon}{x} \text{ contains } x_n ~\forall n > N \\
+            &\iff \forall \epsilon > 0 ~\nbhd{\epsilon}{x} \text{ contains $x_n$ for all but at most finitely many $n$}.
+        \end{align*}
+    \end{proof}
+
+    \begin{theorem}(Uniqueness of a Limit)
+        \routineMS and let $(x_n)$ be a sequence in $X$. If $x_n \to x$ in $X$ and $x_n \to \overset{-}{x}$ in $X$, then $x = \overset{-}{x}$.
+    \end{theorem}
+     To prove this theorem, we make use of the following lemma:
+     \begin{lemma}
+        \label{lem 1}
+        Suppose $a \geq 0.$ If $a < \epsilon ~\forall \epsilon > 0,$ then $a=0$.
+     \end{lemma}
+     \begin{proof}
+        In order to prove that $x = \overset{-}{x},$ it is enough to show that $d(x, \overset{-}{x}) = 0.$ To this end, according to Lemma \ref{lem 1}, it is enough to show that
+        $$\forall \epsilon > 0 ~ d(x, \overset{-}{x}) < epsilon.$$
+        Let $\epsilon > 0$ be given.
+        \begin{align*}
+            x_n \to x &\implies \exists N_1 \st \forall n > N_1 ~d(x_n, x) < \frac{\epsilon}{2} \\
+            x_n \to \overset{-}{x} &\implies \exists N_2 \st \forall n > N_2 ~d(x_n, \overset{-}{x}) < \frac{\epsilon}{2}
+        \end{align*}
+        Let $N= \max\{N_1, N_2\}$. Pick any $n > N$. We have
+        \begin{align*}
+            d(x, \overset{-}{x}) &\leq d(x, x_n) + d(x_n, \overset{-}{x}) \\
+            &< \frac{\epsilon}{2} + \frac{\epsilon}{2} \\
+            &= \epsilon.
+        \end{align*}
+        \qed
+     \end{proof}
+
+     \begin{theorem}(Convergent $\implies$ bounded)
+        \routineMS and let $(x_n)$ be a sequence in $X$. If $x_n \to x$ in $X$, then $(x_n)$ is bounded.
+     \end{theorem}
+     \begin{proof}
+        By definition of convergence with $\epsilon = 1$, we have
+        $$\exists N \in \N \st \forall n > N ~x_n \in N_1(x).$$
+        Now, let $r= \max \{1, d(x_1, x), d(x_2, x), ..., d(x_n, x)\} + 1$.
+        Then, clearly,
+        $$\forall n \in \N ~d(x_n, x) < r$$
+        Hence,
+        $$ \forall n \in \N ~x_n \in N_r(x).$$
+        Therefore, $(x_n)$ is bounded. \qed
+     \end{proof}
+
+     \begin{corollary} (contrapositive)
+        If $(x_n)$ is NOT bounded in $X$, then $(x_n)$ diverges in $X$.
+     \end{corollary}
+
+     \begin{theorem}(Limit Point is a Limit of a Sequence)
+        \routineMS and let $E\subseteq X$. Suppose $x \in E'$. Then there exists a sequence $x_1, x_2, ...$ of distinct points in $E \backslash \{x\}$ that converges to $x$.
+     \end{theorem}
+     \begin{proof}
+        Since $x\in E',$
+        $$\forall \epsilon > 0 ~\nbhd{\epsilon}{x} \cap (E \backslash \{x\}) \text{ is infinite.}$$
+        In particular,
+        \begin{align*}
+            &\text{for } \epsilon = 1 ~\exists x_1 \in E \backslash \{x\} \st d(x_1, x) < 1 \\
+            &\text{for } \epsilon = \frac{1}{2} ~\exists x_2 \in E \backslash \{x\} \st x_2 \not = x_1 \wedge d(x_2, x) < \frac{1}{2} \\
+            &\text{for } \epsilon = \frac{1}{3} ~\exists x_3 \in E \backslash \{x\} \st x_3 \not = x_2 \wedge d(x_3, x) < \frac{1}{3} \\
+            \vdots \\
+            &\text{for } \epsilon = \frac{1}{n} ~\exists x_n \in E \backslash \{x\} \st x_n \not = x_1, x_2, x_3,... \wedge d(x_n, x) < \frac{1}{n} \\
+            \vdots
+        \end{align*}
+        In this way we obtain a sequence $x_1, x_2, x_3,...$ of distinct points in $E \backslash \{x\}$ that converges to $x$.
+        Let $\epsilon > 0$ be given. We need to find $N$ such that if $n > N$ then $d(x_n, x) < \epsilon$. Let $N$ be such that $\frac{1}{N} < \epsilon$ (archimedean property). Then $\forall n > N ~d(x_n, n) < \frac{1}{n} < \frac{1}{N} < \epsilon$ as desired. \qed
+     \end{proof}
+\end{document}
