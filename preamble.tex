@@ -87,7 +87,7 @@
 \newtheoremstyle{example}
 {0pt}{0pt}{\normalfont}{0pt}
 {}{\;}{0.25em}
-{{\sffamily\bfseries\color{examplebordercolor}\thmname{#1}.}
+{{\sffamily\bfseries\color{examplebordercolor}\thmname{#1}~\thmnumber{\textup{#2}}.}
 	\thmnote{\normalfont\color{black}~(#3)}}
 	
 \newtheoremstyle{remark}
@@ -115,6 +115,7 @@
 \theoremstyle{theorem}
 
 \newtheorem{theorem}{Theorem}
+\numberwithin{theorem}{section}
 \newtheorem{postulate}{Postulate}
 \newtheorem{conjecture}{Conjecture}
 %\newtheorem{corollary}{Corollary}
@@ -164,6 +165,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
+\numberwithin{definition}{section}
 \newtheorem{review}{Review}
 \newtheorem{notation}{Notation}
 \tcolorboxenvironment{notation}{
@@ -196,7 +198,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 
 \theoremstyle{example}
-\newtheorem*{example}{Example}
+\newtheorem{example}{Example}
+\numberwithin{example}{section}
 %\newtheorem*{remark}{Remark}
 %\newtheorem*{note}{Note}
 
@@ -237,9 +240,12 @@
 
 \theoremstyle{property}
 \newtheorem{property}{Property}
+\numberwithin{property}{section}
 \newtheorem{proposition}{Proposition}
 \newtheorem{corollary}{Corollary}
+\numberwithin{corollary}{section}
 \newtheorem{lemma}{Lemma}
+\numberwithin{lemma}{section}
 
 \tcolorboxenvironment{property}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
@@ -393,3 +399,14 @@
 \newcommand{\Q}{\mathbb{Q}}
 
 \newcommand{\varrow}[1]{\overrightarrow{#1}}
+
+% Sequences
+\newcommand{\routineSeq}{
+	Let $(X,d)$ be a metric space and let $(x_n)$ be a sequence in $X$.
+}
+\newcommand{\seq}[1]{
+	$(#1 _n)$
+}
+\newcommand{\subseq}[1]{
+	$(#1 _{n_k})$
+}

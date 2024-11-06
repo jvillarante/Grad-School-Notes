@@ -1,12 +1,12 @@
-\documentclass[a4paper]{article}
-\input{../../../preamble}
+%\documentclass[a4paper]{article}
+%\input{../../../preamble}
 \graphicspath{{images/}}
 
-\date{}
-\title{\flushleft \textbf{K-Cell}}
+%\date{}
+%\title{\flushleft \textbf{K-Cell}}
 
-\begin{document}
-	\maketitle
+%\begin{document}
+	%\maketitle
 	Last time, we talked about:
 	\begin{enumerate}
 		\item Compact $\implies$ closed and bounded.
@@ -29,7 +29,7 @@
 	\end{definition}
 	
 	For example, $I=[a_1, b_1] \times [a_2, b_2]$ in $\R ^2$ \\:
-	\includegraphics[width= 100pt, center]{K.png}
+	\includegraphics[width= 100pt, center]{/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math230A/Lecture/CH2/images/K.png}
 	
 	\begin{theorem} (Nested Cell Property)
 		If $I_1 \supseteq I_2 \supseteq I_3 \supseteq ...$ is a nested sequence of k-cells, then $\bigcap \limits_{n=1}^\infty I_n \not = \emptyset$.
@@ -143,9 +143,10 @@
 	\begin{theorem}(Bolzano-Weierstrass Theorem)
 		If $E\subseteq \R^k$, $E$ is infinite, and $E$ is bounded, then $E'\not = \emptyset.$
 	\end{theorem}
+	
 	\begin{proof}
 		If $E$ is bounded, then there exists a k-cell $I$ such that $E\subseteq I$. By Theorem 2.40, $I$ is compact. By Theorem 2.41, $I$ is
 		limit point compact. So every infinite set in $I$ has a limit point in $I$. In particular, $E$ has a limit point in $I$. So, $E' \not = \emptyset$.
 		\qed
 	\end{proof}
-\end{document}
+%\end{document}

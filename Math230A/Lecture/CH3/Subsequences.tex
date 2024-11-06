@@ -1,0 +1,81 @@
+\begin{definition} (Subsequences)
+    \routineSeq Let $n_1 < n_2 < n_3 < ...$ be a strictly increasing sequence of natural numbers. Then $(x_{n_1}, x_{n_2}, x_{n_3},...)$ is called a subsequence of $(x_1, x_2, x_3,...)$, and is denoted by $(x_{n_k})$, where $k \in \N$ indexes the subsequence.
+\end{definition}
+
+\begin{example}
+    Let $(x_n) = (1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4},...)$.
+    \begin{enumerate}[(i)]
+        \item $(1, \frac{1}{3}, \frac{1}{5}, \frac{1}{7},...)$ is a subsequence.
+        \item $(\frac{1}{100}, \frac{1}{1000}, \frac{1}{10000},...)$ is a subsequence.
+        \item $(1, \frac{1}{5}, \frac{1}{3}, \frac{1}{7}, \frac{1}{2},...)$ is not a subsequence (we do not have $n_1 < n_2 < n_3 <...$).
+    \end{enumerate}
+\end{example}
+\begin{remark}
+    Suppose $(x_{n_1}, x_{n_2}, x_{n_3},...)$ is a subsequence of $(x_1, x_2, x_3, ...)$. Notice that $n_i \in \N$ and $n_1 < n_2 < n_3 < ...$ so
+    \begin{enumerate}[(i)]
+        \item $n_1 \geq 1$
+        \item For each $k \geq 2,$ there are at least $k-1$ natural numbers, namely $n_1,...,n_{k-1}$, strictly less than $n_k$, so $n_k \geq k$.
+    \end{enumerate}
+\end{remark}
+
+\begin{theorem}
+    \routineSeq If $\lim \limits_{n \to \infty} x_n = x$, then every subsequence of $(x_n)$ converges to $x$.
+\end{theorem}
+\begin{proof}
+    Let \subseq{x} be a subsequence of \seq{x}. Our goal is to show that $\lim \limits_{k \to \infty} x_{n_k} = x.$ That is, we want to show
+    $$\forall \epsilon > 0 ~\exists N \in \N \st \forall k > N ~d(x_{n_k}, x) < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find $N$ \st
+    \begin{equation}
+        \text{if $k > N$, then $d(x_{n_k}, x) < \epsilon$}
+        \tag{$I$}
+    \end{equation}
+    Since $x_n \to x$, we have
+    \begin{equation}
+        \exists \hat{N} \st \forall n > \hat{N} ~d(x_n, x) < \epsilon
+        \tag{$II$}
+    \end{equation}
+    We claim that this $\hat{N}$ can be used as the $N$ we are looking for. Indeed, if we let $N=\hat{N}$, then if $k > N$ we can conclude that $n_k \geq k > N$ and so, by $(II)$
+    $$d(x_{n_k},x) < \epsilon$$ \qed
+\end{proof}
+
+\begin{corollary} (contrapositive)
+    \begin{enumerate}[(i)]
+        \item If a subsequence of $(x_n)$ does not converge to $x$, then $(x_n)$ does not converge to $x$.
+        \item If $(x_n)$ has a pair of subsequences converging to different limits, then $(x_n)$ does not converge.
+    \end{enumerate}
+\end{corollary}
+
+\begin{example}
+    Let $x_n = (-1)^n$ in $\R$.
+    \begin{enumerate}
+        \item The subsequence $(x_1, x_3, x_5,...) = (-1, -1, -1,...)$ converges to $-1.$
+        \item The subsequence$(x_2, x_4, x_6,...) = (1, 1, 1, ...)$ converges to $1$.
+    \end{enumerate}
+    By (i) and (ii), $(x_n)$ does not converge.
+\end{example}
+
+\begin{theorem}
+    \routineSeq The subsequential limits of $(x_n)$ form a closed set in $X$.
+\end{theorem}
+\begin{proof}
+    Let $E=\{b \in X : b \text{ is a limit of a subsequence of } x_n\}.$ Our goal is to show that $E' \subseteq E$. To this end, we pick an arbitrary element $a \in E'$ and we will prove that $a \in E$. That is, we will show that there is a subsequence of $(x_n)$ that converges to $a$. We may consider two cases:
+    \begin{description}
+        \item[Case 1: $\forall n \in \N ~x_n = a$.]
+        In this case, $(x_n)$ and any subsequence of $(x_n)$ converges to $a$. So $a \in E.$
+        \item[Case 2: $\exists n_1 \in \N \st x_{n_1} \not = a.$] Let $\delta = d(a, x_{n_1}) > 0.$ Since $a \in E', \nbhd{\frac{\delta}{2^2}}{a}\cap(E \backslash \{a\}) \not = \emptyset.$ So,
+        $$\exists b \in E \backslash \{a\} \st d(b, a) < \frac{\delta}{2^2}.$$
+        Since $b\in E$, $b$ is a limit of a subsequence of $(x_n)$, so
+        $$\exists n_2 > n_1 \st d(x_{n_2}, b) < \frac{\delta}{2^2}.$$
+        Now note that
+        $$d(x_{n_2}, a) \leq d(x_{n_2}, b) + d(b,a) < \frac{\delta}{2^2} + \frac{\delta}{2^2} = \frac{\delta}{2}.$$
+        Since $a \in E'$, $\nbhd{\frac{\delta}{2^3}}{a} \cap (E \backslash \{a\}) \not = \emptyset.$ So,
+        $$\exists b \in E \backslash \{a\} \st d(b,a) < \frac{\delta}{2^3}.$$
+        Since $b \in E$, $b$ is a limit of a subsequence of $(x_n)$, so
+        $$\exists n_3 > n_2 \st ~d(x_{n_3}, b) < \frac{\delta}{2^3}.$$
+        Now note that
+        $$d(x_{n_3}, a) \leq d(x_{n_3},b) + d(b, a) < \frac{\delta}{2^3} + \frac{\delta}{2^3} = \frac{\delta}{2^2}.$$
+        In this way, we obtain a subsequence $x_{n_1}, x_{n_2}, x_{n_3},...$ of $(x_n)$ \st
+        $$\forall k \geq 2 ~~d(x_{n_k}, a) < \frac{\delta}{2^{k-1}}$$
+        so, clearly, $x_{n_k} \to a.$ Hence, $a \in E.$ \qed
+    \end{description}
+\end{proof}
