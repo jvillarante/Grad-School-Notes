@@ -292,10 +292,10 @@
 
 % These patches must be placed after \tcolorboxenvironment !
 \AddToHook{env/theorem/after}{\colorlet{proofcolor}{theorembordercolor}}
-\AddToHook{env/postulate/after}{\colorlet{proofcolor}{theorembordercolor}}
-\AddToHook{env/conjecture/after}{\colorlet{proofcolor}{theorembordercolor}}
-\AddToHook{env/corollary/after}{\colorlet{proofcolor}{theorembordercolor}}
-\AddToHook{env/lemma/after}{\colorlet{proofcolor}{theorembordercolor}}
+\AddToHook{env/postulate/after}{\colorlet{proofcolor}{propertybordercolor}}
+\AddToHook{env/conjecture/after}{\colorlet{proofcolor}{remarkbordercolor}}
+\AddToHook{env/corollary/after}{\colorlet{proofcolor}{propertybordercolor}}
+\AddToHook{env/lemma/after}{\colorlet{proofcolor}{propertybordercolor}}
 \AddToHook{env/conclusion/after}{\colorlet{proofcolor}{theorembordercolor}}
 
 \AddToHook{env/definition/after}{\colorlet{proofcolor}{definitionbordercolor}}
@@ -335,8 +335,8 @@
 \newenvironment{info}{\begin{tcolorbox}[
 		arc=0mm,
 		colback=white,
-		colframe=gray,
-		title=Info,
+		colframe=examplebordercolor,
+		title=Informal Discussion,
 		fonttitle=\sffamily,
 		breakable
 		]}{\end{tcolorbox}}
@@ -369,6 +369,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% Analysis Commands
 %%%%%%%%%%%%%%%%%%%%%%%%
+
+% Topology
+\newcommand{\closure}[1]{
+	\overline{#1}
+}
 
 % Open Cover
 \newcommand{\ocover}[1]{
