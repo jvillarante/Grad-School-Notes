@@ -1,0 +1,160 @@
+\begin{definition} (Diameter of a Set)
+    \routineMS and let $E$ be a nonempty subset in $X$. The diameter of $E$, denoted by $diamE$, is defined as follows:
+    $$diamE = sup\{d(a,b) : a,b \in E\}$$
+\end{definition}
+
+\begin{remark}
+    Note that if $\empty \not = A \subseteq B \subseteq X,$ then
+    $$\{d(a,b) : a,b \in A\} \subseteq \{d(a,b) : a,b \in B \}.$$
+    Hence,
+    $$ sup\diam{A} \subseteq sup\diam{B}$$.
+    That is,
+    $$diamA \leq diamB.$$
+\end{remark}
+
+\begin{observation}
+    Let $(x_n)$ be a sequence in $X$. $\forall n \in \N$ let $E_n = \{x_{n+1}, x_{n+2},...\}.$ Then
+    $$(x_n) \text{ is Cauchy} \iff \lim_{n \to \infty}diamE_n = 0.$$
+\end{observation}
+
+\begin{proof}
+    Note that
+    \begin{align*}
+        &E_1 = \{x_2, x_3, x_4,...\} \\
+        &E_2 = \{x_3, x_4, x_5,...\} \\
+        &E_3 = \{x_4, x_5, x_6,...\} \\
+        \vdots
+    \end{align*}
+    Clearly, $E_1 \supseteq E_2 \supseteq E_3 \supseteq ...$, so 
+    $$diamE_1 \supseteq diamE_2 \supseteq diamE_3 \supseteq ...$$
+
+    ($\implies$) Supposed $(x_n)$ is Cauchy. Our goal is to show that
+    $$\forall \epsilon > 0 ~\exists N \st \forall n > N ~|diamE_n - 0| < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find a number $N$ such that if $n > N$, then $diamE_n < \epsilon ~(*).$ For the given $\epsilon > 0$, since $(x_n)$ is Cauchy, there exists $\hat{N}$ \st
+    $$ \forall n,m > \hat{N} ~d(x_n, x_m) < \epsilon / 2.$$
+    We claim that this $\hat{N}$ can be used as the $N$ that we were looking for. Indeed, if we let $N = \hat{N}$, then $(*)$ will hold becuase:
+    $$E_{\hat{N}} = \{x_{\hat{N}+1}, x_{\hat{N}+2}, x_{\hat{N}+3}\}$$
+    so $\forall a,b \in E_{\hat{N}} ~d(a,b) < \epsilon / 2.$ Then
+    $$diamE_{\hat{N}} = sup\diam{E_{\hat{N}}} \leq \epsilon / 2 < \epsilon$$
+    so if $n > \hat{N}$, then
+    $$diamE_n \leq diamE_{\hat{N}} < \epsilon$$
+    as desired.\newline
+    ($\impliedby$) Suppose $\lim_{n\to \infty}diamE_n = 0.$ Our goal is to show that 
+    $$\forall \epsilon > 0 ~\exists N \st \forall n,m > N ~d(x_m, x_n) < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find a number $N$ \st
+    \begin{equation}
+        \text{if } n,m > N, \text{ then } d(x_n, x_m) < \epsilon.
+        \tag{$*$}
+    \end{equation}
+    Since $\lim_{n \to \infty} diamE_N = 0,$ for this $\epsilon$, there exists $\hat{N}$ \st
+    $$\forall n > \hat{N} ~diamE_n < \epsilon$$
+    We claim that $N = \hat{N} + 1$ can be used as the $N$ that we were looking for. Indeed, if we let $N = \hat{N} + 1$, then $(*)$ will hold:
+    $$\text{if } n,m > \hat{N} + 1, \text{ then } x_n, x_m \in E_{\hat{N}+1}$$
+    and so
+    $$d(x_m,x_n) \leq diamE_{\hat{N}+1} < \epsilon$$
+    \qed
+\end{proof}
+
+\begin{theorem}(diam$\closure{E}$ = diam $E$)
+    \label{thm3.10a}
+    \routineMS and let $\emptyset \not = E \subseteq X$. Then
+    $$\text{diam$\closure{E} =$ diam $E$}$$
+\end{theorem}
+
+\begin{proof}
+    Note that since $E \subseteq \closure{E}$, we have diam$E \leq$diam$\closure{E}$. In what follows, we will prove that diam$\closure{E} \leq$diam$E$ by showing that
+    $$\forall \epsilon > 0 ~\text{diam$\closure{E} \leq$ diam$E + \epsilon$}.$$
+    Let $\epsilon > 0$ be given. Our goal is to show that
+    $$\sup\{d(a,b): a,b \in \closure{E}\} \leq \text{diam$E + \epsilon$}.$$
+    To this end, it is enough to show that diam$E + \epsilon$ is an upper bound for $\{d(a,b) : a,b \in \closure{E}\}$. Suppose $a,b\in \closure{E}$. We have
+    \begin{align*}
+        a\in \closure{E} &\implies \nbhd{\epsilon/2}{a} \cap E \not = \emptyset \implies \exists x \in E \st d(x,a) < \frac{\epsilon}{2} \\
+        b\in \closure{E} &\implies \nbhd{\epsilon/2}{b} \cap E \not = \emptyset \implies \exists y \in E \st d(y,b) < \frac{\epsilon}{2}.
+    \end{align*}
+    Therefore,
+    \begin{align*}
+        d(a,b) &\leq d(a,x) + d(x,y) + d(y,b) \\
+        & < \frac{\epsilon}{2} + d(x,y) + \frac{\epsilon}{2} \\
+        &\leq \frac{\epsilon}{2} + \text{diam$E$} + \frac{\epsilon}{2} \\
+        &= \epsilon + \text{diam$E$}
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{theorem}
+    \label{thm3.10b}
+    \routineMS and let $K_1 \supseteq K_2 \supseteq K_3 \supseteq...$ be a nested sequence of nonempty compact sets.
+\end{theorem}
+
+\begin{proof}
+    Let $K = \bigcap \limits_{n=1}^\infty K_n.$ By Theorem 2.36, we know that $K\not = \emptyset.$ In order to show that $K$ has only one element, we suppose $a,b \in K$ and we will prove $a=b$. In order to show $a=b$, we will prove $d(a,b) = 0$ and to this end show
+    $$\forall \epsilon > 0 ~d(a,b) < \epsilon.$$
+    Let $\epsilon > 0$ be given. Since $\lim_{n\to \infty}$ diam$K_n = 0$, there exists $N$ \st
+    $$\forall n > N ~\text{diam$K_n$} < \epsilon.$$
+    In particular, diam$K_{N+1} < \epsilon$. Now we have
+    $$
+    \begin{rcases*}
+        a \in \bigcap \limits_{n = 1}^\infty K_n &$\implies a \in K_{N+1}$ \\ b\in \bigcap \limits_{n = 1}^\infty K_n &$\implies b \in K_{N+1}$ 
+    \end{rcases*}
+    \implies d(a,b) \leq \text{diam$K_{N+1} < \epsilon$}$$
+    \qed
+\end{proof}
+
+\begin{theorem}(Compact Space $\implies$ Complete Space)
+    \label{thm3.11b}
+    Any compact metric space is complete.
+\end{theorem}
+
+\begin{proof}
+    Let $(X,d)$ be a compact metric space. Let $(x_n)$ be a Cauchy sequence in $X$. Our goal is to show that $(x_n)$ converges in $X$. For each $n \in \N$, let $E_n = \{x_{n+1}, x_{n+2}, x_{n+3},...\}.$ We know that
+    \begin{enumerate}[(1)]
+        \item $E_1 \supseteq E_2 \supseteq E_3 \supseteq ...$
+        \item $(x_n)$ is Cauchy $\implies \lim_{n\to \infty} \text{diam$E_n$} = 0$
+    \end{enumerate}
+    It follows from (1) that
+    \begin{equation*}
+        \closure{E_1} \supseteq \closure{E_2} \supseteq \closure{E_3} \supseteq ...
+        \tag{$I$}
+    \end{equation*}
+    Since closed subsets of a compact space are compact, $(I)$ is a nested sequence of nonempty compact sets. Since diam$E_n = $diam$\closure{E_n}$, it follows from $(2)$ that $\lim_{n\to \infty}$diam$\closure{E_n} = 0$. Hence, by Theorem \ref{thm3.10b}, $\bigcap \limits_{n=1}^\infty \closure{E_n}$ has exactly one point. Let's call this point "$a$":
+    $$\bigcap \limits_{n=1}^\infty \closure{E_n} = \{a\}$$
+    In what follows, we will prove that $\lim_{n\to \infty} x_n = a.$ To this end, it's enough to show that
+    $$\forall \epsilon > 0 ~\exists N \st \forall n > N ~d(a_n, a) < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find $N$ \st
+    \begin{equation*}
+        \text{if $n > N,$ then $d(x_n,a) < \epsilon$}
+        \tag{$*$}
+    \end{equation*}
+    Since $\lim_{n \to \infty}$diam$\closure{E} = 0$, for this given $\epsilon$ there exists $\hat{N}$ \st
+    $$\forall n > \hat{N} ~\text{diam$\closure{E_n} < \epsilon$}.$$
+    We claim that $\hat{N} + 1$ can be used as the $N$ that we are looking for. Indeed, if we let $N= \hat{N} + 1$, then $(*)$ holds:
+    $$\text{If $n > \hat{N} + 1,$ then }
+    \begin{rcases}
+        x_n \in E_{\hat{N}+1} \implies x_n \in \closure{E_{\hat{N}+1}} \\
+        a\in \bigcap \limits_{n=1}^\infty \closure{E_n}, \text{ so $a\in \closure{E_{\hat{N}+1}}$}
+    \end{rcases}
+    \implies d(x_n, a) \leq \text{diam$\closure{E_{\hat{N}+1}} < \epsilon$}
+    $$
+    \qed
+\end{proof}
+
+\begin{theorem}($\R^k$ is Complete)
+    \label{thm3.11c}
+    $\R^k$ is a complete metric space.
+\end{theorem}
+\begin{proof}
+    Let $(x_n)$ be a Cauchy sequence in $\R^k$.
+    \begin{align*}
+        &\overset{\text{HW 7}}{\implies} (x_n) \text{ is bounded} \\
+        &\implies \exists p \in \R^k, ~\epsilon > 0 \st \forall n \in \N ~x_n \in \nbhd{\epsilon}{p}.
+    \end{align*}
+    Note that $\closure{\nbhd{\epsilon}{p}}$ is closed and bounded in $\R^k$, so it's compact.
+    $$
+    \begin{rcases*}
+        \closure{\nbhd{\epsilon}{p}} \text{ is a compact metric space } \\
+        (x_n) \text{ is Cauchy in } \closure{\nbhd{\epsilon}{p}}
+    \end{rcases*}
+    \implies (x_n) \text{ converges to a point $x\in \closure{\nbhd{\epsilon}{p}}$}.
+    $$
+    Since the distance function in $\closure{\nbhd{\epsilon}{p}}$ is exactly the same as the distance function in $\R^k$, we can conclude that $x_n \to x$ in $\R^k$. \qed
+\end{proof}
