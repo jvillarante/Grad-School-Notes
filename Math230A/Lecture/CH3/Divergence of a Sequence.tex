@@ -1,0 +1,133 @@
+\begin{theorem} [Algebraic Limit Theorem]
+    \label{ALT}
+    Suppose $(a_n)$ and $(b_n)$ are sequences of real numbers, and $\lim_{n\to \infty}a_n = a$ and $\lim_{n \to \infty}b_n = b$. Then
+    \begin{enumerate}[($i$)]
+        \item $\lim_{n\to\infty}(a_n + b_n) = a+b$
+        \item $\lim_{n\to\infty}(ca_n) = ca$
+        \item $\lim_{n\to\infty}(a_n b_n) = ab$
+        \item $\lim_{n\to\infty}\frac{a_n}{b_n} = \frac{a}{b}, \text{ provided $b\not = 0$}$
+    \end{enumerate}
+\end{theorem}
+
+So far, we have studied limits of sequences that were convergent. We now discuss what it means to not converge.
+
+\begin{definition} [Divergence of a Limit]
+    Consider $\R$ with its standard metric. Let $(x_n)$ be a sequence of real numbers. If $(x_n)$ does not converge, we say $(x_n)$ diverges.
+    
+    Divergence appears in three forms:
+    \begin{enumerate}[($i$)]
+        \item $(x_n)$ becomes arbitrarily large as $n\to \infty$. More precisely,$$
+        \forall M > 0 ~\exists N \in \N \st \forall n > N ~x_n > M$$
+        In this case, we say $(x_n)$ diverges to $\infty$.
+        \begin{notation}
+            $x_n \to \infty$ or $\lim_{x\to \infty}x_n = \infty$.
+        \end{notation}
+        \item -$x_n$ becomes arbitrarily large as $n \to \infty$. More precisely, $$\forall M > 0 ~\exists N \in \N \st \forall n > N ~ -x_n > M.$$
+        In this case, we say $(x_n)$ diverges to -$\infty$.
+        \begin{notation}
+            $x_n \to -\infty$ or $\lim_{n\to \infty}x_n = -\infty$.
+        \end{notation}
+        \item $(x_n)$ is not convergent and does not diverge to $\pm \infty$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    The following are examples of the different types of divergence in $\R$:
+    \begin{enumerate}[($i$)]
+        \item $x_n = n^2, ~x_n \to \infty$
+        \item $x_n = -n, ~x_n \to \infty$
+        \item $(x_n) = ((-1)^n) = (-1, 1, -1, 1,...)$
+    \end{enumerate}
+\end{example}
+
+\begin{definition}[Increasing, Decreasing, Monotone]
+    Consider $\R$ with the standard metric.
+    \begin{enumerate}[($i$)]
+        \item $(a_n)$ is said to be increasing if and only if for all $n, ~a_n \leq a_{n+1}$
+        \item $(a_n)$ is said to be decreasing if and only if for all $n, ~a_n \geq a_{n+1}$
+        \item $(a_n)$ is said to be monotone if and only if it is incresing or decreasing, or both
+        \item $(a_n)$ is said to be strictly increasing if and only if for all $n, ~a_n < a_{n+1}$
+        \item $(a_n)$ is said to be strictly decreasing if and only if for all $n, ~a_n > a_{n+1}$
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem}[Monotone Convergence Theorem]
+    \label{MCT}
+    Consider $\R$ with its standard metric.
+    \begin{enumerate}[($i$)]
+        \item If $(a_n)$ is increasing and bounded, then $(a_n)$ converges to $\sup\{a_n : n \in \N\}$
+        \item If $(a_n)$ is decreasing and bounded, then $(a_n)$ converges to $\inf\{a_n : n \in \N\}$
+        \item If $(a_n)$ is increasing and unbounded, then $(a_n) \to \infty$
+        \item If $(a_n)$ is decreasing and unbounded, then $(a_n) \to -\infty$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Here, we will prove item $(i)$.
+    Suppose $(a_n)$ is increasing and bounded. We want to show $a_n \to S$ where $S = \sup\{a_1, a_2, a_3, ...\}$. First, note that since $\{a_1, a_2, a_3,...\}$ is a bounded set, $\sup\{a_1, a_2, a_3,...\}=S$ exists and is a real number. Our goal is to prove that
+    $$\forall \epsilon > 0 ~\exists N \in \N \st \forall n > N ~|a_n - S| < \epsilon.$$
+    Let $\epsilon > 0$ be given. We want to find $N$ \st
+    \begin{equation*}
+        \text{if $n > N$, then $S-\epsilon < a_n < S + \epsilon$}
+    \end{equation*}
+    \begin{align*}
+        S= \sup\{a_1, a_2, a_3,...\} &\implies S - \epsilon \text{ is not an upper bound of $\{a_n : n \in \N\}$} \\
+        &\implies \exists a_i \in \{a_n : n \in \N \} \st a_i > S - \epsilon \\
+        &\implies \exists \hat{N} \in \N \st a_{\hat{N}} > S - \epsilon
+    \end{align*}
+    Let $N=\hat{N}$, then
+    \begin{enumerate}[(1)]
+        \item If $n > \hat{N}$, then $a_n \geq a_N > S - \epsilon$ since $(a_n)$ is increasing.
+        \item If $n > \hat{N}$, then $a_n \leq S < S+\epsilon$ since $(a_n)$ is bounded.
+    \end{enumerate}
+    (1),(2) $\implies$ if $n > N$, then $S-\epsilon < a_n < S + \epsilon$ as desired. \qed
+\end{proof}
+
+\begin{example}
+    Define the sequence $(a_n)$ recursively by $a_1 = 1$ and
+    $$a_{n+1} = \frac{1}{2}a_n + 1.$$
+    \begin{enumerate}[($i$)]
+        \item Show that $a_n \leq 2$ for every $n$.
+        \item Show that $(a_n)$ is an increasing sequence.
+        \item Explain why $(i)$ and $(ii)$ prove that $(a_n)$ converges.
+        \item Prove $(a_n) \to 2.$
+    \end{enumerate}
+\end{example}
+\begin{proof}
+    $(i)$ We proceed by induction.
+    \begin{description}
+        \item[Base Case:] Clearly, $a_1=1 \leq 2$.
+        \item[Inductive Step:] Suppose $a_k \leq 2$ for some $k\in \N$. Then \begin{align*}
+            a_{k+1} &= \frac{1}{2}a_k + 1 \\
+            &\leq \frac{1}{2}(2) + 1 \\
+            = 2.
+        \end{align*}
+    \end{description}
+    By mathematical induction, $a_n \leq 2$ for every $n\in \N$.\newline
+
+    $(ii)$ We proceed by induction.
+    \begin{description}
+        \item[Base Case:] $a_1 = 1$ and $a_2 = \frac{1}{2}(1) + 1 = \frac{3}{2} \implies a_1 \leq a_2$.
+        \item[Inductive Step:] Suppose $a_k \leq a_{k+1}$ for some $k \in \N$. Then
+        \begin{align*}
+            a_{k+2} &= \frac{1}{2}(a_{k+1}) + 1 \\
+            &\geq \frac{1}{2}a_k + 1 \\
+            &= a_{k+1}.
+        \end{align*}  
+    \end{description}
+    By mathematical induction, $a_n \leq a_n+1 ~\forall n \geq 1.$ \newline
+
+    $(iii)$ By the Monotone Convergence Theorem (MCT), $(i),(ii) \implies (a_n)$ converges.
+    \newline
+
+    $(iv)$ Let $A= \lim_{n\to \infty}a_n.$ We have
+    \begin{align*}
+        A &= \lim_{n\to\infty}a_{n+1} \\
+        &= \lim_{n\to \infty}[\frac{1}{2}a_n + 1] \\
+        &= \frac{1}{2}(\lim_{n\to \infty}a_n) + 1 \\
+        &= \frac{1}{2}(A) + 1 \\
+        &\implies A = 2.
+    \end{align*}
+    Therefore, $a_n \to 2$.
+    \qed
+\end{proof}
