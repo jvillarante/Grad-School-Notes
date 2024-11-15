@@ -1,0 +1,327 @@
+\begin{definition}[The Extended Real Numbers]
+    The set of extended real numbers, denoted by $\overline{\R}$, consists of all real numbers and two symbols, $-\infty, +\infty$:
+    $$\overline{\R}=\R \cup \{-\infty, \infty\}$$
+\end{definition}
+
+\begin{enumerate}[$*)$]
+    \item $\Rbar$ is equpped with an order. We preserve the original order in $\R$ and we define
+    $$\forall x \in \R ~-\infty < x < \infty$$
+    \item $\Rbar$ is not a field, but it is customary to make the following conventions:
+    \begin{align*}
+        &\forall x \in \R \text{ with $x > 0$}: &x \cdot (+\infty) = +\infty &&x \cdot (-\infty) = -\infty \\
+        &\forall x \in \R \text{ with $x < 0$}: &x \cdot (+\infty) = -\infty &&x \cdot (-\infty) = +\infty \\
+        &\forall x \in \R &x + \infty = + \infty \\
+        &\forall x \in \R &x -\infty = -\infty \\
+        &&+\infty + \infty = + \infty \\
+        &&-\infty - \infty = -\infty \\
+        &\forall x \in \R &\frac{x}{+\infty} = \frac{x}{-\infty} = 0
+    \end{align*}
+    Please note that we did not define the following:
+    $$-\infty + \infty, +\infty -\infty, \frac{\infty}{\infty}, \frac{-\infty}{-\infty}, ..., 0 \cdot \infty, \infty \cdot 0,0 \cdot -\infty, -\infty \cdot 0$$
+    \item If $A\subset \Rbar$,
+    \begin{align*}
+        &\sup{A} = \text{least upper bound} \\
+        &\inf{A} = \text{greatest lower bound}
+    \end{align*}
+    \item $\sup{A} = +\infty \iff \text{either } +\infty \in A \text{ or } A \subseteq \R \cup \{-\infty\} \text{ and $A$ is not bounded above in $\R \cup \{-\infty\}$}$
+    \item $\inf{A} = -\infty \iff \text{either } -\infty \in A \text{ or } A \subseteq \R \cup \{+\infty\} \text{ and $A$ is not bounded below in $\R \cup \{+\infty\}$}$
+    \item $\sup{\emptyset} = -\infty, ~\inf{\emptyset} = +\infty$
+\end{enumerate}
+
+\begin{remark}
+    Let $(a_n)$ be a sequence in $\Rbar$. Let $a \in \R.$
+    \begin{enumerate}[$(i)$]
+        \item $\lim_{n\to \infty}a_n = a \iff \forall \epsilon > 0 ~\exists N \in \N \st \forall n > N ~|a_n - a| < \epsilon$
+        \item $\lim_{n\to \infty}a_n = +\infty \iff \forall M > 0 ~\exists N \in \N \st \forall n > N ~a_n > M$
+        \item $\lim_{n\to \infty}a_n = -\infty \iff \forall M > 0 ~\exists N \in \N \st \forall n > N ~-a_n > M$
+    \end{enumerate}
+\end{remark}
+
+Limits in $\Rbar$ have theorems that are analogous to the limit theorems in $\R$.
+
+\begin{theorem}[Algebraic Limit Theorem in $\Rbar$]
+    \label{ALTRbar}
+    Suppose $a_n \to a$ in $\Rbar$ and $b_n \to b$ in $\Rbar$. Then
+    \begin{enumerate}[$(i)$]
+        \item If $c\in \R,$ then $ca_n \to ca$
+        \item $a_n + b_n \to a + b$, provided $\infty - \infty$ does not appear
+        \item $a_n b_n \to ab$, provided $(\pm \infty)\cdot 0$ or $0 \cdot (\pm \infty)$ does not appear
+        \item If $a=\pm \infty,$ then $\frac{1}{a_n} \to 0$
+        \item If $a_n \to 0$ and $a_n > 0$ (or $a_n < 0$), then $\frac{1}{a_n} \to \infty$ (or $\frac{1}{a_n} \to -\infty)$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Order Limit Theorem in $\Rbar$]
+    \label{OLTRbar}
+    Suppose $a_n \to a$ in $\Rbar$ and $b_n \to b$ in $\Rbar$. Then
+    \begin{enumerate}[$(i)$]
+        \item If $a_n \leq b_n,$ then $a \leq b$
+        \item If $a_n \leq e_n$ and $a_n \to \infty,$ then $e_n \to \infty$.
+        \item If $e_n \leq a_n$ and $a_n \to -\infty,$ then $e_n \to -\infty$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Monotone Convergence Theorem in $\Rbar$]
+    Let $(a_n)$ be a sequence in $\Rbar$.
+    \begin{enumerate}[$(i)$]
+        \item If $(a_n)$ is increasing, then $a_n \to \sup\{a_n : n \in \N \}$
+        \item If $(a_n)$ is decreasing, then $a_n \to \inf\{a_n : n \in \N \}$
+    \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+    $\Rbar$ can be equipped with the following metric:
+    $$f(x)=
+    \begin{cases}
+        -\frac{\pi}{2} &x=-\infty \\
+        \arctan{x} &-\infty < x < \infty \\
+        \frac{\pi}{2} &x=+\infty
+    \end{cases}
+    $$
+    Define $\overline{d}(x,y)=|f(x) - f(y)| ~\forall x,y \in \Rbar$.
+    \begin{enumerate}[1)]
+        \item The closure of $\R$ in $(\Rbar, \overline{d})$ is $\Rbar$.
+        \item If $(a_n)$ is a sequence in $\R$, then $a_n \to a \in \Rbar \iff (a_n)$ converges to $a$ in the metric space $(\Rbar, \overline{d})$.
+        \item The closure of $\Rbar$ in the metric space $(\Rbar, \overline{d})$ is $\Rbar$.
+        \item Every set in $(\Rbar, \overline{d})$ is bounded: $$\forall x,y \in \Rbar ~\overline{d}(x,y) \leq \pi.$$
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}[Characterization of $\limsup$ and $\liminf$ 1]
+    \label{limsup1}
+    Let $(x_n)$ be a sequence of real numbers. Let
+    $$ S=\{x\in \Rbar : \text{$\exists (x_{n_k})$ of $(x_n) \st x_{n_k} \to x$}\}$$
+    We define
+    \begin{align*}
+        \limsup x_n &= \sup S \\
+        \liminf x_n &= \inf S
+    \end{align*}
+\end{definition}
+
+\begin{definition}[Characterization of $\limsup$ and $\liminf$ 2]
+    \label{limsup2}
+    Let $(x_n)$ be a sequence of real numbers. For each $n \in \N,$ let $F_n = \{x_k : k \geq n \}.$
+    Clearly,
+    $$F_1 \supseteq F_2 \supseteq F_3 \supseteq ...$$
+    So,
+    $$ \sup F_1 \geq \sup F_2 \geq \sup F_3 \geq ...$$
+    and
+    $$ \inf F_1 \leq \inf F_2 \leq \inf F_3 \leq ...$$
+    By the MCT (in $\Rbar$), we know that $\lim_{n \to \infty} \sup F_n$ and $\lim_{n \to \infty} \inf F_n$ exist in $\Rbar$. We define
+    \begin{align*}
+        \limsup x_n &= \lim_{n \to \infty}(\sup F_n) \\
+        \liminf x_n &= \lim_{n \to \infty}(\inf F_n).
+    \end{align*}
+    That is,
+    \begin{align*}
+        \limsup x_n &= \lim_{n \to \infty}\sup \{x_k : k \geq n\} = \inf (\sup F_n) \\
+        \liminf x_n &= \lim_{n \to \infty}\inf \{x_k : k \geq n\} = \sup (\inf F_n) \\
+    \end{align*}
+\end{definition}
+
+\begin{notation}
+    \begin{align*}
+        &\limsup x_n = \limsup \limits_{n \to \infty}x_n = \overline{\lim}x_n \\
+        &\liminf x_n = \liminf \limits_{n \to \infty}x_n = \underline{\lim}x_n \\
+    \end{align*}
+\end{notation}
+
+\begin{example}
+    $x_n = (-1)^n$
+    \begin{align*}
+        \limsup x_n = \lim_{n \to \infty} \sup \{x_k : k \geq n\} = \lim_{n \to \infty} \sup \{x_1, x_2, x_3,...\} = \lim_{n \to \infty} \sup\{1,-1\} = 1 \\
+        \liminf x_n = \lim_{n \to \infty} \inf \{x_k : k \geq n\} = \lim_{n \to \infty} \inf \{x_1, x_2, x_3,...\} = \lim_{n \to \infty} \inf\{-1,1\} = -1 \\
+    \end{align*}
+
+    $(a_n) = (-1, 2, 3, -1, 2, 3, -1, 2, 3,...)$
+    \begin{align*}
+        \limsup a_n = \lim_{n \to \infty} \sup \{-1, 2, 3\} = 3 \\
+        \liminf a_n = \lim_{n \to \infty} \inf \{-1, 2, 3\} = -1
+    \end{align*}
+
+    $b_n = n$
+    \begin{align*}
+        &\limsup b_n = \lim_{n \to \infty} \sup \{b_k : k \geq n\} = \lim_{n \to \infty} \sup \{b_n, b_{n+1}, b_{n+2},...\} = \lim_{n \to \infty} \sup\{n,n+1, n+2,...\} = +\infty \\
+        &\liminf b_n = \lim_{n \to \infty} \inf \{b_k : k \geq n\} = \lim_{n \to \infty} \inf\{n,n+1, n+2,...\} = \lim_{n\to \infty} n = +\infty
+    \end{align*}
+\end{example}
+
+\begin{theorem}
+    \label{limsup<liminf}
+    Let $(a_n)$ be a sequence of real numbers. Then
+    $$\liminf a_n \leq \limsup a_n$$
+\end{theorem}
+\begin{proof}
+    We want to show $\lim_{n\to \infty} \inf \{a_k : k \geq n\} \leq \lim_{n \to \infty} \sup \{a_k : k \geq n\}$. It is enough to show $\exists n_0 \st \forall n \geq n_0 ~\inf \{a_k: k \geq n \} \leq \sup \{a_k : k \geq n\}.$
+    Notice that for all $n\in \N$
+    $$\inf \{a_k : k \geq n\} \leq \sup \{a_k : k \geq n\}$$
+    Since we already proved that the limits of both sides exist in $\Rbar$, it follows from the order limit theorem (OLT, in $\Rbar$) that
+    $$\lim_{n\to\infty}\inf \{a_k : k \geq n\} \leq \lim_{n\to\infty} \sup\{a_k : k \geq n\}$$
+    That is,
+    $$\liminf a_n \leq \limsup a_n$$
+    \qed
+\end{proof}
+
+\begin{theorem}
+    Let $(a_n)$ be a sequence of real numbers. Then
+    $$\lim_{n\to\infty}a_n \text{ exists in $\Rbar$} \iff \limsup a_n = \liminf a_n$$
+    Moreover, in this case, $\lim a_n = \limsup a_n = \liminf a_n$.
+\end{theorem}
+
+\begin{proof}
+    $(\impliedby)$ Suppose $\limsup a_n = \liminf a_n$. Let $A=limsup a_n = liminf a_n$ $(A\in \Rbar)$. In what follows, we will show that $\lim a_n = A$. We consider three cases:
+    \begin{description}
+        \item[Case 1: $A\in \R$] \leavevmode \\
+        Note that $\forall n \in \N$
+        $$\inf \{a_k : k \geq n\} \leq a_n \leq \sup \{a_k : k \geq n\}$$
+        Since $\lim_{n\to \infty} \sup \{a_k : k \geq n\} = \lim_{n \to \infty} \inf\{a_k : k \geq n\} = A$, it follows from the squeeze theorem that $\lim_{n\to \infty}a_n = A$.
+        \item[Case 2: $A = \infty$] \leavevmode \\
+        $$
+        \begin{rcases*}
+            \forall n \in \N ~~\inf \{a_k : k \geq n\} \leq a_n \\
+            \lim_\{a_k : k \geq n\} = \infty
+        \end{rcases*}
+        \implies \lim_{n\to \infty} a_n = \infty
+        $$
+        \item[Case 3: $A=-\infty$] \leavevmode \\
+        $$
+        \begin{rcases*}
+            \forall n \in \N ~~a_n \leq \sup\{a_k : k \geq n\} \\
+            \lim_{n \to \infty} \sup \{a_k : k \geq n\}
+        \end{rcases*}
+        \implies \lim_{n \to \infty}a_n = - \infty
+        $$
+    \end{description}
+    $(\implies)$ Suppose $\lim_{n\to \infty} a_n$ exists in $\Rbar$. Let $A = \lim_{n \to \infty} a_n$ $(A \in \Rbar)$. In what follows, we will show that $\limsup a_n = A = \liminf a_n$. We consider three cases:
+    \begin{description}
+        \item[Case 1: $A\in\Rbar$] \leavevmode \\
+        We will show $A\leq \liminf a_n$ and $\limsup a_n \leq A \implies A \leq \liminf a_n \leq \limsup a_n \leq A.$ To do this, it is enough to show that
+        \begin{align*}
+            &\forall \epsilon > 0 ~A-\epsilon \leq \liminf a_n \\
+            &\forall \epsilon > 0 ~\limsup a_n \leq A + \epsilon
+        \end{align*}
+        Let $\epsilon > 0$ be given. Since $a_n \to A$, there exists $N$ \st
+        $$\forall n > N ~~|a_n - A| < \epsilon$$
+        so,
+        \begin{enumerate}[$*)$]
+            \item $\begin{aligned}[t]
+                \forall n > N ~~a_n < A + \epsilon &\implies \forall n > N ~A+ \epsilon \in UP\{a_k : k \geq n\} \\
+                &\implies \forall n > N ~~\sup \{a_k : k \geq n\} \leq A + \epsilon \\
+                &\overset{OLT}{\implies} \lim_{n \to \infty} \sup \{a_k : k \geq n\} \leq \lim_{n\to \infty} A + \epsilon \\
+                &\implies \limsup a_n \leq A + \epsilon
+            \end{aligned}$
+            \item $\begin{aligned}[t]
+                \forall n > N ~~A - \epsilon < a_n &\implies \forall n > N ~~A-\epsilon \in LO\{a_k : k \geq n\} \\
+                &\implies \forall n > N ~~\inf \{a_k : k \geq n\} \leq A - \epsilon \\
+                &\overset{OLT}{\implies} \lim_{n\to \infty} \inf \{a_k : k \geq n\} \geq \lim_{n \to \infty} A - \epsilon \\
+                &\implies \liminf a_n \geq A - \epsilon
+            \end{aligned}$
+        \end{enumerate}
+
+        \item[Case 2: $A=\infty$] \leavevmode \\
+        In order to show $\liminf a_n = \infty$, it's enough to show that 
+        $$\forall M > 0 ~~ M \leq \liminf a_n$$
+        Let $M > 0$ be given. Since $a_n \to \infty, ~\exists N \st \forall n > N$ 
+        \begin{align*}
+            &~~a_n > M \\
+            &\implies \forall n > N ~~\inf\{a_k : k \geq n\} \geq M \\
+            &\implies \lim_{n \to \infty} \inf \{a_k : k \geq n\} \geq \lim_{n\to \infty} M \\
+            &\implies \liminf a_n \geq M 
+        \end{align*}
+
+        \item[Case 3: $A=-\infty$] \leavevmode \\
+        Analogous to case 2.
+    \end{description}
+    \qed
+\end{proof}
+
+\begin{theorem}
+    Let $(a_n)$ and $(b_n)$ be two sequences of $\R$. Then 
+    $$\limsup (a_n + b_n) \leq \limsup a_n + \limsup b_n$$
+    provided that $\infty -\infty$ or $-\infty + \infty$ does not appear.
+\end{theorem}
+
+\begin{proof}\leavevmode \\
+    \begin{info}
+        Our goal is to show $\lim_{n\to \infty} \sup \{a_k + b_k : k \geq n\} \leq \lim_{n\to\infty} \sup \{a_l : l \geq n\} + \lim_{n\to\infty} \sup \{b_m : m \geq n\}.$ Considering the algebraic limit theorem (ALT) and the OLT it is enough to show that there exists $n_0 \st$
+        $$\forall n \geq n_0 ~~\sup\{a_k + b_k : k \geq n\} \leq \sup\{a_l : l \geq n\} + \sup\{b_m : m\geq n\}$$
+        It is enough to show that if $n \geq n_0, ~\sup \{a_l : l \geq n\} + \sup \{a_m : m \geq n\}$ is an upper bound for $\{a_k + b_k : k \geq n\}.$ That is, we want to show
+        $$\forall k \geq n ~a_k + b_k \leq \sup\{a_l : l\geq n\} + \sup\{b_m : m\geq n\}$$
+    \end{info}
+
+    First, note that since by assumption $\limsup a_n + \liminf a_n$ is not of the form $\infty - \infty$ or $-\infty + \infty$, so there exists $n_0 \st$
+    $$\forall n \geq n_0 ~~\sup\{a_k : k \geq n\} + \sup\{b_m : m\geq n\}\text{ is not of the form $\infty - \infty$ or $-\infty + \infty$}$$
+    For each $n \geq n_0,$ we have
+    \begin{align*}
+        &\forall k \geq n ~~a_k \leq \sup\{a_l : l \geq n\} \\
+        &\forall k \geq n ~~b_k \leq \sup\{b_m : m \geq n\}
+    \end{align*}
+    Hence,
+    $$\forall k \geq n ~~a_k + b_k \leq \sup\{a_l : l \geq n\} + \sup\{b_m : m \geq b\}$$
+    Therefore,
+    $$\forall n \geq n_0 ~~\sup\{a_k + b_k : k \geq n\} \leq \sup\{a_l : l \geq n\} + \sup\{b_m : m \geq n\}$$
+    Passing to the limit $n\to \infty$, we get $\limsup (a_n + b_n) \leq \limsup a_n + \limsup b_n$.
+    \qed
+\end{proof}
+
+\begin{theorem}
+    \label{thm3.20e}
+    If $|x| < 1$, then $\lim_{n\to \infty}x^n = 0.$
+\end{theorem}
+\begin{proof}
+    Clearly, if $x=0$ the claim holds. Supposed $x\in (-1,1)$ and $x\not = 0$. Our goal is to show that 
+    $$\forall \epsilon > 0 ~\exists N \st \forall n > N ~~|x^n -0| < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find $N \st$
+    \begin{equation*}
+        \text{if $n > N$ then $|x^n| < \epsilon$} \tag{$*$}
+    \end{equation*}
+    Since $0 < |x| < 1$, there exists $y > 0 \st |x| = \frac{1}{1+y}$. Note that
+    $$|x^n| < \epsilon \iff \frac{1}{(1+y)^n} < \epsilon$$
+    Also, by the binomial theorem $((1+y)^n \geq 1 + ny)$
+    $$\frac{1}{(1+y)^n} \leq \frac{1}{1+ny} < \frac{1}{ny}$$
+    Therefore, in order to ensure that $|x^n| < \epsilon$, we just need to choose $n$ large enough so that $1/ny < \epsilon$. To this end, it is enough to choose $n$ larger than $1/ny$. (We can take $N= 1/ny$ in $(*)$)
+\end{proof}
+
+\begin{theorem}
+    \label{thm3.20b}
+    If $p > 0$, then $\lim_{n\to\infty} \sqrt[n]{p} =1$.
+\end{theorem}
+\begin{proof}
+    If $p=1$, the claim obviously holds. If $p \not = 1,$ we consider two cases:
+    \begin{description}
+        \item[Case 1: $p > 1$] \leavevmode \\
+        Let $x_n = \sqrt[n]{p} - 1.$ It is enough to show that $\lim_{n\to\infty}x_n = 0.$ Note that since $p > 1, ~x_n \geq 0.$ Also,
+        \begin{align*}
+            \sqrt[n]{p} = 1 + x_n &\implies p = (1+x_n)^n \geq 1 + nx_n \\
+            &\implies x_n \leq \frac{p-1}{n}
+        \end{align*}
+        Thus
+        $$0 \leq x_n \leq \frac{p-1}{n}.$$
+        It follows from the squeeze theorem that $\lim_{n\to \infty} x_n = 0.$
+
+        \item[Case 2: $0 < p < 1$] \leavevmode \\
+        Since $0 < p < 1$, we have $1 < \frac{1}{p}$. So, by \textbf{case 1},
+        $$ \lim_{n\to\infty} \sqrt[n]{\frac{1}{p}} = 1.$$
+        By the ALT, we know that if $b_n \to b$ and $b \not = 0$, then $\frac{1}{b_n} \to \frac{1}{b}.$ Hence
+        $$\lim_{n\to\infty}\sqrt[n]{p} = 1.$$
+        \qed
+    \end{description}
+\end{proof}
+
+\begin{theorem}
+    \label{thm3.20c}
+    $\lim_{n\to\infty} \sqrt[n]{n}= 1$.
+\end{theorem}
+
+\begin{proof}
+    Let $x_n= \sqrt[n]{n} -1.$ Clearly, $x_n \geq 0$. We have, for $n \geq 2,$
+    \begin{align*}
+        \sqrt[n]{n} = 1 + x_n &\implies n = (1+ x_n)^n \geq \binom{n}{k} x_n^2 = \frac{n(n-1)}{2}x_n^2 \\
+        &\implies \frac{2n}{n(n-1)} \geq x_n^2 \\
+        &\implies x_n \leq \sqrt{\frac{2}{n-1}}.
+    \end{align*}
+    Thus,
+    $$0 \leq x_n \leq \sqrt{\frac{2}{n-1}}.$$
+    It follows from the squeeze theorem that $x_n \to 0$ and so $\sqrt[n]{n} \to 1$.
+    \qed
+\end{proof}
