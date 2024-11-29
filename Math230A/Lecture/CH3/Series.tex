@@ -1,0 +1,182 @@
+\begin{definition} [Infinite Series] \leavevmode \\
+    Let $\left(X, \| \cdot \| \right)$ be a normed vector space, and let $(x_n)$ be a sequence in $X$.
+    \begin{enumerate}[$(i)$]
+        \item An expression of the form
+        $$\sum_{n=1}^{\infty} x_n = x_1 + x_2 + x_3 + ...$$
+        is called an infinite series.
+        \item $x_1, x_2, x_3, ...$ are called the terms of the infinite series.
+        \item The corresponding sequence of partial sums is defined by
+        \begin{align*}
+            \forall m \in \N ~~~
+            &s_1 = x_1 \\
+            &s_2 = x_1 + x_2 \\
+            &s_3 = x_1 + x_2 + x_3 \\
+            &\vdots \\
+            &s_m = x_1 + ... + x_m
+        \end{align*}
+        \item We say that the infinite series $\sum_{n=1}^{\infty} x_n $ converges to $L\in X$ (and we write $\sum_{n=1}^{\infty})x_n = L$) if $\lim_{m \to \infty}s_m = L$.
+        \item We say that the infinite series diverges if $(s_m)$ diverges.
+        \item
+        \begin{align*}
+            &\text{If $X=\R$ and $s_m \to \infty$, we write $\sum_{n=1}^{\infty}x_n = \infty$.} \\
+            &\text{If $X=\R$ and $s_m \to -\infty$, we write $\sum_{n=1}^{\infty}x_n = -\infty$.} 
+        \end{align*}
+    \end{enumerate}
+\end{definition}
+
+\begin{example} \leavevmode
+    $\sum_{n=1}^{\infty} \left(\frac{1}{n} - \frac{1}{n+1}\right)$ \\
+    Clearly, $x_n = \frac{1}{n} - \frac{1}{n+1}.$ The corresponding sequence of partial sums is
+    \begin{align*}
+        s_1 &= 1 - \frac{1}{2} \\
+        s_2 &= \left(1 - \cancel{\frac{1}{2}}\right) + \left(\cancel{\frac{1}{2}} - \frac{1}{3}\right) = 1 - \frac{1}{3} \\
+        s_3 &= \left(1 - \cancel{\frac{1}{2}}\right) + \left(\cancel{\frac{1}{2}} - \cancel{\frac{1}{3}}\right) + \left(\cancel{\frac{1}{3}} - \frac{1}{4}\right) = 1 - \frac{1}{4} \\
+        &\vdots \\
+        s_m &= \sum_{n=1}^{m} \left(\frac{1}{n} - \frac{1}{n_+1}\right) \\ &= \left(\sum_{n=1}^{\infty} \frac{1}{n} \right) + \left(\sum_{n=1}^{\infty} \frac{1}{n+1}\right) \\
+        &=\left(1 + \cancel{... + \frac{1}{m}}\right) - \left(\cancel{\frac{1}{2} + ... + \frac{1}{m}} + \frac{1}{m+1}\right) \\
+        &= 1 - \frac{1}{m+1}
+    \end{align*}
+    Clearly,
+    $$\lim_{m \to \infty}s_m = \lim_{m \to \infty}\left[1 - \frac{1}{m+1}\right] = 1.$$
+    Hence, $\sum_{n=1}^{\infty} \left(\frac{1}{n} - \frac{1}{n+1}\right)$ converges to $1$.
+\end{example}
+
+In general, a telescoping series is an infinite series whose partial sums eventually have a finite number of terms after cancellation. For example, if $(y_n)$ is a sequence in the normed space $\left(X, \| \cdot \|\right),$ then $\sum_{n=1}^{\infty} \left(y_n - y_{n + 1}\right)$ is a telescoping series:
+\begin{align*}
+    s_m = \sum_{n=1}^{m}\left(y_n - y_{n+1}\right) &= \left(\sum_{n=1}^{m} y_n\right) - \left(\sum_{n=1}^{m}y_{n+1}\right) \\
+    &= \left(y_1 + y_2 + ... + y_m\right) - \left(y_2 + y_3 + ... + y_m + y_{m+1}\right) \\ 
+    &= y_1 - y_{m+1}.
+\end{align*}
+
+\begin{definition}[Geometric Series] \leavevmode \\
+    Let $k$ be a fixed integer and let $r \not = 0$ be a fixed real number. The infinite series $\sum_{n=k}^{\infty} r^n = r^k + r^{k+1} + r^{k+2} +...$ is called a geometric series with common ratio "$r$."\\
+    For example,
+    \begin{align*}
+        &\sum_{n=1}^{\infty}\left(\frac{1}{2}\right)^n = \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + ... \text{ is a geometric series with common ratio $\frac{1}{2}$} \\
+        &\sum_{n=1}^{\infty} \left(\frac{7}{29}\right)^n \text{ is a geometric series with common ratio $\frac{7}{29}$} \\
+        &\sum_{n=1}^{\infty} \frac{1}{n^2} \text{ is NOT a geometric series.}
+    \end{align*}
+\end{definition}
+
+We can easily find a formula for the $m^{th}$ partial sum of $\sum_{n=k}^{\infty}r^k:$
+\begin{align*}
+    s_1 &= r^k \\
+    s_2 &= r^k + r^{k+1} \\
+    s_3 &= r^k + r^{k+1} + r^{k+2} \\
+    &\vdots \\
+    s_m &= r^k + r^{k+1} + ... + r^{k + m - 1} \tag{$*$}
+\end{align*}
+
+\begin{description}
+    \item[Case 1: $r = 1$] \leavevmode \\
+    $s_m = 1 + 1 + ... + 1 = m$
+    \item[Case 2: $r \not = 0$] \leavevmode \\
+    Multiply both sides of $(*)$ by $r$:
+    \begin{equation*}
+        r s_m = r^{k+1} + r^{k+2} + ... + r^{k + m} \tag{$**$}
+    \end{equation*}
+    Subtract $(**)$ from $(*)$:
+    $$s_m - r s_m = r^k - r^{k+m}$$
+    Therefore, (note $r \not = 1$)
+    $$s_m = \frac{r^k - r^{k+m}}{1 - r} = \frac{r^k \left(1 - r^m\right)}{1-r}$$
+    \begin{note} \leavevmode
+        \begin{enumerate}[*)]
+            \item If $|r| < 1$, then $\lim r^m = 0$
+            \item Exercise: if $|r| > 1$ or $r = -1$, then $\lim_{m \to \infty} r^m = DNE$
+        \end{enumerate}
+    \end{note}
+    Hence,
+    $$\lim_{m \to \infty} s_m =
+    \begin{cases*}
+        \frac{r^k}{1-r} &\text{ if $|r| < 1$} \\
+        DNE &\text{ if $|r| \geq 1$}
+    \end{cases*}$$
+    so,
+    $$\sum_{n=1}^{\infty} r^n =
+    \begin{cases*}
+        \frac{r^k}{1-r} &\text{ if $|r| < 1$} \\
+        DNE &\text{ if $|r| \geq 1$}
+    \end{cases*}.$$
+\end{description}
+
+\begin{example}\leavevmode \\
+    $\sum_{n=1}^{\infty} \left(\frac{1}{2}\right)^n = \frac{\left(\frac{1}{2} ^1\right)}{1-\frac{1}{2}} = \frac{1}{2} \cdot 2 = 1.$ \\
+    $\sum_{n=4}^{\infty} \left(\frac{1}{2}\right)^n = \frac{\left(\frac{1}{2} ^4\right)}{1-\frac{1}{2}} = \left(\frac{1}{2}\right) ^4 \cdot 2 = \frac{1}{8}.$
+\end{example}
+
+\begin{theorem} [Algebraic Limit Theorem for Series] \leavevmode \\
+    \label{thm3.47}
+    Let $\left(X, \| \cdot \|\right)$ be a normed space. Let $(a_n)$ amd $(b_n)$ be two sequences in $X$. Suppose that
+    $$\sum_{n=1}^{\infty} a_n = A \in X \text{ and } \sum_{n=1}^{\infty}b_n = B \in X.$$
+    Then
+    \begin{enumerate}[$(i)$]
+        \item For any scalar $\lambda,$ $\sum_{n=1}^{\infty}(\lambda a_n) = \lambda A$
+        \item $\sum_{n=1}^{\infty} a_n + b_n = A + B$
+    \end{enumerate}
+\end{theorem}
+
+\begin{theorem} \leavevmode \\
+    \label{thm3.23}
+    Let $\left(X, \| \cdot \|\right)$ be a normed space. Let $(x_n)$ be a sequence in $X$. If $\sum_{n=1}^{\infty}x_n$ converges, then $\lim_{n \to \infty}x_n = 0.$
+\end{theorem}
+\begin{proof}
+    Let $s_n = x_1 + ... + x_n$. Let $L = \sum_{n=1}^{\infty}x_n$. Note that
+    $$\sum_{n=1}^{\infty} x_n = L \implies \lim_{n \to \infty} s_n = L.$$
+    Also, note that
+    $$\forall n \geq 2 ~~~ x_n = s_n - s_{n-1}.$$
+    Therefore,
+    $$\lim_{n \to \infty}x_n = \lim_{n \to \infty}(s_n - s_{n-1}) = L - L = 0.$$
+    \qed
+\end{proof}
+
+\begin{corollary}[Divergence Test] \leavevmode \\
+    If $\lim x_n \not = 0$, then $\sum_{n=1}^{\infty} x_n$ does not converge.
+\end{corollary}
+
+\begin{enumerate} [$*)$]
+    \item $\sum_{n=1}^{\infty} (-1)^n$ diverges because $\lim_{n \to \infty} (-1)^n = DNE.$
+    \item $\sum_{n=1}^{\infty} \frac{3n+1}{7n-4}$ diverges because $\lim_{n \to \infty} \frac{3n+1}{7n-4} = \frac{3}{7} \not = 0.$
+\end{enumerate}
+
+\begin{theorem}[Cauchy Criterion for Series] \leavevmode \\
+    \label{thm3.22}
+    Let $\left(X, \| \cdot \|\right)$ be a complete normed space (also known as a Banach space). Let $(x_n)$ be a sequence in $X$. Then
+    $$\sum_{k=1}^{\infty}x_k \text{ converges } \iff \forall \epsilon > 0 ~\exists N \st \forall n > m > N ~~\left|\left| \sum_{k=m+1}^{n}\right|\right| < \epsilon.$$
+\end{theorem}
+\begin{proof}
+    Let $s_k = x_1 + ... + x_k.$
+    \begin{align*}
+        \sum_{k = 1}^{\infty}x_k \text{ converges } &\iff (s_k) \text{ converges } \\
+        &\iff (s_k) \text{ is Cauchy } \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~~\|s_n - s_m \| < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n> m > N ~~\|s_n - s_m \| < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~~\|x_{m+1} + ... + x_m\| < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~~\left\|\sum_{k=m+1}^{\infty}x_k \right\| < \epsilon \\
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{theorem}[Absolute Convergence Theorem] \leavevmode \\
+    Let $\left(X, \| \cdot \|\right)$ be a Banach space. Let $(x_n)$ be a sequence in $X$. If $\sum_{n=1}^{\infty} \|x_n \|$ converges, then $\sum_{n=1}^{\infty}x_n$ converges. 
+\end{theorem}
+
+\begin{proof}
+    By the Cauchy Criterion for Series, it is enough to show that
+    $$\forall \epsilon > 0 ~\exists N \st \forall n > m > N ~~~\left\| \sum_{k=m+1}^{\infty} x_k \right\| < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find $N$ \st 
+    \begin{equation*}
+        \text{If $n > m > N$ then $\left\| \sum_{k=m+1}^{\infty} x_k \right\| < \epsilon$}
+    \end{equation*}
+    Since $\sum_{k=1}^{\infty}\| x_k \|$ converges, and since $\R$ is complete, it follows from the Cauchy Criterion for Series there exists $\hat{N}$ \st
+    $$\forall n > m > \hat{N} ~~~\left| \sum_{k=m+1}^{\infty}\|x_k\|\right| < \epsilon$$
+    We claim that we can use this $\hat{N}$ as the $N$ we were looking for. Indeed, if $n > m > \hat{N}$, then
+    $$\left\| \sum_{k=m+1}^{\infty} x_k\right\| \leq \sum_{k=m+1}^{\infty} \|x_k \| = \left|\sum_{k=m+1}^{\infty}\|x_k\|\right| < \epsilon$$
+    as desired. \qed
+\end{proof}
+
+\begin{definition}[Absolute Convergence and Conditional Convergence]
+    \begin{align*}
+        &\text{Absolute convergence $\iff \sum\|x_n\|$ converges and $\sum x_n$ converges.} \\
+        &\text{Conditional convergence $\iff\sum\|x_n\|$ converges and $\sum x_n$ converges.}
+    \end{align*}
+\end{definition}
