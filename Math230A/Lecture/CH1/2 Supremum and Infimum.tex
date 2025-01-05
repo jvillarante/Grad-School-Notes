@@ -1,0 +1,120 @@
+\begin{definition}[Supremum] \leavevmode \\
+    Suppose $\F$ is an ordered field and $A\subseteq \F.$ Suppose there exists $\beta \in \F \st$
+    \begin{enumerate}[$(i)$]
+        \item $\beta \in UP(A)$
+        \item If $\gamma \in \F$ and $\gamma < \beta,$ then $\gamma \not \in UP(A)$
+    \end{enumerate}
+    then we call $\beta$ the least upper bound of $A$, or the supremum of $A$, and we write $\beta = \sup A.$
+\end{definition}
+
+\begin{definition}[Infimum] \leavevmode \\
+    Suppose $\F$ is an ordered field and $A\subseteq \F.$ Suppose there exists $\alpha \in \F \st$
+    \begin{enumerate}[$(i)$]
+        \item $\alpha \in LO(A)$
+        \item If $\gamma \in \F$ and $\gamma > \alpha,$ then $\gamma \not \in LO(A)$
+    \end{enumerate}
+    then we call $\alpha$ the greatest lower bound of $A$, or the infimum of $A$, and we write $\alpha = \inf A.$
+\end{definition}
+
+\begin{definition}[Least-upper-bound Property] \leavevmode \\
+    An ordered field $\F$ is said to have the least-upper-bound property if the following is true:
+    $$\text{Every nonempty set $A$ in $\F$ that is bounded above has a least-upper-bound in $\F$}$$
+    In other words, if $A \not \emptyset$, then $\sup A$ exists in $\F$.
+\end{definition}
+
+\begin{theorem} \leavevmode \\
+    There is exactly one ordered field that has the least-upper-bound property. This unique field contains $\Q$ as a subfield.
+\end{theorem}
+
+\begin{definition}[The Real Numbers] \leavevmode \\
+    The set of real numbers, denoted $\R$, is the unique ordered field that has the least-upper-bound property and contains $\Q$ as a subfield.
+\end{definition}
+
+\begin{definition}[Maximum and Minimum] \leavevmode \\
+    Let $A \subseteq \R.$
+
+    \begin{enumerate}[$*)$]
+        \item If $\sup A\in A$, we call the $\sup A$ the maximum of $A$, denoted $\max A$.
+        \item If $\inf A\in A$, we call the $\inf A$ the minimum of $A$, denoted $\min A$.
+    \end{enumerate}
+    \begin{align*}
+        &\sup A = \min UP(A) &&\inf A = \max LO(A)
+    \end{align*}
+\end{definition}
+
+\begin{fact}[Very Useful Fact] \leavevmode \\
+    Let $A \subseteq \R.$
+    \begin{enumerate}[1.]
+        \item $\beta = \sup A \iff
+        \begin{cases*}
+            (i) \beta \in UP(A) \\
+            (ii) \forall \epsilon > 0, ~\beta - \epsilon \not \in UP(A)
+        \end{cases*} \iff
+        \begin{cases*}
+            (i) \beta \in UP(A) \\
+            (ii) \forall \epsilon > 0 ~\exists a \in A \st \beta - \epsilon < a
+        \end{cases*}$
+
+        \item $\alpha = \inf A \iff
+        \begin{cases*}
+            (i) \alpha \in LO(A) \\
+            (ii) \forall \epsilon > 0, ~\alpha + \epsilon \not \in LO(A)
+        \end{cases*} \iff
+        \begin{cases*}
+            (i) \alpha \in LO(A) \\
+            (ii) \forall \epsilon > 0 ~\exists a \in A \st a < \alpha + \epsilon
+        \end{cases*}$
+    \end{enumerate}
+\end{fact}
+
+\begin{theorem}[Greatest-lower-bound Property of $\R$] \leavevmode \\
+    Every nonempty subset $A$ of $\R$ that is bounded below has a greatest upper bound in $\R$.
+\end{theorem}
+
+\begin{theorem} [Archimedean Property] \leavevmode \\
+    If $x\in \R, ~y\in \R$ and $x > 0$, then there exists a positive integer $n$ such that $nx > y.$
+\end{theorem}
+
+\begin{proof}
+    Let $A=\{nx : n \in \N\}.$ If the claim were false, then $y$ would be an upper bound for $A$. Then by the least-upper-bound property of $\R$, $A$ has a least upper bound in $\R$. Let $\beta = \sup A$.
+    $$\beta = \sup A \implies \forall \epsilon > 0 ~\exists n \in \N ~~\beta - \epsilon < nx.$$
+    That is,
+    $$\forall \epsilon > 0 ~\exists n \in \N \st \beta < nx + \epsilon.$$
+    In particular, if we let $\epsilon = x,$ we can find $m \in \N \st$
+    $$\beta < mx + x.$$
+    That is $\beta < (m+1)x.$ However, $(m+1)x \in A.$ This contradicts the fact that $\beta$ is an upper bound of $A$.\qed
+\end{proof}
+
+\begin{remark} \leavevmode
+    (The well-ordering property of the natural numbers) \\
+    Every nonempty set of natural numbers has a $\min.$
+\end{remark}
+
+\begin{corollary} \leavevmode \\
+    Let $A$ be a nonempty subset of $\R$ that consists of only integers.
+    \begin{enumerate}[$*)$]
+        \item If $A$ is bounded above, then $\sup A \in A.$
+        \item If $A$ is bounded below, then $\inf A \in A.$
+    \end{enumerate}
+\end{corollary}
+
+\begin{theorem}[Density of $\Q$ in $\R$] \leavevmode \\
+    For every two real numbers $x$ and $y$ with $x < y$, there exists a rational number $x < p < y$.
+\end{theorem}
+
+\begin{proof}
+    Recall that $\Q = \{\frac{m}{n} : m \in \Z, ~n \in \N\}.$ Suppose $x \in \R, ~y \in \R$ and $x < y.$ Our goal is to show that there exists an $m \in \Z$ and $n \in \N$ such that $x < \frac{m}{n} < y,$ that is, we want to show that there exists $m \in \Z$ and $n \in \N$ such that $nx < m < ny.$
+    \begin{info}
+        If we find $n\in \N$ such that it ensures that there is an integer between $nx$ and $ny$, then we are done. To this end, it is enough to find $n \in \N$ such that $ny - nx > 1,$ that is, it is enough to find $n \in \N \st y - x > \frac{1}{n}$.
+    \end{info}
+    Notice that $y - x > 0.$ Choose $n \in \N \st \frac{1}{n} < y - x$ (by the archimedean property of $\R$, such an $n$ exists). Now, choose $m\in \Z$ to be the smallest integer greater than $nx,$ that is, choose $m\in \Z$ such that 
+    $$m-1 \leq nx < m$$
+    We have
+    \begin{equation*}
+        nx < m \implies x < \frac{m}{n} \tag{$I$}
+    \end{equation*}
+    \begin{equation*}
+        m-1 \leq nx \implies m \leq nx + 1 < n(y-\frac{1}{n}) + 1 = ny \implies \frac{m}{n} < y \tag{$II$}
+    \end{equation*}
+    $(I),(II) \implies x < \frac{m}{n} < y.$ \qed
+\end{proof}
