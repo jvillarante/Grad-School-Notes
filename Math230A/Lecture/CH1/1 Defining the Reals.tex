@@ -1,0 +1,131 @@
+The main objective of Math 230 is to rigorously explore and generalize many of the concepts learned in calculus such as limits, continuity, sequence convergence, differentiation and integration. 
+
+\begin{remark}
+    We aim to uncover the fundamental structures that make calculus possible. For instance, we'll examine what kind of structure is required to discuss the convergence of a sequence within a given set.
+    \begin{enumerate}
+        \item $\R: ~~~1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, ..., \to 0$
+        \item $\{\text{blue, dog, pen}\}: ~~~ blue, dog, blue, dog, ... \to ?$
+    \end{enumerate}
+\end{remark}
+\leavevmode \\
+In particular, in Math 230A we will be studying:
+\begin{enumerate}[1.]
+    \item The real numbers
+    \item Some aspects of set theory (finite sets, countable sets, ...)
+    \item Metric spaces and their topological properties
+    \item Sequences and series
+    \item Continuous functions between metric spaces
+\end{enumerate}
+\leavevmode \\
+What is a square? There are two ways to answer this question:
+\begin{enumerate}[1.]
+    \item Show how to construct a square
+    \item Identify properties that distinguish a square from any other object in the universe. Defining properties: four sides of equal lengths, rights angles, ...
+\end{enumerate}
+For this class, we will use 2. to identify the real numbers.
+
+\begin{remark}
+    It is possible to 
+    \begin{enumerate}
+        \item Define the natural numbers $\N$ (equipped with addition and multiplication) using set theory.
+        $$1:= \{\emptyset\}, 2:= \{\emptyset, \{\emptyset\}\}, 3:= \{\emptyset, \{\emptyset\}, \{\emptyset, \{\emptyset\}\}\}, ...$$
+        \item Then proceed to define the integers $\Z$ as certain equivalence classes with respect to an equivalence relation on $\N \times \N$.
+        \item Then define the field of rational numbers $\Q$ as the set of equivalence classes with respect to an equivalence relation on $\Z \times (\Z \backslash \{0\})$.
+        \item Then ultimately the field of real numbers.
+        \begin{align*}
+            &\text{Approach 1: Equivalence classes of Cauchy sequences of rational numbers} \\
+            &\text{Approach 2: Dedekind cuts}
+        \end{align*}
+    \end{enumerate}
+\end{remark}
+
+\begin{observation}
+    The set $\R$ is not just a boring collection of elements; $\R$ is a set with equipped with extra structures:
+    \begin{enumerate}
+        \item In $\R$ we have addition and multiplication; addition and multiplication have certain properties.
+        $$\text{$\R$ is a field (first defining property)}$$
+        \item In $\R$ we have a notion of order.
+        $$\text{$\R$ is an ordered field (second defining property)}$$
+        \item In fact, $\R$ is the uniqued ordered field that has the least-upper-bound property (third defining property).
+        \item In $\R$, there is a notion of length and a corresponding notion of distance.
+        \begin{align*}
+            &\text{$\R$ is a normed space} \\
+            &\text{$\R$ is a metric space}
+        \end{align*}
+    \end{enumerate}
+\end{observation}
+
+\begin{description}
+    \item[(I) Elaborating on the first defining property:] 
+\end{description}
+
+\begin{definition}[Field] \leavevmode \\
+    A field is a set $\mathbb{F}$ with two operations called addition and multiplication, which satisfy the following field-axioms:
+    \begin{align*}
+        &(A) \text{Addition Axioms} \\
+        &(A1) \forall x,y \in \F, ~~x+y \in \F \\
+        &(A2) \forall x,y \in \F, ~~x+y = y+x \\
+        &(A3) \forall x,y,z \in \F, ~~(x+y)+z = x+(y+z) \\
+        &(A4) \F \text{ contains an element $0$ such that $\forall x \in \F, ~0+x = x$} \\
+        &(A5) \text{If $x \in \F,$ then there exists an element $-x \in \F \st x + (-x) = 0$}
+        \\ \\
+        &(M) \text{Multiplication Axioms} \\
+        &(M1) \forall x,y \in \F, ~~xy \in \F \\
+        &(M2) \forall x,y \in \F, ~~xy = yx \\
+        &(M3) \forall x,y,z \in \F ~~(xy)z = x(yz) \\
+        &(M4) \F \text{ contains an element $1 \not = 0 \st \forall x \in \F ~x \cdot 1 = x$} \\
+        &(M5) \text{If $x \in \F$ and $x \not = 0$, then there exists an element $\frac{1}{x} \in \F \st x \cdot \frac{1}{x} = 1$}
+        \\ \\
+        &(D) \text{Distributive Law} \\
+        &~~~\forall x,y,z \in \F, ~x \cdot (y + z) = x \cdot y + x \cdot z
+    \end{align*}
+\end{definition}
+
+\begin{description}
+    \item[(II) Elaborating on the second defining property:] 
+\end{description}
+\begin{definition}[Ordered Field] \leavevmode \\
+    An ordered field is a field $\F$ equipped with a relation, $<$, with the following properties:
+    \begin{enumerate}[$(i)$]
+        \item If $x \in \F$ and $y \in \F$, then one and only one of the following statements is true:
+        $$x < y, ~y < x, ~x = y$$
+        \item If $x,y,z\in \F$ and $x < y$ and $y < z$, then $x < z$.
+        \item If $x,y,z \in \F$ and $y < z,$ then $x+y < x+z$.
+        \item If $x,y \in \F$, and $0 < x$ and $0 < y$, then $0 < xy$.
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    $\Q$ (the set of rational numbers) is another example of an ordered field (and so, the properties we have discussed is not enough to uniquely identify $\R$).
+\end{remark}
+
+\begin{description}
+    \item[(III) Elaborating on the third defining property:] 
+\end{description}
+
+\begin{definition}[Upper Bounds] \leavevmode \\
+    Suppose $\F$ is an ordered field and let $A \subseteq \F.$ If there exists $\beta \in \F \st$
+    $$\forall x \in A, ~x \leq \beta$$
+    then $\beta$ is called an upper bound of $A$.
+
+    \begin{enumerate}[$*)$]
+        \item The collection of all upper bounds of $A$ is denoted by $UP(A)$
+        \item If $UP(A) \not = \emptyset$, then we say $A$ is bounded above
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Lower Bounds] \leavevmode \\
+    Suppose $\F$ is an ordered field and let $A \subseteq \F.$ If there exists $\alpha \in \F \st$
+    $$\forall x \in A, ~\alpha \leq x$$
+    then $\alpha$ is called a lower bound of $A$.
+    
+    \begin{enumerate}[$*)$]
+        \item the collection of all the lower bounds of $A$ is denoted by $LO(A)$
+        \item If $LO(A) \not = \emptyset,$ then we say $A$ is bounded below
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let $A = [0,1).$
+    $$UP(A) = [1, \infty), ~~LO(A) = (-\infty, 0]$$
+\end{example}
