@@ -1,0 +1,43 @@
+\begin{definition}[Right-handed limit, Left-handed limit] \leavevmode \\
+    Let $f: (a,b) \to (Y, \overset{\sim}{d})$.
+    \begin{enumerate}[$(i)$]
+        \item Let $a \leq c < b.$ We write 
+        $$\lim \limits_{x \to c^+} f(x) = L$$
+        if any of the following equivalent conditions hold:
+        \begin{enumerate}
+            \item For all sequences $(x_n)$ in $(c,b)$ satisfying $x_n \to c$ we have $f(x_n) \to L.$
+            \item $\forall \epsilon > 0 ~\exists \delta > 0 \st \text{ if $c < x < c + \delta$ then $\overset{\sim}{d}(f(x), L) < \epsilon$.}$
+        \end{enumerate}
+        \item Let $a < c \leq b.$ We write 
+        $$\lim \limits_{x \to c^-} f(x) = L$$
+        if any of the following equivalent conditions hold:
+        \begin{enumerate}
+            \item For all sequences $(x_n)$ in $(a,c)$ satisfying $x_n \to c$ we have $f(x_n) \to L.$
+            \item $\forall \epsilon > 0 ~\exists \delta > 0 \st \text{ if $c - \delta < x < c$ then $\overset{\sim}{d}(f(x), L) < \epsilon$.}$
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition} \leavevmode \\
+    Let $f:(a,b) \to (Y, \overset{\sim}{d}).$ Let $c\in (a,b)$. Suppose $f$ is discontinuous at $c$.
+    \begin{enumerate}[$(i)$]
+        \item $f$ is said to be discontinuity of the first kind, or a simple discontinuity, at $c$ if $\lim \limits_{x\to c^-}f(x)$ and $\lim \limits_{x\to c^+}f(x)$ exist, but: 
+        \begin{enumerate}
+            \item $\lim \limits_{x \to c^-}f(x) = \lim \limits_{x \to c^+}f(x) \not = f(c)$ (removable discontinuity)
+            \item $\lim \limits_{x \to c^-}f(x) \not = \lim \limits_{x \to c^+}f(x)$ (jump discontinuity)
+        \end{enumerate}
+        \item $f$ is said to be discontinuous of the second kind at $c$ if at least one of $\lim \limits_{x \to c^-}f(x)$ or $\lim \limits_{x\to c^+}f(x)$ does not exist.
+    \end{enumerate}
+\end{definition}
+
+\begin{theorem} \leavevmode \\
+    \label{thm4.29}
+    Let $f:(a,b) \to \R$ be an increasing function. Then at every point $c \in (a,b),$ the one-sided limits exist, and 
+    \begin{enumerate} [$(i)$]
+        \item $\lim \limits_{x \to c^-}f(x) = \sup \limits{a < x < c}f(x) \leq f(c)$
+        \item $\lim \limits_{x \to c^+}f(x) = \inf \limits{c < x < b}f(x) \geq f(c)$
+        \item If $a < c < d < b$, then 
+        $$\lim \limits_{x \to c^+}f(x) \leq \lim \limits_{x \to d^-}f(x)$$
+    \end{enumerate}
+    A similar statement holds for decreasing functions.
+\end{theorem}
