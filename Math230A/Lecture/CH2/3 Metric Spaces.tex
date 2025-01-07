@@ -1,0 +1,141 @@
+Recall the triangle inequality in $\mathbb{R}$:
+$$|a+b| \leq |a| + |b| ~\forall a,b \in \mathbb{R}$$
+
+\begin{definition} [Normed Space] \leavevmode \\
+    Let $V$ be a (real) vector space. A function $|| \cdot ||:V\rightarrow \mathbb{R}$ is called a norm on $V$ if it satisfies the following properties:
+    \begin{enumerate}[$(i)$]
+        \item $\forall x \in V ~~ ||x|| \geq 0$
+        \item $\forall x \in V ~~ ||x|| = 0 \iff x = 0$
+        \item $\forall \alpha \in \mathbb{R}, \forall x \in V ~~||\alpha x|| = | \alpha | \cdot ||x||$
+        \item $\forall x,y \in V ~~ ||x+y|| \leq ||x|| + ||y||$
+    \end{enumerate}
+    A vector space $V$ equipped with a notion of norm is called a normed space. Sometimes, we write $(V, || \cdot ||)$ is a normed space.
+\end{definition}
+
+In $\mathbb{R}$:
+\begin{align*}
+    \forall a,b,c \in \mathbb{R} ~~ \text{dist}(a,c) &= |x-y| \\
+    &=|x-z+z-y| \\
+    &\leq |x-z| + |z-y| \\
+    &=  \text{dist}(a,b) + \text{dist}(b,c)
+\end{align*}
+Can we have a “distance” on other sets?
+
+\begin{definition} [Metric Space] \leavevmode \\
+    Let $X$ be a nonempty set. A function
+    $$d:X \times X \rightarrow \mathbb{R}$$
+    is said to be a distance function or a metric if it satisfies the following properties:
+    \begin{enumerate}[$(i)$]
+        \item $\forall x,y \in X ~~~~ \text{d}(x,y) \geq 0$
+        \item $\forall x,y \in X ~~~~ \text{d}(x,y) = 0 \iff x=y$
+        \item $\forall x,y \in X ~~~~ \text{d}(x,y) = \text{d}(y,x)$
+        \item $\forall x,y,z \in X ~~ \text{d}(x,y) \leq  \text{d}(x,z) + \text{d}(z,y)$
+    \end{enumerate}
+    A set $X$ equipped with a metric $d$ is called a metric space. We write $(X, d)$ is a metric space.
+\end{definition}
+
+\begin{example}
+     $(\mathbb{R}, d)$ where $d: \mathbb{R} \times \mathbb{R} \rightarrow [0, \infty)$ is defined by
+     $$\text{d}(x,y) = |x-y|$$
+\end{example}
+
+\begin{example}
+    $(\mathbb{R}, d)$ where $d: \mathbb{R} \times \mathbb{R} \rightarrow [0, \infty)$ defined by
+    $$d(x,y) = 2|x - y|$$
+
+    \begin{enumerate}[$(i)$]
+        \item $\forall x,y \in \mathbb{R} ~~~~d(x,y) = \alpha |x-y| \geq 0$
+        \item \begin{align*} \forall x,y \in \mathbb{R} ~~~~d(x,y) = 0 &\iff \alpha |x-y| = 0 \\ &\iff |x-y| =0 \\ &\iff x=y \end{align*}
+        \item $\forall x,y \in \mathbb{R} ~~~~ d(x,y) = \alpha |x-y| = \alpha |y-x| = d(y,x)$
+        \item \begin{align*} \forall x,y,z \in \mathbb{R} ~~~~ d(x,z) + d(z,x) &= \alpha |x-z| + \alpha |z - y| \\ &= \alpha (|x-z| + |z-y|) \\ &\geq \alpha(|x-z+z-y|) \\ &= \alpha(|x-y|) \\ &= \alpha d(x,y)\end{align*}
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $(\mathbb{R}, d)$ where $d: \mathbb{R} \times \mathbb{R} \rightarrow [0, \infty)$ is defined by
+    $$d(x,y) = \frac{|x-y|}{1+|x-y|}$$
+\end{example}
+
+\begin{fact}
+    If $(X,d)$ is a metric space, then $(X,D)$ is also a metric where $D(x,y) = \frac{d(x,y)}{1+d(x,y)}$.
+\end{fact}
+
+\begin{example}
+    $(\mathbb{R}^2, d)$ where $d:\mathbb{R}^2 \times \mathbb{R}^2 \rightarrow [0, \infty)$ is defined by
+    $$d((a,b),(x,y))=|a-x| + |b-y|.$$
+    This is known as the Taxicab metric.
+    \begin{enumerate}[$(i)$]
+        \item $\forall (a,b),(x,y) \in \mathbb{R}^2 ~~~~d((a,b),(x,y)) = |a-x| + |b-y| \geq 0$
+        \item $\forall (a,b),(x,y) \in \mathbb{R}^2$ \begin{align*} d((a,b),(x,y)) =0 &\iff |a-x| + |b-y| = 0 \\ &\iff |a-x| = 0 ~\wedge |b-y|=0 \\ &\iff a=x ~\wedge ~b=y \\ &\iff (a,b) = (x,y)\end{align*}
+        \item $\forall (a,b),(x,y),(t,x)\in \mathbb{R}^2$
+        \begin{align*}
+            d((a,b),(t,s)) + d((t,s),(x,y)) &= |a-t| + |b-s| + |t-x| + |s-y| \\
+            &=(|a-t| + |t-x|) + (|b-s| + |s-y|) \\
+            &\geq |a-t + t-x| + |b-s+s-y| \\
+            &=|a-x| + |b-y| \\
+            &=d((a,b),(x,y))
+        \end{align*}
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $X:=$ any nonempty set, $d:X \times X \rightarrow [0, \infty)$ defined by $d=\begin{cases} 1 &\text{if } x\not=y \\ 0 &\text{if } x=y\end{cases}$. This is called the discrete metric.
+
+    \begin{enumerate}[$(i)$]
+        \item $\forall x,y \in X ~~~~ d(x,y) =1 \text{ or } 0 \text{ and so } d(x,y) \geq 0$
+        \item $\forall x,y \in X ~~~~d(x,y) = 0 \iff x=y \text{ by definition.}$
+        \item $\forall x,y \in X ~~~~d(x,y) =
+        \begin{cases}
+            1 &x \not = y \\ 0 &x=y
+        \end{cases} =
+        \begin{cases}
+            1 &y \not = x \\ 0 & y = x
+        \end{cases} = d(y,x)$
+        \item $\forall x,y,z \in X$ we want to show $d(x,y) \leq d(x,z) + d(z,y) ~~~ (*)$.
+        \begin{description}
+            \item[Case 1: $x=y$] \leavevmode \\
+            In this case, $d(x,y) = 0$, clearly  $(*)$ holds.
+            \item[Case 2: $x \not = y$] \leavevmode \\
+            In this case, $d(x,y) = 1$, so we need to show $d(x,z) + d(z,y) \geq 1$. Since  $x \not = y$, at least one of $z \not = x$ or $z \not = y$ is true.
+            If $z \not = x$, then $d(x,z) = 1$ and so $d(x,z) + d(z, y) = 1 + d(z,y) \geq 1$.
+            If $z \not = y$, then $d(z,y) = 1$ and so $d(x,z) + d(z,y) = d(x,z) + 1 \geq 1$.
+        \end{description}
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $(V, || \cdot ||):=$ any normed space, and let $d: V \times V \rightarrow [0, \infty)$ be defined by $d(x,y) = ||x - y||$.
+    \begin{enumerate}[$(i)$]
+        \item $\forall x,y \in V ~~~~ d(x,y) = ||x - y|| \geq 0$ by property ($i$) of a norm.
+        \item $\forall x,y \in V$ ~~~~\begin{align*}d(x,y) = 0 &\iff ||x-y|| = 0 \\ &\iff x-y = 0 \\ &\iff x = y\end{align*} by property ($ii$) of a norm.
+        \item $\forall x,y \in V ~~~~ d(x,y)= ||x - y|| = ||-(y-x)|| = |-1| \cdot ||y -x || = ||y - x|| = d(y,x)$ by property ($iii$) of a norm.
+        \item $\forall x,y,z \in V$ we want to show that $d(x,y) \leq d(x,z) + d(z,y)$. 
+        \begin{align*} d(x,z) + d(z,y) &= ||x-z|| + ||z-y|| \\ &\geq ||(x-z) + (z-y)|| \\ &= ||x-y|| \\ &= d(x,y)\end{align*}
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $(\mathbb{R}^n, d)$ where $d:\mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ is defined by
+    $$\forall \overrightarrow{x} = \begin{bmatrix}x_1 \\ \vdots \\ x_n \end{bmatrix},
+    \overrightarrow{y} = \begin{bmatrix}y_1 \\ \vdots \\ y_n \end{bmatrix} \in \mathbb{R}^n ~~~ d(\overrightarrow{x}, \overrightarrow{y}) = \sqrt{|x_1-y_1|^2 + ... + |x_n - y_n|^2}.$$
+    Note that if we define
+    $$\forall \overrightarrow{x}=\begin{bmatrix}x_1 \\ \vdots \\ x_n\end{bmatrix} \in \mathbb{R}^n ~~~ ||\overrightarrow{x}||_2 = \sqrt{|x_1|^2+...+|x_n|^2} ~~~(*)$$
+    then
+    $$d(\overrightarrow{x}, \overrightarrow{y}) = ||\overrightarrow{x} - \overrightarrow{y}||_2.$$
+    So it is enough to show that $(*)$ is indeed a norm on the vector space $\mathbb{R}^n$.
+    Let $\overrightarrow{X} = \begin{bmatrix} x_1 \\ \vdots \\ x_n \end{bmatrix}, \overrightarrow{y}=\begin{bmatrix} y_1 \\ \vdots \\ y_n \end{bmatrix}$ be two arbitrary vectors in $\mathbb{R}^n$.
+    \begin{enumerate}[$(i)$]
+        \item $||\overrightarrow{x}||_2 = \sqrt{|x_1|^2+...+|x_n|^2} \geq 0$
+        \item \begin{align*}||\overrightarrow{x}||_2 = 0 &\iff \sqrt{|x_1|^2+...+|x_n|^2} = 0 \\ &\iff |x_1|^2+...+|x_n|^2=0 \\ &\iff |x_1|=0 \wedge ... \wedge |x_n|=0 \\ &\iff x_1 =0 \wedge ... \wedge x_n=0 \\ &\iff \overrightarrow{x} = \begin{bmatrix} 0 \\ \vdots \\ 0 \end{bmatrix} = \overrightarrow{0} \end{align*}
+        \item $\forall \alpha \in \mathbb{R}$ ~~~ \begin{align*}||\alpha \overrightarrow{x}||_2 &= \sqrt{|\alpha x_1|^2+...+|\alpha x_n|^2} \\ &= \sqrt{\alpha ^2(|x_1|^2+...+|x_n|^2)} \\ &=|\alpha|\sqrt{|x_1|^2+...+|x_n|^2} \\ &= |\alpha|\cdot ||\overrightarrow{x}||_2 \end{align*}
+        \item We want to show $||\overrightarrow{x} - \overrightarrow{y}||_x \leq ||\overrightarrow{x}||_2 + ||\overrightarrow{y}||_2$.
+        That is,
+        $$\sqrt{(x_1-y_1)^2 + ... + (x_n - y_n)^2} \leq \sqrt{x_1^2+...+x_n^2} + \sqrt{y_1^2+...+y_n^2}.$$
+        We will prove this soon.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $(\mathbb{R}^n, d)$ where $d:\mathbb{R}^n \times \mathbb{R}^n \rightarrow \mathbb{R}$ is defined by
+    $$\forall \overrightarrow{x}=\begin{bmatrix}x_1 \\ \vdots \\ x_n \end{bmatrix}, \overrightarrow{y} = \begin{bmatrix} y_1 \\ \vdots \\ y_n \end{bmatrix} \in \mathbb{R}^n ~~~~ d_p(\overrightarrow{x}, \overrightarrow{y}) = [|x_1 - y_1|^p +... + |x_n - y_n|^p]^{\frac{1}{p}}.$$
+\end{example}
