@@ -1,0 +1,231 @@
+As previously discussed, sets can be finite or infinite.
+\begin{align*}
+    &\text{Finite: } \emptyset, ~~~S\sim \{1, 2,…,n\} \\
+    &\text{Infinite: } \text{countable}\sim \mathbb{N}, ~~~\text{uncountable}
+    \\
+    &\text{If }g:\mathbb{N} \rightarrow A \text{ is bijective, then } A=\{g(1), g(2), ...\}
+\end{align*}
+
+\begin{definition}[Sequence] \leavevmode \\
+    By a sequence, we mean a function $f$ on the set $\mathbb{N}$.
+\end{definition}
+
+\begin{note}
+    We can let $x_n = f(n)$. Then it is customary to denote the sequence $f$ by $( x_n )_{n \geq1}$, or $x_1, x_2, x_3, ...$
+    \begin{align*}
+        &f(1)=x_1, f(2)=x_2, ... \\
+        &x_1, x_2,... \text{ need not be distinct.}
+    \end{align*}
+\end{note}
+
+\begin{remark}
+    If for all $n\in \mathbb{N}, x_n\in A$, then we say $(x_n)_{n\geq1}$ is a sequence in $A$.
+    Sometimes it is convenient to replace $\mathbb{N}$ in the above definition with $\{0, 1, 2,…\}$ or $\{-1, 0, 1, 2,…\}$. These minor variations should not cause any confusion.
+    \begin{align*}
+        f:\mathbb{Z}_k \rightarrow A
+        \text{for } k\in \mathbb{Z}, ~\mathbb{Z}_k=\{k, k+1, k+2, …\}
+    \end{align*}
+\end{remark}
+
+\begin{theorem} \leavevmode \\
+    \label{thm.A}
+    Every infinite subset of a countable set is countable (or every subset of a countable set is at most countable).
+\end{theorem}
+
+\begin{proof} \leavevmode
+    Let $A$ be a countable set. Let $E \subseteq A$ where $E$ is infinite. We want to show $E$ is countable.
+    Since $A$ is countable, there exists a bijection $g:\mathbb{N} \rightarrow A$, so $$A=\{g(1), g(2), g(3),…\}.$$ Let $x_n=g(n)$ for all $n\in \mathbb{N}$. So $$A=\{x_1, x_2, x_3,…\}.$$ Construct the sequence $n_1, n_2, n_3, …$ as follows:
+    \begin{align*}
+        &\text{Let $n_1$ be the smallest positive integer such that $x_{n_1} \in E$.} \\
+        &\text{Let $n_2$ be the smallest positive integer such that $x_{n_2}\in E.$} \\
+        &\vdots \\
+        &\text{Let $n_k$ be the smallest positive integer such that $x_{n_k} \in E$.} \\
+    \end{align*}
+    $$n_k = \text{min}\{m\in \mathbb{N}: m > n_{k-1} \wedge x_m\in E\}$$
+
+    Define $f:\mathbb{N}\rightarrow E$ as follows:
+    $$f(k)=x_{m_k}.$$
+    This map is bijective and so $E$ is countable.
+    Why is $f$ bijective?
+    If $k_1 \not = k_2$, then $n_{k_1} \not = n_{k_2}$ and so $x_{n_{k_1}} \not = x_{n_{k_2}}$. Hence $f(k_1) \not = f(k_2)$. Therefore $f$ is one-to-one. \\
+    If $b\in E$, then $E \subseteq A.$ We know that $b\in A$ and so there exists $m\in \mathbb{N}$ such that $b=x_m$. So there exists $1 \leq k \leq m$ such that $x_{n_k} = x_m = b$. Hence $f(k) = b$. This shows $f$ is onto. \qed
+\end{proof}
+
+\begin{contrapositive} \leavevmode \\
+    Let $E \subseteq A$ and $E$ be infinite.
+    \\ If $A$ is countable, then $E$ is at most countable.
+    \\ If $E$ is not countable, then $A$ is not countable. \\
+    Since $E$ is infinite (and so $A$ is infinite) we may rewrite the above statement as follows:
+    $$\text{If } E \text{ is uncountable, then } A \text{ is uncountable.}$$
+\end{contrapositive}
+
+\begin{corollary} \leavevmode \\
+    \label{corA}
+    Let $A$ be any set and let $S$ be a countable set. If there exists a one-to-one function $f:A \rightarrow S$, then $A$ is at most countable.
+\end{corollary}
+
+\begin{proof}
+    \begin{align*}
+        f:A \rightarrow S \text{ is one-to-one}
+        &\implies f:A \rightarrow f(A) ~\text{ is bijective} \\
+        &\implies A \sim f(A)
+        \tag{$I$}
+    \end{align*}
+    \begin{equation*}
+        f(A) \subseteq S \text{ and } S \text{ is countable }  \implies f(A) \text{ is at most countable}
+        \tag{$II$}
+    \end{equation*}
+	$(I), (II) \implies A$ is at most countable. \qed
+\end{proof}
+
+\begin{example}
+    $\mathbb{N} \times \mathbb{N}$ is countable.
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}[$(1)$]
+        \item The function $f: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$ defined by $f(x,y) = 2^x3^y$ is one-to-one. Hence, by corollary \ref{corA}, $\mathbb{N} \times \mathbb{N}$ is at most countable.
+        \item Notice that $g:\mathbb{N} \rightarrow \{1\} \times \mathbb{N}$, $g(a) = (1, \infty)$ is a bijection. Hence, $\{1\}\times \mathbb{N}$ is countable. Now, we have
+        \begin{align*} &\{1\} \times \mathbb{N} \subseteq \mathbb{N}\times \mathbb{N} \text{ and } \\ &\{1\} \times \mathbb{N} \text{ is countable} \implies \{1\} \times \mathbb{N} \text{ is infinite,} \\ &\implies \mathbb{N} \times \mathbb{N} \text{ is infinite}
+        \end{align*}
+    \end{enumerate}
+    (1),(2) $\implies \mathbb{N} \times \mathbb{N}$ is countable. \qed
+\end{proof}
+
+\begin{example}
+    $\mathbb{Q}$ is countable.
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}[$(1)$]
+        \item The function $f: \mathbb{Q} \rightarrow \mathbb{N}$ is defined by 
+        \begin{align*}
+            f(x)=\begin{cases} 2(2^p3^q) &\text{ if } x=\frac{p}{q}, p\in\mathbb{N},q\in\mathbb{N}, (p,q)=1 \\ 2(2^p3^q) +1 &\text{ if }x=-\frac{p}{q},~p\in\mathbb{N}, q\in \mathbb{N}, (p,q)=1 \\ 1 &\text{ if } x = 0
+            \end{cases}
+        \end{align*} is one-to-one. So, $\mathbb{Q}$ is at most countable. 
+        \item $\mathbb{N} \subseteq \mathbb{Q} \text{ and }
+            \mathbb{N} \text{ is countable} \implies \mathbb{N} \text{ is infinite} \implies \mathbb{Q}$ is infinite.
+    \end{enumerate}
+     \leavevmode \\ (1),(2) $\implies \mathbb{Q}$ is countable. \qed
+\end{proof}
+
+\begin{theorem} \leavevmode \\
+    \label{thmB}
+    A countable union of at most countable sets is countable.
+\end{theorem}
+
+\begin{proof}
+    Let $\{A_n : n\in \mathbb{N}\}$ be a countable family of at most countable sets. That is, for each $n\in \mathbb{N}, ~A_n$ is at most countable. We want to show $K=\bigcup \limits_{n\in \mathbb{N}} A_n$ is at most countable. To this end, it is enough to show that there exists a one-to-one function $f: \bigcup \limits_{n\in \mathbb{N}}A_n \rightarrow \mathbb{N} \times \mathbb{N}$. \\
+	Let
+    \begin{align*}
+        &B_1=A_1 \\
+        &B_2=A_2 -A_1 \\
+        &B_3=A_3-(A_1\cup A_2) \\
+        &\vdots \\
+        &B_{n+1}=A_{n+1} - \big( \bigcup \limits_{k=1}^n A_k\big) \\
+        &\vdots
+    \end{align*}
+    Easy exercise: $\bigcup \limits_{n\in \mathbb{N}} B_n = \bigcup \limits_{n\in \mathbb{N}} A_n$ and each $B_n$ are pairwise disjoint.
+	Not that
+    \begin{align*}
+        \forall n\in \mathbb{N} ~&B_n \subseteq A_n \text{ and } A_n \text{ is at most countable} \\
+        &\implies \forall n \in \mathbb{N} ~B_n \text{ is at most countable}
+    \end{align*}
+    Our goal is to show that $\bigcup \limits_{n=1}^\infty B_n$ is at most countable. To this end, we define the function
+    $$f: \bigcup \limits_{n=1}^{\infty}B_n \rightarrow \mathbb{N} \times \mathbb{N}$$
+    as follows.
+	For each $x \in \bigcup \limits_{n=1}^{\infty} B_n$,  there is exactly one $n\in \mathbb{N}$ such that $x\in B_n$; let’s denote this by $n_x$. We define
+    \begin{align*}
+        f(x)=f(y) &\implies(n_x, f_{n_x}(x)) = (n_y, f_{n_y}(y)) \\
+        &\implies n_x=n_y ~\wedge f_{n_x}(x) = f_{n_y}(y) \\
+        &\implies f_{n_x}(x) = f_{n_y}(y) \\
+        &\implies x=y
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{corollary} \leavevmode \\
+    \label{corB1}
+    A countable union of countable sets is countable.
+\end{corollary}
+
+\begin{proof}
+    Let $\{A_n : n \in \mathbb{N}\}$ be a countable collection of countable sets.
+    \begin{enumerate}
+        \item By Theorem \ref{thmB}, $\bigcup \limits_{n\in \mathbb{N}} A_n$ is at most countable.
+        \item $\begin{rcases*}
+            A_1 \subseteq A_n \text{ for all } n \in \mathbb{N} \text{ and } \\
+            A_1 \text{ is countable} \implies A_1 \text{ is infinite} \end{rcases*}
+            \implies \bigcup \limits_{n\in \mathbb{N}}A_n \text{ is infinite.}$
+    \end{enumerate}
+	(1),(2) $\implies \bigcup \limits_{n\in \mathbb{N}} A_n$ is countable. \qed
+\end{proof}
+
+\begin{corollary} \leavevmode \\
+    \label{corB2}
+    If $A$ and $B$ are at most countable, then $A\cup B$ is at most countable.
+\end{corollary}
+
+\begin{proof}
+    Let $A_1=A, ~A_2=B, ~A_3= \emptyset, ~A_4 = \emptyset, ...$ in Theorem \ref{thmB}. \qed
+\end{proof}
+
+\begin{theorem} \leavevmode \\
+    If $A$ is countable, then $A \times A$ is countable.
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[$(1)$]
+        \item Note that $A \times A = \bigcup \limits_{\{b\} \in A} {b} \times A$.
+        \item For each $b \in A$, the function $f:A \rightarrow {\{b\}} \times A$ defined by $$ f(x) = (b, x)$$ is bijective. So, $A \sim \{b\} \times A.$ Hence $\{b\} \times A$ is countable.
+    \end{enumerate}
+	(1), (2) $\implies A \times A$ is a countable union of countable sets $\implies A \times A$ is countable (by Corollary \ref{corB1}).
+    \qed
+\end{proof}
+
+\begin{theorem} \leavevmode \\
+    \label{thmD}
+    Let $A$ be the set of all sequences whose terms are the digits $0$ and $1$. That is, $A$ is the collection of all binary sequences. This set $A$ is uncountable.
+\end{theorem}
+
+\begin{proof}
+    First, notice that $A$ is infinite. Let $h:\mathbb{N} \rightarrow A$ be the function defined by $\forall n\in \mathbb{N} ~h(n) =$ the binary sequence whose $n^{th}$ term is $1$ and all other terms are $0$. Clearly, $h$ is an injective function. Hence, $h:\mathbb{N} \rightarrow h(\mathbb{N})$ is bijective. We have
+    \begin{align*}
+        \mathbb{N} \sim h(\mathbb{N}) &\implies h(\mathbb{N}) \text{ is infinite} \\
+        h(\mathbb{N}) \subseteq A &\implies A \text{ is infinite.}
+    \end{align*}
+    Assume for contradiction that $A$ is not uncountable. Considering that $A$ is infinite, this assumption tells us that $A$ must be countable. $A$ is countable $\implies \exists f:\mathbb{N} \rightarrow A$ is bijective. So,
+    $$ A = \{f(1), f(2), f(3),…\}$$
+    (for each $n\in\mathbb{N}, ~f(n)$ is a binary sequence). Let
+    \begin{align*}
+        &f(1)=(a_1^1, a_2^1, a_3^1, a_4^1,…) \\
+        &f(2)=(a_1^2, a_2^2, a_3^2,a_4^2,…) \\
+        &f(3)=(a_1^3, a_2^3, a_3^3, a_4^3,…) \\
+        &\vdots \\
+        &f(n)=(a_1^n, a_2^n, a_3^n, a_4^n,…) \\
+        &\vdots
+    \end{align*}
+    In what follows, we will construct a binary sequence $(b_1, b_2, b_3,…)$ that is not in the above list. This will contradict the fact that $A$ contains all the binary sequences. Define
+    \begin{align*}
+        &b_1=\begin{cases}
+            0 \text{ if } a_1^1=1 \\
+        1 \text{ if } a_1^1=0
+        \end{cases} \\
+        &b_2=\begin{cases}
+            0 \text{ if } a_2^2=1 \\
+        1 \text{ if } a_2^2=0
+        \end{cases} \\
+        &b_3=\begin{cases}
+            0 \text{ if } a_3^3=3 \\
+            1 \text{ if } a_3^3=0
+        \end{cases} \\
+        &\vdots
+    \end{align*}
+    More generally,
+    $$\forall i \in \mathbb{N} ~b_i =
+    \begin{cases}
+        0 \text{ if } a_i^i = 1 \\
+        1 \text{ if } a_i^i = 0
+    \end{cases}$$
+    Clearly, this sequence $(b_n)$ is not the same as any of the sequences on the above list ($\forall i \in \mathbb{N} ~(b) \not = f(i)$). \qed
+\end{proof}
