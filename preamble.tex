@@ -117,7 +117,9 @@
 \theoremstyle{theorem}
 
 \newtheorem{theorem}{Theorem}
+\newtheorem{contrapositive}{Contrapositive}
 \numberwithin{theorem}{section}
+\numberwithin{contrapositive}{section}
 \newtheorem{postulate}{Postulate}
 \newtheorem{conjecture}{Conjecture}
 %\newtheorem{corollary}{Corollary}
@@ -125,6 +127,12 @@
 \newtheorem{conclusion}{Conclusion}
 
 \tcolorboxenvironment{theorem}{
+	enhanced jigsaw, pad at break*=1mm, breakable,
+	left=4mm, right=4mm, top=1mm, bottom=1mm,
+	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
+	borderline west={0.5mm}{0mm}{theorembordercolor}, arc=.5mm
+}
+\tcolorboxenvironment{contrapositive}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
 	colback=theorembackgroundcolor, boxrule=0pt, frame hidden,
@@ -217,6 +225,7 @@
 \newtheorem*{note}{Note}
 \newtheorem*{recall}{Recall}
 \newtheorem{observation}{Observation}
+\newtheorem{fact}{Fact}
 \tcolorboxenvironment{remark}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
@@ -247,6 +256,13 @@
 	 arc=.5mm
 }
 \tcolorboxenvironment{observation}{
+	enhanced jigsaw, pad at break*=1mm, breakable,
+	left=4mm, right=4mm, top=1mm, bottom=1mm,
+	colback=remarkbackgroundcolor, boxrule=0pt, frame hidden,
+	borderline west={0.5mm}{0mm}{remarkbordercolor}, arc=.5mm
+}
+
+\tcolorboxenvironment{fact}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
 	colback=remarkbackgroundcolor, boxrule=0pt, frame hidden,
@@ -426,6 +442,7 @@
 	N_{#1}^{#2}(#3)
 }
 
+\newcommand{\F}{\mathbb{F}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
