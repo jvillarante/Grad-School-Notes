@@ -18,7 +18,7 @@
     \end{enumerate}
 \end{definition}
 
-\begin{definition} \leavevmode \\
+\begin{definition}[Classifications of Discontinuities] \leavevmode \\
     Let $f:(a,b) \to (Y, \overset{\sim}{d}).$ Let $c\in (a,b)$. Suppose $f$ is discontinuous at $c$.
     \begin{enumerate}[$(i)$]
         \item $f$ is said to be discontinuity of the first kind, or a simple discontinuity, at $c$ if $\lim \limits_{x\to c^-}f(x)$ and $\lim \limits_{x\to c^+}f(x)$ exist, but: 
@@ -41,3 +41,63 @@
     \end{enumerate}
     A similar statement holds for decreasing functions.
 \end{theorem}
+
+\begin{proof}
+    \begin{enumerate}[$(i)$]
+        \item First, note that since $f$ is increasing, $f(c)$ is an upper bound for $\{f(x) : a < x < c\}$. So, $A=\sup \{f(x) : a < x < c\}$ exists in $\R$. Moreover, $A \leq f(c).$ It remains to show that $A = \lim \limits_{x \to c^-} f(x).$ To this end, it is enough to show that
+        $$
+    \forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $c-\delta < x < c$ then $|f(x) - A| < \epsilon $.}
+        $$
+        Let $\epsilon > 0$ be given. Our goal is to find $\delta > 0$ such that 
+        \begin{equation*}
+            \text{if $c - \delta < x < c$ then $|f(x) - A| < \epsilon $} \tag{$*$}
+        \end{equation*}
+        Since $A = \sup \{f(x) : a < x < c\}$, for this given $\epsilon$, $A - \epsilon$ is not an upper bound for $\{f(x): a < x <c\}$. Therefore,
+        $$
+        \exists r \in (a, c) \st A - \epsilon < f(r) \leq A
+        $$
+        We claim that we can use $c - r$ as the $\delta$ that satisfies $(*)$: if $c - \delta < x < c,$ then
+        \begin{enumerate}[$(1)$]
+            \item $c - \delta < x \implies r < x \implies f(r) \leq f(x) \implies A - \epsilon < f(x)$
+            \item $a < x < c \implies f(x) \leq \sup \{f(t) : a < t < c\} = A < A + \epsilon.$
+        \end{enumerate}
+        
+        \item Analogous to $(i)$.
+        
+        \item Since $f:(c,b) \to \R$ is increasing, by $(i)$ we have
+        \begin{equation}
+            \lim \limits_{x \to d^-} f(x) = \sup \{f(x) : c < x < d\}
+            \tag{$I$}
+        \end{equation}
+        Since $f: (a, d) \to \R$ is increasing, by $(ii)$ we have
+        \begin{equation}
+            \lim \limits_{x \to c^+} f(x) = \inf \{f(x) : c < x < d\}
+            \tag{$II$}
+        \end{equation}
+        $$
+        (I), (II) \implies \lim \limits_{x \to c^+} f(x) \leq \lim \limits_{x \to d^-} f(x)
+        $$
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{corollary}
+    Let $f: (a,b) \to \R$ be a monotone function. Then $f$ will have no discontinuities of the second kind. As a matter of fact, $f$ can only have jump discontinuities.
+\end{corollary}
+
+\begin{theorem}[Monotone Functions have at most Countable Discontinuities] \leavevmode\\
+    \label{Thm4.30}
+    Let $f: (a,b) \to \R$ be a monotone function. Then the set of points at which $f$ is discontinuous is at most countable.
+\end{theorem}
+
+\begin{proof}
+    We prove the case where $f$ is increasing. The proof for the case where $f$ is decreasing is completely analogous. Let $E$ be the set set of points where $f$ is discontinuous. In what follows, we will construct a one-to-one function $G: E \to \Q$. For each $c\in E,$ define $G(c)$ as follows:
+    $$
+    \lim \limits_{x \to c^-} f(x) < \lim \limits_{x \to c^+} f(x) \implies \exists r \in \Q \st \lim \limits_{x \to c^-} < f(r) < \lim \limits_{x \to c^+} f(x)
+    $$
+    Let $G(c) = r.$ Then $G$ is one-to-one. Indeed, if $c_1, c_2 \in E$ and $c_1 < c_2$, then 
+    $$
+    \lim \limits_{x \to c_1^-}f(x) < G(c_1) < \lim \limits_{x \to c_1^+} \leq \lim \limits_{x \to c_2^-} f(x) < G(c_2) < \lim \limits_{x \to c_2^+}
+    $$
+    so $G(c_1) \not = G(c_2)$. \qed
+\end{proof}
