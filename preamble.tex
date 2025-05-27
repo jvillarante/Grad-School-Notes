@@ -468,3 +468,26 @@
 \newcommand{\Rbar}{
 	\overline{\R}
 }
+
+% Derivatives
+\newcommand{\ddx}[2]{
+	\frac{d#1}{dx}(#2)
+}
+\newcommand{\slope}[4]{
+	\frac{#1 - #2}{#3 - #4}
+}
+\newcommand{\lims}[2]{
+	\lim \limits_{#1 \to #2}
+}
+\newcommand{\deriv}[2]{
+	\lim \limits_{x \to c} \frac{#1(x) - #1(#2)}{x-#2}
+}
+\newcommand{\diffquot}[2]{
+	\lim \limits_{h \to 0} \frac{#1(#2 + h) - #1(#2)}{h}
+}
+\newcommand{\contin}[2]{
+	\forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $|x-#2| < \delta$ then $|#1(x) - #1(#2)|< \epsilon$}
+}
+\newcommand{\limfunc}[2]{
+	\forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $0 < |x-#2| <\delta$ then $\left|#1 - #2\right| < \epsilon$}
+}
