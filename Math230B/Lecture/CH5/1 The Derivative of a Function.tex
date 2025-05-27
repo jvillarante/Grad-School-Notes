@@ -1,0 +1,196 @@
+\begin{definition} [Differentiability and the Derivative] \leavevmode \\
+    Let $I \subseteq \R$ be an interval, $f: I \to \R$, and $c \in I.$
+    \begin{enumerate}[$(i)$]
+        \item We say $f$ is differentiable at $c$ if
+        $$\lim \limits_{x \to c} \frac{f(x) - f(c)}{x - c}$$
+        exists (that is, it equals a real number). In this case, the quantity $\lim \limits_{x \to c} \frac{f(x) - f(c)}{x - c}$ is called the derivative of $f$ at $c$ and is denoted by
+        $$f'(c), ~~\frac{df}{dx}(c), ~~\frac{df}{dx}|_{x=c}$$
+
+        \item If $f: I \to \R$ is differentiable at every point $c\in I$, we say $f$ is differentiable (on $I$).
+    \end{enumerate}
+\end{definition}
+
+\begin{remark}
+    Note that
+    \begin{align*}
+        f'(c) = L &\iff \lim \limits_{x \to c} \frac{f(x) - f(c)}{x - c} = L \\
+        &\iff \forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $0 < |x-c|<\delta$, then $\left|\frac{f(x) - f(c)}{x-c} - L\right| < \epsilon$} \\
+        &\iff \forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $0 < |h<\delta$, then $\left|\frac{f(c+h) - f(c)}{h} - L\right| < \epsilon$} &&(\text{Let $h = x - c$}) \\
+        &\iff \lim \limits_{h \to 0} \frac{f(c+h)-f(c)}{h} = L
+    \end{align*}
+\end{remark}
+
+\begin{remark}
+    Let $A$ denote the collection of all points at which $f: I \to \R$ is differentiable. If $A \not = \emptyset$, the function $f':A \to \R$ defined by
+    $$f'(c) = \lim \limits_{x \to c}\frac{f(x) - f(c)}{x-c} ~~\forall c \in A$$
+    is called the derivative of $f$.
+\end{remark}
+
+\begin{example}
+    Let $I\subseteq \R$ be an interval and $f: I \to \R$ be given by $f(x) = x^2$. Prove that $f$ is differentiable on $I$ and find the derivative.
+\end{example}
+
+\begin{proof}
+    $\forall c \in I,$
+    \begin{align*}
+        \deriv{f}{c} &= \lims{x}{c} \slope{x^2}{c^2}{x}{c} \\
+        &= \lims{x}{c} x + c \\
+        &= 2c &&(\text{ is continuous})
+    \end{align*}
+    So, $\forall c \in I ~~f'(c) = 2c.$ Hence,
+    $$f': I \to \R, ~~ f'(x) = 2x.$$
+    \qed
+\end{proof}
+
+\begin{example}
+    Let $I\subseteq \R$ be an interval and $f: I \to \R$ be given by $f(x) = x^n$ where $n\in \N, ~~n \geq 3$. Prove that $f$ is differentiable on $I$ and find the derivative.
+\end{example}
+
+\begin{proof}
+    \begin{align*}
+        \deriv{f}{c} &= \lims{x}{c} \slope{x^n}{c^n}{x}{c} \\
+        &= \lims{x}{c} \frac{(x-c)(x^{n-1}+cx^{n-2}+...+c^{n-1})}{x-c} &&(\text{Algebra}) \\
+        &= \lims{x}{c}\left[x^{n-1}+cx^{n-1}+...+c^{n-1}\right] \\
+        &= c^{n-1} + c \cdot c^{n-2} + ... + c^{n-1} &&(\text{Continuity}) \\
+        &= n \cdot c^{n-1}
+    \end{align*}
+    So, $\forall c \in I ~~f'(c) = n \cdot c^{n-1}$. Hence,
+    $$f': I \to \R, ~~ f'(x) = nx^{n-1}.$$
+    \qed
+\end{proof}
+
+\begin{example}
+    Prove that $f: \R \to \R, ~~f(x) = |x|$ is not differentiable at $c = 0$.
+\end{example}
+
+\begin{proof}
+    We need to show that $\deriv{f}{0}$ does not exist. Note that
+    $$\slope{f(x)}{f(0)}{x}{0} = \slope{|x|}{|0|}{x}{0} = \frac{|x|}{x}$$
+    Let $g(x) = \frac{|x|}{x}.$ We want to show $\lims{x}{0} g(x)$ does not exist. By the sequential criterion for limits of functions, it is enough to find two sequences $(a_n)$ and $(b_n)$ in $\R \backslash \{0\}$ such that $a_n \to 0$ and $b_n \to 0$, but $\lim g(a_n) \not = \lim g(b_n).$ Let $a_n = -\frac{1}{n}$ and $b_n = \frac{1}{n}$. Clearly, $a_n \to 0$ and $b_n \to 0$. However,
+    \begin{align*}
+        &\lims{n}{\infty}g(a_n) = \lims{n}{\infty}\frac{|a_n|}{a_n} = \lims{n}{\infty} \frac{|-1/n|}{-1/n} = \lims{n}{\infty}(-1) = -1 \\
+        &\lims{n}{\infty}g(b_n) = \lims{n}{\infty}\frac{|b_n|}{b_n} = \lims{n}{\infty} \frac{|1/n|}{1/n} = \lims{n}{\infty}(1) = 1 
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{theorem} [Differentiable $\implies$ Continuous] \leavevmode \\
+    \label{thm5.2}
+    Let $I \subseteq \R$ be an interval, $c \in I$, and $f:I \to \R$ be differentiable at $c$. Then $f$ is continuous at $c$.
+\end{theorem}
+
+\begin{proof}
+    It is enough to show that $\lims{x}{c} f(x) = f(c)$ (an interval doesn't have an isolated point). Note that
+    \begin{align*}
+        \lims{x}{c}\left(f(x) - f(c)\right) &= \lims{x}{c}\left[\slope{f(x)}{f(c)}{x}{c}(x-c)\right] \\
+        &= \left[\deriv{f}{c}\right]\left[\lims{x}{c}(x-c)\right] &&(\text{ALT for Functions}) \\
+        &= f'(c) \cdot 0 = 0.
+    \end{align*}
+    So,
+    \begin{align*}
+        \lims{x}{c}f(x) &= \lims{x}{c}\left[f(x) - f(c) + f(c)\right] \\
+        &= \lims{x}{c}\left[f(x) - f(c)\right] + \lims{x}{c}f(c) \\
+        &= 0 + f(c) \\
+        &= f(c).
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{corollary}
+    If $f:I \to \R$ is not continuous at $c \in I$, then $f$ is not differentiable at $c$.
+\end{corollary}
+
+\begin{example}
+    Let $f:\R \to \R$ be defined by $f(x) = \begin{cases*}
+        x^2 &\text{ if $x\in \Q$} \\
+        0 &\text{ if $x \not \in \Q$}
+    \end{cases*}$.
+    \begin{enumerate} [$(i)$]
+        \item Prove $f$ is continuous at $0$.
+        \item Prove $f$ is discontinuous at all $x \not = 0$.
+        \item Prove that $f$ is nondifferentiable at all $x \not = 0$.
+        \item Prove that $f'(0) =0$.
+    \end{enumerate}
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}[$(i)$]
+        \item We need to show that 
+        $$\contin{f}{0}$$
+        Let $\epsilon > 0$ be given. Our goal is to find $\delta > 0$ such that
+        \begin{equation*}
+            \text{if $|x| < \delta$ then $|f(x)| < \epsilon$} \tag{$*$}
+        \end{equation*}
+        \begin{info}
+            Note that
+            \begin{description}
+                \item[Case 1: ] if $x\not \in \Q$ then $|f(x)|=|0| < \epsilon ~~\checkmark$
+                \item[Case 2: ] if $x \in \Q$ then $|f(x)|=|x^2|=|x|^2$
+            \end{description}
+            So, we want to find $\delta$ such that if $|x| < \delta$, then $|x|^2 < \epsilon$. Clearly, $\delta = \sqrt{\epsilon}$ works.
+        \end{info}
+        We claim that $(*)$ holds with $\delta = \sqrt{\epsilon}.$ See the discussion.
+
+        \item Let $c \not = 0$. Our goal is to show $f$ is discontinuous at $c$. By the sequential criterion for continuity, it is enough to find a sequence $(a_n)$ such that $a_n \to c$ but $f(a_n) \not \to f(c)$. We proceed by two cases:
+        \begin{description}
+            \item[Case 1: $c \not \in \Q$] \leavevmode \\
+            $\Q$ is dense in $\R$, so there exists a sequence of rational numbers $(r_n)$ such that $r_n \to c.$ We have
+            $$
+            \begin{rcases*}
+                f(r_n) = r_n ^2 ~\forall n \\
+                f(c) = 0
+            \end{rcases*} \implies f(r_n) \not \to f(c)
+            $$
+            $$
+            \begin{rcases*}
+                r_n \to c \\
+                f(r_n) \not \to f(c)
+            \end{rcases*} \implies f \text{ is discontinuous at } c.
+            $$
+        \end{description}
+
+        \item Let $c \not = 0$. By $(ii)$, $f$ is not continuous at $c$. Therefore, $f$ is not differentiable at $c$.
+        
+        \item We need to show $\deriv{f}{0} = 0$. Note that
+        $$\slope{f(x)}{f(0)}{x}{0} = \frac{f(x)}{x}.$$
+        Our goal is to show:
+        $$\limfunc{\frac{f(x)}{x}}{0}.$$
+        Let $\epsilon > 0$ be given. Our goal is to find $\delta > 0$ such that
+        \begin{equation*}
+            \text{if $0 < |x| < \delta$, then $\left|\frac{f(x)}{x}- 0\right| < \epsilon$} \tag{$*$}
+        \end{equation*}
+        We claim that $(*)$ holds with $\delta = \epsilon$ (or any postive number less than $\epsilon$). Indeed, if $x \in \R$ such that $0 < |x| < \delta = \epsilon$, then
+        \begin{description}
+            \item[Case 1: $x \not \in \Q$]
+            $$\left|\frac{f(x)}{x}\right| = \left|\frac{0}{x}\right| = 0 < \epsilon.$$
+            \item[Case 2: $x \in \Q$]
+            $$\left|\frac{f(x)}{x}\right| = \left|\frac{x^2}{x}\right| = |x| < \delta = \epsilon.$$
+        \end{description}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{theorem}[Algebraic Differentiability Theorem] \leavevmode \\
+    Assume $f: I \to \R$ and $g: I \to \R$ are differentiable at $c \in I$. Then
+    \begin{enumerate}[$(i)$]
+        \item $\forall k \in \R, ~kf$ is differentiable at $c$ and
+        $$(kf)'(c) = k \cdot f'(x)$$
+        \item $f+g$ is differentiable at $c$ and 
+        $$(f+g)'(c) = f'(c) + g'(c)$$
+        \item $fg$ is differentiable at $c$ and 
+        $$(fg)'(c) = f'(c)g(c) + f(c)g'(c)$$
+        \item  $\frac{f}{g}$ is differentiable at $c$ (provided $g(c) \not = 0$) and 
+        $$\left(\frac{f}{g}\right)'(c) = \frac{f'(c)g(c)-f(c)g'(c)}{[g(c)]^2}$$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Here, we will prove $(ii)$ and $(iii)$.
+    \begin{enumerate}[$(ii)$]
+        \item \begin{align*}
+            \deriv{(f+g)}{c} &= \lims{x}{c}\slope{f(x) + g(x)}{f(c)-g(c)}{x}{c} \\
+            &= \deriv{f}{c} + \deriv{g}{c} \\
+            &= f'(c) + g'(c).
+        \end{align*}
+    \end{enumerate}
+\end{proof}
