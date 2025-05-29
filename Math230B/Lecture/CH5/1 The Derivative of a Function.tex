@@ -192,5 +192,185 @@
             &= \deriv{f}{c} + \deriv{g}{c} \\
             &= f'(c) + g'(c).
         \end{align*}
+        So, $f+g$ is differentiable at $c$, and $(f+g)'(c) = f'(c) + g'(c)$.
+        
+        \item \begin{align*}
+            \deriv{(fg)}{c} &= \lims{x}{c} \slope{f(x)g(x)}{f(c)g(c)}{x}{c} \\
+            &= \lims{x}{c} \slope{f(x)g(x) - f(c)g(x) + f(c)g(x)}{f(c)g(c)}{x}{c} \\
+            &= \lims{x}{c}\frac{\left(f(x)-f(c)\right)g(x) + f(c)\left(g(x)-g(c)\right)}{x-c} \\
+            &=\left[\deriv{f}{c}\right]\left[\lims{x}{c}g(x)\right] + \left[\lims{x}{c}f(c)\right]\left[\deriv{g}{c}\right] \\
+            &= f'(c) \cdot g(c) + f(c) \cdot g'(c)
+        \end{align*}
+        Thus $fg$ is differentiable at $c$, and $(fg)'(c) = f'(c)g(c) + f(c)g'(c)$. \qed
     \end{enumerate}
+\end{proof}
+
+\begin{theorem}[Chain Rule] \leavevmode\\
+    \label{Thm5.5}
+    Let $I_1 \subseteq \R$ and $I_2 \subseteq \R$ be two intervals. Suppose $f: I_1 \to \R$ and $g: I_2 \to \R \st f(I_1)$ is contained in $I_2$, $f$ is differentiable at $c \in I_2,$ and $g$ is differentiable at $f(c) \in I_2$. Then the function $g\circ f: I_1 \to \R$ is differentiable at $c\in I_1$, and 
+    $$
+    (g \circ f)'(c) = g'(f(c)) \cdot f'(c).
+    $$
+\end{theorem}
+
+\begin{info}
+    The following is an incorrect proof of the theorem:
+    \begin{align*}
+        \deriv{(g\circ f)}{c} &= \lims{x}{c} \slope{g(f(x))}{g(f(c))}{x}{c} \\
+        &= \lims{x}{c} \slope{g(f(x))}{g(f(c))}{f(x)}{f(c)} \cdot \slope{f(x)}{f(c)}{x}{c} \\ 
+        &= \left[\lims{x}{c} \slope{g(f(x))}{g(f(c))}{f(x)}{f(c)} \right] \cdot \left[\lims{x}{c} \deriv{f}{c} \right] \\
+        &= g'(f(c)) \cdot f'(c)
+    \end{align*}
+    This proof fails because even though  $x \to c \implies x \not = c$, it's not necessarily the case that $f(x) \to f(c) \implies f(x) \not = f(c)$. I.e., the algebraic limit theorem for functions fails as $f(x) - f(c)$ might be zero. Dividing by $f(x) - f(c)$ is not legitimate. To see why this fails, consider the case when $f$ is a constant function. \\
+    We instead use the following idea:
+    Replace $\slope{g(f(x))}{g(f(c))}{f(x)}{f(c)}$ with a new function $d(f(x))$ such that
+    \begin{enumerate}[$(i)$]
+        \item $d(f(x)) = \slope{g(f(x))}{g(f(c))}{f(x)}{f(c)}$ when $f(x) \not = f(c)$
+        \item $d(f(x))$ is defined even when $f(x) = f(c)$
+        \item $d(f(x)) \cdot \slope{f(x)}{f(c)}{x}{c} = \slope{g(f(x))}{g(f(c))}{x}{c}$ for all $x \in I_1, x \not = c$
+    \end{enumerate}
+\end{info}
+
+\begin{proof} \leavevmode
+    Let $d:I_2 \to \R$ be defined by
+    \begin{align*}
+        d(y) = \begin{cases}
+            \slope{g(y)}{g(f(c))}{y}{f(c)} &y \not = f(c) \\
+            \lims{y}{f(c)} \slope{g(y)}{g(f(c))}{y}{f(c)} = g'(f(c)) &y = f(c)
+        \end{cases}
+    \end{align*}
+    Clearly, $d$ satisfies requirements $(i)$ and $(ii)$ from above.
+    \begin{description}
+        \item[Observation 1:] $d$ is continuous at $f(c)$. Indeed,
+        $$
+        \lims{y}{f(c)} d(y) = \lims{y}{f(c)} \slope{g(y)}{g(f(c))}{y}{f(c)} = d(f(c))
+        $$
+
+        \item[Observation 2:] For all $x \in I_1$ with $x \not = c$, we have 
+        $$
+        d(f(x)) \cdot \slope{f(x)}{f(c)}{x}{c} = \slope{g(f(x))}{g(f(c))}{x}{c}
+        $$
+        This is true because
+        \begin{description}
+            \item[Case 1:] $f(x) \not = f(c)$
+            \begin{align*}
+                d(f(x)) \cdot \slope{f(x)}{f(c)}{x}{c} &= \slope{g(f(x))}{g(f(c))}{f(x)}{f(c)} \cdot \slope{f(x)}{f(c)}{x}{c} \\ 
+                &= \slope{g(f(x))}{g(f(c))}{x}{c}
+            \end{align*} 
+            \item[Case 2:] $f(x) = f(c)$
+            \begin{align*}
+                LHS = d(f(x)) \cdot \slope{f(x)}{f(c)}{x}{c} = d(f(c)) \cdot \slope{f(x)}{f(c)}{x}{c} = g'(f(c)) \cdot 0 = 0 \\
+                RHS = \slope{g(f(x))}{g(f(c))}{x}{c} =\slope{g(f(c))}{g(f(c))}{x}{c} = 0
+            \end{align*}
+            So, $LHS=RHS=0$.
+        \end{description}
+    \end{description}
+    We have,
+    \begin{align*}
+        \deriv{(g\circ f)}{c} &= \lims{x}{c} \slope{g(f(x))}{g(f(c))}{x}{c} \\
+        &= \lims{x}{c}\left[d(f(x))\cdot \slope{f(x)}{f(c)}{x}{c}\right] \\
+        &= \left[\lims{x}{c}(d\circ f)(x)\right]\cdot \left[\deriv{f}{c}\right] \\ 
+        &\overset{(*)}{=}(d\circ f)(c) \cdot f'(c) \\
+        &= d(f(c)) \cdot f'(c) \\
+        &= g'(f(c)) \cdot f'(c)
+    \end{align*}
+    So, $g\circ f$ is differentiable at $c$ and $(g\circ f)'(c) = g'(f(c)) \cdot f'(c)$. \\
+
+    $(*)$ Note that $f$ is continuous at $c$ and $d$ is continuous at $f(c)$, so by composition of continuos functions we conclude that $d\circ f$ is continuous at $c$ and
+    $$
+    \lims{x}{c}(d\circ f)(c) = (d\circ f)(c).
+    $$
+    \qed
+\end{proof}
+
+\begin{example}
+    Let $f:\R \to \R$ be defined by
+    $f(x) =
+    \begin{cases*}
+        x^2 \sin \frac{1}{x} &if $x \not = 0$ \\
+        0 &if $x = 0$
+    \end{cases*}$
+    \begin{enumerate}[$(i)$]
+        \item Prove that $f$ is differentiable at all $x \not = 0$.
+        \item Prove that $f'(0) = 0$
+        \item Prove that $f'$ is not continuous at $0$.
+    \end{enumerate}
+\end{example}
+
+\begin{proof}
+    \begin{enumerate}[$(i)$]
+        \item We have
+        $$
+        \begin{rcases*}
+            h_1(x) = 1 & is differentiable on $\R$\\
+            h_2(x) = x & is differentiable on $\R$
+        \end{rcases*}
+        \implies \frac{h_1(x)}{h_2(x)} = \frac{1}{x} \text{ is differentiable at all $x \not = 0$}
+        $$
+        $$
+        \begin{rcases*}
+            h_3(x) = \sin x & is differentiable on $\R$\\
+            h_4(x) = \frac{1}{x} & is differentiable at all $x\not = 0$
+        \end{rcases*}
+        \implies (h_3 \circ h_4)(x) = \sin \frac{1}{x} \text{ is differentiable at all $x \not = 0$}
+        $$
+        $$
+        \begin{rcases*}
+            h_5(x) = x^2 & is differentiable on $\R$\\
+            h_4(x) = \sin \frac{1}{x} & is differentiable at all $x\not = 0$
+        \end{rcases*}
+        \implies h_5(x) \cdot h_6(x) = x^2 \sin \frac{1}{x} \text{ is differentiable at all $x \not = 0$}
+        $$
+        Indeed, it follows from the algebraic differentiation theorem and the chain rule that 
+        \begin{align*}
+            (x^2 \sin \frac{1}{x})' &= (x^2)'\cdot \sin \frac{1}{x} + x^2 \cdot(\sin \frac{1}{x})' \\
+            &= 2x \cdot \sin \frac{1}{x} + x^2 \left[(\cos \frac{1}{x})(-\frac{1}{x^2})\right] \\
+            &=2x\sin \frac{1}{x} - \cos \frac{1}{x}
+        \end{align*}
+        
+        \item Note that $f(0) = 0$ does not imply $f'(0) = 0.$ When we want to compute $f'$ at any point, in particular at $0$, we need to pay attention to the behavior of $f$ in a neighborhood of the point and not just the value of the function at the point. The reason is that $f'(c)$ is defined by taking $\lims{x}{c}$. \\
+        Our goal is to show
+        $$
+        \deriv{f}{0} = 0
+        $$
+        Note that
+        $$
+        \slope{f(x)}{f(0)}{x}{0} = \slope{x^2\sin \frac{1}{x}}{0}{x}{0} = x \sin \frac{1}{x}
+        $$
+        We want to show
+        $$
+        \lims{x}{0}\left(x\sin \frac{1}{x}\right) = 0
+        $$
+        We have,
+        $$
+        \begin{rcases*}
+            0 \leq \left| x \sin \frac{1}{x} \right| \leq | x | \\
+            \lims{x}{0} 0 = 0 \\
+            \lims{x}{0}|x| = |0| = 0
+        \end{rcases*}
+        \overset{\text{SQZ Thm}}{\implies}
+        \lims{x}{0}\left| x \sin \frac{1}{x} \right| = 0
+        $$
+        Thus $\lims{x}{0} x\sin \frac{1}{x} = 0.$
+
+        \item According to parts $(i)$ and $(ii)$:
+        $$
+        f': \R \to \R, ~~~ f(x) =
+        \begin{cases*}
+            2x\sin \frac{1}{x} - \cos \frac{1}{x} &if $x \not = 0$ \\
+            0 &if $x=0$
+        \end{cases*}
+        $$
+        By the sequential criterion for continuity, it is enough to find a sequence $(a_n)$ such that
+        $$
+        a_n \to 0 \text{ but } f'(a_n) \not \to f'(0)
+        $$
+        Let $a_n = \frac{1}{2n\pi}$. Clearly, $a_n \to 0$. However,
+        \begin{align*}
+            \lims{n}{\infty} f'(a_n) &= \lims{n}{\infty}\left[\frac{2}{2n\pi}\sin (2n\pi) - \cos (2n\pi)\right] \\
+            &= 0-1\\
+            &\not = 0.
+        \end{align*}
+    \end{enumerate}
+    \qed
 \end{proof}
