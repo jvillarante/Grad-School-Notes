@@ -1,0 +1,241 @@
+We now study three theorems that make the previous geometric observations precise.
+
+\begin{theorem}[Rolle's Theorem] \leavevmode\\
+    \label{Thm5.9}
+    Let $f:[a,b] \to \R$ be continuous. Let $f$ be differentiable on $(a,b)$. Suppose $f(a) = f(b)$. Then there exists a point $c\in (a,b) \st f'(c) = 0.$
+\end{theorem}
+
+\begin{proof}
+    It is enough to show that there exists a point $c \in (a,c)$ at which $f$ has a local maximum or a local minimum. We have
+    $$
+    \begin{rcases*}
+        \text{$f$ is continuous} \\
+        \text{$[a,b]$ is compact}
+    \end{rcases*}
+    \overset{EVT}{\implies}
+    \text{$f$ attains its maximum and minimum on $[a,b]$}
+    $$
+    We consider two cases:
+
+    \begin{description}
+        \item[Case 1: ] $\text{Both $\max \limits_{a \leq x \leq b}f(x)$ and $\min \limits_{a \leq x \leq b}f(x)$ occur at the endpoints.}$ \leavevmode\\
+        In this case, it follows from the assumption $f(a) = f(b)$ that $\max \limits_{a \leq x \leq b}f(x) = \min \limits_{a \leq x \leq b}f(x)$. So, $f$ is a constant function on $[a,b]$. Hence
+        $$
+        \forall x \in [a,b] ~~f'(x) = 0
+        $$
+        So, we may choose $c$ to be any point we like in $(a,b)$.
+
+        \item[Case 2: ] $\text{Either $\max \limits_{a \leq x \leq b}f(x)$ or $\min \limits_{a \leq x \leq b}f(x)$ occurs at a point $c\in(a,b)$.}$ \leavevmode\\
+        It follows from the interior extreme value theorem that $f'(c) = 0$.
+    \end{description}
+    \qed
+\end{proof}
+
+\begin{theorem}[Mean Value Theorem]\leavevmode\\
+    \label{Thm5.10}
+    Let $f:[a,b] \to \R$ be continuous and let $f$ be differentiable on $(a,b)$. Then there exists $c \in (a,b) \st f'(c) = \slope{f(b)}{f(a)}{b}{a}.$
+\end{theorem}
+
+\begin{proof}
+    Let $g:[a,b] \to \R$ be defined by 
+    $$
+    g(x) = f(x) - \slope{f(b)}{f(a)}{b}{a}x
+    $$
+    Note that
+    \begin{enumerate}[$*)$]
+        \item Algebraic continuity theorem $\implies g$ is continuous on $[a,b]$
+        \item Algebraic differentiability theorem $\implies g$ is differentiable on $(a,b)$
+        \item $g(a) = f(a) - \slope{f(b)}{f(a)}{b}{a}a = \frac{bf(a)-af(a)-af(b)+af(a)}{b-a} = \slope{bf(a)}{af(a)}{b}{a}$
+        \item $g(b) = f(b) - \slope{f(b)}{f(a)}{b}{a}b = \slope{bf(a)}{af(b)}{b}{a}$
+    \end{enumerate}
+    $g$ is continuous on $[a,b],$ differentiable on $(a,b)$, and $g(a) = g(b)$. By Rolle's theorem,
+    $$
+    \exists c \in (a,b) \st g'(c) = 0
+    $$
+    Note that $g'(x) = f'(x) - \slope{f(b)}{f(a)}{b}{a},$ so 
+    \begin{align*}
+        g'(c) = 0 &\iff f'(c) - \slope{f(b)}{f(a)}{b}{a} = 0 \\
+        &\iff f'(c) = \slope{f(b)}{f(a)}{b}{a}
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{theorem}[Generalized Mean Value Theorem]\leavevmode\\
+    \label{Thm5.10}
+    Let $f:[a,b] \to \R$ and $g:[a,b] \to \R$ be continuous functions that are differentiable on $(a,b)$. Then there exists a point $c\in(a,b) \st $
+    $$
+    f'(c)\left[g(b) - g(a)\right] = g'(c) \left[f(b) - f(a)\right]
+    $$
+\end{theorem}
+
+\begin{proof}
+    Let $h(x) = \left[f(b)-f(a)\right]g(x) - \left[g(b)-g(a)\right]f(x).$ It follows from the assumptions, the algebraic continuity theorem, and the algebraic differentiability theorem that $h$ is continuous on $[a,b]$ and differentiable on $(a,b)$. Therefore, by the mean value theorem,
+    \begin{equation*}
+        \exists c \in (a,b) \st h'(c) = \slope{h(b)}{h(a)}{b}{a}
+        \tag{$*$}
+    \end{equation*}
+    Note that
+    \begin{align*}
+        h(b) &= \left[f(b) - f(a)\right]g(b) - \left[g(b) - g(a)\right]f(b) \\ 
+        &= f(b)g(b) - f(a)g(b) - g(b)f(b) + g(a)f(b) \\
+        &= g(a)f(b) - f(a)g(b) \\
+        h(a) &= \left[f(b) - f(a)\right]g(a) - \left[g(b)-g(a)\right]f(a) \\
+        &= f(b)g(a) - f(a)g(a) - g(b)f(a) + g(a)f(a) \\
+        &= f(b)g(a) - g(b)f(a)
+    \end{align*}
+    So $h(a)=h(b)$. Hence it follows from $(*)$ that 
+    $\exists c \in (a,b) \st h'(c) = 0$
+    Now note that
+    \begin{align*}
+        h'(x) &= \left[f(b) - f(a)\right]g'(x) - \left[g(b) - g(a)\right]f'(x) \\
+        &\implies h'(c) = \left[f(b) - f(a)\right]g'(c) - \left[g(b) - g(a)\right]f'(c)
+    \end{align*}
+    Therefore,
+    $$
+    \exists c \in (a,b) \st \left[f(b) - f(a)\right]g'(c) - \left[g(b) - g(a)\right]f'(c) = 0
+    $$
+    That is,
+    $$
+    \exists c \in (a,b) \st \left[f(b) - f(a)\right]g'(c) =\left[g(b) - g(a)\right]f'(c)
+    $$
+    \qed
+\end{proof}
+
+\begin{remark}
+    If $g'$ is neer zero in $(a,b)$, then we may rewrite the claim of general mean value theorem as follows:
+    $$
+    \exists c \in (a,b) \st \frac{f'(c)}{g'(c)} = \slope{f(b)}{f(a)}{g(b)}{g(a)}
+    $$
+\end{remark}
+
+\begin{theorem} \leavevmode\\
+    \label{Thm5.11b}
+    Let $I\subseteq \R$ be an interval and let $f: I \to \R$ be differentiable such that $f'(x) = 0 ~\forall x \in I.$ Then $f$ is a constant function on $I$, that is, there exists $k\in \R$ such that $\forall x \in I, f(x) = k$.
+\end{theorem}
+
+\begin{proof}
+    Let $x,y \in I$ with $x < y.$ It is enough to show that $f(x) = f(y)$. To this end, we wil apply the mean value theorem to $f$ on the interval $[x,y]$:
+    \begin{align*}
+        \exists c \in (x,y) \st f'(c) = \slope{f(y)}{f(x)}{y}{x} \\
+        &\implies 0 = \slope{f(y)}{f(x)}{y}{x} \\
+        &\implies 0 = f(y) - f(x) \\
+        &\implies f(x) = f(y)
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{remark}
+    Consider $f:A \to \R$ where $A = (-1,0)\cup (2,3)$ and $f(x)=\begin{cases*}
+        1 &$x \in (-1,0)$ \\
+        -1 &$x \in (2,3)$
+    \end{cases*}$
+    Then $\forall x \in A ~~f'(x) = 0$, but $f$ is not a constant function on $A$. The theorem above doesn't apply since $A$ is not an interval.
+\end{remark}
+
+\begin{theorem} \leavevmode\\
+    Let $I\subseteq \R$ be an interval, and let $f:I \to \R$ and $g:I \to \R$ be differentiable such that $f'(x) = g'(x) ~\forall x \in I$. Then there exists $k\in \R \st \forall x \in I, ~f(x) = g(x) + k.$
+\end{theorem}
+
+\begin{proof}
+    Let $h = f - g$. We have
+    \begin{align*}
+        &\forall x \in I ~~h'(x) = (f-g)'(x) = f'(x) - g'(x) = 0 \\
+        &\overset{\ref{Thm5.11b}}{\implies} \exists k \in \R \st \forall x \in I ~~h(x) = k \\
+        &\implies \exists k \in \R \st \forall x \in I ~~f(x) - g(x) = k \\
+        &\implies \exists k \in \R \st \forall x \in I ~~f(x) = g(x) + k
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{theorem}\leavevmode\\
+    \label{Thm5.11}
+    Let $I\subseteq \R$ be an interval and let $f:I \to \R$ be differentiable. Then
+    \begin{enumerate}[$(i)$]
+        \item $f$ is increasing $\iff \forall c \in I ~~f'(c) \geq 0$
+        \item $f$ is decreasing $\iff \forall c \in I ~~f'(c) \leq 0$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof} \leavevmode\\
+    Here, we will prove $(i)$.
+    The proof of $(ii)$ is analogous. \\
+    $(\implies)$ Suppose $f$ is increasing on $I$. Let $c\in I$. Note that for all $x\in I, x \not = c$ we have $\slope{f(x)}{f(c)}{x}{c} \geq 0.$ Indeed,
+    \begin{align*}
+        &\text{if $x > c$ then }
+        \begin{cases*}
+            x - c > 0 \\
+            f(x) \geq f(c) 
+        \end{cases*} \implies \slope{f(x)}{f(c)}{x}{c} \geq 0 \\
+        &\text{if $x<c$ then }
+        \begin{cases*}
+            x-c < 0 \\
+            f(x) \leq f(c)
+        \end{cases*} \implies \slope{f(x)}{f(c)}{x}{c} \geq 0
+    \end{align*}
+    It follows from the order limit theorem for functions that 
+    $$
+    \deriv{f}{c} \geq \lims{x}{c}0
+    $$
+    Hence, $f'(c) \geq 0$ as desired. \\ \\
+    $(\impliedby)$ Suppose $\forall c \in I ~~f'(c) \geq 0.$ Let $x_1, x_2 \in I$ with $x_1 < x_2$. It is enough to show that $f(x_1) \leq f(x_2)$. To this end, we apply the mean value theorem to the function $f$ on $[x_1, x_2]:$
+    $$
+    \exists c \in (x_1, x_2) \st f'(c) = \slope{f(x_2)}{f(x_1)}{x_2}{x_1}
+    $$
+    So, $f(x_2)-f(x_1) = f'(c)(x_2 - x_1).$ Thus $f(x_2) - f(x_1) \geq 0,$ that is, $f(x_1) \leq f(x_2)$ as desired.
+    \qed
+\end{proof}
+
+\begin{theorem}[L'H$\hat{\text{c}}$pital's Rule] \leavevmode\\
+    \label{Thm5.13}
+    Let $I \subseteq \R$ be an interval, and $a\in I$. Let $f:[a,b] \to \R$ and $g:[a,b] \to \R$ be continuous. Suppose $f$ and $g$ are differentiable at all points in $I \backslash \{a\}$ and $f(a) = g(a) = 0, ~g'(x) \not = 0 ~\forall x \in I \backslash \{a\}$ and $\lims{x}{a} \frac{f'(x)}{g'(x)} = L \in \R.$ Then $\lims{x}{a} \frac{f(x)}{g(x)} = L$.
+\end{theorem}
+
+\begin{proof}
+    Our goal is to show that 
+    $$
+    \forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $0 < |x-a| < \delta $ (with $x \in I$) then $\left|\frac{f(x)}{g(x)} - L\right| < \epsilon$}
+    $$
+    Let $\epsilon > 0.$ Our goal is to find $\delta > 0 \st$
+    \begin{equation*}
+        \text{if $0 < |x-a| < \delta $ (with $x \in I$) then $\left|\frac{f(x)}{g(x)} - L\right| < \epsilon$}
+        \tag{$*$}
+    \end{equation*}
+    Since by assumption $\lims{x}{a} \frac{f'(x)}{g'(x)} = L,$ for the gien $\epsilon > 0,$ there exists $\hat{\delta} > 0 \st$
+    $$
+        \text{if $0 < |x-a| < \hat{\delta} $ (with $x \in I$) then $\left|\frac{f'(x)}{g'(x)} - L\right| < \epsilon$}
+    $$
+    We claim that this $\hat{\delta}$ satisfies $(*)$. The reason is as follows: \leavevmode\\
+    Suppose $x\in I \st 0 < |x-a| < \hat{\delta}.$ In what follows we will show that $\left|\frac{f(x)}{g(x)} - L\right| < \epsilon$. We consider two cases:
+
+    \begin{description}
+        \item[Case 1: $x > a ~~\left(x \in (a, a + \hat{\delta})\right)$] \leavevmode\\
+        We apply the general mean value theorem to $f$ and $g$ on the interval $[a,x]$:
+        $$
+        \exists c \in (a,x) \st \frac{f'(x)}{g'(x)} = \slope{f(x)}{f(a)}{g(x)}{g(a)}
+        $$
+        Since $f(a) = g(a) = 0,$ we conclude that 
+        $$
+        \frac{f'(c)}{g'(c)} = \frac{f(x)}{g(x)}
+        $$
+        It follows that 
+        $$
+        \left|\frac{f(x)}{g(x)} - L\right| = \left|\frac{f'(x)}{g'(x)} - L\right| < \epsilon
+        $$
+        (the latter inequality is true because $0 < |c-a| \leq |x-a| \leq \hat{\delta}$)
+        \item[Case 2: $x < a ~~\left(x \in (a - \hat{\delta}, a)\right)$] \leavevmode\\
+        We apply the general mean value theorem to $f$ and $g$ on $[x,a]:$
+        $$
+        \exists c \in (x, a) \st \frac{f'(c)}{g'(c)} = \slope{f(a)}{f(x)}{g(a)}{g(x)}
+        $$
+        Since $f(a)=g(a)=0$, we conclude that 
+        $$
+        \frac{f'(c)}{g'(c)} = \frac{f(x)}{g(x)}
+        $$
+        It follows that 
+        $$
+        \left|\frac{f(x)}{g(x)} - L\right| = \left|\frac{f'(x)}{g'(x)} - L\right| < \epsilon
+        $$
+        (the latter inequality is true because $0 < |c-a| \leq |x-a| \leq \hat{\delta}$)
+    \end{description}
+    \qed
+\end{proof}
