@@ -1,0 +1,237 @@
+Consider $f: I \to \R$ given by $f(x) = (x-x_0)^k.$ What do the $n$ derivatives look like? If $n =0$, then by the mean value theorem we have
+$$
+\begin{rcases*}
+    f:I \to \R \text{ is differentiable} \\
+    f(x_0) = 0
+\end{rcases*} \implies f(x) = f'(c)(x-x_0)
+$$
+
+\begin{observation}
+    Let $k$ be a natural number. Let $x_0$ be a fixed number.
+    \begin{enumerate}[$*)$]
+        \item $\ddx{(x-x_0)^k}{}=k(x-x_0)^{k-1}$
+        \item $\ddx{(x-x_0)^k}{2} = \ddx{k(x-x_0)^{k-1}}{} = k(k-1)(x-x_0)^{k-2}$
+        \item $\ddx{(x-x_0)^k}{3} = \ddx{k(k-1)(x-x_0)^{k-2}}{} = k(k-1)(k-2)(x-x_0)^{k-3}$
+    \end{enumerate}
+    \vdots
+    \begin{enumerate}[$*)$]
+        \item $\ddx{(x-x_0)^k}{k} = k(k-1)\dots(2)(1)(x-x_0)^{k-k}=k!$
+    \end{enumerate}
+    If $j < k$
+    \begin{enumerate}[$*)$]
+        \item $\ddx{(x-x_0)^k}{j}=k(k-1)\dots \left(k-(j-1)\right)(x-x_0)^{k-j}$
+    \end{enumerate}
+    Thus we have
+    \begin{align*}
+        \ddx{(x-x_0)^k}{j} &=
+        \begin{cases*}
+            k(k-1)\dots(k-j+1)(x-x_0)^{k-j} &if $j < k$ \\
+            k! &if $j=k$ \\
+            0 &if $j>k$
+        \end{cases*} \\ 
+        \ddx{(x-x_0)^k}{j}\Big|_{x=x_0} &=
+        \begin{cases*}
+            0 &if $j < k$ \\
+            k! &if $j=k$ \\
+            0 &if $j > k$
+        \end{cases*}
+    \end{align*}
+\end{observation}
+
+\begin{theorem}[Corollary of the General Mean Value Theorem] \leavevmode\\
+    \label{Corollary of GMVT}
+    Let $I\subseteq \R$ be an open interval, $x_0 \in I$, and $n \in \N \cup \{0\}.$ Let $f: I \to \R$ have $n+1$ derivatives. Suppose $f^{(k)}(x_0) = 0 ~~\forall 0 \leq k \leq n.$ Then for each point $x \not = x_0$ in the interval $I$, there exists a point $c_{x, x_0}$ strictly between $x$ and $x_0 \st$
+    $$
+    f(x) = \frac{f^{(n+1)}(c_{x,x_0})}{(n+1)!}(x-x_0)^{n+1}
+    $$
+\end{theorem}
+
+\begin{proof}
+    Here we will prove the claim for the case where $x > x_0$. The proof for $x < x_0$ is completely analogous. Let $g: I \to \R$ be defined by $g(t) = (t-x_0)^{n+1}$. Note that
+    \begin{align*}
+        g^{(k)}(x_0) = 0 ~~\forall 0 \leq k \leq n \\
+        g^{(n+1)}(t)=(n+1)! ~~\forall t \in I
+    \end{align*}
+    Now, we apply the general mean value theorem to $f$ and $g$ on the interval $[x_0, x]$:
+
+    \begin{align*}
+        &\exists x_1 \in (x_0, x) \st \frac{f'(x_1)}{g'(x_1)} = \slope{f(x)}{f(x_0)}{g(x)}{g(x_0)} \\ &\implies
+        \frac{f'(x_1)}{g'(x_1)} = \frac{f(x)}{g(x)}
+        \tag{$I$}
+    \end{align*}
+
+    Next, we apply the general mean value theorem to $f'$ and $g'$ on the interval $[x_0, x_1]:$
+    \begin{align*}
+        &\exists x_2 \in (x_0, x_1) \st \frac{f''(x_2)}{g''(x_2)} = \slope{f'(x_1)}{f'(x_0)}{g'(x_1)}{g'(x_0)} \\ &\implies
+        \frac{f''(x_2)}{g''(x_2)} = \frac{f'(x_1)}{g'(x_1)} \\
+        &\overset{(I)}{\implies} \frac{f''(x_2)}{g''(x_2)} = \frac{f(x)}{g(x)}
+    \end{align*}
+    Continuing in this way, we will obtain $x_{n+1} \in (x_0, x) \st$
+    $$
+    \frac{f^{(n+1)}(x_{n+1})}{g^{(n+1)}(x_{n+1})} = \frac{f(x)}{g(x)}
+    $$
+    So,
+    $$
+    \frac{f^{(n+1)}(x_{n+1})}{(n+1)!} = \frac{f(x)}{(x-x_0)^{n+1}}
+    $$
+    Thus
+    $$
+    f(x) = \frac{f^{(n+1)}(x_{n+1})}{(n+1)!}(x-x_0)^{n+1}
+    $$
+    (We can use $x_{n+1}$ as the $c$ we were looking for)
+    \qed
+\end{proof}
+
+\begin{description}
+    \item[Question: ] What are the nicest functions that we know? Which functions are the easiest to work with?
+    \item[Answer: ] Polynomials
+    \item[General Question: ] Given a function $f$, is it possible to find a "good" approximation for $f$ among polynomials?   
+    \item[Setup: ] \leavevmode\\
+    \begin{enumerate}[$*)$]
+        \item Let $I$ be a nonempty open interval in $\R$
+        \item Let $n$ be a nonnegative integer
+        \item Suppose $f:I \to \R$ has $n$ derivatives and $x_0 \in I$
+        \item Suppose that we want to use the values
+        $$
+        f(x_0), f'(x_0), ..., f^{(n)}(x_0)
+        $$
+        to construct a polynomial approximation for $f$
+    \end{enumerate}
+\end{description}
+
+What is the best we could hope for? Find a polynomial such that
+\begin{align*}
+    p(x_0) &= f(x_0) \\
+    p'(x_0) &= f'(x_0) \\
+    &\vdots \\
+    p^{(n)}(x_0) &= f^{(n)}(x_0)
+\end{align*}
+
+\begin{observation}
+    Let $x_0$ be a fixed real number. A general polynomial of degree at most $n$ can be expressed in powers of $(x-x_0)$ in the form
+    $$
+    p(x) = c_0 + c_1(x-x_0) + ... + c_n(x-x_0)^n
+    $$
+\end{observation}
+
+\begin{example}
+    Consider $p(x) = x^2-3x-1.$ Let $x_0 = 1$. We can express $p(x)$ in powers of $x-1$:
+    \begin{align*}
+        p(x) = x^2-3x-1 &= \left[(x-1)+1\right]^2-3\left[(x-1)+1\right]-1 \\
+        &= (x-1)^2+2(x-1) + 1 -3(x-1) -3 -1 \\
+        &= (x-1)^2 -(x-1) - 3
+    \end{align*}
+\end{example}
+
+\begin{theorem}[Uniqueness of the Approximating Polynomial] \leavevmode\\
+    Let $I \subseteq \R$ be an open interval and $n\in \N$. Suppose $f:I \to \R$ has $n$ derivatives ad $x_0 \in I.$ Then there exists a unique polynomial $p(x)$ of degree at most $n$ such that 
+    $$
+    \forall 0 \leq l \leq n ~~p^{(l)}(x_0) = f^{(l)}(x_0), \text{ with } \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k
+    $$
+\end{theorem}
+
+\begin{proof}
+    Let $p(x)$ be a general polynomial of degree at most $n$:
+    $$
+    p(x) = c_0 + c_1(x-x_0) + ... + c_n(x-x_0)^n
+    $$
+    Our goal is to show that
+    $$
+    \text{If $\forall 0 \leq l \leq n ~~p^{(l)}(x_0)=f^{(l)}(x_0)$ then $p(x) = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k$}
+    $$
+    Note that $p(x_0)=c_0.$ Also, for $1 \leq l \leq n$ we have
+    \begin{align*}
+        p^{(l)}(x) &= \ddx{c_0 + \sum_{k=1}^{n}c_k (x-x_0)^k}{l} \\ 
+        &= \ddx{\sum_{k=1}^{n}c_k(x-x)^k}{l} \\
+        &= \sum_{k=1}^{n}c_k \ddx{(x-x_0)^k}{l}
+    \end{align*}
+    Hence,
+    $$
+    p^{(l)}(x_0) = \sum_{k=1}^{n}c_k \ddx{(x-x_0)^k}{l} \Big|_{x=x_0} = c_l \cdot l!
+    $$
+    Therefore,
+    $$  
+    \forall 1 \leq l \leq n ~~p^{(l)}(x_0) = c_l \cdot l!
+    $$
+    We conclude that
+    \begin{align*}
+        \text{$p$ agrees with $f$ to order $n$ at $x_0$} &\iff \begin{cases*}
+            p(x_0) = f(x_0) \\
+            p^{(l)}(x_0) = f^{(l)}(x_0) ~\forall 1 \leq l \leq n
+        \end{cases*} \\
+        &\iff \begin{cases*}
+            c_0 = f(x_0) \\
+            l! c_l = f^{(l)}(x_0) ~\forall 1 \leq l \leq n
+        \end{cases*} \\ 
+        &\iff \begin{cases*}
+            c_0 = f(x_0) \\
+            c_l = \frac{f^{(l)}(x_0)}{l!} ~\forall 1 \leq l \leq n
+        \end{cases*} \\ 
+        &\iff p(x) = \sum_{k=0}^{n}c_k(x-x_0)^k \\ 
+        &= c_0 + \sum_{k=1}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^k \\
+        &= f(x_0) + \sum_{k=1}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k \\
+        &= \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{k!}(x-x_0)^k
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{note}
+$n^{\text{th}}$ Taylor Polynomial centered at $0$ is called $n^{\text{th}}$ Maclaurin Polynomial
+\end{note}
+
+\begin{description}
+    \item[Big Lesson: ] There is exactly one polynomial of degree at most $n$ that satisfies
+    \begin{align*}
+        p(x_0) &= f(x_0) \\
+        p'(x_0) &= f'(x_0) \\
+        &\vdots \\
+        p^{(n)}(x_0) &= f^{(n)}(x_0)
+    \end{align*}
+    This polynomial is called the $n^{\text{th}}$ Taylor polynomial for $f$ centered at $x_0$, and is given by
+    $$
+    T_{n, x_0}(x) = f(x_0) + f'(x_0)(x-x_0) + \frac{f''(x_0)}{2!}(x-x_0)^2 +...+ \frac{f^{(n)}(x_0)}{n!}(x-x_0)^n
+    $$
+\end{description}
+
+\begin{theorem}[Taylor's Theorem with Lagarange Remainder] \leavevmode\\
+    \label{Taylor's Thm}
+    Let $I \subseteq \R$ be an open interval, $x_0\in I$, and $n \in \N\cup \{0\}$. Let $f: I \to \R$ have $n+1$ derivatives. Then  for each point $x \not = x_0$ in $I$, there is a point $c$ strictly between $x$ and $x_0$ such that
+    $$
+    f(x) = \sum_{k=0}^{n}\frac{f^{(k)}(x_0)}{n!}(x-x_0)^k + \frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}
+    $$
+    \begin{remark}
+        Note that clearly the above equality holds at $x=x_0$ too (for any value of $c$). Recall that for any fixed number $R$, $\lims{n}{\infty}\frac{R^{n+1}}{(n+1)!} = 0$, however $f^{(n+1)}(c)$ may become very large.
+    \end{remark}
+\end{theorem}
+
+\begin{proof}
+    Let $F_{n, x_0}=f(x)-T_{n,x_0}(x).$ Our goal is to show that
+    $$
+    R_{n,x_0} = \frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1}
+    $$
+    for some $c$ between $x$ and $x_0$. Note that
+    \begin{enumerate}[$(i)$]
+        \item $\begin{rcases*}
+            \text{$f$ has $n+1$ derivatives}\\
+            \text{$T_{n,x+0}$ is a polynomial of degree $n$, so it has $n+1$ derivatives} \\
+            R_{n, x_0} = f - T
+        \end{rcases*} \implies \text{$R_{n, x_0}$ has $n+1$ derivatives}$
+        \item $\forall 0 \leq k \leq n ~~R_{n,x_0}^{(k)}(x_0) = f^{(k)}(x_0) - T_{n,x_0}^{(k)}(x_0) = 0$
+    \end{enumerate}
+
+    $(i), (ii), \text{Theorem $\ref{Corollary of GMVT}$} \implies \text{For each point $x \not = x_0$ in $I$, we have }$
+    \begin{align*}
+        R_{n,x_0}(x) = \frac{R_{n,x_0}^{(n+1)}(c)}{(n+1)!}(x-x_0)^{n+1} \text{ for some $c$ strictly between $x$ and $x_0$}
+        \tag{$I$}
+    \end{align*}
+
+    Now note that
+    \begin{equation*}
+        R_{n,x_0}^{(n+1)}(c) = f^{(n+1)}(c) - T_{n, x_0}^{(n+1)}(c) = f^{(n+1)}(c)
+        \tag{$II$}
+    \end{equation*}
+    $$
+    (I), (II) \implies R_{n,x_0} = \frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{(n+1)}
+    $$
+    \qed
+\end{proof}

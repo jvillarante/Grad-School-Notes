@@ -10,6 +10,7 @@
 \usepackage{wrapfig}
 \usepackage[makeroom]{cancel}
 \usepackage{nameref}
+\usepackage{xparse}
 
 \makeatletter
 
@@ -475,9 +476,11 @@
 }
 
 % Derivatives
+
 \newcommand{\ddx}[2]{
-	\frac{d#1}{dx}(#2)
+	\frac{d^{#2}}{dx^{#2}}\left[#1\right]
 }
+
 \newcommand{\slope}[4]{
 	\frac{#1 - #2}{#3 - #4}
 }
