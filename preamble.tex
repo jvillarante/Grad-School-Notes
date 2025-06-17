@@ -499,3 +499,29 @@
 \newcommand{\limfunc}[2]{
 	\forall \epsilon > 0 ~\exists \delta > 0 \st \text{if $0 < |x-#2| <\delta$ then $\left|#1 - #2\right| < \epsilon$}
 }
+
+% Integrals
+
+\newcommand{\RSdelta}[1]{
+	\Delta \alpha_{#1}
+}
+
+\newcommand{\RSdeltadiff}[2]{
+	\alpha(x_{#1})-\alpha(x_{#2})
+}
+
+\newcommand{\RSlowsum}{
+	\sum_{k=1}^{n}m_k \RSdelta{k}
+}
+
+\newcommand{\RSupsum}{
+	\sum_{k=1}^{n}M_k \RSdelta{k}
+}
+
+\newcommand{\UpperInt}[1]{
+	\overline{\int_{a}^{b}}#1 d\alpha
+}
+
+\newcommand{\LowerInt}[1]{
+	\underline{\int_{a}^{b}}#1 d\alpha
+}
