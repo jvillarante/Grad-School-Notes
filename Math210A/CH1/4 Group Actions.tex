@@ -1,0 +1,51 @@
+There are many examples of groups acting on sets. For instance, consider an element in $S_5$, call it $\sigma.$ $\sigma$ is a permutation of $\set{1,2,3,4,5}$ and it is also an element of a group
+\begin{align*}
+    \sigma &= (1~2~3~4~5) \\
+    &\sigma(5) = 4
+\end{align*}
+We say that $\sigma$ is acting on the set $\set{1,2,3,4,5}$.
+
+Consider the set of all $2\times 2$ matrices with elements in $\R$. Let $A = \begin{bmatrix}
+1 & 2 \\
+3 & 4
+\end{bmatrix}$ and let $k \in \R.$ Then $kA = \begin{bmatrix}
+k & 2k \\
+3k & 4k
+\end{bmatrix}.$ We say that $\R$ is acting on the set of all $2\times 2$ matrices with elements in $\R$.
+
+\begin{definition}[Group Action] \leavevmode \\
+    Let $G$ be a group and $A$ be a set. A group action of $G$ on $A$ is a map from $G\times A$ to $A$ (written $g.a ~~\forall g \in G, a \in A$) such that
+    \begin{enumerate}
+        \item $g_1.(g_2.a) = (g_1g_2).a ~~\forall g_1, g_2 \in G$ (Compatability)
+        \item $1.a = a$ (or $e.a = a$) $ ~~\forall a \in A$ (Identity)
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let $G = S_n$. Let's verify that $S_n$ acts on the set $\set{1,2,...,n}.$ Define the group action
+    \begin{align*} \tag{$*$}
+        \sigma.a = \sigma(a) ~~\forall \sigma \in S_n, a \in \set{1,2,...,n}
+    \end{align*}
+    Then let $\sigma_1, \sigma_2 \in S_n$ and $a \in \set{1,2,...,n}.$ We have
+    \begin{align*}
+        \sigma_1.(\sigma_2.a) &= \sigma_1.(\sigma_2(a)) \\
+        &= \sigma_1(\sigma_2(a)) \\
+        &= (\sigma_1\circ\sigma_2)(a) \\
+        &= (\sigma_1\circ\sigma_2).a \tag{I}
+    \end{align*}
+    To verify the identity property, recall that the identity map, denoted $I$, is the identity of $S_n$ and $$I(a) = a ~~\forall a \in \set{1,2,...,n}$$
+    That is,
+    \begin{align*}
+        I.a = I(a) = a ~~\forall a \in \set{1,2,...,n} \tag{II}
+    \end{align*}
+    By $(I)$ and $(II)$, $S_n$ acts on the set $\set{1,2,...,n}$ by the group action defined in $(*)$.
+\end{example}
+
+\begin{example}
+    A vector space over a field $F$ is a set $V$ with two binary operations vector addition and scalar multiplication, and other poperties including 
+    \begin{itemize}
+        \item $a(bv) = (ab)v ~~\forall a, b \in F, v \in V$ (Compatability)
+        \item $1v = v ~~\forall v \in V$ where $1$ is the multiplicative identity in $F$ (Identity)
+    \end{itemize}
+    Since $F$ is not a group with respect to multiplication, we must say that $F^\ast = F \setminus \set{0}$ acts on $V$.
+\end{example}

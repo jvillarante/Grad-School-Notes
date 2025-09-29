@@ -1,0 +1,75 @@
+In general, we can tell how similar groups are by the mappings we make between them where the mappings preserve the group structure of the domain.
+
+\begin{definition}[Homomorphism] \leavevmode \\
+    Let $(G, \star)$ and $(H, \diamond)$ be groups. A map $\Phi: G \to H$ is a homomorphism if for all $g_1, g_2 \in G$,
+    $$\Phi(g_1 \star g_2) = \Phi(g_1) \diamond \Phi(g_2)$$
+    We usually write
+    $$\Phi(xy) = \Phi(x) \Phi(y)$$
+    and we know that $xy$ happens in $G$ and $\Phi(x)\Phi(y)$ happens in $H$.
+\end{definition}
+
+\begin{example}
+    $\pi: \R^2 \to \R$ by $\pi(x,y) = x$ $\forall (x,y) \in \R^2$ is a homomorphism. Letting $(x_1, y_1), (x_2, y_2) \in \R^2$, we have
+    \begin{align*}
+        \pi((x_1, y_1) + (x_2, y_2)) &= \pi(x_1 + x_2, y_1 + y_2) \\
+        &= x_1 + x_2 \\
+        &= \pi(x_1, y_1) + \pi(x_2, y_2)
+    \end{align*}
+    Showing that $\pi$ is indeed a homomorphism.
+
+    What elements are in the set $\set{p \in \R^2 : \pi(p) = 0} = K$?
+    $$K = \set{(x,y) : x=0}$$
+    This is the kernel of $\pi$.
+\end{example}
+
+\begin{definition}[Kernel] \leavevmode \\
+    Let $G$ and $H$ be groups and let $\Phi: G \to H$ be a group homomorphism. The kernel of $\Phi$ is
+    $$\ker(\Phi) = \set{g \in G : \Phi(g) = e_H} = \Phi^{-1}(e_H)$$
+    where $e_H$ is the identity element in $H$.
+\end{definition}
+
+\begin{definition}[Isomorphism] \leavevmode \\
+    Let $G$ and $H$ be groups. A map $\Psi: G \to H$ is an isomorphism if
+    \begin{enumerate}
+        \item $\Psi$ is a homomorphism
+        \item $\Psi$ is bijective
+    \end{enumerate}
+    If there exists an isomorphism $\Psi: G \to H$, we say that $G$ and $H$ are isomorphic, denoted $G \cong H$.
+    
+    $\cong$ is an equivalence relation on any collection of groups.
+\end{definition}
+
+\begin{example}
+    Let $k \in \Q^\ast = \Q \setminus \set{0}$. Define $\phi_k: \Q^\ast \to \Q^\ast$ by $\phi_k(q) = kq$. We claim that $\phi$ is an isomorphism.
+    Show that $\Phi_k$ is a homomorphism and a bijection:
+    \begin{enumerate}
+        \item Homomorphism:
+        \begin{align*}
+            \phi_k(q_1 + q_2) &= k(q_1 +q_2) \\
+            &= k (q_1+ q_2) \\
+            &= kq_1 + kq_2 \\
+            &= \phi_k(q_1) + \phi_k(q_2)
+        \end{align*}
+        \item Bijections:
+        \begin{itemize}
+            \item Injective: Suppose $\phi_k(q_1) = \phi_k(q_2)$. Then \begin{align*}
+                \phi_k(q_1) &= \phi_k(q_2) \\ \iff
+                kq_1 &= kq_2 \\ \iff
+                q_1 &= q_2 &&(k \neq 0)
+            \end{align*}
+            \item Surjective: We want to show $\phi_k(\Q) = \Q$. Let $q \in \Q.$ Since $k \neq 0$, $\frac{q}{k} \in \Q$. Then
+            $$\phi_k\left(\frac{q}{k}\right) = k \cdot \frac{q}{k} = q$$
+            Thus $\phi_k$ is surjective.
+        \end{itemize}
+    \end{enumerate}
+    ker$\phi_k=\set{0}$ since $\phi_k(q) = 0 \iff kq = 0 \iff q=0$.
+\end{example}
+
+\begin{fact}
+    Suppose $G \cong H,$ that is there exists $\phi: G \to H$ which is a homomorphic bijection. Then
+    \begin{enumerate}
+        \item $|G|=|H|$
+        \item $G$ is abelian if and only if $|H|$ is abelian
+        \item $\forall x \in G ~~|x| = |\phi(x)|$ (Corresponding elements have the same order)
+    \end{enumerate}
+\end{fact}

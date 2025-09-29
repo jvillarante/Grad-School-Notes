@@ -11,6 +11,10 @@
 \usepackage[makeroom]{cancel}
 \usepackage{nameref}
 \usepackage{xparse}
+\usepackage{tikz}
+\usepackage{wrapfig} % <-- important
+\usepackage{cancel}
+\usetikzlibrary{arrows.meta}
 
 \makeatletter
 
@@ -223,6 +227,7 @@
 \newtheorem*{recall}{Recall}
 \newtheorem{observation}{Observation}
 \newtheorem{fact}{Fact}
+\newtheorem{assertion}{Asserttion}
 \tcolorboxenvironment{remark}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
@@ -260,6 +265,13 @@
 }
 
 \tcolorboxenvironment{fact}{
+	enhanced jigsaw, pad at break*=1mm, breakable,
+	left=4mm, right=4mm, top=1mm, bottom=1mm,
+	colback=remarkbackgroundcolor, boxrule=0pt, frame hidden,
+	borderline west={0.5mm}{0mm}{remarkbordercolor}, arc=.5mm
+}
+
+\tcolorboxenvironment{assertion}{
 	enhanced jigsaw, pad at break*=1mm, breakable,
 	left=4mm, right=4mm, top=1mm, bottom=1mm,
 	colback=remarkbackgroundcolor, boxrule=0pt, frame hidden,
@@ -448,11 +460,16 @@
 	N_{#1}^{#2}(#3)
 }
 
+% Convenient mathematical symbols
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\set}[1]{
+	\left\{#1\right\}
+}
 
 \newcommand{\varrow}[1]{\overrightarrow{#1}}
 

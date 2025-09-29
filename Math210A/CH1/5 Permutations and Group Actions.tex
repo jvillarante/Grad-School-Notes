@@ -1,0 +1,72 @@
+Let $G$ be a group acting on a set $S$. That is, define a mapping $G \times S \to S$ denoted by $g.a ~~\forall g \in G$ and $a \in S$. Fix $g \in G.$ Then this defines a map $\sigma_g \st \sigma_g : S \to S$ by $\sigma_g (a) = g.a$
+
+\begin{example}
+    Take $G = \R \setminus \set{0}$ with respect to multiplication. Let $S = M_2(\R)$.
+    \begin{align*}
+        \sigma_{\sqrt{2}}(A) &= \sqrt{2}.A \\
+        &= \sqrt{2} \begin{bmatrix}
+            a & b \\
+            c & d
+        \end{bmatrix} \\
+        &= \begin{bmatrix}
+            \sqrt{2}a & \sqrt{2}b \\
+            \sqrt{2}c & \sqrt{2}d
+        \end{bmatrix}
+    \end{align*}
+    For $\begin{bmatrix}
+        1 & \pi \\
+        e & \ln(2)
+    \end{bmatrix}$, we have
+    \begin{align*}
+        \sigma_{\sqrt{2}} \begin{bmatrix}
+            1 & \pi \\
+            e & \ln(2)
+        \end{bmatrix} &= \begin{bmatrix}
+            \sqrt{2} & \sqrt{2}\pi \\
+            \sqrt{2}e & \sqrt{2}\ln(2)
+        \end{bmatrix}
+    \end{align*}
+    What is the range of $\sigma_{\sqrt{2}}$? $M_2(\R)$.
+\end{example}
+
+\begin{assertion}
+    \begin{enumerate}
+        \item $\sigma_g$ as defined is a permutation of the set $S$.
+        \item For the sake of notation, we change the name of our set to $A$. The map from $G$ to $S_A$ defined by $g \mapsto \sigma_g$ is a homomorphism.
+    \end{enumerate}
+\end{assertion}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Let $g\in G$ be given and $\sigma_g$ be defined as above. Clearly, $\sigma_g$ is a mapping from $S \to S$. We will show that $\sigma_g$ is a bijection by showing it has a two-sided inverse. Let $a \in S$ and note $g^{-1}\in G$ since $G$ is a group. Then
+        \begin{align*}
+            \left(\sigma_{g^{-1}} \circ \sigma_g \right)(a) &= \sigma_{g^{-1}}(\sigma_g(a)) \\
+            &= \sigma_{g^{-1}}(g.a) \\
+            &= g^{-1}.(g.a) \\
+            &= (g^{-1}g).a \\
+            &= e.a \\
+            &= a.
+        \end{align*}
+        We see that $\sigma_{g^{-1}} \circ \sigma_g$ is the identity mapping from $S \to S$. To show that $\sigma_g \circ \sigma_{g^{-1}}$ is also the identity map from $S \to S$ is analogous. Thus we have a two-sided inverse as desired. Hence, $\sigma_g$ is a permutation of $S$ as desired. That is, $\sigma_g$ is an element of the symmetric group of $S$.
+
+        \item Let $\Psi: G \to S_A$ be defined by $\Psi(g) = \sigma_g ~~\forall g \in G$. Let $a \in A$ and $g_1, g_2 \in G$. We want to show that $\Psi(g_1g_2) = \Psi(g_1) \circ \Psi(g_2)$. Since these are mappings in $S_A$, we will show that their values agree $\forall a \in A$. We have
+        \begin{align*}
+            \left(\Psi(g_1) \circ \Psi(g_2)\right)(a) &= \sigma_{g_1g_2}(a) \\
+            &= (g_1g_2).a \\
+            &= g_1.(g_2.a) \\
+            &= g_1.(\sigma_{g_2}(a)) \\
+            &= \sigma_{g_1}(\sigma_{g_2}(a)) \\
+            &= \sigma_{g_1} \circ \sigma_{g_2}(a) \\
+            &= \left(\Psi(g_1) \circ \Psi(g_2)\right)(a).
+        \end{align*}
+        Hence, $\Psi$ is a homomorphism as desired.
+    \end{enumerate}
+    \qed
+\end{proof}
+
+If we have a homomorphism, then we have a kernel.
+
+\begin{definition}[Kernel of a Group Action] \leavevmode \\
+    For a group $G$ acting on a set $A$, the kernel of the group action is
+    $$\set{g \in G : g.a = a ~~\forall a \in A}$$
+\end{definition}
