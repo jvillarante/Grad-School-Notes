@@ -99,3 +99,59 @@ $$C_G(A) \subseteq N_G(A)$$
         so $(1~2~3) \not \in C_{S_3}(A)$. It follows that $|C_{S_3}(A)| = 2 \implies C_{S_3}(A) = A.$
     \end{enumerate}
 \end{fact}
+
+Let $G$ be a group acting on a set $S$. That is, there is a mapping
+$$(., .): G\times S \to S$$
+denoted by $g.a ~~\forall a \in S$ with $g_1.(g_2.a) = (g_1g_2).a$ and $1.a = a ~~\forall a \in S, g_1,g_2 \in G$.
+
+\begin{definition} [Stabilizers] \leavevmode \\
+    If $G$ is a group acting on a set $S$ and $s \in S$, then we define the stabilizers of $s$ in $G$ to be the set 
+    $$G_s = \set{g \in G : g.s = s}$$
+\end{definition}
+
+\begin{theorem}
+    $G_s \leq G$.
+\end{theorem}
+
+\begin{proof}
+    Since $G$ acts on $S$ we know that $1.s = s$. Hence $1 \in G_s \implies G_s \not = \emptyset$. Let $x,y \in G_s$. Then 
+    \begin{align*}
+        s = 1.s &= (y^{-1}y).s \\ 
+        &= y^{-1}.(y.s) \\ 
+        &= y^{-1}.s ~~~~\text{ (since $y \in G_s$)}
+    \end{align*}
+    Hence $y^{-1} \in G_s$. Furthermore, 
+    \begin{align*}
+        (xy).s &= x.(y.s) \\
+        &= x.s \\ 
+        &= s
+    \end{align*}
+    Hence $xy \in G_s$. Thus, $G_s \leq G$.
+    \qed
+\end{proof}
+
+Now to show $N_G(A)$ where $A \subseteq G$ is a subgroup of $G$. To that end, let $S = \mathcal{P}(G)$, the power set of $G$, and define a map
+$$G\times S \to S \text{ by } g.B = gBg^{-1} = \set{gbg^{-1}:\forall g \in G, B \in \mathcal{P}(G)}$$
+Let's prove this defines a group action.
+Let $g_1, g_2 \in G$ and $B \in \powerset(G)$. Well,
+$$1.B = \set{1b1^{-1} : b \in B} = \set{b : b \in B} = B$$
+so the identity axiom holds. Furthermore,
+\begin{align*}
+    (g_1g_2).B &= (g_1g_2)B(g_1g_2)^{-1} \\
+    &= \set{(g_1g_2)b(g_1g_2)^{-1} : b \in B} \\
+    &= \set{(g_1g_2)b(g_2^{-1}g_1^{-1}) : b \in B} \\
+    &= \set{g_1(g_2b g_2^{-1})g_1^{-1} : b \in B} \\
+    &= \set{g_1b'g_1^{-1} : b' \in g_2Bg_2^{-1}} \\
+    &= g_1 \left(g_2Bg_2^{-1}\right)g_1^{-1} \\
+    &= g_1\left(g_2.B\right)g_1^{-1} \\
+    &= g_1.(g_2.B)
+\end{align*}
+Hence, we have defined a group action. Now, back to showing that $N_G(A) \leq G$ ($A \subseteq G$).
+
+Recall, $G_s = \set{g \in G : g.s=s}$. Given our new group action $G$ acting on $\powerset(G)$ by conjugation, we have 
+\begin{align*}
+    G_a &= \set{g \in G : g.A = A} \\
+    &= \set{g \in G : gAg^{-1} = A} \\
+    &= N_G(A)
+\end{align*}
+We can then deduce that $N_G(A) \leq G$ as $G_A \leq G$.
