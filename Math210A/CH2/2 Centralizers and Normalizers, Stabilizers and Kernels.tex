@@ -1,0 +1,101 @@
+\begin{definition} [Centralizers] \leavevmode \\
+    Let $A$ be a nonempty subset of a group $G$. Define the centralizer of $A$ in $G$ to be the set
+    \begin{align*}
+        C_G(A) &= \{ g \in G : gag^{-1} = g ~~\forall a \in A \} \\
+        &= \set{g \in G : ga = ag ~~\forall a \in A}
+    \end{align*}
+\end{definition}
+
+The centralizer of $A$ in $G$ is the set of all elements in $G$ which commute with every element in $A$.
+
+\begin{theorem}
+    $C_G(A) \leq G$.
+\end{theorem}
+
+\begin{proof}
+    Let $a \in A.$ Then 
+    \begin{align*}
+        1a1^{-1} &= (1a)1^{-1} \\
+        &= a1^{-1} \\
+        &= a1 \\
+        &= a
+    \end{align*}
+    Thus, $1 \in C_G(A)$.
+
+    Let $x,y \in C_G(A)$. Then $xax^{-1} = a$ and $yay^{-1}=a.$ Note that
+    \begin{equation*}
+        yay^{-1} = a \iff a = y^{-1}
+        \tag{$*$}
+    \end{equation*}
+    Now
+    \begin{align*}
+        (xy^{-1})a(xy^{-1})^{-1} &= xy^{-1}a(y^{-1})^{-1}x^{-1} \\
+        &= x(y^{-1}ay)x^{-1} \\
+        &\overset{(*)}{=} xax^{-1} \\
+        &= a
+    \end{align*}
+    Hence, $xy^{-1} \in C_G(A)$. Furthermore, $C_G(A) \leq G.$
+    \qed
+\end{proof}
+
+\begin{notation}
+    If $A = \set{a}$, we write $C_G(a)$ instead of $C_G(\set{a})$.
+\end{notation}
+
+Why was this unnecessary? From the homework, we know that $G$ acts on the subset $A$ by conjugation. That is, we have a mapping $(.): G\times A \to A$ defined by $g.a = gag^{-1} ~~\forall g \in G, a \in A$ which satisfies both axioms of a group action.
+
+Recall that the kernel of a group action is the kernel of the permutation representation of the group action (PRGA). The PRGA is the Homomorphism induced by the group action
+\begin{align*}
+    \Psi : G \to S_A \\
+    g \mapsto \sigma_g
+\end{align*}
+
+\begin{example}
+    Find the kernel of $G$ acting on $A \subset G$ by conjugation.
+    \begin{align*}
+        \set{g \in G : g.a = a ~~ \forall a \in A} &= \set{g \in G : gag^{-1} = a ~~\forall a \in A} \\
+        &= C_G(A)
+    \end{align*}
+\end{example}
+
+Suppose that $A = G$. What is $C_G(G)$?
+$$\set{g \in G : gag^{-1}=a ~~\forall a \in G}$$
+This set is called the center of $G$ denoted $Z(G)$. Since $Z(G)$ is a special case of $C_G(A)$, we know $Z(G) \leq G$.
+
+\begin{definition}[Normalizer] \leavevmode \\
+    Define $gAg^{-1} = \set{gag^{-1} : a \in A}$. We will define the normalizer of $A$ in $G$ to be the set 
+    $$N_G(A) = \set{g \in G : gAg^{-1} = A}$$
+\end{definition}
+
+We will prove $N_G(A) \leq G$, but not yet.
+Notice if $gag^{-1} = a ~~ \forall a \in A$ then $gAg^{-1} = \set{gag^{-1} : a \in A} = \set{a : a \in A} = A$. Hence
+$$C_G(A) \subseteq N_G(A)$$
+
+\begin{fact} \leavevmode \\
+    \begin{enumerate}
+        \item If $G$ is abelian, then $Z(G) = G$ since every element commutes with every other element. That is,
+        \begin{align*}
+        \forall a,b \in G ~~ab = ba &\iff a = bab^{-1} ~~ \forall a,b \in G \\ &\implies b \in Z(G) ~~\forall b \in G
+        \end{align*}
+        Similarly, $C_G(A) = N_G(A) = G.$
+        \item Consider $A=\set{1, (1 ~2)} \subseteq S_3$. Find $C_{S_3}(A)$. Notice that $1$ commutes with everything in $S_3$, specifically $1$ and $(1~2)$. Also,
+        $$(1~2)(1~2)(1~2)^{-1} = (1~2)$$
+        so $(1~2)\in C_{S_3}(A)$. Hence, $A \leq C_{S_3}(A)$.
+        \begin{theorem}[Lagrange's Theorem] \leavevmode \\
+            Let $G$ be a finite group $\left(|G| \in \N\right)$ and let $H \leq G$. Then
+            $$|H| \text{ divides } |G|$$
+        \end{theorem}
+        Since $|A| = 2$ and $A \leq C_{S_3}(A)$, we know $2 \big| |C_{S_3}(A)|$ since $C_{S_3}(A) \leq S_3$.
+        $$
+        \begin{rcases*}
+            |C_{S_3}(A)| \big| |S_3| = 3! = 6 \\
+            |A| \big| |C_{S_3}(A)|
+        \end{rcases*} \implies |C_{S_3}(A)| \in \set{2, 6}$$.
+        Thus, $C_{S_3}= A$ or $C_{S_3}(A) = S_3$. Well,
+        \begin{align*}
+            (1~2)(1~2~3) = (2~3) \\
+            (1~2~3)(1~2) = (1~3)
+        \end{align*}
+        so $(1~2~3) \not \in C_{S_3}(A)$. It follows that $|C_{S_3}(A)| = 2 \implies C_{S_3}(A) = A.$
+    \end{enumerate}
+\end{fact}
