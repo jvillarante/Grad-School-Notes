@@ -1,0 +1,35 @@
+\begin{definition} [Subgroup] \leavevmode \\    
+    Let $G$ be a group. The subset $H$ of $G$ is called a subgroup of $G$ if 
+    \begin{enumerate}
+        \item $H$ is nonempty.
+        \item $\forall x,y \in H$, $x^{-1} \in H$ and $xy \in H$.
+    \end{enumerate}
+\end{definition}
+
+\begin{notation}
+    IF $H$ is a subgroup of $G$, we write $H \leq G$.
+\end{notation}
+
+\begin{example} \leavevmode \\
+    \begin{enumerate}
+        \item $\Z \leq \Q$ with respect to $(+)$.
+        \item All groups have two subgroups: $H=G$ and $H=\set{1}$.
+        \item $2\Z \leq \Z$ with respect to $(+)$.
+        \item Let $G=D_{2n}$ and let $r$ be a $360^{\circ}/n$ clockwise rotation of the n-gon about the origin. Then $\set{1, r, r^2, r^3,...,r^{n-1}}$ forms a subgroup of $D_{2n}$.
+        \item Nonexample: $H=\set{1, -1} \subseteq \Z$ forms a group with respect to multiplicaiton, but $H$ is not a subgroup of $\Z$ since $\Z$ is a group with respect to addition, NOT multiplicaiton.
+        \item $\Z/5\Z$ is not a subgroup of $\Z/6\Z$ since $\Z/5\Z \not \subseteq \Z/6\Z$.
+        \begin{align*}
+            \Z/6\Z &= \set{\bar{0}, \bar{1}, \bar{2}, \bar{3}, \bar{4}, \bar{5}} \text{ is an additive group} \\
+            \left(\Z/6\Z\right)^* &= \set{\bar{1}, \bar{5}} \text{ is a multiplicative group with all elements coprime to 6} \\
+            \left(\Z/9\Z\right)^{**} &= \set{\bar{1}, \bar{2}, \bar{4}, \bar{5}, \bar{7}, \bar{8}} \text{ is a multiplicative group with all elements coprime to 9}
+        \end{align*}
+    \end{enumerate}
+\end{example}
+
+\begin{proposition}[Subgroup Criterion] \leavevmode \\
+    A subset $H$ of a group $G$ is a subgroup of $G$ if and only if
+    \begin{enumerate}
+        \item $H\not = \emptyset$.
+        \item $\forall x,y \in H$, $xy^{-1} \in H$ (in additive notation: $\forall x,y \in H$, $x-y \in H$).
+    \end{enumerate}
+\end{proposition}
