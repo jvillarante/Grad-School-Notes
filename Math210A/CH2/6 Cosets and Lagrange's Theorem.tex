@@ -1,0 +1,236 @@
+There are a lot of ways to see if a subgroup is normal.
+
+Some things to know about normal subgroups: Let $G$ be a group.
+\begin{enumerate}
+    \item $\set{1} \nsubgroup G$ and $G \nsubgroup G$ and $G/\set{1} \cong G, G/G \cong \set{1}$
+    \item When $G$ is clearly an additive group we denote left and right cosets $g + N$ and $N+g$, respectively, where $N\leq G$ and 
+    \begin{align*}
+        g+N &= \set{g+n : n \in N} \\
+        N+g &= \set{n+g : n \in N}
+    \end{align*}
+    \item When $G$ is abelian, every subgroup is normal
+\end{enumerate}
+
+We move away from normal subgroups and just analyze subgroups.
+
+\begin{theorem}[Lagrange's Theorem] \leavevmode \\
+    \label{thm8}
+    If $G$ is a finite group and $H \leq G$, then $|H| \mid |G|$ and the number of left cosets of $H$ in $H$ is $|G| / |H|$.
+\end{theorem}
+
+\begin{proof}
+    Here is a proof idea (problems 18, 19 from section 1.7): the left cosets form a partition of $G$
+    $$G = \bigcup \limits_{g \in G}gH$$
+    There is a bijection from $H$ to $gH$ ($h \mapsto gh$) so $|H| = |gH|$. Then,
+    $$|G|=k|H|$$
+    where $k$ is the number of distinct left cosets of $H$ in $G$. Rearranging gives 
+    $$k = \frac{|G|}{|H|}$$
+    \qed
+\end{proof}
+
+\begin{definition}[Index of a Subgroup] \leavevmode \\
+    If $G$ is a group (possibly finite) and $H \leq G$, then the number of distinct left cosets of $H$ in $G$ is called the index of $H$ in $G$, denoted $|G : H|$.
+\end{definition}
+
+\begin{corollary}
+    \label{cor9}
+    If $G$ is a finite group and $x \in G$, then $|x| \mid |G|$.
+\end{corollary}
+
+\begin{proof}
+    We proved that $|x| = |<x>|$ and $<x> \leq G$. The claim follows immediately from Lagrange's theorem.
+    \qed
+\end{proof}
+
+\begin{example}
+    For a finite group with $H\leq G$
+    $$|G:H| = |G|/|H|$$
+\end{example}
+
+\begin{example}
+    Consider $G=\Z$ and $H=3\Z$.
+    $$|\Z : 3\Z| = 3 = |\Z/3\Z|$$
+    \begin{align*}
+        3\Z &= \set{3x : x \in \Z} \\ 
+        1 + 3\Z &= \set{1 + 3x : x \in \Z} \\
+        2 + 3\Z &= \set{2 + 3x : x \in \Z} \\
+        3 + 3\Z &= \set{3 + 3x : x \in \Z} = 0 + 3\Z
+    \end{align*}
+\end{example}
+
+\begin{corollary}
+    \label{cor10}
+    If $G$ is a group of prime order $p$, then $G$ is cyclic.
+\end{corollary}
+
+\begin{proof}
+    Let $x \in G$ where $x \not = 1_G.$ Then $|x| \mid |G|.$ Since $|G| = p,$ a prime, then $|x| \in \set{1, p}.$ Since $x \not = 1_G$, $|x| \not = 1.$ Thus $|x| = p$ and hence $<x> = G.$
+    \qed
+\end{proof}
+
+\begin{example}
+    A subgroup $H$ of a group $G$ with index $2$ is normal ($|G : H| = 2$). Let $g \in G - H$. Then $gH \not = 1H$. Since $|G:H|=2$, there are two distinct cosets of $H$ in $G$ and since one of them is $1H$, the other must be $gH$. Similary, there are only two distinct right cosets of $H$ in $G$, namely $H1$ and $Hg$. Since $1H = H1$ and cosets form a partition of $G$, we have 
+    $$gH = G - H = Hg$$
+    Hence th left and right cosets of $H$ are the same and $H$ is normal in $G$.
+\end{example}
+
+\begin{example}
+    A subgroup $H$ is a normal subgroup of $G$ is not a transitive statement. Let $G=D_8$. Then $|D_8| = 8$, $|<s>| = 2$, $|<s,r^2>| = 4$. Clearly,
+    $$<s> \leq <s, r^2> \leq D_8$$
+    We have
+    $$|D_8 : <s,r^2>| = 2$$
+    and
+    $$|<s,r^2> : <s>| = 2$$
+    so
+    $$<s> \nsubgroup <s,r^2> \nsubgroup D_8$$
+    but $<s>$ is not normal in $D_8$ since $rsr^{-1} = r^2 s \not \in <s>$.
+\end{example}
+
+\begin{definition}[Product of Subgroups] \leavevmode \\
+    Let $H, K \leq G$. define
+    $$HK = \set{hk : h \in H, k \in K}$$
+\end{definition}
+
+\begin{theorem} [Order of Products of Subgroups] \leavevmode \\
+    If $H$ and $K$ are finite subgroups of a group, then
+    $$|HK| = \frac{|H| \cdot |K|}{|H\cap K|}$$
+    Note that $HK$ need not be a group for this to hold.
+\end{theorem}
+
+\begin{proof}
+    Notice that $HK$ is the union of left cosets of $K$. That is,
+    $$HK = \bigcup \limits_{h \in H}hK$$
+    Since each coset of $K$ has $|K|$ elements, we will count the number of distinct cosests in the above union. We know $h_1K = h_2K$ for $h_1, h_2\in H$ if and only if $h_2^{-1}h_1 \in K.$ It follows that 
+    \begin{align*}
+        h_1K = h_2K &\iff h_2^{-1}h_1 \in K\cap H \\
+        &\iff h_1\left(K\cap H\right) = h_2 \left(K \cap H\right)
+    \end{align*}
+    Thus the number of distinct cosets of the form $hK, h \in H$ is the same as the number of distinct cosets of $K\cap H$ in $H$. Since $H\cap K \leq H,$ this is $|H|/|K\cap H|$. Therefore, $HK$ consists of $|H|/|H\cap K|$ distinct cosets of $K$, each of which contains $|K|$ elements. It follows that 
+    $$|HK| = \frac{|H|\cdot |K|}{|H\cap K|}$$
+    \qed
+\end{proof}
+
+$HK$ is not always a subgroup of $G$.
+
+\begin{example}
+    Let $G = S_3$, $H=<(1~2)>$, and $K = <(2~3)>.$
+    Then $H\cap K = \set{1}$ and 
+    $$|HK| = \frac{|H|\cdot |K|}{|H\cap K|}= \frac{2\cdot 2}{1}=4$$
+    Lagrange says that if $HK \leq G$, then $4 \mid 3!=6$, a contradiction.
+
+    We can further deduce
+    $$<(1~2),(2~3)> = S_3$$
+    since 
+    $$4 \leq \left|<(1~2),(2~3)>\right| \leq 6$$
+    and $\left|<(1~2), (2~3)>\right|$ must also divide $6$, so $<(1~2), (2~3)>$ generates all of $S_3$.
+\end{example}
+
+\begin{proposition}
+    If $H,K \leq G$, then $HK \leq G$ if and only if $HK = KH$. (Note: $HK = KH$ does NOT indicate the elements of $H$ and $K$ commute with each other, only that for $hk \in HK$ we have $hk=k_1h_1$ for some $k_1 \in K, h_1 \in H$.)
+\end{proposition}
+
+\begin{proof}
+    ($\implies$) Assume $HK=KH$. Since $H$ and $J$ are nonemtpy, $HK$ is nonempty. It remains to show that if $a,b \in HK$, then $ab^{-1} \in HK$. Let $a,b \in HK$. Then $a = h_1k_1$ and $b = h_2k_2$. Then 
+    \begin{align*}
+        ab^{-1} &= (h_1k_1)(h_2k_2)^{-1} \\
+        &= h_1k_1k_2^{-1}h_2^{-1}
+    \end{align*}
+    Since $K \leq G$, we have
+    $$k_1k_2^{-1} = k_3 \in K$$
+    and since $H \leq G$ we have 
+    $$h_2^{-1} = h_3 \in H$$
+    This gives
+    $$ab^{-1}=h_1k_3h_3$$
+    Since $HK=KH$, we know that $k_3h_3 \in HK$. That is,
+    $$k_3h_3 = h_4k_4 \text{ for some } h_4\in H, k_4 \in K$$
+    so,
+    $$ab^{-1} = h_1h_4k_4$$
+    and letting $h_1h_4 = h_5 \in H$ we have 
+    $$ab^{-1} = h_5k_4 \in HK$$
+    Thus $HK \leq G$.
+
+    ($\impliedby$) Conversely, suppose $HK \leq G$. Our goal is to show $HK=KH$. That is, we want to show $HK \subseteq KH$ and $KH \subseteq HK$. Since $K \leq HK$ and $H \leq HK$,
+    $$KH \subseteq HK \text{ by closure of } HK$$
+    To show $HK \subseteq KH$, let $hk \in HK$. Since $HK$ is a subgroup, $hk$ is the inverse to some $a \in HK.$ That is
+    $$hk = a^{-1} = (hk)^{-1} = (h_ak_a)^{-1} = k_a^{-1}h_a^{-1} \in KH$$
+    It follows that $HK \subseteq KH$. Thus, $HK = KH$.
+    \qed
+\end{proof}
+
+\begin{example}
+    Let $G=D_8, H = <r>, K = <s>$. Notice $rs \in HK$ and $rs = sr^{-1} \in KH.$ Also,
+    $$|HK| = \frac{|H|\cdot |K|}{|H\cap K|} = \frac{4\cdot 2}{1}=8$$
+    So, $HK = D_8 = KH$.
+\end{example}
+
+\begin{corollary}
+    If $H,K \leq G$ and $H \leq N_G(K)$, then $HK \leq G$. In particular, if $K \nsubgroup G,$ then $HK \leq G ~~\forall H \leq G.$
+\end{corollary}
+
+\begin{proof}
+    We will prove $HK = KH$. Let $h \in H$ and $k \in K$. By assumption,
+    $$H \leq N_G(K) \implies hkh^{-1} \in K$$
+    Then 
+    $$hk = hkh^{-1}h \in KH$$
+    Thus $HK \subseteq KH.$ Similarly,
+    $$kh = hh^{-1}kh \in HK$$
+    It follows that $KH \subseteq KH$. Hence, $HK = KH$.
+    \qed
+\end{proof}
+
+\begin{theorem}[Subgroup Index Theorem] \leavevmode \\
+    Let $H,K$ be subgroups of a group $G$ with $H \leq K \leq G$. Then 
+    $$|G:H| = |G:K| \cdot |K:H|$$
+\end{theorem}
+
+\begin{proof}
+    Let $g_i$ be a distinct representation for a left coset of $H$ in $G$, $\forall i \in I$ where $I$ is an indexing set. So 
+    $$\set{g_iH : i \in I} = G/H = \set{gH : g \in G}$$
+    and $g_iH = Hg_j$ if and only if $g_i = g_j$. Let $\psi: I \times K / H \to G / H$ be defined by 
+    $$\psi(i, kH) = g_ikH$$
+    We will show $\psi$ is a well-defined bijection.
+
+    \begin{description}
+        \item[Well-defined: ] Suppose that $k_1H = k_2H$ for some $k_1, k_2 \in K.$ That is, $k_1^{-1}k_2 \in H$. Then 
+        \begin{align*}
+            \psi(i, k_1H) &= g_ik_1H
+            \psi(i, k_2H) &= g_ik_2H
+        \end{align*}
+        So,
+        \begin{align*}
+            (g_ik_1)^{-1}(g_ik_2) &= k_1^{-1}g_i^{-1}g_ik_2 \\
+            &= k_1^{-1}1_Gk_2 \\
+            &= k_1^{-1}k_2 \in H \text{ by assumption.}
+        \end{align*}
+        Hence, $\psi$ is well-defined.
+
+        \item[Bijection: ] Suppose $\psi(i, k_1H) = \psi(j, k_2H)$. Then 
+        \begin{align*}
+            &g_ik_1H = g_jk_2H \\
+            \implies &(g_ik_1)^{-1}(g_jk_2) \in H \\
+            \implies &k_1^{-1}g_i^{-1}g_jk_2 = h \text{ for some } h \in H \tag{$*$} \\
+            \implies &g_i^{-1}g_j = k_1hk_2^{-1} \text{ for some } h \in H \\
+            \implies &g_i^{-1}g_j \in K \text{ since } H\subseteq K \\ 
+            \implies &g_iK = g_jK \\
+            \implies &g_i = g_j \\
+            \implies &i = j
+        \end{align*}
+        Using this in ($*$) gives
+        \begin{align*}
+            &k_1^{-1}g_i^{-1}g_ik_2 = h \text{ for some } h \in H \\
+            \implies &k_1^{-1}k_2 = h \in H \\
+            \implies &k_1H = k_2H
+        \end{align*}
+        Hence $\psi$ is one-to-one.
+
+        Let $gH \in G/H$. Since the left cosets of $K$ partition the group $G$ we have that $g \in g_i K$. That is, $g=g_ik$ for some $k \in K$. Hence 
+        $$\psi(i, kH) = g_ikH = gH$$
+        Thus, $\psi$ is onto.
+    \end{description}
+
+    We have that $\psi$ is a well-defined bijection. Hence, 
+    \begin{align*}
+        I \times K/H &\to G/H \\
+        |G:K| \cdot |K:H| &= |G:H|
+    \end{align*}
+\end{proof}
