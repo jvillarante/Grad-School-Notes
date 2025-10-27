@@ -1,0 +1,193 @@
+Let $G$ be a group and $N\leq G$. Define a relation on $G$ by 
+$$a \sim b \iff a^{-1}b \in N$$
+It is straightforward to verify that this is an equivalence relation on $G$. For $a \in G$, the equivalence class of $a$ is
+\begin{align*}
+    \set{b \in G : a \sim b} &= \set{b \in G : a^{-1}b \in N} \\
+    &= \set{b \in G : a^{-1}b = n \text{ for } n \in N} \\
+    &= \set{b \in G : b = an \text{ for } n \in N} \\
+    &= \set{an : n \in \N} \\
+    aN := \set{an : n \in N}
+\end{align*}
+
+\begin{definition} [Coset] \leavevmode \\
+    For a subgroup $N$ of $G$ and $g \in G$, let
+    \begin{align*}
+        gN &= \set{gn : n \in N} \\
+        Ng &= \set{ng : n \in N}
+    \end{align*}
+    be called the left coset and right coset of $N$ in $G$, respectively. Any element of a coset is called a representative of that coset. We will denote the set of all left cosets of $N$ in $G$ by $G/N$ (read $G$ modulo $N$ or $G$ mod $N$).
+\end{definition}
+
+\begin{proposition}
+    \label{prop4}
+    Let $N \leq G$. $G/N$ forms a partition of $G$. For all $a,b \in G$, 
+    $$aN = bN \iff \text{$a$ and $b$ are representatives of the same coset.}$$
+\end{proposition}
+
+\begin{proof}
+    Since we have recognized left cosets as the equivalence classes induced by an equivalence relation, they form a partition. That is,
+    $$G = \bigcup_{g \in G}gN$$
+    $$\forall g_1, g_2 \in G ~~g_1N = g_2N \iff g_1 N \cap g_2 N \not = \emptyset$$
+    Suppose $a^{-1}b \in N$. Then $a^{-1}b = n$ for some $n \in N$. It follows that $b = an \in aN$ so $ b\in aN.$ Since $N$ is a subgroup, $1 \in N$ hence $b\cdot 1 \in bN$. It follows that $aN \cap bN \not = \emptyset \implies aN = bN.$
+
+    Now assume $aN = bN$. Then $an = b$ for some $n \in N$. It follows that $n = ba^{-1} \in N$. Finally, we have
+    \begin{align*}
+        aN = bN &\iff a^{-1}b \in N \\ 
+        &\iff b \in aN \\ 
+        &\iff b \in aN \text{ and } a \in aN \\
+        &\iff a \text{ and } b \text{ are representatives of } aN \text{(or $bN$)}
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{proposition}
+    \label{prop5}
+    Let $N\leq G.$
+    \begin{enumerate}
+        \item The operation on $G/N$ described by $aN \cdot bN = (ab)N ~~\forall a, b \in G$ is well-defined if and only if $gng^{-1} \in N ~~\forall g \in G, n \in N$
+        \item If the operation above is well-defined, then $G/N$ defines a group, where 
+        \begin{align*}
+            1 \cdot N \text{ is the identity } \\
+            (gN)^{-1} = g^{-1}N ~\forall g \in G
+        \end{align*}
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    1. $(\impliedby)$ Suppose $gng^{-1} \in N ~\forall g \in G, n \in N$. Let $a, a_1 \in aN$ and $b, b_1 \in bN$. We want to show that 
+    $$abN = a_1b_1N$$
+    $a_1 = an$ and $b_1 = bm$ for some $n,m \in N$. Note that $a_1b_1 \in abN \iff a_1b_1N = abN,$ so we will prove the former.
+    \begin{align*}
+        a_1b_1 = (an)(bm) &= a(bb^{-1})nbm \\
+        &= ab(b^{-1}nb)m
+    \end{align*}
+    by assumption, $b^{-1}n(b^{-1})^{-1} \in N$ so it follows that $a_1b_1 = abn_1m$ where $n_1 \in N$. Since $N$ is a subgroup of $G$, $n_1m \in N$, call it $n_2$. Thus $a_1b_1 = abn_2$ where $n_2 \in N$. That is, $a_1b_1 \in abN$, proving our result ($a_1b_1N = abN$).
+    
+    2. Suppose the operation is well-defined. We want to show $G/N$ is a group.
+    \begin{description}
+        \item[Associativity: ] Let $aN< bN< cN \in G/N$ ($a,b,c \in G$). Then 
+        \begin{align*}
+            aN(bNcN) &= aN\left((bc)N\right) \\
+            &= a(bc)N \\
+            &=(ab)cN \\
+            &=\left((ab)N\right)cN \\
+            &= (aNbN)cN
+        \end{align*}
+        \item[Identity, Closure, and Inverses: ] Let $aN \in G/N$ be given. Since $B$ is a group, $1 \in G$ and thus
+        $$1N \in G/N$$
+        and
+        $$(aN)(1N) = (a1)N = aN$$
+        Also,
+        \begin{align*}
+            \begin{rcases*}
+                a \in G \\
+                G \text{ is a group}
+            \end{rcases*} \implies a^{-1} \in G \implies a^{-1}N \in G/N
+        \end{align*}
+        and so
+        \begin{align*}
+            (aN)(a^{-1}N) &= (aa^{-1})N \\
+            &= 1N \\
+            &= (a^{-1}a)N \\
+            &= (a^{-1}N)(aN)
+        \end{align*}
+    \end{description}
+    \qed
+\end{proof}
+
+$G/N$ will be a group when $N$ has that nice property, detailed in the following definition.
+
+\begin{definition}[Normal Subgroup] \leavevmode \\
+    A subgroup $N$ of $G$ is called normal in $G$ if every element of $g$ normalizes $N$. That is, $N$ is normal in $G$ if 
+    $$gNg^{-1} = N ~~\forall g \in G$$
+    If $N$ is a normal subgroup of $G$, then we write $N \nsubgroup G$.
+\end{definition}
+
+\begin{theorem}[Characterizations of Normal Subgroups] \leavevmode \\
+    \label{thm6}
+    The $N \leq G$. The following are equivalent:
+    \begin{enumerate}
+        \item $N \nsubgroup G$
+        \item $N_G(N) = G$
+        \item $gN = NG ~~\forall g \in G$
+        \item The operation "coset multiplication" is well-defined 
+        \item $gNg^{-1} \subseteq N ~~\forall g \in G$
+    \end{enumerate}
+\end{theorem}
+
+\begin{example}
+    Checking that a subgroup is normal is not practical using the definition. We would need to check that $gng^{-1} \in N ~~\forall g \in G, n \in N$. If a subgroup is finitely generated, it suffices to check that the generators map back to the subgroup by conjugating.
+
+    Let $G = D_{16}$. Is $<s>$ normal in $D_{16}$? We need to examine $gsg^{-1}$ for an arbitrary $g \in D_{16}$. Letting $g = s^ir^j$ where $i \in \set{0,1}$ and $j \in \set{0, ..., 7}$. Then 
+    \begin{align*}
+        gsg^{-1} &= (s^ir^j)s(s^ir^j)^{-1} \\
+        &= s^ir^jsr^{-j}s^{-i} \\
+        &= r^jsr^{-j} \text{  (when $i=0$)}\\
+        &= r^jr^{-j}s \text{  ($sr^{-j} = r^{-(-j)}s = r^js$)} \\
+        &= r^{2j}s
+    \end{align*}
+    When $j=1$, this gives that $gsg^{-1} = r^2s \not \in <s>$ since this would imply that $r^2$ is either the identity or $s$ ($r^2s = 1\implies r^2 = s, ~r^2s =s \implies r^2 = 1$) which is a contradiciton.
+\end{example}
+
+\begin{theorem}[Big Theorem] \leavevmode \\
+    \label{thmBIG}
+    A subgroup $N\leq G$ is normal in $G$ if and only if it is the kernel of some homomorphism.
+\end{theorem}
+
+\begin{proof}
+    ($\impliedby$) HW 
+
+    ($\implies$)Suppose $N \nsubgroup G$. Let's define 
+    \begin{align*}
+        \pi : G &\to G/N \\
+        \pi(g) &= gN ~~\forall g \in G
+    \end{align*}
+    Let $g_1, g_2 \in G$. Then 
+    \begin{align*}
+        \pi(g_1g_2) &= (g_1g_2)N \\
+        &= (g_1N)(g_2N) \\
+        &= \pi(g_1)\pi(g_2)
+    \end{align*}
+    Hence, $\pi$ is a homomorphism. It remains to show that $\ker\pi = N.$ Note that 
+    \begin{align*}
+        \ker\pi &= \set{g \in G : \pi(g) = 1N} \\
+        &= \set{g \in G : gN = 1N} \\
+        &= \set{g \in G : g \in 1N} \\
+        &= \set{g \in G : g \in N} \\
+        &= N
+    \end{align*}
+    completing the proof.
+    \qed
+\end{proof}
+
+\begin{definition}[Natural Projection Homomorphism] \leavevmode \\
+    Let $N\nsubgroup G$. The homomorphism
+    \begin{align*}
+        \pi: G &\to G/N \\
+        \pi(g) &= gN
+    \end{align*}
+    is called the natural projection (homomorphism) of $G$ onto $G/N$.
+\end{definition}
+
+If $\overline{H} \leq G/N$, the complete preimage of $\overline{H}$ is $\pi^{-1}(\overline{H}).$
+
+\begin{note}
+    If $\overline{H} \leq G/N$, then 
+    $$N \leq \pi^{-1}(\overline{H})$$
+    Since $1N \in \overline{H}$, we have $N = \ker \pi = \pi^{-1}(1N) \subseteq \pi^{-1}(\overline{H})$.
+\end{note}
+
+$Q_8$: we have that $<-1>$ is a normal subgroup, so $Q_8/<-1>$ is a group consisting of $1<-1>, i<-1>, j<-1>, k<-1>$ 
+$$(i<-1>)^2 = i^2<-1> = -1<-1> = 1<-1>$$
+so, $Q_8/<-1> \cong V_4$.
+\begin{align*}
+    \left<i<-1>\right> &\cong Q_8/<-1> \\
+    \left<i<-1>\right> &= \set{i<-1>, 1<-1>} = \overline{H} \\
+    \pi^{-1}(\overline{H})&= \set{g \in Q_8 : \pi(g) \in \overline{H}}
+\end{align*}
+\begin{align*}
+    \pi(1) &= 1<-1> \in \overline{h} &&\pi^{-1}(\overline{H}) = \set{1, i, -1, -i} \\
+    \pi(i) &= i<-1> \in \overline{H} \\
+    \pi(-1) &= -1<-1> = 1<-1> \in \overline{H} \\
+    \pi(-i) &= -i<-1> = i<-1> \in \overline{H}
+\end{align*}
