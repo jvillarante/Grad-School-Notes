@@ -1,0 +1,98 @@
+The following are important theorems that we will come later. We do not prove these yet, but we will soon.
+
+\begin{theorem}[Cauchy's Theorem] \leavevmode \\
+    If $G$ is a finite group and $p$ is a prime dividing $|G|$, then $G$ has an element of order $p$.
+\end{theorem}
+
+\begin{theorem}[Sylow Theorem] \leavevmode \\
+    If $G$ is a finite group of order $p^{\alpha}\cdot m$, where $p$ is prime and $p \nmid m$, then $G$ has a subgroup of order $p^{\alpha}$.
+\end{theorem}
+
+\begin{proposition} \leavevmode \\
+    \label{prop21}
+    If $G$ is a finite abelian group and $p$ is a prime dividing $|G|$, then $G$ contains an element of order $p$.
+\end{proposition}
+
+\begin{proof}
+    We will use strong induction to prove this result. We will assume the result holds for all groups with order $< |G|$ and show this implies the result for $G$. \\
+
+    Since $|G| > 1$ there is an element $x \in G$ such that $x \not = 1_G.$ If $|G| = p$, then we are done (by Lagrange's theorem, we know $<x> = G$ hence $|x| = p$).
+    Suppose $|G| > p$, and suppose $p \mid |x|$ for some $x\in G$. Then 
+    $$|x| = pn \text{ for some } n \in \Z$$
+    We know
+    $$|x^n| = \dfrac{|x|}{\gcd\left(|x|, n\right)}=\dfrac{|x|}{n}=\dfrac{pn}{n}=p$$
+    We now assume $p \nmid |x|$. Let $<x> = N$. Since $G$ is abelian, $N \nsubgroup G$ and by Lagrange's theorem,
+    $$|G:N| = \left|G/N\right| = |G| / |N|$$
+    and since $N \not = 1_G,$ $|G|/|N| < |G|$. Since $p \nmid |N|$ we have that $p \mid |G/N|$. By our inductive assumption, we can conclude there exists $yN \in G/N \st |yN|=p.$ Since $yN \not = 1N$ we have that $y \not \in N.$ But $y^p \in N$ since 
+    $$(yN)^p=y^pN$$
+    Since $<y^p> \leq N$ we have $<y> \not = <y^p>$. That is, $\langle y^p\rangle < \langle y\rangle$ and further $|y^p| < |y|$. We know
+    $$|y^p| = \frac{|y|}{\gcd\left(|y|,p\right)}=\frac{|y|}{p}$$
+    Thus $p \mid |y|$. By our first case, we are done. \\ 
+    This completes the induction and every abelian group with $p \mid |G|$ has one element of order $p$.
+    \qed
+\end{proof}
+
+Central to this proof was finding $N \nsubgroup G.$ What if we can't?
+
+\begin{definition}[Simple Group] \leavevmode \\
+    A (finite or infinite) group $G$ is called simple if $|G| > 1$ and the only normal subgroups of $G$ are $1$ and $G$.
+\end{definition}
+
+\begin{example}
+    $\Z_p$ where $p$ is prime is the most important simple group (for us) ((to be proved later)).
+\end{example}
+
+We shift our attention back to permutations. Consider $\sigma \in S_3$.
+\begin{align*}
+    \sigma &= (1~2~3) \\
+    \sigma &= (1~3)(1~2)\\
+    &= (1~2)(1~3)(1~2)(1~3)
+\end{align*}
+
+Notice that in general for any $m$-cycle in $S_n$ we have 
+$$(a_1~a_2~a_3~...~a_m)=(a_1~a_m)(a_1~a_{m-1})...(a_1~a_3)(a_1~a_2)$$
+That is, every $m$-cycle in $S_n$ cna be written as a product of $2$-cycles (transpositions) since efery permutation in $S_n$ can be written as a product of disjoint cycles. Hence, every permutation in $S_n$ can be written as a product of transpositions. That is,
+$$\langle T\rangle = S_n \text{ where } T = \set{(i~j): 1 \leq i < j \leq n}$$
+
+\begin{example}
+    $S_4$, $T$ has the elements
+    $$(1~2), (1~3), (1~4), (2~3), (2~4), (3~4)$$
+\end{example}
+
+\begin{definition}[Even Permutation] \leavevmode \\
+    A permutation $\alpha \in S_n$ is called even if it can be written as a product of an even number of transpositions. Otherwise, $\alpha$ is called odd.
+\end{definition}
+
+\begin{remark}
+$(1~2~3) = (1~3)(1~2)$, so $(1~2~3)$ is even. However, $(1~2~3) = (1~3)(1~2)(1~3)(1~2)$. Is this a well-defined definition? Can a permutation be both even and odd? \textbf{NO:} Permutations in $S_n$ are either even or odd but not both.
+\end{remark}
+
+\begin{definition}[The $\varepsilon$ Homomorphism] \leavevmode \\
+    For each $\sigma \in S_n$, define 
+    \begin{align*}
+        \varepsilon(\sigma) = \begin{cases*}
+            1 & \text{if $\sigma$ is even} \\
+            -1 & \text{if $\sigma$ is odd}
+        \end{cases*}
+    \end{align*}
+    $\varepsilon$ defines a mapping from $S_n$ to the multiplicative group $G = \set{-1, 1}$.
+\end{definition}
+
+Let $\sigma, \tau \in S_n$. Assume $\sigma, \tau$ are both even or both odd. Then $\sigma \tau$ is an even permutation, so 
+$$\varepsilon(\sigma\tau) = -1 \text{ and } \varepsilon(\sigma)\cdot \varepsilon(\tau) = 1$$
+If one of $\sigma, \tau$ is odd and the other is even, then $\sigma \tau$ is odd and 
+$$\varepsilon(\sigma \tau) = -1 \text{ and } \varepsilon(\sigma) \cdot \epsilon(\tau) = -1$$
+so $\varepsilon$ is a homomorphism. By the First Isomorphism theorem, we have 
+$$\frac{S_n}{\ker\varepsilon} \cong \varepsilon(S_n) = \set{-1,1}$$
+By Lagrange's Theorem,
+
+\begin{align*}
+    &\frac{|S_n|}{|\ker \varepsilon |} = \left|\set{-1,1}\right| = 2 \\
+    \implies &\frac{n!}{|\ker \varepsilon |} = 2 \\
+    \implies &\left|\ker \varepsilon\right| = \frac{n!}{2}
+\end{align*}
+
+Notice that 
+\begin{align*}
+    \ker \varepsilon = \set{\sigma \in S_n : }
+\end{align*}
