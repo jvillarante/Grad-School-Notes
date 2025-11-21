@@ -1,0 +1,179 @@
+Let $G$ be a group and let $A = G$. Define 
+\begin{align*}
+    (~.~) : ~&G \times A \to G \\
+    g.a &= ga ~~\forall g \in G, a \in G
+\end{align*}
+Let $\Psi$ be the permutation representation of this action:
+\begin{align*}
+    \Psi: ~&G \to S_A \\
+    \Psi(g) &= \sigma_g \in S_A
+\end{align*}
+Let $G = V_4 = \set{1, a, b, c}$ where $a^2 = b^2 = c^2 = 1$. Let's see the permutation representation in action when $G$ acts on itself by left multiplication. Look at the mapping $\sigma_1(x):$
+\begin{align*}
+    \begin{rcases}
+        \sigma_1(1) &= 1\cdot 1 = 1 \\
+        \sigma_1(a) &= 1\cdot a = a \\
+        \sigma_1(b) &= 1\cdot b = b \\
+        \sigma_1(c) &= 1\cdot c = c
+    \end{rcases}\implies \sigma_1 = 1_{S_4}
+\end{align*}
+Look at the mapping $\sigma_a(x):$
+\begin{align*}
+    \begin{rcases}
+        \sigma_a(1) &= a\cdot 1 = a \\
+        \sigma_a(a) &= a\cdot a = 1 \\
+        \sigma_a(b) &= a\cdot b = c \\
+        \sigma_a(c) &= a\cdot c = b
+    \end{rcases}\implies \sigma_a = (1~a)(b~c)
+\end{align*}
+Look at the mapping $\sigma_b(x):$
+\begin{align*}
+    \begin{rcases}
+        \sigma_b(1) &= b\cdot 1 = b \\
+        \sigma_b(a) &= b\cdot a = c \\
+        \sigma_b(b) &= b\cdot b = 1 \\
+        \sigma_b(c) &= b\cdot c = a
+    \end{rcases}\implies \sigma_b = (1~b)(a~c)
+\end{align*}
+Look at the mapping $\sigma_c(x):$
+\begin{align*}
+    \begin{rcases}
+        \sigma_c(1) &= c\cdot 1 = c \\
+        \sigma_c(a) &= c\cdot a = b \\
+        \sigma_c(b) &= c\cdot b = a \\
+        \sigma_c(c) &= c\cdot c = 1
+    \end{rcases}\implies \sigma_c = (1~c)(a~b)
+\end{align*}
+We know $\Psi : V_4 \to S_4$ by the first isomorphism theorem 
+$$\frac{V_4}{\ker \Psi} \cong \Psi(V_4) = \set{1_{s_4}, (1~2)(3~4), (1~3)(2~4), (1~4)(2~3)}$$
+and
+\begin{align*}
+    \ker \Psi &= \set{g \in G : g.a = a ~~\forall a \in A} \\
+    &= \set{1_{V_4}} \\
+    V_4 &\cong \Psi(V_4) \text{   ($V_4$ is isomorphic to a subgroup of $S_4$)}
+\end{align*}
+Let $G$ be a group. Let $H \leq G.$ Let $A = G/H$ and define the action of $G$ on $A$ by 
+$$g.aH = gaH ~~\forall g \in G, aH\in A$$
+(note: if $H = \set{1}$, then $g.aH = gaH = ga\set{1} = \set{ga}$)
+
+\begin{example}
+    $G = D_8$ and $H = \cyc{s} = \set{1,s}$.
+    \begin{align*}
+        \mid D : H \mid = 4
+    \end{align*}
+    so the cosets of $H$ are 
+    $$\overset{1}{1H}, \overset{2}{rH}, \overset{3}{r^2H}, \overset{4}{r^3H}$$
+    Let's find the permutation representation of this action, specifically $\sigma_s$ and $\sigma_r$.
+    \par\textbf{$\sigma_s$:}
+    \begin{align*}
+        s.1H &= sH = 1H &&\sigma_s(1) = 1 \\
+        s.rH &= srH = r^{-1}sH = r^{-1}H = r^3H &&\sigma_s(2) = 4 \\
+        s.r^2H &= sr^2H = r^{-1}srH = r^{-1}r^{-1}sH = r^2H &&\sigma_s(3) = 3 \\
+        s.r^3H &= sr^{3}H = r^{-3}H = rH &&\sigma_s(4) = 2 
+    \end{align*}
+    \textbf{$\sigma_r$:}
+    \begin{align*}
+        r.1H &= rH = rH &&\sigma_r(1) = 2 \\
+        r.rH &= rrH = r^2H &&\sigma_r(2) = 3 \\
+        r.r^2H &= r^3H &&\sigma_r(3) = 4 \\
+        r.r^3H &= r^4H = 1H &&\sigma_r(4) = 1
+    \end{align*}
+    So
+    \begin{align*}
+        &\sigma_s = (2~4) &&\sigma_r = (2~3~4~1)
+    \end{align*}
+\end{example}
+
+$G$ acting on itself by left multiplication is a special case of $G$ acting on the cosets of $H\leq G$ by left multiplication. That is,
+$$g.aH = (ga)H ~~\forall g \in G, \forall aH \in G/H$$
+We will prove some things about the permutation representations of $G$ acting on the cosets of a subgroup $H$.
+\begin{align*}
+    \Psi: G &\to S_{G/H} \\
+    \Psi(G)&= \sigma_g
+\end{align*}
+where
+\begin{align*}
+    \sigma_g(xH) = g.xH = (gx)H
+\end{align*}
+
+\begin{theorem}[Associated Permutation Representation Afforded by Left Cosets] \leavevmode \\
+    Let $G$ be a group and $H \leq G$. Let $G$ act on $A = G/H$ by left multiplication. Let $\pi_H: G \to S_{G/H}$ be the permutation representation afforded by this action. Then
+    \begin{enumerate}
+        \item $G$ acts transitively on $A$ (for any $aH, bH \in A ~~\exists g \in G \st bH = g.aH$)
+        \item $G_{1H} = H$
+        \item The kernel of the action is 
+        $$\ker \pi_H = \bigcap \limits_{x \in G}xHx^{-1}$$
+        and $\ker \pi_H$ is the largest normal subgroup of $G$ contained in $H$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Let $aH, bH \in A.$ Let $g = ba^{-1}.$ Then 
+        $$g.aH = (ba^{-1}a)H = bH $$
+        \item $G_{1H} = \set{g\in G : g.1H = 1H} = \set{g\in G : (g1)H = H} = \set{g \in G : gH = H} = \set{g \in G : g \in H} = H$
+        \item By definition,
+        \begin{align*}
+            \ker \pi_H &= \set{g \in G : \pi_H(g) = 1_{S_A}} \\
+            &= \set{g \in G : g.xH = xH ~\forall xH \in A} \\
+            &= \set{g \in G : (gx)H = xH ~\forall x \in G} \\
+            &= \set{g \in G : x^{-1}gx \in H ~\forall x \in G } \\
+            &= \set{g \in G : g \in xHx^{-1} ~\forall x \in G} \\
+            &= \bigcap \limits_{x \in G}xHx^{-1}
+        \end{align*}
+        Observe $\ker \pi_H \nsubgroup G$ and $\ker \pi_H \leq H$. Let $N \nsubgroup G \st N \leq H.$ Then 
+        $$N = xNx^{-1} \leq xHx^{-1} ~~\forall x \in G$$
+        Thus
+        $$N \leq \bigcap \limits_{x \in G}xHx^{-1} = \leq \pi_H$$
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{theorem}[Cayley's Theorem] \leavevmode \\
+    Every group is isomorphic to a subgroup of some symmetric group. If $|G| = n < \infty$, then $G$ is isomorphic to a subgroup of $S_n$.
+\end{theorem}
+
+\begin{proof}
+    Let $H = \set{1}$. By the first isomorphism theorem, we have that 
+    $$\frac{G}{\ker \pi_H} \cong \pi_H(G) \leq S_G$$
+    Since $\ker \pi_H \leq H,$ we have 
+    $$\ker \pi_H \leq \set{1} \implies \ker \pi_H = 1$$
+    Hence
+    $$\frac{G}{\ker \pi_h} \cong G$$
+    so 
+    $$G \cong \frac{G}{\ker \pi_H} \cong \pi_H(G) \leq S_G$$
+    \qed
+\end{proof}
+
+\textbf{Termionology: } The permutation representation of this action when $H = \set{1}$ is called the left regular representation of $G$.
+
+\begin{corollary}
+    If $G$ is a finite group of order $n\in \N$ and $p$ is the smallest prime dividing $n$, then any subgroup of index $p$ is normal in $G$.
+\end{corollary}
+
+\begin{proof}
+    Let $\pi_H$ be the permutation representation afforded by $G$ acting on the left cosets of $H$ by left multiplication. Let $K = \ker \pi_H$ and $\mid H : K \mid = k.$ Notice that $k \mid |H|$ and so $k \mid |G|$. Then 
+    $$\indx{G}{K} = \indx{G}{H}\cdot \indx{H}{K}=pk$$
+    Since $H$ has $p$ cosets in $G$ 
+    $$\pi_H : G \to S_p$$
+    and by the first isomorphism theorem 
+    \begin{align*}
+        \frac{G}{K} &\cong \pi_H(G) \leq S_p \\
+        \implies pK &= \indx{G}{K} = \frac{|G|}{|K|} = |\pi_H(G)|
+    \end{align*}
+    and so 
+    \begin{align*}
+        pk \mid |S_p| &\implies pk | p! \\
+        &\implies k \mid (p-1)!
+    \end{align*}
+    However, since $k \mid |G|$ any prime factors of $k$ would be larger than $p$, so $k = 1$ by the minimality of $p$. Thus 
+    \begin{align*}
+        \indx{H}{K} = 1 &\implies H = K \\
+        &\implies H = \ker \pi_H \nsubgroup G
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{example}
+    Give a group $G$ of order $15$, by Cauchy's theorem $G$ contains a subgroup of order $5$, and by the previous corollary we know that subgroup is normal since its index must be $3$ which is the smallest prime dividing $15$.
+\end{example}
