@@ -1,0 +1,162 @@
+\begin{definition}[Group Action] \leavevmode \\
+    Let $G$ be a group and $A$ be a set. A group action of $G$ on $A$ is a map from $G\times A$ to $A$ (written $g.a ~~\forall g \in G, a \in A$) such that
+    \begin{enumerate}
+        \item $g_1.(g_2.a) = (g_1g_2).a ~~\forall g_1, g_2 \in G$ (Compatability)
+        \item $1.a = a$ (or $e.a = a$) $ ~~\forall a \in A$ (Identity)
+    \end{enumerate}
+\end{definition}
+
+Recall that for each $g \in G$, there is a mapping $\sigma_g : A \to A \st g \mapsto g.a$ which is an element in $S_A$ (a permutation of $A$). \\ 
+We define 
+$$\varphi: G \to S_A \text{ by } \varphi(g) = \sigma_g$$
+We proved this is a Homomorphism. We called it the permutation representation of $G$ in $A$.
+
+\textbf{Important Things: }
+\begin{enumerate}
+    \item The kernel of the action is $$\ker \varphi = \set{g \in G : g.a = a ~~\forall a \in A}$$
+    \item The stabilizer of $a \in A$ in $G$ is 
+    $$G_a = \set{g \in G : g.a = a}$$
+    \item An action is called faithful if its kernel is $1_G$
+\end{enumerate}
+
+\begin{example}
+    We know that $S_n$ acts on $A = \set{1, 2, ..., n}$ by 
+    $$\sigma .i = \sigma(i) ~~\forall \sigma \in S_n, i \in A$$
+    \begin{align*}
+        \set{\sigma \in S_n : \sigma .i = i ~\forall i \in A} &= \set{\sigma \in S_n : \sigma(i) = i ~\forall i \in A} \\ 
+        &= \set{1_{S_n}}
+    \end{align*}
+    This action is faithful. \\
+    Consider the stabilizer 
+    $$G_i = \set{\sigma \in S_n : \sigma (i) = i}$$
+    Recall that $|G_i| = (n-1)!$ \\
+    In general, we can say 
+    $$\ker\varphi = \bigcap \limits_{a \in A} G_a$$
+    Given a homomorphism $\Psi : G \to S_A$ where $A$ is a nonempty set and $G$ is a group, the mapping defined by 
+    $$g.a = \left(\Psi (g)\right)(a)$$
+    is a group action. \\
+    Let $g_1, g_2 \in G$ and $a \in A.$ Then
+    \begin{align*}
+        (g_1g_2).a &= \left(\Psi(g_1g_2)\right)(a) \\
+        &= \left(\Psi(g_1) \circ \Psi(g_2)\right)(a) \\
+        &= \Psi(g_1) \left(\Psi(g_2)(a)\right) \\
+        &= \Psi(g_1) \left(g_2.a\right) \\
+        &= g_1. \left(g_2.a\right)
+    \end{align*}
+    and
+    \begin{align*}
+        1_G.a &= \left(\Psi(1_G)\right)(a) \\
+        &= 1_{S_A}(a) \\
+        &= a
+    \end{align*}
+\end{example}
+
+\begin{proposition} \leavevmode \\
+    \label{Prop4.1.2}
+    Let $G$ be a group acting on $A \not = \emptyset$. The relation on $A$ defined by 
+    $$a \sim b \iff a = g.b \text{ for some } g \in G$$
+    is an equivalence relation.
+\end{proposition}
+
+\begin{definition}[Orbit of a Group Action] \leavevmode \\
+    Let $G$ act on $A$.
+    \begin{enumerate}
+        \item The equivalence class $\set{g.a : g \in G}$ (where $a \in A$) is called the orbit of $G$ containing $a$, denoted $\orb_a$.
+        \item The action of $G$ on $A$ is called transitive if there is only one orbit. That is, given $a, b \in A,$
+        $$\exists g \in G \st a = g.b$$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let $G = S_n$ act on $A = \set{1, 2, ..., n}$ in the usual way.
+    \begin{align*}
+        \orb_2 &= \set{g.2 : g \in S_n} \\
+        &= \set{\sigma_.2 : \sigma \in S_n} \\ 
+        &= \set{\sigma(2) : \sigma \in S_n} \\
+        &= \set{1, 2, 3, ..., n} = A
+    \end{align*}
+    Hence, this action is transitive.
+\end{example}
+
+\begin{theorem}[Orbit-Stabilizer Theorem] \leavevmode \\
+    For each $a\in A$ the number of elements in the equivalence class $\mathcal{O}_a = \set{g.a : g \in G}$ is $\mid G : G_a |$ (the number of left cosets of $G_a$ in $G$).
+\end{theorem}
+
+\begin{proof}
+    To prove the last statement, let $\orb_a$ be the orbits of $G$ containing $a$. Let $b \in \orb_a.$ Then $b = g.a$ for some $g \in G.$ Notice that $gG_a$ is a left coset of $G_a$ in $G$. Define 
+    \begin{align*}
+        f: \orb_a \to G/G_a \\
+        b = g.a \mapsto gG_a
+    \end{align*}
+    Then $f$ is a bijection:\\
+
+    \textbf{Onto: } Let $gG_a \in G/G_a$. Then $g.a \in \orb_a$ and $f(g.a) = gG_a$ so $f$ is onto. \\
+
+    \textbf{1-1 and well-defined: } Notice
+    \begin{align*}
+        f(g.a) = f(h.a) &\iff gG_a = hG_a \\ 
+        &\iff h^{-1}g \in G_a \\
+        &\iff (h^{-1}g).a = a \\
+        &\iff h.\left((h^{-1}g).a\right) = h.a \\
+        &\iff \left(hh^{-1}g\right).a = h.a \\
+        &\iff g.a = h.a
+    \end{align*}
+    Hence $f$ is $1-1$ and well-defined. \\
+
+    So, $f$ is a bijection from $\orb_a$ to $G/G_a$. Thus $\mid \orb_a \mid = \mid G/G_a \mid.$ Hence, $\mid \orb_a \mid = \mid G : G_a \mid.$
+    \qed
+\end{proof}
+
+\begin{example}
+    We know $S_n$ acts on $A = \set{1, ..., n}$ in the usual way. Given $i \in A,$ we have $\orb_i = \set{\sigma(i) : \sigma \in S_n}$. By the orbit-stabilizer theorem, 
+    \begin{align*}
+        \mid \orb_i \mid &= \mid S_n : G_i \mid \\
+        \implies n &= \dfrac{\mid S_n \mid}{\mid G_i \mid} = \frac{n!}{\mid G_i \mid} \\
+        \implies \mid G_i \mid &= \frac{n!}{n} = (n-1)!
+    \end{align*}
+\end{example}
+
+Let $\sigma \in S_7.$
+\begin{align*}
+    \sigma(1) = 2 \\
+    \sigma(2) = 3 \\
+    \sigma(3) = 4 \\
+    \sigma(4) = 5 \\
+    \sigma(5) = 6 \\
+    \sigma(6) = 1 \\
+\end{align*}
+Let $G = \langle \sigma \rangle \leq S_7.$ By the definition of group action if a group acts on a set $A$ then any subgroup of the group acts on $A$ ($g.a$ is a mapping from $G \times A$ to $A$) so
+$$g.a \in A ~~\forall g \in G, a \in A$$
+so certainly we have an action when we restrict $g$ to a subgroup.
+Let $\la \sigma \ra$ act on $A = \set{1, 2, ..., 7}$ in the usual way.
+\par
+\textbf{Determine the Orbits: } \par 
+\begin{align*}
+    \orb_1 &= \set{\tau(1) : \tau \in \cyc{\sigma}} \\
+    &= \set{\sigma^k(1) : k \in \set{0, 1, 2, 3}} \\
+    &= \set{1, \sigma(1), \sigma^2(1), \sigma^3(1)} \\
+    &= \set{1, 2, 3, 4} \\
+    \orb_5 &= \set{5, \sigma(5), \sigma^2(5), \sigma^3(5)} \\
+    &= \set{5, 6} \\
+    &= \orb_6 \\
+    \orb_7 &= \set{7} \\
+    \sigma &= (1~2~3~4)(5~6)
+\end{align*}
+
+\begin{proposition}
+    Every $\sigma \in S_n$ can be written as a product of disjoint cycles.
+\end{proposition}
+
+\begin{proof}
+    Let $\sigma \in S_n$ and $A = \set{1,2,..., n}.$ Also, let $G = \cyc{\sigma}$. Then $G$ acts on $A$ in the usual way. Then, by the orbit-stabilizer theorem, this action partitions $A$ into a unique set of disjoint orbits. Let 
+    $$\orb_x = \set{\sigma ^k(x) : k \in \Z}$$
+    be one such orbit where $x \in A$.
+    \par Again, by the orbit-stabilizer theorem applied to $\orb_x$ there is a bijection between $\orb_x$ and $G/G_x = \cyc{\sigma}/G_x$ defined by $\sigma^k(x) \mapsto \sigma^k G_x$. Since $G$ is cyclic, $G$ is abelian and so $G_x \nsubgroup G.$ Hence, $G/G_x$ is cyclic of order $d$ where $d$ is the smallest integer such that $\sigma^d \in G_x$. Also, 
+    $$d=\mid G : G_x \mid = \mid \orb_x \mid$$
+    Thus, the different cosets of $G_x$ in $G = \cyc{\sigma}$ are 
+    $$1G_x, \sigma G_x, \sigma^2 G_x, ..., \sigma ^{d-1} G_x $$
+    and the corresponding elements of $\orb_x$ are 
+    $$x, \sigma(x), \sigma ^2(x), ..., \sigma ^{d-1}(x)$$
+    Thus $\sigma$ cycles the elements of $\orb_x$. That is, the elements are a cycle of size $d$ ($\sigma$ creates a $d$-cycle). Since the orbits form a partition of $A$ each orbit gives a disjoint cycle in our decomposition of $\sigma$.
+    \qed
+\end{proof}
