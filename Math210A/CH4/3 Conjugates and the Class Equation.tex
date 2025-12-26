@@ -1,0 +1,140 @@
+Let $G$ be a group acting on itself by conjugation:
+$$g.a = gag^{-1} ~~\forall g \in G, \forall a \in G$$
+We proved this is a group action.
+
+\begin{definition}[Conjugates and Conjugacy Classes] \leavevmode \\
+    We say $a,b \in G$ are conjugate in $G$ if 
+    $$\exists g \in G \st b = gag^{-1}$$
+    That is, $a$ and $b$ are conjugate in $G$ if and only if $a, b \in \orb_x$ for some $x \in G$.
+    \begin{align*}
+        \orb_x &= \set{g.x : g \in G} \\
+        &= \set{gxg^{-1} : g \in G}
+    \end{align*}
+    The orbits of $G$ acting on itself by conjugation are called the conjugacy classes of $G$
+\end{definition}
+
+\begin{example}
+    If $G$ is abelian, then $G$ acting on itself by conjugation is the trivial action. That is,
+        $$g.a = gag^{-1} = a ~~\forall a \in G, g\in G$$
+    So, the conjugacy class of $a$ in $G$ is 
+    \begin{align*}
+        \set{gag^{-1} : g \in G} &= \set{a : g \in G} = \set{a}
+    \end{align*}
+    More generally, for $G$ acting on itself, where $G$ is not assumed to be abelian, the conjugacy class of $g \in G$ is $\set{g}$ if and only if $g \in Z(G)$.
+\end{example}
+
+\begin{example}
+    If $|G| > 1$, then $G$ does not act transitively on itself by conjugation. The conjugacy class of $1_G$ is $\set{1_g}$. I.e., if $G$ acts transitively on itself by conjugation, then there is only one orbit.
+    $$\set{g1g^{-1} : g \in G} = \set{1 : g \in G} = \set{1}$$
+    We also know that the action of conjugation can be generalized to $G$ acting on $\powerset{G}$ by
+    $$g.S = gSg^{-1} \forall g \in G, S \in \powerset{G}$$
+\end{example}
+
+\begin{definition}[Conjugate Sets] \leavevmode \\
+    Two subsets $S$ and $T$ of $G$ are called conjugates if there exists $g \in G$ such that 
+    $$S = gTg^{-1}$$
+\end{definition}
+
+\begin{proposition}
+    \label{prop.4.6}
+    The number of conjugates of a subset $S$ in a group $G$ is $|G : N_G(S)|$. In particular, the number of conugates of an element $s \in G$ is $|G:C_G(s)|$.
+\end{proposition}
+
+\begin{proof}
+    Using the orbit-stabilizer theorem, we know the conjugacy class of $S$ equals $|G: G_s|$. For this particular action, 
+    \begin{align*}
+        G_s &= \set{g \in G : g.S = S} \\
+        &= \set{g \in G : gSg^{-1} = S} \\
+        &= N_G(S)
+    \end{align*}
+    The second statemnt follos from 
+    \begin{align*}
+        N_G(\set{s}) &= \set{g \in G : g \set{s} g^{-1} = \set{s}} \\ 
+        &= \set{g \in G : gsg^{-1} = s} \\ 
+        &= C_G(s)
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{proposition}
+    \label{prop4.6a}
+    $z \in G$ has conjugacy class $\set{z}$ if and only if $z \in Z(G)$.
+\end{proposition}
+
+\begin{proof}
+    $(\implies)$ Suppose $z \in G$ has conjugacy class $\set{z}$. Then 
+        $${z} = \set{gzg^{-1} : g \in G}$$
+    Thus for every $g \in G$, we have $gzg^{-1} = z$. Equivalently, $gz = zg$ for all $g \in G$. Hence, $z \in Z(G)$. \newline
+    $(\impliedby)$ Suppose $z \in Z(G)$. Then 
+    $$\forall g \in G ~~ zgz^{-1} = g \implies z = gzg^{-1}$$
+    Thus, the conjugacy class of $z$ is 
+    $$\set{gzg^{-1} : g \in G} = \set{z : g \in G} = \set{z}$$
+    \qed
+\end{proof}
+
+\begin{theorem}[The Class Equation] \leavevmode \\
+    Let $G$ be a finite group and let $g_1, g_2, ..., g_r$ be representatives of distinct conjugacy classes of $G$ not contained in $Z(G)$. Then 
+    $$|G| = |Z(G)| + \sum_{i=1}^r |G : C_G(g_i)|$$
+\end{theorem}
+
+\begin{proof}
+    By proposition \ref{prop4.6a}, $z \in Z(G)$ if and only if the conjugacy class of $z$ is $\set{z}$. Let $Z(G) = \set{z_1 = 1, z_2, z_3, ..., z_m}.$ Let $K_1, K_2, ..., K_r$ be the conjugacy classes of $G$ not contained in the center and let $g_i$ be a representative of $K_i$ for each $i$. Then the full set of conjugacy classes is
+    $$\left\{\set{1}, \set{z_2}, \set{z_3}, ..., \set{z_m}, K_1, K_2, ..., K_r\right\}$$
+    Since this partitions $G$, we have 
+    \begin{align*}
+        |G|= &= \sum_{i=1}^m |\set{z_i}| + \sum_{i=1}^r |K_i| \\
+        &= |Z(G)| + \sum_{i=1}^r |K_i|
+    \end{align*}
+    By proposition \ref{prop.4.6}, we have $|K_i| = |G : C_G(g_i)|$ for each $i$. Thus,
+    $$|G| = |Z(G)| + \sum_{i=1}^r |G : C_G(g_i)|$$
+    \qed
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item If $G$ is abelian of order $n$, then the class equation telss us nothing.
+        $$|G| = |Z(G)|$$
+        \item The class equation of $Q_8$: \\
+        In any group, $\cyc{x} \leq C_G(x)$. We know that $|\cyc{i}| = 4$. Thus $|Q_8 : \cyc{i} | = 2$. Also, we know that $i \not \in Z(Q_8)$, so $C_{Q_8}(i) < Q_8$. Thus 
+        $$2 = |Q_8 : \cyc{i}| = |Q_8 : C_{Q_8}(i)|\cdot |C_{Q_8}(i): \cyc{i}|$$
+        If $|Q_8 : C_{Q_8}(i)| = 1$, then $Q_8 = C_{Q_8}(i)$, a contradiction. So $|Q_8 : C_{Q_8}(i)| = 1$ and $|Q_8 : C_{Q_8}(i)| = 2$. Thus 
+        $$C_{Q_8}(i) = \cyc{i}$$
+        This implies the conjugacy class of $i$ contains 2 elements: $i$ and $-i$. We could similarly finad all the conjugacy classes of $Q_8$:
+        $$\set{1}, \set{-1}, \set{\pm i}, \set{\pm j}, \set{\pm k}$$
+        The class equation of $Q_8$ is therefore
+        $$8 = 2+2+2+2$$
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}[Centers of p-Groups] \leavevmode \\
+    \label{thm4.8}
+    If $p$ is a prime and $P$ is a group of order $p^\alpha$ with $\alpha \geq 1$, then $P$ has a nontrivial center $|Z(P)| > 1$.
+\end{theorem}
+
+\begin{proof}
+    By the class equation,
+    $$|P| = |Z(P)| + \sum_{i=1}^r |P : C_P(g_i)|$$
+    where $g_1, g_2, ..., g_r$ are representatives of the distinct noncentral conjugacy classes. By defintion, $C_P(g_i) \not = P$ $\left( \text{since }C_P(g_i) = P \iff g_i \in Z(P)\right)$ for $i = 1, ..., r$ so $p$ divides 
+    $$|P : C_P(g_i)| = \dfrac{|P|}{|C_P(g_i)|}=\dfrac{p^\alpha}{|C_P(g_i)|} = p^\beta$$
+    Since $p$ also divides $|P|$, if follows that $p$ divides $|P| - \sum_{i=1}^r |P : C_P(g_i)|$. Equivalently, $p \mid |Z(P)|$. It follows that the center is nontrivial.
+    \qed
+\end{proof}
+
+\begin{corollary}
+    If $|P|=p^2$ for some prime $p$, then $P$ is abelian. More precisely, $P$ is isomorphic to either $\Z_{p^2}$ or $\Z_p \times \Z_p.$
+\end{corollary}
+
+\begin{proof}
+    By theorem \ref{thm4.8}, $Z(P) \not = 1$. More specifically, by Lagrange's theorem,
+    $$|Z(P)| \in \set{p, p^2} \implies \left|P/Z(P)\right| \in \set{1, p}$$
+    In either case, $P$ is cyclic and so $P$ is abelian. If $P$ has an element of order $p^2$, $P$ is cyclic and isomorphic to $\Z_{p^2}$. If $P$ is cyclic and contains no elements of order $p^2$, then every nonidentity element of $P$ has order $p$. Let $x \in P$ such that $|x| \not = 1$ and let $y \in P\backslash \cyc{x}$ (then $y \not = 1$ since $1 \in \cyc{x}$). Notice $x$ and $y$ both have order $p$. Since $|\cyc{x,y}| > |\cyc{x}| = p$, we have $|\cyc{x,y}| = p^2$. That is, $P$ is abelian. Also, since $|x| = |y| = p$, 
+    $$\cyc{x} \times \cyc{y} = \Z_p \times \Z_p$$
+    Defining a map 
+    \begin{align*}
+        \Z_p \times \Z_p &\to P \\
+        \left(x^a, y^b\right) &\mapsto x^ay^b
+    \end{align*}
+    gives an isomorphism. Hence,
+    $$\Z_p \times \Z_p \cong P$$
+    \qed
+\end{proof}
