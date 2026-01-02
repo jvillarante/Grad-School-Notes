@@ -1,0 +1,176 @@
+Let $\sigma = (1~2~3) \in S_5$ and $\tau = (3~5) \in S_5$. Then
+\begin{align*}
+    \tau \sigma \tau^{-1} & = (3~5) (1~2~3) (3~5)^{-1} \\
+    &= (3~5) (1~2~3) (5~3) \\ 
+    &= (1~2~5) \\ 
+    &= (\tau(1)~\tau(2)~\tau(3))
+\end{align*}
+
+Now let $\tau = (2~3) \in S_5$. Then 
+\begin{align*}
+    \tau \sigma \tau^{-1} & = (2~3) (1~2~3) (2~3)^{-1} \\
+    &= (2~3) (1~2~3) (3~2) \\ 
+    &= (1~3~2) \\ 
+    &= (\tau(1)~\tau(2)~\tau(3))
+\end{align*}
+
+Now let $\tau = (1~4~3~2) \in S_5$. Then
+\begin{align*}
+    \tau \sigma \tau^{-1} & = (1~4~3~2) (1~2~3) (1~4~3~2)^{-1} \\
+    &= (1~4~3~2) (1~2~3) (2~3~4~1) \\ 
+    &= (4~1~2) \\
+    &= (\tau(1)~\tau(2)~\tau(3))
+\end{align*}
+
+Now let $\tau = (5~4~1~2) \in S_5$. Then
+\begin{align*}
+    \tau \sigma \tau^{-1} & = (5~4~1~2) (1~2~3) (5~4~1~2)^{-1} \\
+    &= (5~4~1~2) (1~2~3) (2~1~4~5) \\ 
+    &= (2~5~3) \\
+    &= (\tau(1)~\tau(2)~\tau(3))
+\end{align*}
+
+Now let $\sigma = (1~2~3~4) \in S_5$ and $\tau = (1~3~5)$. Then 
+\begin{align*}
+    \tau \sigma \tau^{-1} &= (1~3~5) (1~2~3~4) (1~3~5)^{-1} \\
+    &= (1~3~5) (1~2~3~4) (5~3~1) \\ 
+    &= (3~2~5~4) \\
+    &= (\tau(1)~\tau(2)~\tau(3)~\tau(4))
+\end{align*}
+
+\begin{lemma}
+    Let $\sigma = (a_1~a_2~...~a_k) \in S_n$ be a k-cycle. Then for any $\tau \in S_n$, we have 
+    $$\tau \sigma \tau^{-1} = (\tau(a_1)~\tau(a_2)~...~\tau(a_k))$$
+\end{lemma}
+
+\begin{proof}
+    Notice that since $\sigma(a_1) = a_2$, then 
+    \begin{align*}
+        \tau \sigma \tau^{-1} (\tau (a_1)) &= \tau \sigma (a_1) \\ 
+        &= \tau(a_2)
+    \end{align*}
+    Similarly, $\sigma(a_2) = a_3$ and so
+    \begin{align*}
+        \tau \sigma \tau^{-1} (\tau (a_2)) &= \tau \sigma(a_2)
+    \end{align*}
+    In general, $\sigma(a_i) = a_{i+1}$ so 
+    \begin{align*}
+        \tau \sigma \tau^{-1} (\tau (a_i)) = \tau (a_{i+1}) \text{ for $1 \leq i \leq k$}
+    \end{align*}
+    Finally, $\sigma(a_k) = a_1$ so 
+    \begin{align*}
+        \tau \sigma \tau^{-1} (\tau (a_k)) &= \tau (a_1)
+    \end{align*}
+    Noting that all the $\tau(a_i)$ are distinct since $\tau$ is injective and each $a_i$ is distinct, we have $\tau \sigma \tau^{-1}$ containts the k-cycle 
+    $$\left(\tau(a_1)~\tau(a_2)~...~\tau(a_k)\right)$$
+    Let $b \in A = \set{1, 2, ..., n}$ with $b \not \in \set{a_1, a_2, ..., a_k}$. Then 
+    $$\sigma(b) = b$$
+    and it follows that 
+    $$\tau \sigma \tau^{-1}(\tau(b)) = \tau(b)$$
+    Hence, $\tau \sigma \tau^{-1} = \left(\tau(a_1)~\tau(a_2)~...~\tau(a_k)\right).$
+    \qed
+\end{proof}
+
+\begin{proposition}
+    \label{propConjCycleType}
+    Let $\sigma, \tau \in S_n$ and suppose that $\sigma$ has the cycle decomposition $$\sigma_1\sigma_2... \sigma_j$$ where $\sigma_i = \left(a_1~a_2~...~a_{k_i}\right)$. Then $\tau \sigma \tau^{-1}$ has the cycle decomposition
+    $$\tau_1 \tau_2 ... \tau_j$$ where $\tau_i = \left(\tau(a_1)~\tau(a_2)~...~\tau(a_{k_i})\right)$.
+\end{proposition}
+
+\begin{proof}
+     Proceed by induction on $j$.
+     \begin{description}
+        \item[Base Case: $j=1$] \leavevmode \\
+        We have 
+        \begin{align*}
+            \tau \sigma \tau^{-1} &= \tau \sigma_1 \tau^{-1} \\ 
+            &= \left(\tau(a_1)~\tau(a_2)~...~\tau(a_{k_1})\right) \\
+            &= \tau_1
+        \end{align*} 
+        \item[Inductive Step: ] \leavevmode \\
+        Suppose the result holds for $j = m$. That is, suppose if $\sigma = \sigma_1 \sigma_2 ... \sigma_m$ then $\tau \sigma \tau^{-1} = \tau_1 \tau_2 ... \tau_m$. Now, for $j = m+1$, we have
+        \begin{align*}
+            \tau \sigma \tau^{-1} &= \tau (\sigma_1 \sigma_2 ... \sigma_m \sigma_{m+1})\tau^{-1} \\ 
+            &= (\tau \sigma_1 \tau^{-1}) (\tau \sigma_2 \tau^{-1}) ... (\tau \sigma_m \tau^{-1}) (\tau \sigma_{m+1} \tau^{-1}) \\
+            &= \tau_1 \tau_2 ... \tau_m (\tau \sigma_{m+1} \tau^{-1}) \\
+            &= \tau_1 \tau_2 ... \tau_m (\tau(a_1)~\tau(a_2)~...~\tau(a_{k_{m+1}})) \\
+            &= \tau_1 \tau_2 ... \tau_m \tau_{m+1}
+        \end{align*}
+     \end{description}
+     \qed
+\end{proof}
+
+\begin{example}
+    Let $\sigma = (1~2)(3~4~5)(6~7~8~9)$ and $\tau = (1~3~5~7)(2~4~6~8)$ in $S_9$. Then 
+    $$\tau \sigma \tau^{-1} = (3~4)(5~6~7)(8~1~2~9)$$
+    If $\sigma = (1~2~3)(4~5~6~7)(8~9)$, then
+    $$\tau \sigma \tau^{-1} = (3~4~5)(6~7~8~1)(2~9)$$
+\end{example}
+
+\begin{definition}[Cycle Type, Partition] \leavevmode \\
+    \begin{enumerate}
+        \item If $\sigma \in S_n$ is the product of disjoint cycles of lengths $n_1, n_2, ..., n_r$ where $n_1 \leq n_2 \leq ... \leq n_r$ (including 1-cycles), the integers $n_1, n_2, ..., n_r$ are called the cycle type of $\sigma$.
+        \item If $n \in \Z^+$, a partition of $n$ is any non-decreasing sequence of positive integers whose sum is $n$.
+        \item Cycle types in $S_n$ are in one-to-one correspondence with partitions of $n$.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item $\sigma = (1~2~3)(4~5~6~7)(8~9)$ has cycle type $1,2,3,4$ in $S_10$.
+        \item $\sigma = (2~4)(10~7)$ has cycle type $1, 1, 1, 1, 1, 1, 2, 2$ in $S_10$.
+    \end{enumerate}
+\end{example}
+
+We have seen that conjugation preserves cycle type: two elements of $S_n$ are conjugate implies they have the same cycle type. Does the converse of this statement hold? That is, if two elements of $S_n$ have the same cycle type, are they conjugate? Consider two elements in $S_8$:
+$$\sigma_1 = (3~4~7~2)(1~5~8) \text{ and } \sigma_2 = (1~2~3~4)(5~6~7)$$
+Both $\sigma_1$ and $\sigma_2$ have cycle type $1, 4, 3$. To be conjugates, we want to find $\tau \in S_8$ such that $\tau \sigma_1 \tau^{-1} = \sigma_2$. That is, we want to find $\tau \in S_8$ such that 
+$$\left(\tau(3)~\tau(4)~\tau(7)~\tau(2)\right)\left(\tau(1)~\tau(5)~\tau(8)\right) = (1~2~3~4)(5~6~7)$$
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[
+    >=Stealth,
+    arrow/.style={->,red,thick},
+    every node/.style={inner sep=1pt}
+    ]
+    \matrix (M) [matrix of math nodes,
+                row sep=12mm,
+                column sep=4mm] {
+    \sigma_1 = & ( & 3 & 4 & 7 & 2 & ) & ( & 1 & 5 & 8 & ) \\
+    \sigma_2 = & ( & 1 & 2 & 3 & 4 & ) & ( & 5 & 6 & 7 & ) \\
+    };
+
+    % arrows: (3 4 7 2)  -->  (1 2 3 4)
+    \draw[arrow] (M-1-3.south) to[out=-90,in=90] (M-2-3.north); % 3 -> 1
+    \draw[arrow] (M-1-4.south) to[out=-90,in=90] (M-2-4.north); % 4 -> 2
+    \draw[arrow] (M-1-5.south) to[out=-90,in=90] (M-2-5.north); % 7 -> 3
+    \draw[arrow] (M-1-6.south) to[out=-90,in=90] (M-2-6.north); % 2 -> 4
+
+    % arrows: (1 5 8)  -->  (5 6 7)
+    \draw[arrow] (M-1-9.south)  to[out=-90,in=90] (M-2-9.north);  % 1 -> 5
+    \draw[arrow] (M-1-10.south) to[out=-90,in=90] (M-2-10.north); % 5 -> 6
+    \draw[arrow] (M-1-11.south) to[out=-90,in=90] (M-2-11.north); % 8 -> 7
+\end{tikzpicture}
+\end{figure}
+We can choose 
+\begin{align*}
+    \tau(3) = 1 & \quad \tau(1) = 5 \\
+    \tau(4) = 2 & \quad \tau(5) = 6 \\
+    \tau(7) = 3 & \quad \tau(8) = 7 \\
+    \tau(2) = 4 & \quad \tau(6) = 8
+\end{align*}
+Thus $\tau = (1~5~6~8~7~3)(2~4) \in S_8$ provides the desired conjugation.
+\newline Now consider the same $\sigma_1$ and $\sigma_2$, but this time in $S_9$. Can we find a $\tau \in \S_9$ such that $\tau \sigma_1 \tau^{-1} = \sigma_2$? Proceeding as before, we can choose
+\begin{align*}
+    \tau(3) = 1 & \quad \tau(1) = 5 \\
+    \tau(4) = 2 & \quad \tau(5) = 6 \\
+    \tau(7) = 3 & \quad \tau(8) = 7 \\
+    \tau(2) = 4 & \quad \tau(6) = 9 \\
+    \tau(9) = 8
+\end{align*}
+Thus $\tau = (1~5~6~7~3)(2~4~9~8) \in S_9$ provides the desired conjugation.
+
+\begin{proposition}
+    Two elements of $S_n$ are conjugate if and only if they have the same cycle type. The number of cycle types of $S_n$ equals the bumber of partitions of $n$.
+\end{proposition}
