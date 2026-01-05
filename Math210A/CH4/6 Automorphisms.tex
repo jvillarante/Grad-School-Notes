@@ -1,0 +1,182 @@
+Let $G$ be a group and conisdre $S_G$. Not all of the permutations in $S_G$ preserve algebraic information about $G$. We consider the class of permutations of $G$ which are isomorphisms. Consider an isomorphism 
+$$\varphi: G \to G$$
+Since $\varphi$ is a bijection, $\varphi$ is a permutation of $G$ ($\varphi \in S_G$). Since $\varphi$ is an isomorphism, $\varphi$ also preserves the operation of $G$, by definition.
+
+\begin{definition}[Automorphisms] \leavevmode \\
+    Let $G$ be a group. An isomorphism from $G$ onto itself is called an automorphism of $G$. The set of all automorphisms of $G$ is denoted $\aut{G}$.
+\end{definition}
+
+\begin{fact}
+    \begin{enumerate}
+        \item $\aut{G}$ forms a group with respect to composition.
+        \item $\aut{G} \leq S_G$.
+    \end{enumerate}
+\end{fact}
+
+A special kind of automorphism is conjugation.
+
+\begin{proposition}
+    \label{prop4.13}
+    Let $H\nsubgroup G$.
+    \begin{enumerate}
+        \item $G$ acts on$H$ by conjugation ($g.h = ghg^{-1} ~~\forall g \in G, h \in H$).
+        \item For $g \in G$, the mapping 
+        \begin{align*}
+            \varphi_g:~ &H \to H \\
+            \varphi_g(h) &= ghg^{-1} ~~\forall h \in H
+        \end{align*}
+        is an automorphism of $H$.
+        \item $G/C_G(H) \cong K \leq \aut{H}$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Defining the action as in the statement, we note that the two axioms of a group action follow immediately from the opertion in $G$, specifically the identity of $G$ and associativity. To see that this defines a map from $G \times H \to H$ note that $H \nsubgroup G,$ so
+        $$ghg^{-1}\in H ~~\forall g \in G, h \in H$$
+        \item We need to show that
+        \begin{align*}
+            \varphi_g:~ &H \to H \\
+            \varphi_g(h) &= ghg^{-1} ~~\forall h \in H
+        \end{align*}
+        is a bijection. Since $H \nsubgroup G$, $gHg^{-1} = H$. Hence, $h \mapsto ghg^{-1}$ is a bijection from $H$ to $H$ (3.2 problem 5). Furthermore, for $h_1, h_2 \in H$
+        \begin{align*}
+            \varphi_g(h_1)\varphi_g(h_2) &= (gh_1g^{-1})(gh_2g^{-1}) \\
+            &= gh_1h_2g^{-1} \\
+            &= \varphi_g(h_1h_2)
+        \end{align*}
+        so $\varphi_g$ is a homomorphism, and hence an isomorphism. Thus $\varphi_g$ is an automorphism of $H$.
+        \item Letting $\Psi$ be the permutation representatio of $G$ acting on $H$ by conjugation, we see that 
+        \begin{align*}
+            \Psi: ~&G \to S_H \\
+            \Psi(g) &= \varphi_g \text{ where } \varphi_g(h) = ghg^{-1} ~~\forall h \in H
+        \end{align*}
+        By the first isomorphism theorem, we have 
+        $$G/\ker\Psi \cong \Psi(G) \leq S_H$$
+        Since $\Psi(g)$ is an automorphism of $H$ for all $g \in G$, we have 
+        $$\Psi(G) \leq \aut{G}$$
+        Lastly,
+        \begin{align*}
+            \ker \Psi &= \set{g \in G : \Psi(g) = 1_G} \\
+            &= \set{g \in G : \varphi_g = 1_G} \\
+            &= \set{g \in G: \varphi_G(h) = h ~~\forall h \in H} \\
+            &= \set{g \in G : ghg^{-1} = h ~~\forall h \in H} \\
+            &= C_G(H)
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{corollary}
+    \label{cor4.1}
+    If $K \leq G$ then $K \cong gKg^{-1}$ and so conjugate elements and conjugate subgroups have the same order.
+\end{corollary}
+
+\begin{proof}
+    If we let $H = G$, then $\varphi_g: G \to G$ is an isomorphism so the result follows.
+    \qed
+\end{proof}
+
+\begin{corollary}
+    \label{cor4.2}
+    For any $H \leq G$, $N_G(H) / C_G(H)$ is isomorphic to a subgroup of $\aut{G}$. In particular, 
+    $$G/Z(G) \cong K \leq \aut{G}$$
+\end{corollary}
+
+\begin{proof}
+    We know $H \nsubgroup N_G(H)$. Letting $G$ be $N_G(H)$ in the first part of proposition \ref{prop4.13} gives the first statement. For the second statement, when $H = G$ in proposition \ref{prop4.13} part one we have
+    $$G/Z(G) \cong K \leq \aut{G}$$
+    since $C_G(G) = Z(G)$.
+    \qed
+\end{proof}
+
+\begin{definition}[Inner Automorphism] \leavevmode \\
+    Let $G$ be a group and let $g \in G$. Conjugation by $g$ ($\varphi_g$) is called an inner automorphism of $G$. The subgroup of $\aut{G}$ consisting of all inner automorphisms of $G$ is denoted $\inn{G}$.
+\end{definition}
+
+\begin{note}
+    $\inn{G} = \set{\varphi_g: g\in G}$ where $\varphi_g(x) = gxg^{-1} ~~\forall x \in G.$ By corollary \ref{cor4.2}
+    $$G/Z(G) \cong \Psi(G) = \set{\varphi_g : g \in G} = \inn{G}$$
+\end{note}
+
+\begin{example}
+    \begin{enumerate}
+        \item A group is abelian if and only if every inner automorphism is trivial (i.e., $gxg^{-1} = x ~~\forall x, g \in G$).
+        \item If $G = D_8$ then $Z(D_8) = \set{1, r^2} = \cyc{r^2}$.
+        $$D_8/Z(D_8) = D_8/\cyc{r^2} \cong \inn{D_8}$$
+        Since $| D_8 / \cyc{r^2} | = 4$, $D_8/\cyc{r^2} \cong V_4$.
+        \item Let $G=Q_8$. Then $Z(Q_8) = \set{\pm 1}$.
+        $$Q_8/\cyc{-1} \cong V_4$$
+
+        \item Since $Z(S_n) = 1_{S_n}$ where $n \geq 3$ then from our proposition
+        $$S_n/Z(S_n) \cong \inn{S_n}$$
+        and since $Z(S_n) = 1$, it follows that $S_n \cong \inn{S_n}$.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    Getting info about $N_G(H)/C_G(H)$ using $\aut{H}$: \\
+    Let $H \leq G$ with $|H| = 2.$ Any automorphism of $H$ sends $1 \mapsto 1$ and the non-identity element of $H$ must map back to itself. Hence, there is only one automorphism of $H$ and because 
+    $$N_G(H)/C_G(H) \cong K \leq \aut{H}$$
+    we have
+    $$N_G(H)/C_G(H) \cong 1$$
+    It follows that $N_G(H) = C_G(H)$. If we additionally assume that $H$ is normal, then 
+    $$G=N_G(H)=C_G(H) \implies H \leq Z(G)$$
+\end{example}
+
+What does $\aut{G}$ look like?
+
+\begin{proposition}
+    \label{prop4.16}
+    The automorphism group of a cyclic group of order $n$ has size $\phi(n)$ (Euler's Phi Function).
+\end{proposition}
+
+\begin{example}
+    If $G$ is cyclic of order $5^2 \cdot 2^3$, then 
+    \begin{align*}
+        |\aut{G}| &= \phi(5^2 \cdot 2^3) \\
+        &= \phi(5^2) \cdot \phi(2^3) \\
+        &= 5(5-1) \cdot 2^2(2-1) \\
+        &= 5 \cdot 4 \cdot 4 \cdot 1 \\
+        &= 80
+    \end{align*}
+    Suppose $G = \cyc{x}$ and $|x| = n < \infty$, and let $\psi$ be an automorphism of $G$. Then $\psi(x) = x^a$ for some $0 \leq a \leq n-1.$ Since $\psi$ is an isomorphism, it preserves order so 
+    $$|\psi(x)| = |x^a| = |x| = n$$
+    We also know 
+    $$|x^a| = \dfrac{n}{\gcd(n,a)}$$
+    so $|x^a| = n$ if and only if $\gcd(n,a) = 1$. Hence $\psi$ can send $x$ to a positive integer less than or equal to $n$, which is relatively prime to $n$. There are $\phi(n)$ choices mapping to $x$. Once we map $x$, $\psi$ is uniquely determined $\left(\psi(x) = x^a, ~\psi(x^2) = (x^a)^2, ~ \psi(x^3)=(x^a)^3, ...\right)$.
+\end{example}
+
+\begin{example}
+    Assume $G$ is a group of order $pq$ where $p$ and $q$ are primes (not necessarily distinct) with $p \leq q$. If $p \not | (q-1)$, then $G$ is abelian.
+
+    \begin{description}
+        \item[Case 1: $Z(G) \not = 1$] \leavevmode \\
+        $$\left|\dfrac{G}{Z(G)}\right| = \dfrac{|G|}{|Z(G)|} = \dfrac{pq}{\gcd(|Z(G)|,pq)} = \text{$p$ or $q$ or $1$}$$
+        If $\left|G/Z(G)\right|= \text{$p$ or $q$}$, then $G/Z(G)$ is cyclic which implies $G$ is abelian. \\
+        If $\left|G/Z(G)\right| = 1,$ then $G/Z(G) = G$ which implies $G$ is abelian.
+
+        \item[Case 2: $Z(G) = 1$] \leavevmode \\
+        If $Z(G) = 1$, we show that $G$ contains an element of order $q$. We know every non-identity element of $G$ has order $p,q,$ or $pq$. \\
+        If $G$ has an elment of order $pq$, then $G$ is cylic and hence abelian. \\
+        If $x$ has a non-identity element of $G$ which has order $p$, then
+        $$|x| \leq |C_G(x)| < pq ~~\left(C_G(x) \not = pq \text{ since } Z(G)  = 1\right)$$
+        Hence $\indx{G}{C_G(x)} = |G| / |C_G(x)| = pq/p = q$. So, the class equation of $G$ reads
+        $$pq = |G| = 1 + kq \text{ for some } k \in \Z$$
+        If we assume all non-identity elements of $G$ have order $p$. Thus,
+        $$pq - kq = 1 \text{ so } q | 1$$
+        This contadicts $q$ being a prime. So $G$ contains an element of order $q$, call it $y$. Let $H = \cyc{y}$. Since $\indx{G}{H} = p$, which is the smalles prime dividing the order of $G$, we have $H \nsubgroup G$. Since $Z(G) = 1,$ we have 
+        \begin{align*}
+            |\cyc{y}| &= q \leq |C_G(H)| <  |G| \\
+            &\implies |C_G(H)| = q \\
+            &\implies C_G(H) = H
+        \end{align*}
+        Thus 
+        $$\dfrac{G}{H} = \dfrac{N_G(H)}{C_G(H)} \cong K \leq \aut{H}$$
+        Since $|G/H| = p = |K|$ and $H$ is cyclic of order $q$, 
+        $$|\aut{H}| = \phi(q) = q-1$$
+        Hence,
+        $$|K| \mid |\aut{H}| \implies p \mid q-1$$
+        which contradicts our assumption. So $Z(G) \not = 1$ and thus $G$ is abelian by case 1.
+    \end{description}
+\end{example}
