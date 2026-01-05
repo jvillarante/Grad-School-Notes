@@ -1,0 +1,131 @@
+\begin{definition}[$p$-group/$p$-subgroup, Sylow $p$-subgroup] \leavevmode \\
+    Let $G$ be a group and $p$ be a prime.
+    \begin{enumerate}
+        \item A group of order $p^\alpha$ with $\alpha > 0$ is called a $p$-group. Subgroups of $G$ are called $p$-subgroups.
+        \item If $G$ is a group of order $p^\alpha \cdot m$ where $p \nmid m$, then a subgroup of order $p^\alpha$ is a Sylow $p$-subgroup of $G$.
+        \item The set of Sylow $p$-subgroups of $G$ will be denoted 
+        $$\syl{p}{G}$$
+        and the number of Sylow $p$-subgroups is denoted $n_p(G)$ (or $n_p$ if $G$ is understood in context).
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let $|G| = 7^4 \cdot 11^{27}$ and $N \leq G$.
+    \begin{enumerate}
+        \item If $|N| = 11^{21}$, then $N$ is an $11$-subgroup.
+        \item If $|N| if 11^{27},$ then $N$ is a Sylow $11$-subgroup.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}[Sylow's Theorem] \leavevmode \\
+    \label{Sylow's Theorem}
+    Let $G$ be a group of order $p^\alpha \cdot m$ where $p \nmid m$ and $p$ is prime.
+    \begin{enumerate}
+        \item $\syl{p}{G} \not = \emptyset$ (Sylow $p$-subgroups exists)
+        \item If $P$ is a Sylow $p$-subgroup of $G$ and $Q$ is any $p$-subgroups of $G$ then
+        $$\exists g \in G \st Q \leq gPg^{-1}$$
+        In particular, any two Sylow $p$-subgroups are conjugate.
+        \item $n_p(G) = 1 + kp$ for some $k \in \Z$. That is, 
+        $$n_p \equiv 1 \mod p$$
+        Furthermore,
+        $$n_p = \indx{G}{N_C(P)}$$
+        That is,
+        $$\forall P \in \syl{p}{G} ~~ n_p \mid m$$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    We prove part 1 here.
+    \begin{enumerate}
+        \item Proceed by induction on $|G|$.
+        \begin{description}
+            \item[Base Case: ] If $|G| = 1$, then there is nothing to prove.
+            \item[Inductive Step: ] Suppose inductively that Sylow $p$-subgroups exists for orders of less than $n = |G| \in \N$.
+            \begin{description}
+                \item[Case 1: ] Suppose $p \mid |Z(G)|$. Then by Cauchy's theorem for abelian groups, there exists a subgroup $N$ of order $p$. Since $N \subseteq Z(G)$, $N \nsubgroup G.$ Let $\overline{G} = G/N$ so that 
+                \begin{align*}
+                    |\overline{G}| &= \indx{G}{N} \\
+                    &= \dfrac{|G|}{|N|} \\ 
+                    &= \dfrac{p^\alpha \cdot m}{p} \\
+                    &= p^{\alpha - 1} \cdot m
+                \end{align*} 
+                By our inductive hypothesis, $\overline{G}$ has a Sylow $p$-subgroup $\overline{P}$ of order $p^{\alpha - 1}$. Letting $P$ be the subgroup of $G$ containing $N$ such that $P/N = \overline{P}$ (by the fourth isomorphism theorem), we have
+                $$\overline{P} = |P|/|N| \implies |\overline{P}| \cdot |N| = |P| \implies p^{\alpha - 1} \cdot p = p^\alpha = |P|$$
+                so $P$ is a Sylow $p$-subgroup of $G$.
+                \item[Case 2: ] Suppose $p \nmid |Z(G)|$. We let $g_1,...,g_r$ be representatives of the conjugacy classes not in $Z(G)$. By the class equation,
+                $$|G| = |Z(G)| + \sum_{i=1}^r \indx{G}{C_G(g_i)}$$
+            If $p \mid \indx{G}{C_G(g_i)} ~\forall i$, then $p$ divides $|Z(G)|$, a contradiction. Thus for some $i$,
+            \begin{align*}
+                p \nmid \indx{G}{C_G(g_i)} &\implies p \nmid \dfrac{|G|}{|C_G(g_i)|} \\ 
+                &\implies p^\alpha \mid |C_G(g_i)| \text{ for this particular $g_i$}
+            \end{align*}
+            Let $H = C_G(g_i)$ for this $i$. So $|C_G(g_i)| = p^\alpha \cdot k$ where $p \nmid k$. Since $g_i \not \in Z(G)$, $H=C_G(g_i) < G \implies |H| < |G|$. Hence $H$ has a Sylow $p$-subgroup of order $p^\alpha$. Since $H < G,$ this is a Sylow $p$-subgroup of $G$, compleing the induction.
+            \end{description}  
+        \end{description}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+To prove Sylow's theorem parts 2 and 3, we will need the following lemma.
+
+\begin{lemma}
+    Let $P\in \syl{p}{G}$. If $Q$ is any $p$-subgroup of $G$, then 
+    $$Q\cap N_G(P) = Q\cap P$$
+\end{lemma}
+
+\begin{proof}
+    $(\implies)$ Let $H= Q \cap N_G(P)$ and let $h \in H$. Then $h \in Q$ and $ \in N_G(P)$. We need to show $h \in P.$ We do this by showing $PH$ is a Sylow $p$-subgroup of $G$ (which contains $P$). This will imply that 
+    \begin{align*}
+        |PH| = |P| &\implies PH = P \\
+        &\implies H \leq PH \\ 
+        &\implies h \in PH \\
+        &\implies h \in P \tag{$*$}
+    \end{align*}
+    Since $H \leq N_G(P)$, we know $PH \leq G$. It follows that
+    $$|PH| = \dfrac{|P| \cdot |H|}{|P \cap H|}$$
+    Since $P, H$ and $P\cap H$ are subgroups of $G$, $PH$ is a subgroup of $G$. That is, $|PH| = p^\beta$ since $|PH| \mid |G| = p^\alpha \cdot m, ~p \nmid m, ~ \beta \leq \alpha,$ and since $P \leq PH$, $|p| \mid |PH|$. This implies 
+    $$p^\alpha \mid p^beta$$
+    so $\alpha \leq \beta$. Thus $\alpha = \beta$ and we have that $PH$ is a Sylow $p$-subgroup of $G$ ($|PH| = p^\alpha  = |P|$). Following our chain of implications from $(*)$ shows $h \in P$. Hence, $Q \cap N_G(P) \subseteq Q \cap P$. \\
+    $(\impliedby)$ Let $l \in Q\cap P$. Then $l \in Q$ and $l \in P$. Our goal is to show $l \in N_G(P)$. Note that the mapping
+    $$n \mapsto lnl^{-1} \text{ for } n \in P$$
+    is a bijection from $P \to P$. Hence $P = lPl^{-1}.$ That is, $l \in N_G(P)$. Therefore, $Q \cap N_G(P) = Q\cap P$.
+    \qed
+\end{proof}
+
+\begin{example}
+    Suppose $|G| = 5 \cdot 7$. Let's see if we can determine $n_5$. From Sylow's theorem part 3, we know
+    $$n_5 \equiv 1 \mod 5$$
+    and we also know $n_5 \mid 7.$ So,
+    $$n_5 \in \set{1,7}$$
+    But $7 \equiv 2 \mod 5$, so it's the case that $n_5 = 1$ (if there is only 1 Sylow $p$-subgroup in $G$, then the Sylow $p$-subgroup is normal). \\
+    How many Sylow $7$-subgroups are there? 
+    $$n_7 \equiv 1 \mod 7 \text{ and } n_7 \mid 5$$
+    so $n_7 \in \set{1, 5}.$ But
+    $$5 \equiv 5 \mod 7$$
+    so $n_7 = 1$. Thus $G$ has one Sylow $5$-subgroup, $P_5$, and one sylow $7$-subgroup, $P_7$, both are normal. 
+    $$P_5P_7 \leq G, ~|P_5P_7| = \dfrac{|P_5| \cdot |P_7|}{|P_5 \cap P_7|} = \dfrac{5 \cdot 7}{1}$$
+    Since $P_5$ and $P_7$ are both normal with $P_5 \cap P_7 = 1$, then $G$ is abelian:
+    \begin{align*}
+        x,y \in G &\implies x = a_1b_1, ~y = a_2b_2 \text{ where } a_i \in P_5, b_i \in P_7 \\
+        &\implies xy = a_1b_1a_2b_2 = a_2b_2a_1b_1 = yx
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Let $|G| = 5 \cdot 11^2$. Then
+    \begin{align*}
+        \begin{rcases*}
+            n_{11} \equiv 1 \mod 11 \\
+            n_{11} \mid 5
+        \end{rcases*} \implies n_{11} \in \set{1, 5}
+    \end{align*}
+    and $5 \not \equiv 1 \mod 11$, so $n_{11} = 1$. Thus we have one Sylow $11$-subgroup, $P_11$, and so it is normal. Similarly,
+    \begin{align*}
+        \begin{rcases*}
+            n_5 \equiv 1 \mod 5 \\
+            n_5 \mid 11^2
+        \end{rcases*} \implies n_5 \in \set{1, 11, 11^2}
+    \end{align*}
+    Since $11 \equiv 1 \mod 5$ and $11^2 \equiv 1 \mod 5$, we could have $1, 11,$ or $11^2 = 121$ Sylow $5$-subgroups.
+\end{example}
+
