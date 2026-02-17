@@ -1,0 +1,184 @@
+We move on from studying groups to studying rings and fields. First, lets compare some analogues between groups and rings.
+
+\begin{center}
+    \begin{multicols}{2}
+        \begin{description}
+            \item[Groups: ] \leavevmode \\
+            \begin{enumerate}[(i)]
+                \item 1 operation
+                \item Subgroups
+                \item Normal groups $N$
+                \item Quotient groups $G/N$
+                \item Morphisms of groups
+            \end{enumerate}
+            \item[Rings: ] \leavevmode \\
+            \begin{enumerate}[(i)]
+                \item 2 operations
+                \item Subrings
+                \item Ideals $I$
+                \item Quotient rings $R/I$
+                \item Morphisms of rings
+            \end{enumerate}
+        \end{description}
+    \end{multicols}
+\end{center}
+
+We build the theory of rings and fields in a similar way to the theory of groups. An important type of ring we wish to study is the ring of polynomials with coefficients in a field. Our goal is to be able to study Galois Theory and make a connection between automorphisms of fields and their subfields. \newline
+
+Before we get started, consider the following example.
+
+\begin{example}
+    Let $R$ be a set with operations $+$ and $\times$ such that distribution holds for all elements in the set:
+    \begin{align*}
+        \forall a,b,c \in R ~~a \times (b+c) &= (a\times b) + (a\times c) \\
+        (a+b)\times c &= (a\times c) +(b \times c)
+    \end{align*}
+    Further assume $+$ and $\times$ are associative and that there exists $1 \in R \st 1\times a = a \times 1 = a$ for all $a \in R$. Let $-a$ and $-b$ be the additive inverses of $a,b \in R$. Show that 
+    $$a+b = b+a$$
+\end{example}
+
+\begin{proof}
+    \begin{align*}
+        (a+b)\times(1+1) &= (a+b)\times 1 + (a+b)\times 1 \\
+        &= a\times 1 + b\times 1 + a\times 1 + b\times 1 \\
+        &= a+b+a+b \tag{I}
+    \end{align*}
+    \begin{align*}
+        (a+b)\times(1+1) &= a\times(1+1) + b\times(1+1) \\ 
+        &= a\times 1  + a\times 1 + b\times 1 + b\times 1 \\
+        &= a+a+b+b \tag{II}
+    \end{align*}
+    From (I) and (II), we have 
+    \begin{align*}
+        a+b+a+b &= a+a+b+b \\
+        \implies a + b+a+b -b &= a+a+b+b -b \\
+        \implies -a +a+b + a + 0 &= -a +a +a +b + 0 \\
+        \implies 0 +b + a &= 0 + a + b \\
+        \implies b+a &= a + b
+    \end{align*}
+    \qed
+\end{proof}
+
+This example motivates the following definition.
+
+\begin{definition}[Ring] \leavevmode \\
+    A ring is a set $R$ together with two binary operations $+$ (called addition) and $\times$ (called multiplication) satisfying the following:
+    \begin{enumerate}[(i)]
+        \item $(R, +)$ is an abelian group
+        \item Multiplication is associative $\forall a,b,c\in R$
+        $$(a\times b) \times c = a \times (b \times c)$$
+        \item Distributive laws hold $\forall a,b,c\in R$
+        \begin{align*}
+            \text{Left distribution: $a\times (b\times c) = (a \times b) + (a \times c)$} \\
+            \text{Right distribution: $(a + b) \times c = (a\times c)+(b\times c)$}
+        \end{align*}
+    \end{enumerate}
+    If multiplication is commutative, we call $R$ a commutative ring. The ring $R$ is said to have an identity denoted $1$ (or contains a unity element) if 
+    $$1\times a = a \times 1 = a ~~\forall a \in R$$
+    In this case, $R$ is called a ring with unity.
+\end{definition}
+\begin{notation}
+    $a\times b$ will be written as $ab$. The additive identity of $(R, +)$ will be denoted $0$. The additive inverse of an element $a \in R$ will be denoted $-a$.
+\end{notation}
+
+Notice that our definition for a ring does not require the existence of a multiplicative inverse for each element in the ring. The addition of multiplicative inverses leads to more specific types of rings, and with the addition of multiplicative commutativity, we get fields.
+
+\begin{definition}[Division Ring, Field] \leavevmode \\
+    A ring $R$ with unity $1$ (where $1 \neq 0$) is called a division ring if every $a\in R$ where $a \neq 0$ has an element $b\in R$ such that $ab = ba = 1$. That is, if all nonzero elements have a multiplicative inverse. If $R$ is also commutative, then $R$ is called a field.
+\end{definition}
+
+\begin{example}
+    \begin{enumerate}
+        \item Trivial rings: Given any group $(G, *)$ if we take $*$ as addition and define multiplication as $ab = 0 ~~\forall a,b \in G,$ then this forms a ring.
+        \item If $R = \set{0}$, this is called the zero ring with multiplication and addition defined as $0\cdot 0 = 0$ and $0 + 0 = 0$. Note that this is the only ring where $1=0$. Show that if $1=0$, then $R = \set{0}$.
+        \begin{proof}
+            Let $a\in R.$
+            \begin{align*}
+                a\cdot 0  = a (0+0) &= a\cdot 0 + a\cdot 0 \\
+                \implies a \cdot 0 &= a\cdot 0 + a\cdot 0 \\ 
+                \implies 0 &= a\cdot 0 = a\cdot 1 = a
+            \end{align*}
+            \qed
+        \end{proof}
+        Many theorems will state $1\neq 0$ instead of $R \neq 0$.
+        \item $\Z$ with the usual multiplication and addition. Note that in $\Z / \set{0}$ we do not have a group with respect to multiplication.
+        \item $\Q$ is a ring with the usual operations and $\Q/\set{0}$ is a group with respect to multiplication, that is $\Q$ is a field (multiplication in $\Q$ is commutative). $\C$ and $\R$ are fields as well.
+        \item $\Z/n\Z$ is a commutative ring with unity $\bar{1}$ ($\Z/n\Z = \set{\bar{0}, \bar{1}, ..., \bar{n-1}}$) where the multiplication is defined $\bar{a}\cdot \bar{b} = \bar{ab}$.
+        \item The quaternians: recall the imaginary units $i^2 = j^2 = k^2 = ijk = -1$. Looking at the set $\h = \set{a+bi+cj+dk : a,b,c,d \in \R}$ where addition is defined by 
+        $$(a+bi+cj+dk) + (a'+b'i+c'j+d'k) = (a+a')+(b+b')i + (c+c')j + (d+d')k$$
+        and multiplication is defined by distribution
+        \begin{align*}
+            &(a+bi+cj+dk)(a'+b'i+c'j+d'k) \\= &aa' -bb' -cc'-dd'+ (ab'+ba'+cd'-dc')i+(a'c-bd'+ca'+db')j+(ad'+bc'-cb'+da')k
+        \end{align*}
+        Then $\h$ forms a ring. We see that, for $x \in \h$,
+        \begin{align*}
+            x\bar{x} &= (a+bi+cj+dk)(a-bi-cj-dk) = a^2+b^2+c^2+d^2 \\
+            x^{-1} &= \dfrac{\bar{x}}{x\bar{x}} = \dfrac{a-bi-cj-dk}{a^2+b^2+c^2+d^2}
+        \end{align*}
+        each analogous to the complex numbers. Every $x \neq 0$ in $\h$ has a multiplicative inverse. However, multiplication does not commute in all of $\h$ ($ik = -j \neq j = ki$), so $\h$ is a division ring but not a field.
+        
+        \item Let $X$ be a nonempty set and $A$ be any ring. The set of all mappings $f: X\to A$ where $(f+g)(x)= f(x) + g(x)$ and $(fg)(x) = f(x)g(x)$ forms a ring.
+    \end{enumerate}
+\end{example}
+
+Since rings add an additional operation to a group structure, we have new properties that arise from the interaction of the two operations.
+
+\begin{proposition}
+    Let $R$ be a ring.
+    \begin{enumerate}[(i)]
+        \item $0\cdot a = a\cdot 0 = 0 ~~\forall a,b \in R$
+        \item $(-a)b = a(-b) = -(ab) ~~\forall a,b \in R$
+        \item $(-a)(-b) = ab ~~ \forall a,b \in R$
+        \item If $R$ has identity $1$, then that identity is unique and 
+        $$-a = (-1)a ~~\forall a \in R$$
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item Given $a \in R$, we have 
+        \begin{align*}
+            a\cdot 0 = a(0+0) &= a\cdot 0 + a\cdot 0 \\
+            \implies 0 &= a\cdot 0
+        \end{align*}
+        Similarly,
+        \begin{align*}
+            0\cdot a = (0+0)a &= 0\cdot a + 0\cdot a \\
+            \implies 0 &= 0\cdot a
+        \end{align*}
+
+        \item Given $a,b \in R$, we have 
+        \begin{align*}
+            ab + (-a)b &= (a+-a)b \\
+            &= 0 \cdot b \\
+            &= 0
+            \implies -(ab) &= (-a)b
+        \end{align*}
+        $-(ab) = a(-b)$ is analogous.
+
+        \item Given $a,b \in R$, we have 
+        \begin{align*}
+            -(ab) + (-a)(-b) &= (-a)b +(-a)(-b) \\
+            &= (-a)(b+-b) \\
+            &=(-a) \cdot 0 \\
+            &= 0 \\
+            \implies -\left(-(ab)\right) &= (-a)(-b) \\
+            \implies ab &= (-a)(-b)
+        \end{align*}
+        \item Let $1$ and $e$ both be identity elements in $R$. Then 
+        \begin{align*}
+            \begin{rcases*}
+                1\cdot e = e \\
+                1\cdot e = 1
+            \end{rcases*} \implies 1 = e
+        \end{align*}
+        Thus the identity element of $R$ is unique. Let $a\in R$ be given. We have 
+        \begin{align*}
+            0 &= (1+(-1))a \\
+            &=1 \cdot a + (-1)\cdot a \\
+            &= a + (-1)a \\
+            \implies -a &= (-1)a
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{proof}
