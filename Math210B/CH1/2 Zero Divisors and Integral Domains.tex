@@ -1,0 +1,156 @@
+This semester we are adding multiplicative structure and we hope it is a good structure, but sometimes it is not. Consider the statement $3\cdot 4 = 0$. Is this a true statement? In $\R$, no, it is not. However, if we consider the ring $\Z/6\Z$, then the statement is true. We call this blend of bad multiplicative behavior zero divisors.
+
+\begin{definition}[Zero Divisor] \leavevmode \\
+    Let $R$ be a ring. A nonzero element $a\in R$ is called a zero divisor if there exists a nonzero $b\in R$ such that $ab = 0$ or $ba = 0$.
+\end{definition}
+
+\begin{example}
+    Consider the matrices in $M_2(\R)$. Let $A = \begin{bmatrix}
+        1 & -1 \\
+        0 & 0
+    \end{bmatrix}, B = \begin{bmatrix}
+        1 & 0 \\
+        1 & 0
+    \end{bmatrix}$. Then 
+    \begin{align*}
+        AB &= \begin{bmatrix}
+            1 & -1 \\
+            0 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & 0 \\
+            1 & 0
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & 0
+        \end{bmatrix} \\
+        BA &= \begin{bmatrix}
+            1 & 0 \\
+            1 & 0
+        \end{bmatrix}
+        \begin{bmatrix}
+            1 & -1 \\
+            0 & 0
+        \end{bmatrix} = 
+        \begin{bmatrix}
+            1 & -1 \\
+            1 & -1
+        \end{bmatrix}
+    \end{align*}
+\end{example}
+
+We now introduce the notion of multiplicative inverses. For a ring to be field, every element needs to have a multiplicative inverse. However, in some rings we might have some elements that have inverses but not all. We call these elements units.
+
+\begin{definition}[Unit] \leavevmode \\
+    Assume a ring $R$ has identity $1 \neq 0$. An element $a \in R$ is called a unit in $R$ if there exists an element $u\in R \st uv = 1 = vu$. The set of all units in $R$ is denoted by $R^\times$.
+\end{definition}
+
+\begin{example}
+    $\Z/6\Z = \set{\bar{0}, \bar{1}, \bar{2}, \bar{3}, \bar{4}, \bar{5}}$, $\Z/9\Z = \set{\bar{0}, \bar{1}, \bar{2}, \bar{3}, \bar{4}, \bar{5}, \bar{6},\bar{7},\bar{8}}$. \\Here, $\left(\Z/6\Z\right)^\times = \set{\bar{1}, \bar{5}}$ and $\left(\Z/9\Z\right)^\times = \set{\bar{1}, \bar{2}, \bar{4}, \bar{5}, \bar{7}, \bar{8}}$.
+\end{example}
+
+Concerning rings of the form $\Z/n\Z$ for $n \geq 0$, we have the following result regarding units.
+
+\begin{proposition}
+    $\bar{a} \in \Z/n\Z$ is a unit if and only if $\gcd(a,n) = 1$.
+\end{proposition}
+
+\begin{proof}
+    ($\implies$) Suppose $\bar{a}$ is a unit. Then there exists $\bar{b} \in R \st \bar{a}\bar{b} = \bar{1}$. This means that $ab \equiv 1 (\mod n)$, so $n \mid ab - 1$. Thus there exists some $y \in \Z \st ab - 1 = ny$. More specifically, $ab - ny = 1$. Thus any common divisor $d$ of $a$ and $n$ must also divide $1$, so $d = 1$. Hence $\gcd(a,n) = 1$. \\
+    ($\impliedby$) Suppose $\gcd(a,n) = 1$. By Bézout’s identity, there exist $x,y \in \Z$ such that $ax + ny = 1$. Thus $ax \equiv 1 (\mod n)$, so $\bar{a}\bar{x} = \bar{1}$. Hence, $\bar{a}$ is a unit.
+    \qed
+\end{proof}
+
+\begin{remark}
+    A consequence of the above proposition: $\Z/p\Z$ where $p$ is prime is a field as $\left(\Z/p\Z\right)^times = \set{\bar{1}, \bar{2}, ..., \bar{p-1}}$.
+\end{remark}
+
+\begin{remark}
+    Any nonzero element $\bar{a}$ of $\Z/n\Z$ with $\gcd(a,n) > 1$ is a zero divisor.
+\end{remark} 
+
+\begin{example}
+    In $Z/12\Z$, $\bar{8}$ is not relatively prime to $12$ and $\bar{8}\bar{3}=\bar{24} = \bar{0}$.
+\end{example}
+
+In general, given $\bar{a}\in \Z/n\Z$ with $\bar{a} \neq 0$, we have that
+$$\bar{a}\overline{\left(\dfrac{n}{\gcd(a,n)}\right)} = \dfrac{\bar{a}}{\gcd(a,n)}\cdot \bar{n}=\bar{0}$$
+as $\frac{a}{\gcd(a,n)}\in \Z$. Further, since $\gcd(a,n) > 1$, we have that 
+$$0 < \frac{n}{\gcd(a,n)}<n$$
+
+\begin{proposition}
+    Zero divisors can never be units.
+\end{proposition}
+
+\begin{proof}
+    Let $R$ be a ring. Suppose that $a\in R$ is a unit and a zero divisor. Since $a$ is a unit,
+    $$\exists b \in R \st ab = 1 = ba$$
+    Since $a$ is a zero divisor,
+    "$$\exists c \in R \st c \neq 0 \text{ and } ac = 0 \text { or } ca = 0$$
+    If $ac = 0$, then 
+    \begin{align*}
+        b(ac) & = b \cdot 0 \\
+        \implies (ba)c &= 0 \\
+        \implies 1 \cdot c &= 0 \\
+        \implies c &= 0
+    \end{align*}
+    a contradiction. The case for $ca = 0$ is analogous.
+    \qed
+\end{proof}
+
+It follows that fields contain no zero divisors. We now introduce the notion of an integral domain which is a ring with no zero divisors.
+
+\begin{definition}[Integral Domain] \leavevmode \\
+    A commutative ring with identity $1 \neq 0$ si called an integral domain if it has no zero divisors.
+\end{definition}
+
+\begin{proposition}
+    Let $R$ be a ring and assume $a,b,c\in R$ with $a$ not a zero divisor. If $ab = ac$, then $b = c$ or $a = 0$.
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        ab &= ac \\
+        \implies ab - ac &= 0 \\
+        \implies a(b-c) &= 0
+    \end{align*}
+    $a$ is not a zero divisor, so either $a = 0$ or $a \neq 0$. If $a = 0$, then we are done. If $a \neq 0$, then $b-c = 0$ which implies $b = c$.
+    \qed
+\end{proof}
+
+The proposition above applies for any integral domain. From this proposition, we can derive the following corollary.
+
+\begin{corollary}
+    Any finite integral domain is a field.
+\end{corollary}
+
+\begin{proof}
+    Let $R$ be a finite integral domain and let $a \in R$ such that $a \neq 0$. Define the mapping
+    \begin{align*}
+        f_a &: R \to R \\
+        f_a(x) = ax ~~\forall x \in R
+    \end{align*}
+    By the previous proposition, $f_a$ is injective and since $R$ is finite $f_a$ is a bijection. In particular,
+    $$\exists b \in R \st f_a(b) = ab = 1$$
+    Therefore $a$ is a unit and since $a$ was an arbitrary nonzero element of $R$, $R$ is a field.
+    \qed
+\end{proof}
+
+In group theory, an important structure of study was the subgroup. For rings, we have an analogous structure called a subring.
+
+\begin{definition}[Subring] \leavevmode \\
+    A subring of a ring $R$ is a subgroup of $R$ with respect to addition which is closed under multiplication.
+\end{definition}
+
+\begin{proposition}[Subring Check] \leavevmode \\
+    Let $H \subseteq R$ where $R$ is a ring.
+    \begin{enumerate}
+        \item Subgroup check:
+        \begin{enumerate}
+            \item Show $H$ is nonempty (e.g., show $0 \in H$)
+            \item Show $\forall x,y \in H ~~x-y \in H$
+        \end{enumerate}
+        \item Closure under multiplication: $\forall x,y \in H ~~xy \in H$
+    \end{enumerate}
+\end{proposition}
