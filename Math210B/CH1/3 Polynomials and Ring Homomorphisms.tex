@@ -1,0 +1,128 @@
+One of the big motivations for studying rings is to understand polynomials. Polynomials are a fundamental object in algebra and in this section we will define ring homomorphisms to help us understand the structure of polynomials.
+\begin{definition}[Polynomial]\leavevmode \\
+    Let $R$ be a ring with unity $1$. Let $x$ be an indeterminate.
+    \begin{enumerate}[(i)]
+        \item The sum
+        $$\sum_{i=0}^n a_ix^i = a_0+a_1x+a_2x^2+...+a_nx^n = f(x)$$
+        with $n\geq 0$ and each $a_i\in R$ is called a polynomial in $x$ with coefficients in $R$.
+        \item If $a_n \neq 0$, then $\deg(f(x)) = n$. The zero polynomial has all $a_i = 0$, and the degree of the zero polynomial is undefined. The zero polynomial is denoted by $0$.
+        \item The collection of all polynomials with coefficients in $R$ is denoted $R[x]$, and is a ring with respect to the opperations
+        $$\left(\sum_{i=0}^n a_ix^i\right) + \left(\sum_{i=0}^n b_ix^i\right) = \sum_{i=0}^n (a_i+b_i)x^i$$
+        and
+        $$\left(\sum_{i=0}^n a_ix^i\right) \cdot \left(\sum_{i=0}^n b_ix^i\right)=a_0b_0 + (a_0b_1+b_0a_1)x + (a_0b_2+a_1b_1 + a_2b_0)x^2 + ... + (a_0b_n + a_1b_{n-1}+...+a_nb_0)x^n$$
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    When $R = \Z/3\Z$ (the polynomial ring $\Z/3\Z[x]$)
+    Let $p(x) = x^2 + 2x + 1$ and $q(x) = x^3 + x + 2$. Then
+    $$p(x) + q(x) = x^3 + x^2 + 3x + 3 = x^3 + x^2$$
+    and 
+    $$p(x)q(x) = x^5 + 2x^4 + 2x^3 + 4x^2 + 5x + 2$$
+\end{example}
+
+\begin{example}
+    In $\Z/2\Z[x]$
+    $$x^2+1 = (x+1)(x+1)$$
+\end{example}
+
+Ring homomorphisms are defined in a similar way to group homomorphisms.
+
+\begin{definition}[Ring Homomorphism] \leavevmode \\
+    Let $R$ and $S$ be rings.
+    \begin{enumerate}[(i)]
+        \item A ring homormorphism is a mapping $\phi: R \to S$ such that for all $a, b \in R$
+        \begin{enumerate}
+            \item $\phi(a+b) = \phi(a) + \phi(b)$
+            \item $\phi(ab) = \phi(a)\phi(b)$
+        \end{enumerate}
+        \item The kernel of $\phi$ is defined as 
+        $$\ker\phi = \set{x \in R : \phi(x) = 0_S}$$
+        \item A bijective ring homomorphism is an isomorphism.
+    \end{enumerate}
+\end{definition}
+
+\begin{example}
+    Let $\phi: \Z \to \Z/2\Z$ be defined by 
+    $$\phi(x)=\begin{cases*}
+        0 & if $x$ is even \\
+        1 & if $x$ is odd
+    \end{cases*}$$
+    \begin{description}
+        \item[Case 1: ] $x$ and $y$ are both even.
+        $$\phi(x+y) = 0 = \phi(x) + \phi(y), \phi(xy) = 0 = 0\cdot 0 = \phi(x)\phi(y)$$
+        \item[Case 2: ]$x$ and $y$ are both odd. 
+        $$\phi(x+y) = 0 = 1 + 1 = \phi(x) + \phi(y), \phi(xy) = 1 = 1\cdot 1 = \phi(x)\phi(y)$$
+        \item[Case 3: ]One of $x$ and $y$ is even and the other is odd. \\ Without loss of generality, let $x$ be even and $y$ be odd.
+        $$\phi(x+y) = 1 = 0 + 1 = \phi(x) +\phi(y), \phi(xy) = 0 = 0\cdot 1 = \phi(x)\phi(y)$$
+    \end{description}
+\end{example}
+
+We have two notable properties involving ring homomorphisms.
+
+\begin{proposition}
+    Let $R$ and $S$ be rings and let $\phi: R \to S$ be a ring homomorphism.
+    \begin{enumerate}[(i)]
+        \item $\phi(R)$ is a subring of $S$.
+        \item $\ker\phi$ is a subring of $R$. Furthermore, if $\alpha \in \ker \phi$ and $r \in R$, the $r\alpha \in \ker \phi$ and $\alpha r \in \ker \phi$. That is, $\ker \phi$ is closed under the entire ring multiplication.
+    \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+    \begin{enumerate}[(i)]
+        \item We know that $\phi(R)$ is an additive subgroup of $S$ from last semester. It remains to show that if $s_1,s_2 \in \phi(R)$, then $s_1s_2 \in \phi(R)$. Let $s_1, s_2 \in \phi(R)$ be given. Then 
+        $$\exists r_1,r_2 \in R \st s_1 = \phi(r_1) \text{ and } s_2 = \phi(r_2)$$
+        Then 
+        $$s_1s_2 = \phi(r_1)\phi(r_2) = \phi(r_1r_2) \in \phi(R)$$
+        as desired.
+        
+        \item We know that $\ker \phi$ is an additive subgroup of $R$ from last semester. It suffices to show that if $r \in R$ and $\alpha \in \ker \phi$, then $r\alpha, \alpha r \in \ker \phi$. Let $r \in R$ and $\alpha \in \ker \phi$ be given. We have 
+        \begin{align*}
+            \phi(r\alpha) &= \phi(r)\phi(\alpha) \\
+            &= \phi(r) \cdot 0_S \\
+            &= 0_S \\
+            \implies r\alpha &\in \ker \phi
+        \end{align*}
+        Similarly,
+        \begin{align*}
+            \phi(\alpha r) &= \phi(\alpha)\phi(r) \\
+            &= 0_S \cdot \phi(r) \\
+            &= 0_S \\
+            \implies \alpha r &\in \ker \phi
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+The kernel of a ring homomorphism is a special type of subring. In particular, the kernel of a ring homomorphism is closed under multiplication by any element in the ring. We call this the absorbative property it allows us to define coset multiplication for rings. \newline \indent Let $I$ be the kernel of a ring homomorphism $\phi: R \to S$. We know that the additive left cosets of $I$ form a group. Because every subgroup of an abelian group is normal, the definition of coset addition is well-defined:
+$$(\alpha + I)+ (\beta +I) = (\alpha + \beta) + I ~~\forall \alpha, \beta \in R$$
+We aim to show that the absorbative property of $\ker \phi  = I$ makes coset multiplication well-defined. We define coset multiplication as
+$$(\alpha + I)(\beta +I) = (\alpha \beta) + I$$
+Suppose that $\alpha + I = \alpha' + I$ and $\beta + I = \beta' + I$. We want to show that 
+$$(\alpha \beta) + I = (\alpha' \beta') + I$$
+Note that 
+\begin{align*}
+    \alpha + I = \alpha' + I &\implies \alpha = \alpha' + x \text{ where } x \in I \\
+    \beta + I = \beta' + I &\implies \beta = \beta' + y \text{ where } y \in I
+\end{align*}
+Then 
+$$\alpha \beta = (\alpha' + x)(\beta' + y) = \alpha'\beta' + \alpha'y + x\beta' + xy$$
+$\alpha'y, x\beta', xy \in I$, so $\alpha \beta = \alpha'\beta' + z$ where $z = \alpha'y + x\beta' + xy \in I$. Thus $\alpha \beta - \alpha'\beta' \in I.$ Therefore, $(\alpha \beta) + I = (\alpha' \beta') + I$ and so coset multiplication is well-defined. We have now motivated the following definition.
+
+\begin{definition}[Ideals] \leavevmode \\
+    Let $R$ be a ring and let $I \subseteq R$. Let $r \in R$.
+    \begin{enumerate}[(i)]
+        \item $rI = \set{rx : x \in I}$ and $Ir = \set{xr : x \in I}$
+        \item $I$ is a left ideal of $R$ if 
+        \begin{enumerate}
+            \item $I$ is a subring of $R$
+            \item $\forall r \in R ~~rI \subseteq I$
+        \end{enumerate}
+        \item $I$ is a right ideal of $R$ if 
+        \begin{enumerate}
+            \item $I$ is a subring of $R$
+            \item $\forall r \in R ~~Ir \subseteq I$
+        \end{enumerate}
+        \item If $I$ is both a left and right ideal of $R$, then $I$ is called an ideal of $R$.
+    \end{enumerate}
+\end{definition}
