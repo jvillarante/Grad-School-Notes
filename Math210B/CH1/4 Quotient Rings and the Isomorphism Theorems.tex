@@ -1,0 +1,117 @@
+Now that we have defined ideals, we can use them to construct new rings called quotient rings, similar to how we used normal subgroups to construct quotient groups. We will then use ideals and quotient rings to discuss isomorphisms between ring structures. First, given a ring $R$ and an ideal $I$ of $R$, we will show that the set $R/I$ has any meaning.
+
+\begin{proposition}
+    Let $R$ be a ring and $I$ be an ideal of $R$. Then $R/I$ is a ring under the binary operations 
+    \begin{align*}
+        \forall r, s \in I ~~(r+I) + (s+I) &= (r+s) + I \\
+        \forall r, s \in I ~~(r+I)(s+I) &= (rs) + I
+    \end{align*}
+\end{proposition}
+
+\begin{proof}
+    Note that we proved multiplication is well-defined and we also know the group structure exists from last semester. Distribution and associativity in $R/I$ follow from distribution and associativity in $R$.
+    \qed
+\end{proof}
+
+\begin{definition}[Quotient Ring] \leavevmode \\ 
+    When $I$ is an ideal of a ring $R$, the ring $R/I$ is called the quotient ring of $R$ by $I$.
+\end{definition}
+
+We can now establish the isormophism theorems for rings.
+
+\begin{theorem}[The First Isomorphism Theorem for Rings] \leavevmode \\
+    \begin{enumerate}[(i)]
+        \item If $\phi: R \to S$ is a ring homomorphism, then $\ker \phi$ is an ideal of $R$, $\phi(R)$ is a subring of $S$, and 
+        $$\dfrac{R}{\ker\phi} \cong \phi(R)$$
+        \item If $I$ is any ideal of $R$, then the map 
+        \begin{align*}
+            \pi: R &\to R/I \\
+            \pi(r) &= r+I
+        \end{align*}
+        is a surjective ring homomorphism with kernel $I$. This is called the natural projection of $R$ onto $R/I$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    Last semester we established the mapping
+    \begin{align*}
+        \mu: R/\ker\phi &\to \phi(R) \\
+        \mu(r+K) &= \phi(r)
+    \end{align*}
+    as a well-defined bijection which preserved the group operation (in this case, $+$). It remains to show that $\mu$ preserves coset multiplication.
+    \begin{align*}
+        \mu\left((r+K)(s+K)\right) &= \mu(rs + K) \\
+        &= \phi(rs) \\
+        &= \phi(r)\phi(s) \\
+        &= \mu(r+K)\mu(s+K)
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{example}
+    Let $R$ be a ring.
+    \begin{enumerate}[(i)]
+        \item The trivial ideal is $0$.
+        \item $R$ is an ideal of $R$.
+        \item If $I$ is an ideal of $R$ where $I \neq R$, then $I$ is a proper ideal of $R$.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    Last semester (when studying cyclic groups) we proved the only subgroups of $\Z$ were of the form $n\Z$ for some $n\geq 0$. This tells us that all the ideals of $\Z$ must be of the same form. It is a straightforward exercise to show that $n\Z$ ($n \geq 0$) is an ideal of $\Z$:
+    \begin{align*}
+        x \in \Z, y \in n\Z \implies y = nz ~\text{ for $z \in \Z$ and }xy &= x(nz) = n(xz) \in n\Z \\
+        yx &= (nz)x = n(zx) \in n\Z
+    \end{align*}
+    In this setting,
+    \begin{align*}
+        \pi: \Z &\to \Z/n\Z \\
+        \pi(x) &= \bar{x} \text{ (reduction modulo $n$)} \\
+        \Z/5\Z &~~ 7 = 2
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Consider $I = \set{p(x)\in \Z[x] : p(x) = 0 \text{ or whose terms are of at least degree $2$}}$. Does $I$ have the absorbative property of an ideal? Let $f(x) \in \Z[x]$ and $q(x) \in I$. Then 
+    $$f(x) = \sum_{i=0}^n a_i x^i ~~ q(x) = \sum_{i=0}^nb_i x^i ~~\text{where } b_0 = 0, b_1 = 0$$
+    Then the constant coefficient of $f(x)q(x)$ is $a_0b_0 = a_0 \cdot 0 = 0$ and the linear coefficient of $f(x)q(x)$ is $a_1b_0 + a_0b_1 = a_1 \cdot 0 +a_0 \cdot 0 = 0$.
+\end{example}
+
+\begin{example}
+    Let $A$ be a ring and $X$ be a nonempty set. Let $R$ be the ring of all functions from $X$ to $A$. For each $c\in X$ we can define the mapping 
+    \begin{align*}
+        E_c: R &\to A \\
+        E_c(f) = f(c) \text{ (the evaluation homomorphism)}
+    \end{align*}
+    Let $f,g \in R$. Then 
+    \begin{align*}
+        E_c\left((f\cdot g)(x)\right) &= (f\cdot g)(c) \\ 
+        &= f(c) \cdot g(c) \\
+        &= E_c\left(f(x)\right) \cdot E_c\left(g(x)\right)
+    \end{align*}
+    Addition follows similarly. Notice 
+    $$\ker E_c = \set{f\in R : E_c(f) = 0} = \set{f\in R : f(c) = 0}$$
+    By the first isomorphism theorem, we have 
+    $$\dfrac{R}{\ker E_c} \cong E_c(R)$$
+    What is $E_c(R)$? Let $a \in A$. Notice the constant function $h(x) = a ~\forall x \in X$ gives 
+    $$E_c\left(h(x)\right) = h(c) = a$$
+    Thus $E_c(R)$ is surjective and so 
+    $$\dfrac{R}{\ker E_c} \cong A$$
+\end{example}
+
+\begin{theorem}[The Second, Third, and Fourth Isomorphism Theorems for Rings] \leavevmode \\
+    Let $R$ be a ring.
+    \begin{enumerate}[(i)]
+        \item Let $A$ be a subring of $R$ and let $B$ be an ideal of $R$. Then 
+        $$A+B = \set{a + b : a \in A, b \in B}$$
+        is a subring of $R$, $A\cap B$ is an ideal of $A$, and 
+        $$\dfrac{A+B}{B} \cong \dfrac{A}{A\cap B}$$
+
+        \item Let $I$ and $J$ be ideals of $R$ with $I \subseteq J$. Then $J/I$ is an ideal of $R/I$ and 
+        $$\dfrac{R/I}{J/I} \cong \dfrac{R}{J}$$
+
+        \item Let $I$ be an ideal of $R$. The correpsondence $A \leftrightarrow A/I$ is an inclusion preserving bijection between the set of subrings of $R$ containing $I$ and the subrings of $R/I$. Furthermore, $A$ (a subring containing $I$) is an ideal of $R$ if and only if $A/I$ is an ideal of $R/I$.
+    \end{enumerate}
+\end{theorem}
+
+Similar to groups, ring homomorphisms will map subrings to subrings. Can the same be said for ideals? The answer is no, this is only true for surjective homomorphisms.
