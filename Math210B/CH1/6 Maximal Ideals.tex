@@ -1,0 +1,81 @@
+Note that for any $n\in \N$ and $a\in R$ a ring, we define
+$$na = a+a+...+a ~~\text{ $n$ times}$$
+\begin{proposition}
+    Let $m,n \in \N \st \gcd(m,n) = 1$. Then $m \mid \binom{m}{n}$.
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        \binom{m}{n} &= \dfrac{m!}{n!(m-n)!} \\
+        &= \dfrac{m}{n} \dfrac{(m-1)!}{(n-1)!(m-n)!} \\
+        &= \dfrac{m}{n} \binom{m-1}{n-1}
+    \end{align*}
+    So,
+    $$n\binom{m}{n} = m\binom{m-1}{n-1}$$
+    so $m\mid n \binom{m}{n}$. But $\gcd(m,n) = 1$, so $m \mid \binom{m}{n}$.
+    \qed
+\end{proof}
+
+\begin{corollary}
+    If $R$ is a field, then any nonzero ring homomorphism from $R$ into another ring is an injection.
+\end{corollary}
+
+\begin{proof}
+    Let $R$ be a field and let $\phi: R \to S$ be a nonzero ring homomorphism. Since $\ker \phi$ is an ideal fo the field $R$, $\ker \phi$ is either $0$ or $R$ itself. If $\ker \phi = R$, then $\phi(r) = 0$ for all $r \in R$. Hence, contrary to our assumption, $\phi$ is the zero homomorphism. This leaves us with $\ker \phi = 0$. As we know from our work with groups,
+    $$\ker\phi = 0 \iff \phi \text{ is injective}$$
+    \qed
+\end{proof}
+
+\begin{definition}[Maximal Ideal] \leavevmode \\
+    An ideal $M$ in a ring $S$ is called a maximal ideal if $M \neq S$ ans the only ideals that contain $M$ are $S$ and $M$ itself.
+\end{definition}
+
+A maximal ideal gives the notion of a "largest proper ideal" of a ring. That is, if $M$ is the maximal ideal to a ring $R$ and $H$ is a proper ideal of $R$ such that $M \subseteq H \subseteq R$, then either $H = R$ or $H = M$.
+
+\begin{proposition}
+    In a ring with unity, every proper ideal is contained in a maximal ideal.
+\end{proposition}
+
+The next result characterizes maximal ideals with their quotient structures of a commutative ring.
+
+\begin{proposition}
+    Assume $R$ is commutative. The ideal $M$ is a maximal ideal if and only if $R/M$ is a field.
+\end{proposition}
+
+\begin{proof}
+    $M$ is a maximal ideal if and only if there are no ideals $I$ with
+    $$M \subset I \subset R$$
+    By the fourth isomorphism theorem, ideals of $R$ containing $M$ are in 1-1 correspondence with the ideals of $R/M$. So $M$ is maximal if and only if there are no ideals $I$ with $M \subset I \subset R$ if and only if there are no maximal ideals of $R/M$ if and only if the only ideals of $R/M$ are $R/M$ and $0$ if and only if $R/M$ is a field.\newline
+    Some things to verify: $R/M$ is commutative (since $R$ is commutative, we have $R/M$ is commutative), $R/M$ has unity ($1+M \in R/M$), and $R/M$ is not the zero ring ($M\neq R, R/M \neq 0$).
+    \qed
+\end{proof}
+
+\begin{example}
+    What are the maximal ideals in $\Z?$
+    We know all subrings of $Z$ are of the form $n\Z, n\geq 0$. It takes very little work to show that $n\Z, n\geq 0$ is an ideal. The maximal ideals are those such that $\Z/n\Z$ is field. We know that $\Z/n\Z$ is a field if and only if $n$ is prime. Thus $n\Z, n\geq 0$ is a maximal ideal if and only if $n$ is prime.
+\end{example}
+
+We now look to generalize the notion of a prime number through ideals. Looking at $\Z$, suppose $n\Z, n\geq 0$ is an ideal of $\Z$. Suppose $a,b\in \Z$ such that $a\in n\Z$ or $b \in n\Z$. Note 
+$$a \in (n) \iff a = nx ~\text{ for some integer $x$}$$
+So $n \mid a$. Equivalently, we can say if $n\mid ab$ then $n\mid a$ or $n\mid b$. This is exactly the behavior of a prime number. This motivates the following definition.
+
+\begin{definition}[Prime Ideal] \leavevmode \\
+    Assume $R$ is commutative. An ideal $P$ is called a prime ideal if $P\neq R$ and if $ab \in P$, then $a\in P$ or $b\in P$.
+\end{definition}
+
+The defining trait of a prime ideal is that whenever a product lands in the ideal, one of the factors must already be there. In a quotient ring, this looks like the following: if $(a+P)(b+P) = 0 + P$ then either $(a+P) = 0 + P$ or $(b+P) = 0 + P$. This leads us to the following characterization.
+
+\begin{proposition}
+    Assume $R$ is commutative. The ideal $P$ is a prime ideal in $R$ if and only if $R/P$ is an integral domain.
+\end{proposition}
+
+\begin{proof}
+    The ideal $P$ is prime if and only if $P \neq R$ and if $ab \in P$, then $a\in P$ or $b\in P$. Recall that
+    \begin{enumerate}[(i)]
+        \item $ab \in P \iff (a+P)(b+P) = ab + P = 0 +P$
+        \item $a \in P \iff a+P = 0 +P$
+        \item $b \in P \iff b+P = 0+P$
+    \end{enumerate}
+    So, $P$ is a prime ideal if and only if $R/P \neq 0$ and if $(a+P)(b+P) = 0+P$, then $a+P = 0$ or $b+P = 0$ if and only if $R/P$ is an integral domain (since we know $R/P$ is a commutative ring with unity).
+    \qed
+\end{proof}
