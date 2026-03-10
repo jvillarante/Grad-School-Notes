@@ -1,0 +1,60 @@
+\indent Having seen how prime ideals generalize the idea of prime numbers to ring structures, and their relation to integral domains, we now focus more closely on the arithmetic of integral domains. In number theory, division with remainders and unique factorization are tightly linked concepts. We wish to generalize these concepts to integral domains, capturing when an integral domain supports a robust theory of greatest common divisors and factorizations. \newline
+\indent We first start with integral domains that have a sense of a division algorithm. We will call these Euclidean Domains. First, here are some examples where a division algorithm exists.
+
+\begin{example}
+    \begin{enumerate}
+        \item $\Z$ is a euclidean domain.
+        \item $F[x]$, the set of polynomials over a field, is a euclidean domain.
+        \item Any field will be a euclidean domain.
+        \item The Gaussian integers, $\set{a+bi: a,b \in \Z}$, is a euclidean domain.
+    \end{enumerate}
+\end{example}
+
+Before we formally define a euclidean domain, we first need to define special functions on a ring that would allow us to terminate an algorithm. More specifically, if we wish to have a division algorithm, we would need a way to specifiy that the remainder becomes provably smaller. This avoids the issue of having repeated remainders that continue forever.
+
+\begin{definition}[Norm on a Ring] \leavevmode \\
+    Any function $N: R \to \N \cup \set{0}$ (where $R$ is a ring) with $N(0) = 0$ is called a norm on the ring $R$. If $N(a) > 0$ for all $a\in R, a \neq 0$, we call $N$ a positive norm.
+\end{definition}
+
+We now define euclidean domains.
+
+\begin{definition}[Euclidean Domain] \leavevmode \\
+    An integral domain $R$ is said to be a euclidean domain (ED) if there exists a norm on $R$ such that for any $a,b \in R$ with $b\neq 0$ there exists $q,r \in R$ such that
+    $$a=bq +r$$
+    where $r = 0$ or $N(r) < N(b)$.
+\end{definition}
+
+A division algorithm gives us a euclidean algorithm. This algorithm is repeated division of some $a$ and $b$ in the euclidean domain. Given a euclidean domain $R$ and $a,b \in R$ with $b\neq 0$,
+\begin{align*}
+    a &= q_0b + r_0 \text{ where $r_0 = 0$ or $N(r_0) < N(b)$} \\
+    b &= q_1r_0 + r_1 \text{ where $r_1 = 0$ or $N(r_1) < N(r_0)$} \\
+    r_0 &= q_2r_1 + r_2 \text{ where $r_2 = 0$ or $N(r_2) < N(r_1)$} \\
+    &\vdots \\
+    r_{n-2} &= q_nr_{n-1} + r_n \text{ where $r_n = 0$ or $N(r_n) < N(r_{n-1})$}
+\end{align*}
+Because the codomain of the norm is $\N\cup \set{0}$ we have created a strictly decreasing sequence so it must terminate with some remainder of zero.
+$$N(b) > N(r_0) > N(r_1) > ... > N(r_{n-1}) > N(r_n)$$
+
+\begin{example} Some examples of norms.
+    \begin{enumerate}
+        \item $\Z$, $N(x) = |x|$
+        \item $F[x]$, $N(f(x)) = \deg(f(x))$
+        \item For any field $\F$, any norm works: $N(x) = 0 ~\forall x \in \F$, $N(x) = 69 ~\forall x \in \F$, etc. There are no remainders when dividing in a field, so there is no need for a norm to terminate the euclidean algorithm.
+        \item $\G = \set{a+bi : a,b\in \Z}$ (the Gaussian integers), $N(a+bi) = a^2 + b^2$
+    \end{enumerate}
+\end{example}
+
+\begin{proposition}
+    Every ideal in a euclidean domain is a principal ideal. More precisely, if $I$ is any nonzero ideal in the euclidean domain $R$ then $I = (d)$ where $d$ is any nonzero element of $I$ with minimum norm.
+\end{proposition}
+
+\begin{proof}
+    If $I$ is the zero ideal, then $I=(0)$. Suppose $I\neq 0$. Then let $d$ be a nonzero element of $I$ with minimal norm (such a $d$ exists since the set ${N(a) : A \in I}$ is a nonempty set of integers bounded below and by the well-ordering principal there must be a minimal norm attained by an element of $I$). Clearly, $(d) \subseteq I$ since $d\in I$. To show $I \subseteq (d)$ let $a \in I$ and use the division algorithm to write
+    $$a = qd +r$$
+    where $q,r \in R$ and $r = 0$ or $N(r) < N(d)$. Then 
+    $$r = a - qd$$
+    and since $I$ is an ideal and $q\in R$ with $d\in I$, we have $qd \in I$. Further, $a\in I$ and so $a-qd\in I$. Thus $r \in I$. Note that $N(d) < N(r)$, which contradicts minimality of the norm of $d$. Hence, the only option is that $r = 0$. Hence
+    $$a=qd \implies a\in (d)$$
+    Therefore, $I \subseteq (d)$. It follows that $I = (d).$
+    \qed
+\end{proof}
