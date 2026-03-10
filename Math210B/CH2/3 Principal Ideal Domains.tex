@@ -1,0 +1,80 @@
+Previously, we have shown that every ideal in a euclidean domain is principal. Euclidean domains form a special case of what are called principal ideal domains. We now work in the more general principal ideal setting; in particular, each result for princiapl ideal domains that we prove will hold in any euclidean domain.
+
+\begin{definition}[Principal Ideal Domain] \leavevmode \\
+    A principal ideal domain (PID) is an integral domain where every ideal is principal.  
+\end{definition}
+
+\begin{proposition}
+    Let $R$ be a principal ideal domain and let $a,b \in R$ where both $a$ and $b$ are nonzero. Let $d$ be the generator of the ideal $(a,b)$. Then 
+    \begin{enumerate}
+        \item $d$ is a greatest common divisor of $a$ and $b$
+        \item $d$ can be written as an $R$ linear combination of $a$ and $b$: $\exists x,y \in R \st ax + by = d$
+        \item $d$ is unique up to unit multiples
+    \end{enumerate}
+    In a commutative ring,
+    $$(d) = (a,b) = (a) + (b) = \set{ax + by : x,y \in R} \implies \exists x,y \in R \st ax+by = d$$
+\end{proposition}
+
+\begin{proposition}
+    Every nonzero prime ideal in a principal ideal domain is maximal.
+\end{proposition}
+
+\begin{proof}
+    Let $(p)$ be a nonzero prime ideal of a principal ideal domain $R$. Let $I$ be an ideal that contains $(p)$. Since $R$ is a principal ideal domain, there exists some $i \in R$ such that $(i) = I$. Our goal is to show $I=(p)$ or $I = R$. Since $p \in (i)$, we have 
+    $$p = ri \text{ for some } r \in R$$
+    So $ri \in (p)$. Since $(p)$ is prime, $r \in (p)$ or $i \in (p).$ If $i \in (p)$ then $(i) \subseteq (p)$. Since $I = (i)$ was assumed to contain $(p)$, we have $I = (p)$. \\
+    If $r \in (p)$, then $r = px$ for some $x \in R$. Then 
+    $$p=ri \implies r =(ri)x$$
+    Since $r$ is nonzero (ir $r = 0$ then $p = 0$, a contradiction), we have 
+    $$1=ix$$
+    Thus $i$ and $x$ are units. Since $i \in I$ we have that $I = R$.
+    \qed
+\end{proof}
+
+\begin{fact}
+    Here are some facts about $R[x]$ where $R$ is a commutative ring:
+    \begin{enumerate}
+        \item If $R$ is an integral domain, $R[x]$ is an integral domain
+        \item $R$ is contained in $R[x]$ where $R$ is the set of all constant polynomials
+    \end{enumerate}
+\end{fact}
+
+\begin{proposition}
+    If $R$ is any commutative ring such that the polynomial ring $R[x]$
+\end{proposition}
+
+\begin{proposition}
+    If $R$ is any commutative ring such that the polynomial ring $R[x]$ is a principal ideal domain, then $R$ is a field.
+\end{proposition}
+
+\begin{proof}
+    Assume $R[x]$ is a principal ideal domain. Since $R$ is a subring of $R[x]$, then $R$ must be an integral domain. The ideal $(x)$ is a nonzero prime ideal in $R[x]$ because
+    \begin{equation}
+        \dfrac{R[x]}{(x)} \cong R
+        \tag{$*$}
+    \end{equation}
+    is an ideal. Thus $(x)$ is maximal, so $R[x]/(x)$ is a field. That is, $R$ is a field. \\
+    \begin{description}
+        \item[Proof of $(*)$: ] Let $\sum_{i=0}^{n}a_ix^i \in R[x]$. Then in $R[x]/(x)$, we have
+        $$\sum_{i=0}^{n}a_ix^i + (x) = a_0 + (x)$$
+        Let's define a mapping 
+        \begin{align*}
+            \psi &: R[x] \to R \\
+            \psi(f) &= f(0)
+        \end{align*}
+        Let $f(x),g(x) \in R[x]$ where $f(x)$ has constant coefficient $a_0$ and $g(x)$ has constant coefficient $b_0$. Then
+        $$\psi(f(x)g(x)) = \psi(h(x)) = h(0) = a_0b_0 = f(0)g(0) = \psi(f(x))\psi(g(x))$$
+        where $h(x) = f(x)g(x)$. Similarly,
+        $$\psi(f(x)+g(x)) = \psi(k(x)) = k(0) = a_0 + b_0 = f(0) + g(0) = \psi(f(x)) + \psi(g(x))$$
+        where $k(x) = f(x) + g(x)$. If $f(x) \in \ker \psi$, the $f(0) = 0$. That is, $f(x)$ has a zero constant coefficient. That is,
+        $$f(x) = a_1x+a_2x^2 +... +a_nx^n=x(a_1+a_2x+...+a_nx^{n-1})$$
+        so $f(x) \in (x)$. Note that if $p(x) \in (x)$, then $p(x)$ has zero constant coefficient so $p(0) = 0$ and $p(x) \in \ker \psi$. By the first isomorphism theorem,
+        \begin{align*}
+            &\dfrac{R[x]}{\ker \psi} \cong \psi(R[x]) \\
+            \implies &\dfrac{R[x]}{(x)}\cong \psi(R[x])
+        \end{align*}
+        Note $\psi$ is onto since for any $r \in R$, $\psi(r) = r$ where we consider $r \in R[x]$ to be a constant polynomial. Hence
+        $$\dfrac{R[x]}{(x)} \cong R$$
+    \end{description}
+    \qed
+\end{proof}
