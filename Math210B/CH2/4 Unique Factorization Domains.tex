@@ -1,0 +1,103 @@
+When finding the greatest common divisor for integers, we use the fundamental theorem of arithmetic to find prime factorizations. For example, if we have $m = 3^7 \cdot 2^3 \cdot 5^6$ and $n=7^7 \cdot 2^5 \cdot 3^2$ then the greatest commond divisor is
+$$\gcd(m,n) = 3^{\min\set{2,7}}\cdot 2^{\min\set{3,5}}=3^2 \cdot 2^3$$
+We would to extend this mechanism to rings.
+
+\begin{definition}[Reducible, Prime, Associate] \leavevmode \\
+    Let $R$ be an integral domain.
+    \begin{enumerate}
+        \item Suppose $r\in R$ is nonzero and not a unit. Then $r$ is called irreducible if whenever $r=ab$ where $a,b\in R$, then one of $a$ and $b$ is a unit. Otherwise, $r$ is said to be reducible.
+        \item A nonzero element $p \in R$ is called prime if $(p)$ is a prime ideal (if $ab\in (p)$, then $a\in(p)$ or $b\in(p)$).
+        \item Two elements $a$ and $b$ of $R$ differing by a unit multiple are called associate in $R$ (i.e., $a=ub$ where $u \in R$ is a unit).
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    In an integral domain, a prime is irreducible.
+\end{proposition}
+
+\begin{proof}
+    Suppose $p$ is a prime in an integral domain $R$. So $(p)$ is a nonzero prime ideal. Let $p=ab$ where $a,b\in R$. Then $ab \in (p)$. Since $(p)$ is prime, $a\in (p)$ or $b\in (p)$. Without loss of generality, suppose $a \in (p)$. Then $a = pr$ where $r \in R$. Then 
+    \begin{align*}
+        &p = (pr)b \\
+        \implies &1 = rb \\
+        \implies &\text{$b$ is a unit in $R$.}
+    \end{align*}
+    Hence $p$ is irreducible in $R$.
+    \qed
+\end{proof}
+
+In an integral domain, a prime element is irreducible. However, not every irreducible element is prime. For example $3 \in \set{a + b \sqrt{-5} : a,b \in \mathbb{Z}}$ is irreducible but not prime. Now if we consider a principal ideal domain, then we have the following result.
+
+\begin{proposition}
+    In a principal ideal domain, a nonzero element is prime if and only if it is irreducible.
+\end{proposition}
+
+\begin{proof}
+    Let $R$ be a principal ideal domain. Since principal ideal domains are integral domains, it automatically follows that any prime $p\in R$ is irreducible in $R$. \\
+    Let $p\in R$ be irreducible. Consider the ideal generated $(p)$. Let $M$ be an ideal such that $(p) \subseteq M.$ Since $R$ is a principal ideal domain, there exists $m \in R \st M = (m)$. So $p \in (m)$ and thus $p=mx$ for some $x \in R$. Since $p$ is irreducible, $x$ or $m$ must be a unit. If $x$ is a unit, then $m$ and $p$ are associate, hence $(m) = (p)$. If $m$ is a unit, then $(m) = R$. Hence $(p)$ is maximal, which implies $(p)$ is prime.
+    \qed
+\end{proof}
+
+Principal ideal domains provide a nice characterization for a prime involving reducibility. This mirrors how primes behave in the integers: a prime $p\in\N,$ $p > 1$ is prime if its only factors are $1$ and $p$ ($p$ is irreducible in $\N$). We now classify rings where factorizations are unique, allowing us to have a notion of the fundamental theorem of arithmetic.
+
+\begin{definition}[Unique Factorization Domain] \leavevmode \\
+    A unique factorization domain (UFD) is an integral domain $R$ in which every nonzero $r \in R$ that is not a unit has the following properties:
+    \begin{enumerate}
+        \item $r$ can be written as a finite product of irreducibles $p_i$ of $R$ (not necessarily distinct)
+        $$r = p_1p_2\cdot\cdot\cdot p_n$$
+        \item The decomposition in part $(i)$ is unique up to associates, namely if $r=q_1q_2\cdots q_m$ is another factorization of $r$, then $m=n$ and there is some reording of the factors such that $p_i = u_iq_i$ for all $i$ where $u_i$ is a unit in $R$.
+    \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+    In a unique factorization domain a nonzero element is prime if and only if it is irreducible.
+\end{proposition}
+
+\begin{proof}
+    We only need to prove $(\impliedby)$. To that end, let $p$ be an irreducible element in $R$ and assume $p \mid ab$ for some $a,b\in R$. We will show that $p \mid a$ or $p \mid b$. Since $p \mid ab$, there exists some $d \in R \st pd=ab$. Since $R$ is a unique factorization domain, $a$ and $b$ can be written uniquely (up to assoicates) a product of irreducibles in $R$. That is,
+    \begin{align*}
+        a &= p_1p_2\cdots p_n \\
+        b &= q_1q_2\cdots q_m
+    \end{align*}
+    where the $p_i$ and $q_i$ are irreducibles. Hence 
+    $$ab = (p_1p_2\cdots p_n)(q_1q_2\cdots q_m)$$
+    which gives a unique (up to associates) factorization of $ab$. Thus
+    $$pd = p_1p_2\cdots p_nq_1q_2\cdots q_m$$
+    By the uniqueness of factorizations we know that $p$ is an associate of one of the irreducibles on the right-hand side. If $p$ is an associate of a $p_i$ for some $i$, then $p \mid a$. Similarly, if $p$ is an associate of a $q_j$ for some $j$, then $p \mid b$. Thus $p$ is prime.
+    \qed
+\end{proof}
+
+At this point, we have introduced three types of integral domains. We conclude this section by showing that every principal ideal domain is in fact a unique factorization domain. First, we need the following lemma.
+
+\begin{lemma}
+    In a principal ideal domain $R$, given an ascending chain of ideals
+    $$I_1 \subseteq I_2 \subseteq I_3 \subseteq ... \subseteq R$$
+    it eventually becomes stationary. That is,
+    $$\exists n \in \N \st I_n = I_k \forall ~~k \geq n$$
+\end{lemma}
+
+\begin{proof}
+    Let $I = \bigcup_{i=1}^\infty I_i$. It is easy to show $I$ is an ideal. Since $R$ is a principal ideal domain,
+    $$\exists p \in R \st I = (p)$$
+    Since $p \in I = \bigcup_{i=1}^\infty I_i$, $p \in I_n$ for some $n \in \N$. Thus $(p) \subseteq I_n$ and by definition of unions $I_n \subseteq I = (p)$. Thus $I_n = (p)$ and for any $k \geq n$, we have that $I_k \supseteq I_n \supseteq I$ so it follows that $I_k = I$.
+    \qed
+\end{proof}
+
+\begin{theorem}
+    Every principal ideal domain is a unique factorization domain.
+\end{theorem}
+
+\begin{proof}
+    Let $r\in R$ where $R$ is a principal ideal domain. Further assume that $r$ is nonzero and not a unit. If $r$ is irreducible, then we're done. If not, $r$ is reducible so 
+    $$r=r_1r_2 \text{ for $r_1,r_2\in R$}$$
+    where $r_1$ and $r_2$ are not units. If both $r_1$ and $r_2$ are reducible, then we're done. Otherwise, $r_1$ and $r_2$ are reducible. Supposing $r_1$ is reducible,
+    $$r_1 = r_{11}r_{12} \text{ for $r_{11},r_{12}\in R$}$$
+    and so forth. If this process does not terminate, we obtain a proper inclusion of ideals. That is,
+    $$(r) \subset (r_1) \subset (r_{11}) \subset ...$$
+    where $(r)$ is prperly in $(r_1)$ since $r_2$ is not a unit and hence $r$ and $r_1$ are associates. The rest of the proper containment follows similarly. However, in a principal ideal domain any ascending chain of ideals become stable so this contradicts the proper containment. Hence, we can factor $r$ into a product of irreducible elements of $R$.
+    \qed
+\end{proof}
+
+To sumarize this chapter: every euclidean domain is a principal ideal domain, and every principal ideal domain is a unique factorization domain.
+$$\text{Euclidean domains $\subseteq$ principal ideal domains $\subseteq$ unique factorization domains}$$
+
