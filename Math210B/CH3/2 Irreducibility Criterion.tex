@@ -1,0 +1,138 @@
+Now that we can discuss the factorizations of polynomials over fields, we would look to discuss the irreducibility of these polynomials. Take a look at this example in the rationals.
+
+\begin{example}
+    In $\Q[x]$, $7x$ is irreducible. We can only factor
+    $$7x = a(x)b(x)$$
+    where either $a(x)$ is a unit or $b(x)$ is a unit. Suppose $a(x)$ and $b(x)$ are nonunits. The units of $\Q[x]$ are exactly the units in $\Q$ so if $a(x)$ and $b(x)$ are nonunits they must have positive degree which implies
+    $$\deg (7x) > 2$$
+    a contradiction. However, $7x$ is reducible in $\Z[x]$: let $a(x) = 7$ and $b(x) = x$. We know that every intregral domain is contained in its field of fractions, for instance
+    $$\Z \subseteq \Q \implies \Z[x] \subseteq \Q[x]$$
+\end{example}
+
+We will take a look at theorems which relate irreducibility in $\Q[x]$ to irreducibility in $\Z[x]$, or more generally, factorization of polynomials in $R[x]$ with factorization in $F[x]$ (where $F$ is the field of fractions of the integral domain $R$).
+
+\begin{lemma}[Gauss's Lemma Generalized] \leavevmode \\
+    Let $R$ be a unique factorization domain with field of fractions $F$ and let $p(x) \in R[x]$. If $p(x)$ is reducible in $F[x]$, then $p(x)$ is reducible in $R[x]$.
+\end{lemma}
+
+\begin{lemma}[Gauss's Lemma Special] \leavevmode \\
+    Let $p(x) \in \Z[x]$. If $p(x)$ is reducible in $\Q[x]$, then $p(x)$ is reducible in $\Z[x]$.
+\end{lemma}
+
+\begin{corollary}
+    Let $R$ be a unique factorization domain with field of fractions $F$. Let $p(x) \in R[x]$ and suppose all the coefficients of $p(x)$ are relatively prime. Then 
+    $$p(x) \text{ is irreducible in } R[x] \iff p(x) \text{ is irreducible in } F[x]$$
+\end{corollary}
+
+We will work with polynomials with coefficients in a field $F$. Hence $F[x]$ is a euclidean domain, a principal ideal domain, and a unique factorization domain. The irreducible polynomials in $F[x]$ are all non-constants. In particular, all linear polynomials in $F[x]$ are irreducible.
+
+\begin{proposition}
+    Let $F$ be a field with $p(x) \in F[x]$. Then $p(x)$ has a linear factor if and only if $p(x)$ has a root in $F$.
+\end{proposition}
+
+\begin{proof}
+    If $p(x)$ has a linear factor, we may assume it is of the form $x - \alpha$ for some $\alpha \in F$. But then $p(x) = (x-\alpha)g(x)$ for some $g(x) \in F[x]$. It follows
+    $$p(\alpha) =(\alpha-\alpha)g(\alpha) = 0$$
+    Conversely, suppose $\alpha$ is a root of $p(x)$. Then by the division algorithm,
+    $$\exists q(x), r(x) \in F[x] \st p(x) = q(x)(x-\alpha) + r(x)$$
+    where $r(x) = 0$ or $\deg (r) < 1.$ Hence $r(x)$ is a constant polynomial. Since $\alpha$ is a root of $p(x)$,
+    $$p(\alpha) = (\alpha - \alpha)q(\alpha) + r(\alpha) = r(\alpha)$$
+    Since $r(x)$ is a constant, $r(x) = 0$. That is, $p(x)$ has a linear factor.
+    \qed
+\end{proof}
+
+\begin{proposition}
+    A polynomial of degree $2$ or $3$ is reducible if and only if it has a root in $F$.
+\end{proposition}
+
+We will need tools to find roots of polynomials.
+
+\begin{theorem}[Rational Root Theorem] \leavevmode \\
+    Let $p(x) = a_nx^n+...+a_0 \in Z[x]$ where $\deg (p) = n$. If $n/s \in \Q$ with $\gcd(r,s) = 1$ and $p(r/s) = 0,$ then $r \mid a_0$ and $s \mid a_n$. In particular, if $p(x)$ is monic ($a_n = 1)$ in $\Z[x]$ and $p(d) \neq 0$ for all $d$ such that $d\mid a_0$, then $p(x)$ has no roots in $\Q$.
+\end{theorem}
+
+\begin{proof}
+    Assume $p(r/s) = 0 = a_n(r/s)^n + ... + a_1(r/s) + a_0$. Multiplying through by $s^n:$
+    \begin{align*}
+        0 &= a_nr^n + a_{n-1}r^{n-1}s+...+a_1rs^{n-1}+a_0s^n \\
+        \implies a_0s^n &= -a_nr^n -a_{n-1}r^{n-1}s -...-a_1rs^{n-1} \\
+        &=r(-a_nr^{n-1}-a_{n-1}r^{n-2}s-...-a_1s^{n-1})
+    \end{align*}
+    Hence $r \mid a_0s^n$, but $\gcd(r,s) = 1$ so $r\mid a_0$. Similarly,
+    \begin{align*}
+        a_nr^n &= -a_{n-1}r^{n-1}s-... -a_1rs^{n-1}-a_0s^n \\
+        &=s(-a_{n-1}r^{n-1}-...-a_1rs^{n-2}-a_0s^{n-1})
+    \end{align*}
+    Hence $s \mid a_nr^n,$ but $\gcd(r,s) = 1$ so $s \mid a_n.$
+    \qed
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item $x^3-3x-1$ is irreducible (over $\Q$) in $\Q[x]$. By the rational root theorem, a rational root would be $\pm 1,$ neither of which yield zero when plugged in.
+        \item $x^3-3x-1$ in $\left(\Z/2\Z\right)[x]$ is still irreducible.
+        \item $x^3-3x-1$ in $\left(\Z/3\Z\right)[x]$ is reducible since $1$ is a root$\mod 3$.
+    \end{enumerate}
+\end{example}
+
+\begin{proposition}
+    Let $I$ be a prime ideal in the integral domain $R$. Let $p(x) \in R[x]$ be a non-constant polynomial with leading coefficient not in $I.$ If $\bar{p(x)} \in \left(R/I\right)[x]$ cannot be factored in $\left(R/I\right)[x]$ into two polynomials of positive degree, then $p(x)$ cannot be factored similarly in $R[x]$.
+\end{proposition}
+
+\begin{proof}
+    Suppose $p(x)$ can be factored in $R[x]$. Then there exists $a(x),b(x) \in R[x]$ where $a(x)$ and $b(x)$ are non-constant polynomials in $R[x] \st a(x)b(x) = p(x).$ Hence $\bar{a(x)}\cdot \bar{b(x)} = \bar{p(x)}$ and $\bar{a(x)}, \bar{b(x)}$ are nonconstant polynomials. Since the leading coefficient of $p(x)$ is not in $I$, the leading coefficients of $a(x)$ and $b(x)$ must also not be in $I$. Hence the leading coefficients are not $\bar{0}$ in $R/I$.
+    \qed
+\end{proof}
+
+\begin{example}
+    $p(x) = x^2+x+1 \in \Z[x]$. Examine $p(x)$ in $\left(\Z/2\Z\right)[x]$ and notice $p(0) = 1$.
+    $$p(1) = 3 \equiv 1 \mod 2$$
+    Hence $p(x)$ is irreducible in $\left(\Z/2\Z\right)[x] \implies p(x) \text{ is irreducible in $\Z[x]$} \implies p(x) \text{ is irreducible in $\Q[x]$}$.
+\end{example}
+
+\begin{theorem}[Eisenstein's Criterion] \leavevmode \\
+    Let $P$ be a prime ideal of an integral domain $R$. Let $f(x) = \sum_{i=0}^{n}a_ix^i \in R[x]$ be a polynomial with degree greater than $0$. Suppose $a_0,...,a_{n-1} \in P$, $a_n \not \in P$, and $a_0 \in P^2$. Then $f(x)$ is irreducible in $R[x]$ $(P^2 = \set{\sum_{i=1}^{n}x_iy_i : n \in \Z, x_iy_i \in P})$. \\
+    In the integers: Let $p \in Z$ be prime and $f(x) = \sum_{i=0}^{n}a_ix^i \in \Z[x]$ with degree $n \geq 1$. Suppose $p \mid a_i ~~\forall i \in \set{0,1,...,n-1}$, but $p \nmid a_n$ and $p^2 \nmid a_0$. Then $f(x)$ is irreducible$^*$ in $\Z[x]$, hence it is irreducible in $\Q[x]$. \\
+    $* f(x)$ cannot be factored into a product of two polynomials of positive degree.
+\end{theorem}
+
+\begin{proof}
+    Suppose that $f(x)$ can be written as a product of two polynomials of positive degree in $\Z[x]$. That is, $f(x) = a(x)b(x)$, $a(x),b(x)\in \Z[x]$ with $\deg(a) > 0$ and $\deg(b) > 0$. Consider $\bar{f(x)}, \bar{a(x)},$ and $\bar{b(x)}$ to be the reductions of $f(x), a(x), $ and $b(x)$ in $\left(\Z/p\Z\right)[x]$ respectively. Since $p$ divides all the coefficients of $f$ except $a_n$, we have that
+    $$\bar{f(x)} = \bar{a_n}x^n \text{ since } \bar{f(x)} = \bar{a(x)b(x)} = \bar{a(x)} \bar{b(x)}$$
+    We have $\bar{a(x)} \bar{b(x)}=\bar{a_n}x^n$. Since $\Z/p\Z$ is a field, $\left(\Z/p\Z\right)[x]$ is a euclidean domain and hence a principal ideal domain, and further a unique factorization domain. Since $x$ is an irreducible element of $\left(\Z/p\Z\right)[x]$, we know that $\bar{a_n}x^n$ is the unique factorization up to associates of $\bar{f(x)}$ in $\left(\Z/p\Z\right)[x]$. Thus $\bar{a(x)}=\bar{c}x^{n-r}$ and $\bar{b(x)}=\bar{b}x^r$ for some $b,c \in \Z$ where $\bar{bc}=\bar{a_n}$ and $r < n.$ Note $r\neq 0$ as this would imply that $\bar{b(x)}$ is constant and $r\neq n$ which implies $\bar{a(x)}$ is constant. The equation $\bar{a(x)}x^n = (\bar{c}x^{n-r})(\bar{b}x^r)$ implies that $x$ divides
+    $$\bar{c}x^{n-r} \text{ or } \bar{b}x^r$$
+    since $x$ is also a prime. \\
+    $\bar{a(x)}$ and $\bar{b(x)}$ are the reductions of $a(x)$ and $b(x)$ in $\left(\Z/p\Z\right)[x]$. This implies that the constant coefficients of both $\bar{a(x)}$ and $\bar{b(x)}$ are $\bar{0}$. That is, the constant coefficient of $a(x)$ and $b(x)$ must be divisible by $p$. Since $f(x) = a(x)b(x)$, the constant coefficient of $f(x)$ is divisible by $p^2$, a contradiiction.
+    \qed
+\end{proof}
+
+\begin{proposition}
+    $F[x]/(p(x))$ is a field if and only if $p(x)$ is irreducible.
+\end{proposition}
+
+\begin{example}
+    \begin{enumerate}
+        \item $x^4+10x+5 \in \Z[x]$ is irreducible in $\Z[x]$ and $\Q[x]$ since $5\mid 10 = a_2$, $5 \mid 5 = a_0$, $5 \nmid 1 = a_4$, and $5^2 \nmid 5 = a_0$.
+        \item Let $a \in \Z \st p \mid a$ but $p^2 \nmid a$ for some prime $p \in \Z$. Then $x^n-a$ is irreducible in $\Z[x]$ and $\Q[x]$ by Eisenstein's criterion for all $n \in \N$. In particular, $x^n - p$ is irreducible in $\Z[x]$ and $\Q[x]$ for all $n \in \N$ and for all primes $p$. $x^3-7$ has no zeros in $\Q$, but has zeros outside of $\Q$:
+        $$(\sqrt[3]{7}, \sqrt[3]{7}w, \sqrt[3]{7} w^2) \text{ where } w = -\frac{1}{2}+\frac{\sqrt{3}}{2} i$$
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $f(x) = x^4 + 1$ is irreducible over $\Z[x]$ and $\Q[x]$, but Eisenstein's criterion does not apply... or does it? Let's examine:
+    $$g(x)= f(x+1) = (x+1)^4+1 = x^4+4x^3+6x^2+4x+2$$
+    We see that $g(x)$ is irreducible by Eisenstein's criterion with $p = 2$. Suppose $f(x) = a(x)b(x)$ where $a(x), b(x) \in \Z[x]$ with positive degrees. Then
+    $$f(x) = a(x)b(x) \iff f(x+1) = a(x+1)b(x+1)$$
+\end{example}
+
+\begin{example}[Important Example] Cyclotomic Polynomial.
+    Let $p$ be a prime in $\Z$. Consider
+    $$\phi_p(x) = \dfrac{x^p-1}{x-1} = x^{p-1}+x^{p-2}+...+x+1$$
+    Then
+    \begin{align*}
+        \phi_p(x+1) &= \dfrac{(x+1)^p-1}{x+1-1} = \dfrac{\sum_{k=0}^{p}\binom{p}{k}x^k1^{p-k}-1}{x} \\
+        &= \dfrac{\sum_{k=1}^{p}\binom{p}{k}x^k}{x} \\
+        &= \sum_{k=1}^{p}\binom{p}{k}x^{k-1}
+    \end{align*}
+    Then $a_0 = k$, $a_n = 1,$ and $p\mid a_k$ for all $0 \leq k < n$, $p \nmid a_n$, and $p^2 \mid a_0$. By Eisenstein's criterion, $\phi_p(x+1)$ is irreducible in $\Z[x]$ and $\Q[x]$.
+\end{example}
