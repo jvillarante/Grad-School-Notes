@@ -1,0 +1,103 @@
+We now briefly take some time to discuss vector spaces. We will introduce some basic definitions and properties without going into too much detail. We are setting up the necessary background for field extensions.
+
+\begin{definition}[Vector Space] \leavevmode \\
+    Let $F$ be a field. A vector space over $F$ is $F$ with a set $V$ together with
+    \begin{enumerate}
+        \item A binary operation $+$ on $V$ such that $<V,+>$ is an abelian group.
+        \item An action of $F$ on $V$ (a mapping $f\times V$ to $V$), denoted $kv$ for every $k \in F$ and $v \in V$, which satisfies
+        \begin{enumerate}
+            \item $(j+k)v = jv + kv$ for all $j,k \in F, v \in V$
+            \item $(jk)v = j(kv)$ for all $j,k \in F, v\in V$
+            \item $j(v+w) = jv + jw$ for all $j \in F, v,w \in V$
+            \item $1v = v$ for all $v \in V$
+        \end{enumerate}
+    \end{enumerate}
+\end{definition}
+
+\begin{definition}[Finite Linear Combination] \leavevmode \\
+    Given $v_1, ..., v_n \in V$ a vector space and $\alpha_1, ..., \alpha_n \in F$ a field, a sum of the form
+    $$\alpha_1v_1 + ...+\alpha_n v_n$$
+    is a finite linear combination of $v_1, ..., v_n$.    
+\end{definition}
+
+\begin{definition}[Span of a Set] \leavevmode \\
+    Given $S \subseteq V$, the span of $S$, denoted $\text{span}(S)$, is the set of all finite linear combinations (lc) of elements in $S$:
+    $$\text{span}(S) = \set{\sum_{i=1}^{n}a_is_i : n \in \N, \alpha_i \in F, s_i \in S}$$
+\end{definition}
+
+\begin{definition}[Linear Independence] \leavevmode \\
+    A subset $S \subseteq V$ is called a set of linearly independent (li) vectors if the equation
+    $$\alpha_1v_1 + ... + \alpha_n v_n = 0 \text{ for all } \alpha_i \in F, v_i \in S$$
+    implies that $\alpha_1 = ... = \alpha_n = 0$.
+\end{definition}
+
+\begin{definition}[Basis] \leavevmode \\
+    A basis of a vector space $V$ is an ordered set of linearly independent vectors $B$ which span $V$. That is,
+    $$\vspan{B} = V$$
+\end{definition}
+
+\begin{proposition}
+    Assume that $A = \set{v_1,...,v_n}\subseteq V$ is spans $V$, but every $S \subset A$ does not span $V$. Then $A$ is a basis of $V$.
+\end{proposition}
+
+\begin{proof}
+    We know $\vspan{A} = V.$ It remains to check that $v_1,...,v_n$ are linearly independent vectors. Suppose for the sake of contradiction
+    $$\alpha_1v_1 + ... + \alpha_n v_n = 0$$
+    for $\alpha_i \in F$ and not all $\alpha_i$ are zero. Assume without loss of generality that $\alpha_1 \neq 0$. Then
+    \begin{equation*}
+        v_1 = \dfrac{1}{\alpha_1}(-\alpha_2v_2-...-\alpha_nv_n)
+        \tag{$*$}
+    \end{equation*}
+    It follows that 
+    $$\vspan{v_2, ..., v_n} = V$$
+    since any linear combination of $v_1, ..., v_n$ can be written as a linear combination of $v_2,...,v_n$ using $(*)$. Hence we have arrived at a contradiction.
+    \qed
+\end{proof}
+
+\begin{example}
+    Let $F$ be a field and $p(x) \in F[x]$ be an irreducible polynomial. From our homework, we know that $F[x]/(p(x))$ is a field. We were told that $F[x]/(p(x))$ is a vector space over $F$. You check the details (scalar multiplication $k(f(x) + g(x)) = kf(x) + kg(x)$). We also found out in our homework that 
+    $$\vspan{\set{\bar{1}, \bar{x}, \bar{x^2}, ..., \bar{x^{n-1}}}}= \dfrac{F[x]}{(p(x))}$$
+    To prove the claim $\bar{1}, ..., \bar{x^{n-1}}$ forms a basis, we only need to show the linear independence of $\bar{1}, ..., \bar{x^{n-1}}$. To that end, consider
+    $$\alpha_0\bar{1}+...+\alpha_{n-1} \bar{x^{n-1}} = \bar{0}$$
+    with not all $\alpha_i = 0$. Then
+    \begin{align*}
+        &\alpha_0 + \alpha_1 x + ... + \alpha_{n-1}x^{n-1} + (p(x)) = 0 + (p(x)) \\ 
+        \implies &\alpha_0 + \alpha_1 x + ... + \alpha_{n-1}x^{n-1} \in (p(x)) \\
+        \implies &p(x) \mid (\alpha_0 + \alpha_1 x +...+ \alpha_{n-1}x^{n-1})
+    \end{align*}
+    However, $\deg(p(x)) = n$ but this is impossible uless $a_0 + a_1x + ... + a_{n-1}x^{n-1}$ is the zero polynomial. Hence $\alpha_0 = ... = \alpha_{n-1} = 0$ so $\bar{1}, ..., \bar{x^{n-1}}$ are linearly independent vectors.
+\end{example}
+
+\begin{corollary}
+    Assume the set $A \subseteq V$ spans $V$. Then $A$ contains a basis of $V$.
+\end{corollary}
+
+\begin{proof}
+    If $A$ is a basis, we are done. Suppose $A$ is not a basis. Then there exists $A_1 \subset A$ such that $\vspan{A_1} = V$. If $A_1$ is a basis, we are done. Otherwise, there exists $A_2 \subset A_1$ such that $\vspan{A_2} = V$. Since our containments are proper and finite, this process must terminate.
+    \qed
+\end{proof}
+
+\begin{theorem}[Replacement Theorem] \leavevmode \\
+    Suppose $A = \set{a_1, ..., a_n} \subseteq V$ is a basis for $V$ containing $n$ elements and $B = \set{b_1, ..., b_m}\subseteq V$ is a set of linearly independent vectors in $V$. Then there is an ordering of $a_1,..., a_n$ such that for each $k \in \set{1, ..., m}$ the set $\set{b_1, ..., b_k, a_{k+1}, ..., a_n}$ is a basis of $V$. In particular, $m \leq n$.
+\end{theorem}
+
+\begin{proof}
+    We will use induction on $k$.\\
+    If $k=0$, then there is nothing to do since $A$ is assumed to be a basis of $V$. Suppose that $B_k = \set{b_1, ..., b_k, a_{k+1}, ..., a_n}$ is a basis for $V$. Then $\vspan{B_k} = V$, so
+    $$b_{k+1} = \beta_1b_1 + ... + \beta_kb_k + \alpha_{k+1}a_{k+1}+...+\alpha_n a_n$$
+    for some $\beta_i, \alpha_i \in F$. Note that not all $\alpha_j$ equal zero, otherwise $b_{k+1}$ is linearly independent of $b_1,...,b_k$, contradicting the linear independence of $B$. Without loss of generality, assume $\alpha_{k+1} \neq 0$. Then
+    $$a_{k+1} = \dfrac{1}{\alpha_{k+1}}\left(b_{k+1}-(\beta_1b_1+...+\beta_kb_k+\alpha_{k+1}a_{k+1}+...+\alpha_na_n)\right)$$
+    Hence,
+    $$\vspan{b_1,...,b_k,b_{k+1},a_{k+2},...,a_n}= \vspan{b_1,...,b_k,a_{k+1},a_{k+2},...,a_n} = V$$
+    It remains to show that
+    $$B_{k+1} =\set{b_1,...,b_k,b_{k+1},a_{k+2},...,a_n}$$
+    is a linear independent set.
+    If
+    $$\beta_1'b_1 + ... + \beta_{k+1}'b_{k+1} + \alpha_{k+2}'a_{k+2} +... + \alpha_n'a_n = 0$$
+    then
+    $$\beta_1'b_1 + ... + \beta_{k+1}'(\beta_1b_1 + ... + \beta_k b_k + \alpha_{k+1}a_{k+1} + ... + \alpha_n a_n) + \alpha_{k+2}'a_{k+2} + ... + \alpha_n'a_n = 0$$
+    Noting that the right hand side of this equation is in $B_k$, we know that all (simplified) coefficients must be $0$ since $B_k$ is assumed to be linearly independent. In particular, the coefficient of $a_{k+1}$ is $\beta_{k+1}'\alpha_{k+1} = 0$ so $\beta_{k+1}' = 0$ or $\alpha_{k+1} = 0$ since fields are integral domains. Recall $\alpha_{k+1} \neq 0$, hence $\beta_{k+1}' = 0$. But then we have
+    $$\beta_1'b_1 + ... + \beta_k'b_k + \alpha_{k+2}'a_{k+2} + ... + \alpha_n'a_n = 0$$
+    Thus all $\beta_i', \alpha_j' \in F$ must be zero since $b_1, ..., b_k, a_{k+1}, ..., a_n$ are linearly independent by the inductive hypothesis.
+    \qed
+\end{proof}
