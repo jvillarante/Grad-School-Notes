@@ -15,6 +15,7 @@
 \usepackage{wrapfig} % <-- important
 \usepackage{cancel}
 \usepackage[colorlinks = true, linkcolor = black]{hyperref}
+\usepackage{multicol}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{matrix}
 
@@ -39,6 +40,12 @@
 \def\renewtheorem@within[#1]{\renewtheorem@nowithin[#1]}
 
 \makeatother
+
+%sets enumerate to roman numerals
+\renewcommand{\labelenumi}{(\roman{enumi})}
+\renewcommand{\theenumi}{\roman{enumi}}
+\renewcommand{\labelenumii}{(\alph{enumii})}
+\renewcommand{\theenumii}{\alph{enumii}}
 
 %%%%%%%%%%%%%%%%%%%%
 % New environments %
@@ -481,6 +488,9 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\h}{\mathbb{H}}
+\newcommand{\G}{\mathbb{G}}
 
 \newcommand{\set}[1]{
 	\left\{#1\right\}
@@ -599,4 +609,8 @@
 
 \newcommand{\syl}[2]{
 	\text{Syl}_{#1}(#2)
+}
+
+\newcommand{\vspan}[1]{
+	\text{span}(#1)
 }
