@@ -1,0 +1,32 @@
+Recall that $i$ is a root of the polynomial $x^2+1$ in $\Q[x]$, so we say that $i$ is algebraic. $\pi$, however, is not a root of any nonzer polynomial in $\Q[x]$ and so we say that $\pi$ is not algebraic over $\Q$. $\pi$ is a root of the polynomial $x - \pi$, so $\pi$ is algebraic over $\R$.
+
+\begin{definition}[Algebraic, Transcendental] \leavevmode \\
+    The element $\alpha \in K$ is algebraic over $F$ if $\alpha$ is a root of any nonzero polynomial in $F[x]$. If $\alpha$ is not algebraic over $F$, then $\alpha$ is said to be transcendental over $F$.
+\end{definition}
+
+\begin{proposition}
+    Let $\alpha$ be algebraic over $F$. Then there is a unique, monic, irreducible polynomial $m_{\alpha, F} \in F[x]$ which has $\alpha$ as a root. A polynomial $f(x) \in F[x]$ has $\alpha$ as a root if and only if $m_{\alpha, F}(x)$ divides $f(x)$ in $F[x]$.
+\end{proposition}
+
+\begin{proof}
+    Let $g(x) \in F[x]$ be a polynomial with minimal degree which has $\alpha$ as a root. Multiplying $g(x)$ by a constant will give a monic polynomial, so without loss of generality assume $g(x)$ is monic. Suppose $g(x)$ is irreducible in $F[x]$, say $g(x) = a(x)b(x)$ where $0 < \deg a(x), \deg b(x) < \deg g(x)$. Then
+    $$g(\alpha) = a(\alpha)b(\alpha) = 0$$
+    Since $K$ is a field and hence an integral domain, then $a(\alpha) = 0$ or $b(\alpha) = 0$, contradicting the minimality of $\deg g(x)$. It follows that $g(x)$ is a monic, irreducible polynomial in $F[x]$ with $\alpha$ as a root. Suppose now that $f(x) \in F[x]$ has $\alpha$ as a root. By the division algorithm 
+    $$\exists q(x), r(x) \in F[x] \st f(x) = q(x)g(x) + r(x)$$
+    where $r(x) = 0$ or $\deg r(x) < \deg g(x)$. Then
+    \begin{align*}
+        0 = f(\alpha) &= q(\alpha)g(\alpha) + r(\alpha) \\
+        &= 0 + r(\alpha) \\
+        &= r(\alpha)
+    \end{align*}
+    By the minimality of $\deg g(x)$, $r(x) = 0$ since $\alpha$ is a root of $r(x)$. hence $g(x)$ divides any polynomial with $\alpha$ as a root in $F[x]$. If $g(x) \mid h(x)$ where $h(x) \in F[x]$, then $\alpha$ is a root of $h(x)$.
+
+    Since $g(x)$ divides any polynomial with $\alpha$ as a root, $g(x)$ divides monic polynomials with $\alpha$ as a root. That is, for any monic polynomial $p(x) \in F[x]$ with $\alpha$ as a root which has minimal degree
+    $$c \cdot g(x) = p(x)$$
+    so $g(x)$ is unique, and we let $g(x) = m_{\alpha, F}(x)$ from the statement.
+    \qed
+\end{proof}
+
+\begin{definition}[Minimal Polynomial] \leavevmode \\
+    The polynomial $m_{\alpha, F}(x)$ (or just $m_\alpha(x)$ if $F$ is understood) in the previous proposition is called the minimal polynomial of $\alpha$ over $F$. The degree of $m_\alpha (x)$ is called the degree of $\alpha$.
+\end{definition}
