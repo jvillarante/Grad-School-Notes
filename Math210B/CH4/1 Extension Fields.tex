@@ -97,3 +97,14 @@ Our first big result about field extensions: If we have an irreducible polynomia
     $$1, \theta, \theta^2, ..., \theta^{n-1}$$
     form a basis for $K$ as a vector space over $F$ so the degree of the extension $K/F$ is $n$, i.e. $[K:F] = n$. So $K = \set{a_0 + a_1\theta + a_2\theta^2 +... + a_{n-1}\theta^{n-1} : a_0, ..., a_{n-1}\in F}$ consists of all polynomials of degree less than $n$.
 \end{theorem}
+
+\begin{example}
+    Let $F = \R$ and $p(x) = x^2 + 1$. $p(x)$ is irreducible in $\R$. The field
+    $$K = \frac{\R[x]}{(x^2+1)}$$
+    is an extension of degree $2$. Elements of $K$ are of the form $a + b\theta \st a,b \in \R$ and $\theta \equiv x \mod (x^2+1)$. Define
+    \begin{align*}
+        \varphi: \frac{\R}{(x^2+1)} &\to \C \\
+        a+b\theta &\mapsto a+bi
+    \end{align*}
+    $\varphi$ is a homomorphism which is clearly surjective and $\ker\varphi = \set{0}$.
+\end{example}
