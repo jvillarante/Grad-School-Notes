@@ -1,0 +1,71 @@
+Alebraic extensions allow us to enlarge a field by adding roots of a polynomial equation, but sometimes one root is not enough. A polynomial may have a root in the extension, but its remaining roots may lie outside of the extension. For example, $x^3-2$ has a root, $\sqrt[3]{2}$, which appears in the extension $\Q(\sqrt[3]{2})$. However, the polynomial has two additional roots, $\sqrt[3]{2}\omega$ and $\sqrt[3]{2}\omega^2$ where $\omega$ is a primitive cube root of unity, which do not appear in $\Q(\sqrt[3]{2})$. Because of this, $x^3-2$ factors into $(x-\sqrt[3]{2})(x^2+\sqrt[3]{2}x+sqrt[3]{4})$. Notice that the second factor is an irreducible quadratic over $\Q(\sqrt[3]{2})$. By enlarging the field to contain the remaining roots, we would be able to factor $x^3-2$ into linear factors, giving us a complete understanding of the polynomial. This motivates the following definition.
+
+\begin{definition}[Splitting Field] \leavevmode \\
+    the extension field $K/F$ si called the splitting field for the polynomial $f(x) \in F[x]$ if $f(x)$ factors completely into linear factors in $K[x]$ and does not factor completely into linear factors over any proper subfield of $K$ containing $F$.
+\end{definition}
+
+\begin{example}
+    What is the splittinf field of $x^2-5 \in \Q[x]?$
+    $$\Q(\sqrt{5}]$$
+    Note the two zeros of $x^2-5$, $\pm \sqrt{5}$, are in $\Q(\sqrt{5})$. This is the smallest field containing $\Q$ and the roots of $x^2-5$.
+\end{example}
+
+\begin{remark}
+    If $f(x) \in F[x]$ is of degree $n$, then $f(x)$ has at most $n$ roots and has $n$ roots, counting multiplicity, in $F$ if and only if $f(x)$ splits completely over $F$.
+\end{remark}
+
+\begin{theorem}
+    For any field $F$, if $f(x) \in F[x]$ then there exists an extension $K/F$ which is a splitting field for $f(x)$.
+\end{theorem}
+
+\begin{proof}
+    Induction on the degree $n$ of $f(x)$.
+    \begin{description}
+        \item[Base: ] $n=1$ \\
+            $f(x)$ is linear, so we take $K=F$. Thus there exists a field containing in which $f(x)$ factors completely. In this case, $K=E=F$ since there is no proper subfield of $F$ containing $F$.
+        \item[Inductive Step: ] $n > 1$ \\
+            Suppose now that $\deg(f(x)) > 1$. If the irreducible factors of $f(x)$ over $F$ are all linear, then $F$ is the splitting field of $f(x)$ so again we take $E=F$. Otherwise, at least one of the irreducible factors of $f(x)$ is of degree greater than $1$ and at most $n$. There exists an extension $E_1$ of $F$ where this irreducible factor, $p(x)$, has a zero. Letting this root be $\alpha$, we then have
+            $$f(x) = (x-\alpha)g(x)$$
+            where $g(x) \in E_1[x]$ since $\deg (f(x)) = n$. We know $\deg (g(x)) = n -1$, so by induction there exists an extension $E$ of $E_1$ which contains all the roots of $g(x)$. Since $\alpha \in E_1 \subseteq E$, $E$ contains all the roots of $f(x)$. To get the splitting field for $f(x)$, we let $K$ be the interseciton of all subfields of $E$ containing $F$ which also contain all the roots of $f(x)$. Then $K$ is the splitting field of $f(x)$.
+            \qed
+    \end{description}
+\end{proof}
+
+\begin{definition}[Normal Extension] \leavevmode \\
+    If $K$ is an algebraic extension of $F$ which is the splitting field over $F$ for a collection over $F$, then $K$ is called a normal extension.
+\end{definition}
+
+\begin{example}
+    Find the splitting field of $(x^2-2)(x^2-3)$. We feel stronglly that $\Q(\sqrt{2}, \sqrt{3})$ si the splitting field of this polynomial since $\pm \sqrt{2}, \pm \sqrt{3} \in \Q(\sqrt{2}, \sqrt{3})$. $\Q(\sqrt{2}, \sqrt{3})$ contains $\Q$ and all the roots of $(x^2-2)(x^2-3)$, hence the splitting field for this polynomial over $\Q$, call it $K$, is contianed in $\Q(\sqrt{2}, \sqrt{3})$. Furthermore, since $\Q \subseteq K$ and $\sqrt{2}, \sqrt{3} \in K$, we have $\Q(\sqrt{2}, \sqrt{3}) \subseteq K$. This shows $K = \Q(\sqrt{2}, \sqrt{3})$.
+
+    Consider the diagram of known subfields of $\Q(\sqrt{2}, \sqrt{3})$. Recall the form of $\Q(\sqrt{2}, \sqrt{3}) = \set{a + b \sqrt{2}, c\sqrt{3} + d \sqrt{6} : a,b,c,d \in \Q}$.
+
+    \includegraphics[width= 200pt, center]{/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math210B/CH4/images/Q field diagram 1.png}
+\end{example}
+
+\begin{example}
+    What is the splitting field of $x^3-2?$ It's not $\Q(\sqrt[3]{2})$. The roots of $x^3-2$ are $\sqrt[3]{2}, \sqrt[3]{2} \omega, \sqrt[3]{2} \omega^2$ for $\omega = \frac{-1}{2} + \frac{\sqrt{3}}{2}i$. So the splitting field for $x^3-2$ is $\Q(\sqrt[3]{2}, \sqrt[3]{2} \omega, \sqrt[3]{2} \omega^2) = K$. Notice that since $\sqrt[3]{2}, \sqrt[3]{2} \omega \in K$, then $\frac{\sqrt[3]{2} \omega}{\sqrt[3]{2}} = \omega \in K$. Further, since $2, 1 \in K$ then $2\omega + 1 = \sqrt{-3} \in K.$ Then $\Q(\sqrt{-3}, \sqrt[3]{2}) \subseteq K$. Furthermore, any field which contains $\sqrt{-3}$ and $\omega$ in turn contain all the roots of $x^3 - 2$, therefore
+    $$K \subseteq \Q(\sqrt{-3}, \sqrt[3]{2})$$
+    Let's use this to find the degree of $K$. We know 
+    $$[\Q(\sqrt{-3}, \sqrt[3]{2}) : \Q] = [\Q(\sqrt{-3}, \sqrt[3]{2}) : \Q(\sqrt{-3}] [\Q(\sqrt{-3}) : \Q] \leq 6$$
+    since $[\Q(\sqrt{-3}) : \Q] = 2$ and $[\Q(\sqrt[3]{2}) : \Q] = 3$. We also know
+    $$[\Q(\sqrt[3]{2}) : \Q] \mid [\Q(\sqrt{-3}, \sqrt[3]{2}) : \Q]$$
+    and 
+    $$[\Q(\sqrt{-3}) : \Q] \mid [\Q(\sqrt{-3}, \sqrt[3]{2}) : \Q]$$
+    Therefore, the degree of $\Q(\sqrt{-3}, \sqrt[3]{2})$ over $\Q$ is $6$ (we have also shown that $x^3-2$ is irreducible over $\Q(\sqrt{-3}))$. Known subfields of $\Q(\sqrt[3]{2}, \sqrt{-3})$:
+
+    \includegraphics[width= 200pt, center]{/Users/josiahvillarante/GradSchool/Grad-School-Notes/Math210B/CH4/images/Q field diagram 2.png}
+
+    where $\theta_1 = \sqrt[3]{2}, \theta_2 = \sqrt[3]{2} \omega, \theta_3 = \sqrt[3]{2} \omega^2$.
+\end{example}
+
+\begin{proposition}
+    A splitting field of a polynomial of degree $n$ over $F$ is of degree at most $n!$ over $F$.
+\end{proposition}
+
+\begin{proof}
+    If $f(x)$ is a polynomial of degree $n$ over $F$, we can adjoin a root $\alpha$ to $F$, then the degree of $F(\alpha)$ over $F$ is at most $n$. We can then factor $f(x)$ as 
+    $$f(x) = (x-\alpha)g(x)$$
+    where $\deg (g(x)) = n-1$. Hence, adjoining a root of $g(x)$ would have degree of at most $n-1$ over $F(\alpha)$ and so on.
+    \qed
+\end{proof}
