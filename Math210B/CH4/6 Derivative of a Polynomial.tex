@@ -1,0 +1,74 @@
+With splitting fields, we are able to factor polynomials into linear factors. Sometimes, these factors may repeat. For example, the polynomial $f(x) = (x-1)^2(x-2)$ has a repeated factor of $(x-1)$.
+
+More generally, let $F$ be a field and $f(x) \in F[x]$. For $f(x)$, we have
+$$f(x) = (x-\alpha_1)^{n_1}(x-\alpha_2)^{n_2}\cdots(x-\alpha_k)^{n_k}$$
+where each $\alpha_i$ are distinct elements of $K$, a splitting field for $f(x)$ and $n_i \geq 1 \forall i$. $\alpha_i$ is called a repeated root if $n_i > 1$ where $n_i$ is the multiplcity of $\alpha_i$.
+
+In calculus, we know that if $f(x)$ has a repeated root at $\alpha$, then $f'(\alpha) = 0$. We will make use of this idea to detect repeated roots of polynomials over fields.
+
+\begin{definition}[Derivative of a Polynomial] \leavevmode \\
+    Let $f(x) = \sum_{i=0}^n a_ix^i$ be a nonzero polynomial in $F[x]$. We define
+    $$D_x f(x) = \sum_{i=1}^{n}a_{1}\cdot ix^{i-1} = a_1 + 2a_2x + \cdots + na_n x^{n-1}$$
+    to be the formal derivative of $f(x)$.
+\end{definition}
+
+\begin{definition}[Separable Polynomial] \leavevmode \\
+    A polynomial is separable if it has no multiple roots. A polynomial which is not separable is called inseparable.
+\end{definition}
+
+\begin{proposition}
+    A polynomial $f(x)$ has a multiple root $\alpha$ if and only if $\alpha$ is also a root of $D_x f(x)$. I.e., $f(x)$ and $D_x f(x)$ are both divisible by the minimal polynomial of $\alpha$ over $F$. In particular, $f(x)$ is separable if and only if it is relatively prime to its derivative.
+\end{proposition}
+
+\begin{example}
+    The product rule, power rule and chain rule hold with formal derivatives. That is,
+    \begin{align*}
+        D_x\left(f(x)g(x)\right)&= \left(D_xf(x)\right)g(x) + f(x)\left(D_x g(x)\right) \\ 
+        D_x\left(\left(f(x)\right)^n\right) &= n\left(f(x)\right)^{n-1}D_x f(x) \\
+        D_x \left((x-\alpha)^n\right) &= n (x-\alpha)^{n-1}
+    \end{align*}
+\end{example}
+
+\begin{example}
+    The polynomial $x^{p^n}-x$ over $\F_p$ has derivative 
+    $$p^nx^{p^n-1} - 1 = 0 - 1 = -1 \text{ (using characteristic $p$)}$$
+    so we can immediately see that $x^{p^n}-x$ is relatively prime to $D_x\left(x^{p^n-1}-x\right)$ and so $x^{p^n-1}-x$ is separable (it has no multiple roots).
+\end{example}
+
+\begin{corollary}
+    Every irreducible polynomial over a field of characteristic $0$ is separable. A polynomial is separable if and only if it is the product of distinct irreducible polynomials.
+\end{corollary}
+
+\begin{proof}
+    Suppose $\charc{F} = 0$ and $p(x) \in F[x]$ is irreducible of degree $n$. Then
+    $$\deg \left(D_x\left(p(x)\right)\right) = n-1$$
+    The only factors of the irreducible polynomial $p(x)$ are associates of $p(x)$ and associates of $1$ so $D_x(p(x))$ must be relatively prime to $p(x)$. Hence, $p(x)$ is separable.
+    \qed
+\end{proof}
+
+\begin{proposition}
+    Let $F$ be a field with $\charc{F} = p$ where $p$ is prime. Then for any $a,b \in F,$ $(a+b)^p = a^p+b^p$ and $(ab)^p = a^pb^p$. That is, the mapping defined by $\varphi(a) = a^p$ is an injective field homomorphism from $F$ to $F$ called the Frobenius automorphism.
+\end{proposition}
+
+\begin{example}
+    Here is an important example. From homework, we proved that if $K/\F_p$ is finite then $|K| = p^n$ for some $n$. We will fix some $n \in \N$ and show there exists an extension $F/ \F_p$ such that $[F : \F_p] = n$.
+
+    Let $n > 0$ and consider $f(x) = x^{p^n} - x \in \F_p[x]$. Let $K$ be the splitting field of $f(x)$ over $\F_p$. We know $f(x)$ is separable, thus it has exactly $p^n$ distinct roots. Let $\alpha, \beta$ be roots of $f(x)$. Then
+    \begin{align*}
+        \begin{rcases*}
+            \alpha^{p^n}-\alpha = 0 \\
+            \beta^{p^n}-\beta = 0
+        \end{rcases*} \implies
+        \begin{rcases*}
+            \alpha^{p^n} = \alpha \\
+            \beta^{p^n} = \beta
+        \end{rcases*}
+    \end{align*}
+    Then
+    \begin{align*}
+        (\alpha \beta)^{p^n} &= \alpha^{p^n}\beta^{p^n} = \alpha \beta \\
+        (\alpha^{-1})^{p^n} &= (\alpha^{p^n})^{-1} = \alpha^{-1} \\
+        (\alpha + \beta)^{p^n} &= \alpha^{p^n} + \beta^{p^n} = \alpha + \beta
+    \end{align*}
+    Hence, the set of all $p^n$ roots of $f(x)$, $F$, is closed under addition, multiplication, and inverse in $K$. That is, $F$ is a subfield of $K$. Noting that $1\in F$, we see $\F_p \subseteq K$. Hence $K \subseteq F$, so $K=F$. Since $F$ is a vector space over $\F_p$ and $|F| = p^n$, it follows that $[F : \F_p] = n$. Hence, we have shown the existence of finite fields of order $p^n$.
+\end{example}
