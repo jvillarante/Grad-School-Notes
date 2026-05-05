@@ -249,3 +249,168 @@ We the above proposition, we take interest in the elements in $K$ that are fixed
     Lastly, $\sigma \tau = 1$ so 
     $$\Gal{\Q(\sqrt{2}, \sqrt{3})/\Q} \cong \Z_2 \times \Z_2$$
 \end{example}
+
+\begin{example} Let's look at the corresponding fixed fields of the previous example.
+
+    \begin{center}
+        \begin{tabular}{ccc}
+            \textbf{Subgroups of $\Gal{\Q({\sqrt{2}}, \sqrt{3})/\Q}$:} & & \textbf{Corresponding fixed fields:} \\ 
+            \noalign{\medskip}
+            % Data Row
+            $1$ & $\longleftrightarrow$ & $\Q(\sqrt{2}, \sqrt{3})$ \\
+            $\cyc{\sigma}$ & $\longleftrightarrow$ & $\Q(\sqrt{3})$ \\
+            $\cyc{\tau}$ & $\longleftrightarrow$ & $\Q(\sqrt{2})$ \\
+            $\cyc{\sigma \tau}$ & $\longleftrightarrow$ & $\Q(\sqrt{6})$ \\ 
+            $\set{1, \sigma, \tau, \sigma \tau}$ & $\longleftrightarrow$ & $\Q$
+        \end{tabular}
+    \end{center}
+    To find the fixed field for $\cyc{\sigma}$, note that
+    \begin{align*}
+        \sigma(a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}) &= a + b\sigma(\sqrt{2})+c\sigma(\sqrt{3})+d\sigma(\sqrt{6}) \\
+        &= a-b\sqrt{2}+c\sqrt{3}+d\sigma(\sqrt{2})\sigma(\sqrt{3}) \\
+        &= a-b\sqrt{2}+c\sqrt{3}-d\sqrt{6}
+    \end{align*}
+    An element in $\Q(\sqrt{2}, \sqrt{3})$ is fixed by $\sigma$ if 
+    \begin{align*}
+        a+b\sqrt{2} + c\sqrt{3} + d\sqrt{6} &= a-b\sqrt{2}+c\sqrt{3}-d\sqrt{6} \\
+        \implies b=-b &\text{ and } d = -d \\
+        \implies b=&d=0
+    \end{align*}
+    so $\sigma(a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}) = a+c\sqrt{3} \in \Q(\sqrt{3})$.
+
+    Similarly, for $\cyc{\tau},$
+    \begin{align*}
+        \tau(a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6}) &= a + b\sqrt{2}-c\sqrt{3}-d\sqrt{6} \\
+        \implies c = &0 = d \\
+        \implies \tau(a+b\sqrt{2}+c\sqrt{3}+d\sqrt{6})&= a + b\sqrt{2} \in \Q(\sqrt{2})
+    \end{align*}
+\end{example}
+
+\begin{example}
+    Let $p(x) = x^3-2 \in \Q[x]$. We have found the splitting field of $p(x)$ over $\mathbb{Q}$ to be $\Q(\sqrt[3]{2}, \omega)$ where $\omega = \frac{-1+\sqrt{3}i}{2}.$
+
+    Notice that $x^3-2$ has three distinct roots, so $p(x)$ is separable and so its splitting field is Galois over $\Q$. We also know
+    $$[\Q(\sqrt[3]{2}, \omega):\Q] = 6 = \left| \Gal{\Q(\sqrt[2]{3}, \omega)/\Q}\right|.$$
+    Suppose we write the splitting field as
+    $$\Q(\sqrt[3]{2}, \sqrt[3]{2}\omega)$$
+    We know that any automorphism will send roots of minimal polynomials to other roots. Written this way, we may have 
+    \[
+        \begin{tikzcd}[column sep=large]
+            & \sqrt[3]{2} \\
+            \sqrt[3]{2} \arrow[ru, mapsto] \arrow[r, mapsto] \arrow[rd, mapsto] & \sqrt[3]{2} \omega \\
+            & \sqrt[3]{2} \omega^2
+        \end{tikzcd}, 
+        \begin{tikzcd}[column sep=large]
+            & \sqrt[3]{2} \\
+            \sqrt[3]{2}\omega \arrow[ru, mapsto] \arrow[r, mapsto] \arrow[rd, mapsto] & \sqrt[3]{2} \omega \\
+            & \sqrt[3]{2} \omega^2
+        \end{tikzcd}
+    \]
+
+    This gives $3 \cdot 3 = 9$ possibilities for automorphisms, which is larger than the order of the Galois group. 
+
+    Using $\Q(\sqrt[3]{2}, \omega)$, we have a more compatible number of potential automorphisms. Any automorphism can send
+        \[
+        \begin{tikzcd}[column sep=large]
+            \omega \arrow[r, mapsto] \arrow[rd, mapsto] & \omega \\
+             & \omega^2
+        \end{tikzcd}, 
+        \begin{tikzcd}[column sep=large]
+             & \sqrt[3]{2} \\
+            \sqrt[3]{2} \arrow[ru, mapsto] \arrow[r, mapsto] \arrow[rd, mapsto] & \sqrt[3]{2} \omega \\
+            & \sqrt[3]{2} \omega^2
+        \end{tikzcd}
+    \]
+    ($m_{\omega, \Q}(x) = x^2 + x + 1$, $m_{\sqrt[3]{2}, \Q}(x) = x^3-2$).
+    This gives six automorphisms, which is exactly the size of the Galois group. Let
+    \begin{align*}
+        1 &: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2} \\
+            \omega \mapsto \omega
+        \end{cases*} \\
+        \sigma &: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2}\omega \\
+            \omega \mapsto \omega
+        \end{cases*} &&
+        \tau: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2} \\
+            \omega \mapsto \omega^2 = -1-\omega
+        \end{cases*}
+    \end{align*}
+    \begin{align*}
+                \sigma^2 &: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sigma(\sqrt[3]{2}\omega) \mapsto \sqrt[3]{2}\omega^2 = \sqrt[3]{2}(-1-\omega) \\
+            \omega \mapsto \omega
+        \end{cases*} &&
+        \tau^2: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2} \\
+            \omega \mapsto \left(\omega^2\right)^2 = \omega^4 = \omega
+        \end{cases*} \\
+        \sigma^3 &: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2}\omega(-1-\omega) = \sqrt[3]{2}(-\omega + 1 + \omega) = \sqrt[3]{2} \\
+            \omega \mapsto \omega
+        \end{cases*}
+    \end{align*}
+    Notice that $\sigma^3 = 1 = \tau^2$, so $|\sigma| = |\cyc{\sigma}| = 3$ and $|\tau| = |\cyc{\tau}| = 2$.
+
+    \begin{align*}
+        \sigma \tau &: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2} \omega \\
+            \omega \mapsto -1-\omega
+        \end{cases*} &&
+        \tau \sigma: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2}(-1-\omega) \\
+            \omega \mapsto (-1-\omega)
+        \end{cases*}
+    \end{align*}
+    $\omega \tau \neq \tau \omega,$ so the Galois group is not abelian.
+    \begin{align*}
+        \tau\sigma^2 &: \begin{cases*}
+            \sqrt[3]{2} \mapsto \sqrt[3]{2}\omega \\
+            \omega \mapsto -1-\omega
+        \end{cases*}
+    \end{align*}
+    $$\sigma\tau = \tau \sigma^2 \iff \sigma \tau = \tau \sigma^{-1}$$
+    Hence,
+    $$\Gal{\Q(\sqrt[3]{2}, \omega)/\Q} \cong \cyc{\sigma, \tau : \sigma^3 = \tau^2 = 1, \sigma \tau = \tau \sigma^{-1}} \cong D_6$$
+\end{example}
+
+\begin{example}
+    Let's compute the fixed field of $\cyc{\sigma}$ from the previous example.
+
+    We need to see what is fixed by the generator $\sigma$. Lets look at the basis for $\Q(\sqrt[3]{2}, \omega)$:
+    $$\set{1, \sqrt[3]{2}, \left(\sqrt[3]{2}\right)^2, \omega, \sqrt[3]{2}\omega, \left(\sqrt[3]{2}\right)^2\omega}.$$
+    Then,
+    \begin{align*}
+        \sigma(1) &= 1 \\
+        \sigma\left(\sqrt[3]{2}\right) &= \sqrt[3]{2}\omega \\
+        \sigma\left((\sqrt[3]{2}) ^2\right) &= \sigma\left(\sqrt[3]{2}\right)\sigma\left(\sqrt[3]{2}\right) = \left(\sqrt[3]{2}\omega\right)\left(\sqrt[3]{2}\omega\right) = \sqrt[3]{4}(-1-\omega) \\
+        \sigma(\omega) &= \omega \\
+        \sigma\left(\sqrt[3]{2} \omega\right) &= \sigma\left(\sqrt[3]{2}\right)\sigma(\omega) = \left(\sqrt[3]{2} \omega\right)\left(\omega\right) = \sqrt[3]{2}(-1-\omega) \\
+        \sigma\left((\sqrt[3]{2})^2 \omega\right) &= \sigma\left((\sqrt[3]{2})^2\right)\sigma(\omega) = \left(\sqrt[3]{4}(-1-\omega)\right)(\omega) = \sqrt[3]{4}(-\omega + 1 + \omega) = \sqrt[3]{4}
+    \end{align*}
+    So,
+    \begin{align*}
+        \sigma\left(a+b\sqrt[3]{2} + c(\sqrt[3]{2})^2+d\omega + e\sqrt[3]{2} \omega + f (\sqrt[3]{2})^2 \omega\right)
+        &= a + b \sqrt[3]{2} \omega + c \left((\sqrt[3]{2})^2\omega^2\right) + dw + e\sqrt[3]{2} \omega^2 + f (\sqrt[3]{2})^2 \\
+        &= a + b \sqrt[3]{2} \omega - c(\sqrt[3]{2})^2(1+\omega) + d\omega - e \sqrt[3]{2}(1+w) + f(\sqrt[3]{2})^2 \\
+        &= a - e \sqrt[3]{2} + (f-c)(\sqrt[3]{2})^2 +d\omega + (b-e)\sqrt[3]{2} \omega -c (\sqrt[3]{2})^2 \omega
+    \end{align*}
+    For our element to be fixed, we need
+    \begin{align*}
+        &a = a &&f=-c \\
+        &b=-e &&c=f-c \\
+        &d=d &&e=b-e
+    \end{align*}
+    We have
+    $$e=b-e = -e-e \implies e = 0 \implies b = 0$$
+    Similarly,
+    $$c=0 \implies f = 0$$
+    Hence, any elements fixed by $\sigma$ are of the form $a + dw$. The fixed field of $\cyc{\sigma}$ is $\Q(\omega)$.
+\end{example}
+
+\begin{example}
+    $\Q(\sqrt{2}, \sqrt[3]{3}, \sqrt[5]{5},...) = \bigcap \limits_{\substack{F \supseteq \Q \\ \sqrt[p_i]{p_i} \in F}} F$
+    Note that
+    $$\bigcap_{\substack{F \supseteq \Q \\ \sqrt[p_i]{p_i} \in F}} F = \bigcup_{i=1}^\infty K_i \text{ where } K_i = \Q\left(\sqrt[2]{2}, \sqrt[3]{3}, \sqrt[5]{5},...,\sqrt[p_i]{p_i}\right)$$
+\end{example}
