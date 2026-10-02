@@ -1,0 +1,315 @@
+\begin{theorem}[The Sequential Criterion of Integrability] \leavevmode \\
+    Suppose $f:[a,b] \to \R$ is bounded and $\alpha:[a,b] \to \R$ is increasing.
+    \begin{enumerate}
+        \item If $f \in R_\alpha[a,b]$, then there exists a sequence of partitions $(P_n)_{n \geq 1}$ in $\Pi[a,b]$ such that
+        $$\lim_{n \to \infty} \left[U(f,\alpha, P_n) - L(f, \alpha, P_n)\right] = 0.$$
+        \item If there exists a sequence of partitions $(P_n)_{n \geq 1}$ in $\Pi[a,b]$ such that 
+        $$\lim_{n\to \infty} \left[U(f,\alpha, P_n) - L(f,\alpha, P_n)\right] = 0,$$
+        then $f \in R_\alpha [a,b]$ and 
+        $$\int_a^b f d \alpha = \lim_{n\to \infty} U(f, \alpha, P_n) = \lim_{n \to \infty} L(f, \alpha, P_n).$$
+    \end{enumerate}
+\end{theorem}
+    
+\begin{proof}
+    \begin{enumerate}
+        \item $f \in R_\alpha [a,b] \iff \forall \epsilon > 0, ~~\exists P_\epsilon \in \Pi \st U(f, \alpha, P_\epsilon) - L(f, \alpha, P_\epsilon) < \epsilon.$
+        In particular, 
+        \begin{align*}
+            \epsilon = 1 &\implies \exists P_1 \in \Pi \st U(f, \alpha, P_1) - L(f, \alpha, P_1) < 1 \\
+            \epsilon = \frac{1}{2} &\implies \exists P_2 \in \Pi \st U(f, \alpha, P_2) - L(f, \alpha, P_2) < \frac{1}{2} \\
+            \epsilon = \frac{1}{3} &\implies \exists P_3 \in \Pi \st U(f, \alpha, P_3) - L(f, \alpha, P_3) < \frac{1}{3} \\
+            \vdots &
+        \end{align*}
+        In this way, we obtain a sequence $(P_n)_{n \geq 1}$ of partitions such that 
+        $$\forall n \geq 1 ~~U(f, \alpha, P_n) - L(f, \alpha, P_n) < \frac{1}{n}.$$
+        It follows from the squeeze theorem that 
+        $$\lim_{n \to \infty}\left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] = 0.$$
+
+        \item According the Cauchy Criterion, it is enough to show that 
+        $$\forall \epsilon > 0 ~~\exists P \in \Pi [a,b] \st U(f, \alpha, P_n) - L(f, \alpha, P_n) < \epsilon.$$
+        Let $\epsilon > 0$ be given. Our goal is to find $P \in \Pi$ such that
+        $$U(f, \alpha, P) - L(f, \alpha, P) < \epsilon.$$
+        Since
+        $$\lim_{n\to \infty} \left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] = 0,$$
+        there exists $N \in \N$ such that 
+        $$\forall n \in \N ~~U(f, \alpha, P_n) - L(f, \alpha, P_n) < \epsilon.$$
+        In particular, $P_{N+1}$ can be used as the $P$ we were looking for. It remains to show that $\int_a^b f d\alpha = \lim_{n \to \infty} U(f, \alpha, P_n) = \lim_{n \to \infty} L(f, \alpha, P_n).$ We have
+        $$0 \leq U(f, \alpha, P_n) - U(f, \alpha) \leq U(f, \alpha, P_n) - L(f, \alpha, P_n) \leq U(f, \alpha, P_n) - L(f, \alpha, P_n) \to 0 \text{ as } n\to \infty.$$
+        If follows from the squeeze theorem that 
+        $$\lim_{n\to \infty} [U(f, \alpha, P_n) - U(f, \alpha)] = 0.$$
+        Thus
+        $$\lim_{n \to \infty} U(f, \alpha, P_n) = U(f, \alpha) = \int_a^b f d \alpha.$$
+        Similary,
+        \begin{align*}
+            0 \leq L(f, \alpha) - L(f, \alpha, P_n) & \leq U(f, \alpha) - L(f, \alpha, P_n) \leq U(f, \alpha, P_n) - L(f, \alpha, P_n) \to 0 \text{ as } n\to \infty \\
+            &\overset{\text{SQZ Thm}}{\implies} \lim_{n \to \infty} \left[L(f, \alpha) - L(f, \alpha, P_n)\right] \\
+            &\implies \lim_{n \to \infty} L(f, \alpha, P_n) = L(f, \alpha) = \int_a^b f d\alpha.
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{theorem}[Algebraic Limit Theorem for Riemann-Stieltjes Integrals] \leavevmode \\
+    Suppose $f, g \in R_\alpha [a,b]$. Then
+    \begin{enumerate}
+        \item $\forall k \in \R ~~kf \in R_\alpha[a,b]$ with $\int_a^b k f d\alpha = k \int_a^b f d \alpha$.
+        \item $f + g \in R_\alpha[a,b]$ with $\int_a^b f+g d\alpha = \int_a^b fd\alpha + \int_a^b g d\alpha$.
+        \item $f^2 \in R_\alpha[a,b],$ and $fg \in R_\alpha[a,b]$.
+        \item If $g \neq 0$ on $[a,b]$ and $\frac{1}{g}$ is bounded on $[a,b]$, then $\frac{1}{g} \in R_\alpha[a,b]$ and $\frac{f}{g}\in R_\alpha[a,b]$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{remark}
+    \begin{enumerate}
+        \item[(1)] As a result of (i) and (ii), the set $R_\alpha [a,b]$ is a vector space. Moreover, the function
+        \begin{align*}
+            T: R_\alpha[a,b] &\to \R \\
+            T(f) &= \int_a^b fd\alpha
+        \end{align*}
+        is linear.
+
+        \item[(2)] The function $g: [0,1] \to \R$ defined by 
+        $$g(x) = \begin{cases}
+            x & 0 < x \leq 1 \\
+            1 & x = 0
+        \end{cases}$$
+        is an example of a bounded function which is never zero, but $\frac{1}{g}$ is unbounded.
+    \end{enumerate}
+\end{remark}
+
+\begin{notation}
+    Let $h: A \subseteq \R \to \R$ be a bounded function.
+    \begin{enumerate}
+        \item We denote $\sup \set{h(x) : x \in A}$ by $\sup_A h$ or $\sup_A h(x)$ or $\sup_{x \in A} h(x).$
+        \item We denote $\inf \set{h(x): x \in A}$ by $\inf_A h$ or $\inf_A h(x)$ or $\inf_{x \in A} h(x).$
+    \end{enumerate}
+\end{notation}
+
+\begin{lemma}
+    Let $A \subseteq \R$. Let $f:A \to \R$ and $g: A \to \R$ be bounded fucntions. Then
+    \begin{enumerate}
+        \item $\sup_A(f+g) \leq \sup_A f + \sup_A g$.
+        \item $\inf_A(f+g) \geq \inf_A f + \inf_A g$.
+        \item $\forall k \geq 0 ~~ \sup_A(kf) = k \sup_A f$ and $\inf_A(kf) = k \inf_A f.$
+        \item $\forall k \leq 0 ~~ \sup_A(kf) = k \inf_A f$ and $\inf_A (kf) = k \sup_A f.$
+        \item $\sup\set{|f(x) - f(y)| : x,y \in A} = \sup_A f - \inf_A f.$
+        \item If $\exists k > 0 \st \forall z , w \in A ~~|f(z) - f(w)| \leq k |g(z) - g(w)|$, then $$\sup_A f - \inf_A f \leq k \left[\sup_A g - \inf_A g\right]$$
+    \end{enumerate}
+\end{lemma}
+
+\begin{lemma}
+    Let $f:[a,b] \to \R$ and $g : [a,b] \to \R$ be bounded, $\alpha: [a,b] \to \R$ be icreasing, and $P \in \Pi[a,b]$. Then
+    \begin{enumerate}
+        \item $U(f+g, \alpha, P) \leq U(f, \alpha, P) + U(g, \alpha, P)$.
+        \item $L(f+g, \alpha, P) \geq L(f, \alpha, P) + L(g, \alpha, P)$.
+        \item $\forall k \geq 0 ~~U(kf,\alpha, P) = kU(f, \alpha, P)$ and $L(kf, \alpha, P) = k L(f, \alpha, P)$.
+        \item $\forall k < 0 ~~U(kf, \alpha, P) = kL(f, \alpha, P)$ and $L(kf, \alpha, P) = kU(f, \alpha, P)$.
+    \end{enumerate}
+\end{lemma}
+
+\colorlet{proofcolor}{theorembordercolor}
+\begin{proof}
+    Proof of the Algebraic Limit Theorem for Integrals.
+    \begin{enumerate}
+        \item $\forall k \in \R, ~~kf\in R_\alpha[a,b]$ with $\int_a^b kf d\alpha = k \int_a^b f d\alpha$: \\
+        Note that 
+        $$f\in R_\alpha[a,b] \implies f \text{ is bounded on } [a,b] \implies kf \text{ is bounded on } [a,b].$$
+        Since $f \in R_\alpha [a,b],$ there exists a sequence $(P_n){n\geq 1}$ in $\Pi[a,b]$ such that 
+        $$\lim_{n\to \infty}\left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] = 0, \int_a^b fd\alpha = \lim_{n \to \infty} U(f, \alpha, P_n) = \lim_{n \to \infty} L (f, \alpha, P_n).$$
+        In what follows, we'll show that
+        $$\lim_{n \to \infty} \left[U(kf, \alpha, P_n) - L(kf, \alpha, P_n)\right] = 0$$
+        and so $kf \in R_\alpha[a,b]$. We may consider two cases:
+        \begin{description}
+            \item[Case 1: $k \geq 0$]
+            \begin{align*}
+                \lim_{n \to \infty} \left[U(kf, \alpha, P_n) - L(kf, \alpha, P_n)\right] &= \lim_{n\to \infty} \left[kU(f, \alpha, P_n) - kL(f, \alpha, P_n)\right] \\ 
+                &= k \lim_{n \to \infty} \left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] \\ 
+                &= 0.
+            \end{align*}
+            \item[Case 2: $k < 0$]
+            \begin{align*}
+                \lim_{n \to \infty} \left[U(kf, \alpha, P_n) - L(kf, \alpha, P_n)\right] &= \lim_{n \to \infty} \left[kL(f, \alpha, P_n) - kU(f, \alpha, P_n)\right] \\
+                &= -k \lim_{n \to \infty} \left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] \\ 
+                &= 0.
+            \end{align*} 
+        \end{description}
+        Moreover, if $k \geq 0$, then 
+        $$\int_a^b kfd\alpha = \lim_{n\to \infty} U(kf, \alpha, P_n) = \lim_{n\to \infty}k \cdot U(f, \alpha, P_n) = k \cdot \int_a^b f d\alpha.$$
+        Similarly, for $k < 0$,
+        $$\int_a^b kfd\alpha = \lim_{n\to \infty} U(kf, \alpha, P_n) = \lim_{n\to \infty}k \cdot L(f, \alpha, P_n) = k \cdot \int_a^b f d\alpha.$$
+
+        \item $f+g \in R_\alpha[a,b]$ with $\int_a^bf + g d\alpha = \int_a^b f d\alpha + \int_a^b g d\alpha$: \\
+        Note that
+        $$\begin{rcases*}
+            f \in R_\alpha[a,b] \implies f \text{ is bounded on } [a,b] \\
+            g \in R_\alpha[a,b] \implies g \text{ is bounded on } [a,b]
+        \end{rcases*} \implies f+g \text{ is bounded on } [a,b].$$
+        Since $f \in R_\alpha[a,b]$ there exists $(P_n)_{n \geq 1}$ in $\Pi[a,b]$ such that 
+        $$\lim_{n\to \infty}\left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] = 0, ~~\int_a^b fd \alpha = \lim_{n \to \infty}U(f, \alpha, P_n) = \lim_{n \to \infty}L(f, \alpha, P_n).$$
+        Since $g \in R_\alpha[a,b]$ there exists $(Q_n)_{n \geq 1}$ in $\Pi[a,b]$ such that
+        $$\lim_{n \to \infty}\left[U(g, \alpha, Q_n) - L(g, \alpha, Q_n)\right] = 0, ~~\int_a^bg d \alpha = \lim_{n \to \infty}U(g, \alpha, Q_n) = \lim_{n\to \infty}L(g, \alpha, Q_n).$$
+        In what follows, we will show that
+        $$\lim_{n \to \infty}\left[U(f+g, \alpha, P_n \cup Q_n) - L(f+g, \alpha, P_n \cup Q_n)\right] = 0$$
+        and so $f+g \in R_\alpha[a,b]$. We have
+        \begin{align*}
+            L(f+g, \alpha, P_n \cup Q_n) &\geq L(f, \alpha, P_n \cup Q_n) + L(g, \alpha, P_n \cup Q_n) \\
+            &\geq L(f, \alpha, P_n) + L(g, \alpha, Q_n)
+        \end{align*}
+        and
+        \begin{align*}
+            U(f+g, \alpha, P_n \cup Q_n) &\leq U(f, \alpha, P_n \cup Q_n) + U(g, \alpha, P_n \cup Q_n) \\
+            &\leq U(f, \alpha, P_n) + U(g, \alpha, Q_n)
+        \end{align*}
+        so
+        \begin{align*}
+            L(f, \alpha, P_n) + L(g, \alpha, Q_n) &\leq L(f+g, \alpha, P_n \cup Q_n) \\
+            &\leq U(f+g, \alpha, P_n \cup Q_n) \\
+            &\leq U(f, \alpha, P_n) + U(g, \alpha, Q_n).
+        \end{align*}
+        Therefore,
+        \begin{align*}
+            0 &\leq U(f+g, \alpha, P_n \cup Q_n) - L(f+g, \alpha, P_n \cup Q_n) \\ &\leq \left[U(f, \alpha, P_n) - L(f, \alpha, P_n)\right] + \left[U(f, \alpha, Q_n) - L(f, \alpha, Q_n)\right] \to 0 + 0 = 0.
+        \end{align*}
+        By the squeeze theorem,
+        $$\lim_{n \to \infty}\left[U(f+g, \alpha, P_n \cup Q_n) - L(f+g, \alpha, P_n \cup Q_n)\right] = 0.$$
+        Moreover,
+        \begin{align*}
+            \int_a^bf+g d\alpha &= \lim_{n\to \infty}\left[U(f+g, \alpha, P_n \cup Q_n)\right] \\
+            &\leq \lim_{n \to \infty} \left[U(f, \alpha, P_n) + U(g, \alpha, P_n)\right] = \int_a^b fd \alpha + \int_a^b gd\alpha \\
+            \int_a^bf+g d\alpha &= \lim_{n\to \infty}\left[L(f+g, \alpha, P_n \cup Q_n)\right] \\
+            &\geq \lim_{n \to \infty} \left[L(f, \alpha, P_n) + L(g, \alpha, P_n)\right] = \int_a^b fd \alpha + \int_a^b gd\alpha.
+        \end{align*}
+        This implies $\int_a^b f+g d\alpha = \int_a^b fd\alpha + \int_a^b gd\alpha.$
+
+        \item $f^2 \in R_\alpha[a,b]:$ \\
+        Note that $\phi: \R \to \R$, $\phi(x) = x^2$ is continuous, so since $f \in R_\alpha[a,b]$, $\phi \circ f \in R_\alpha[a,b] \implies f^2 \in R_\alpha[a,b].$ \\
+        $fg \in R_\alpha[a,b]:$ \\
+        Note that
+        $$\begin{rcases*}
+            (f+g)^2 = f^2+2fg+g^2 \\
+            (f-g)^2 = f^2 -2fg + g^2
+        \end{rcases*}\implies 4fg = (f+g)^2 - (f-g)^2 \implies fg = \frac{1}{4}\left[(f+g)^2-(f-g)^2\right].$$
+        Therefore,
+        \begin{align*}
+            f,g \in R_\alpha[a,b] &\overset{(i)}{\implies} f,g, -g \in R_\alpha[a,b] \\
+            &\overset{(ii)}{\implies} f+g, f-g \in R_\alpha[a,b] \\
+            &\overset{(iii)}{\implies} (f+g)^2, (f-g)^2 \in R_\alpha[a,b] \\
+            &\overset{(i)}{\implies} (f+g)^2, -(f-g)^2 \in R_\alpha[a,b] \\
+            &\overset{(ii)}{\implies} (f+g)^2-(f-g)^2 \in R_\alpha[a,b] \\
+            &\overset{(i)}{\implies} \frac{1}{4}\left[(f+g)^2 - (f+g)^2\right] \in R_\alpha[a,b] \\
+            &\implies fg \in R_\alpha[a,b].
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{theorem}[Order Properties of Riemann-Stieltjes Integrals] \leavevmode \\
+    \label{Thm6.12}
+    Supose $f,g \in R_\alpha[a,b].$ Then
+    \begin{enumerate}
+        \item If $m \leq f(x) \leq M ~~\forall x \in [a,b]$, then $m(\alpha(b) - \alpha(a)) \leq \int_a^bfd \alpha \leq M(\alpha(b) - \alpha(a)).$
+        \item If $f \leq g$ on $[a,b],$ then $\int_a^bfd \alpha \leq \int_a^b g d\alpha.$
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Note that for any $P\in \Pi[a,b],$
+        \begin{align*}
+            \int_a^b fd\alpha &= L(f, \alpha) \geq L(f, \alpha, P) \\
+            \int_a^b fd\alpha &= U(f, \alpha) \leq U(f, \alpha, P).
+        \end{align*}
+        In particular, for the partition $P = \set{a,b}$, we have
+        \begin{align*}
+            \int_a^b fd\alpha \geq L(f, \alpha, P) = \inf \set{f(x) : x \in [a,b]} (\alpha(b) - \alpha(a)) \geq m(\alpha(b) - \alpha(a)) \\
+            \int_a^b fd\alpha \leq U(f, \alpha, P) = \sup \set{f(x) : x \in [a,b]} (\alpha(b) - \alpha(a)) \leq M(\alpha(b) - \alpha(a))
+        \end{align*}
+        
+        \item Let $h = g - f$. We have $h \geq 0$, so by part (i) 
+        \begin{align*}
+            0(\alpha(b) - \alpha(a)) &\leq \int_a^b h d\alpha \\
+            & = \int_a^bgd \alpha - \int_a^b f d\alpha \\
+            \implies \int_a^bfd \alpha & \leq \int_a^b gd \alpha.
+        \end{align*}
+    \end{enumerate}
+    \qed
+\end{proof}
+
+\begin{theorem}[$|\int_a^bfd\alpha| \leq \int_a^b|f|d\alpha$] \leavevmode \\
+    \label{Thm6.13}
+    Suppose $f \in R_\alpha[a,b]$. Then
+    \begin{enumerate}
+        \item $|f| \in R_\alpha[a,b]$.
+        \item $|\int_a^b fd\alpha| \leq \int_a^b |f| d\alpha$.
+    \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    \begin{enumerate}
+        \item Since $\phi: \R \to \R$, $\phi(x) = |x|$ is continuous and $f$ is Riemann-Stieltjes integrable, it follows that $|f| = \phi \circ f$ is Riemann-Stieltjes integrable. Hence $|f| \in R_\alpha[a,b]$.
+        \item Recall that $|t| \leq s \iff -s \leq t \leq s$. So our goal is to show that 
+        $$-\int_a^b |f| d\alpha \leq \int_a^b f d \alpha \leq \int_a^b |f| d\alpha$$
+        Clearly, (for any $c$, $-|c| \leq c \leq |c|$)
+        \begin{align*}
+            &-|f(x)| \leq f(x) \leq |f(x)|~~ \forall x \in [a,b] \\
+            \implies& -\int_a^b |f| d\alpha \leq \int_a^b f d\alpha \leq \int_a^b |f| d\alpha ~~\forall x \in [a,b]
+        \end{align*}
+        \qed
+    \end{enumerate}
+\end{proof}
+
+\begin{theorem}[The Mean Value Theorem for Riemann-Stieltjes Integrals] \leavevmode \\
+    \label{Thm6.14}
+    Suppose $f: [a,b] \to \R$ is continuous, $\alpha: [a,b] \to \R$ is increasing, and $\alpha(a) \neq \alpha(b)$. Then
+    $$\exists c \in [a,b] \st f(x) = \dfrac{\int_a^bf d\alpha}{\alpha(b) - \alpha(a)}$$
+\end{theorem}
+
+\begin{proof}
+    Because $f$ is continuous on $[a,b]$, and $[a,b]$ is compact, by the Extreme Value Theorem $f$ attains its maximum and minimum on $[a,b]$. Let $m = \min\set{f(x) : x \in [a,b]}$ and $M = \max \set{f(x) : x \in [a,b]}$. We have
+    \begin{align*}
+        \forall x \in [a,b] ~~&m \leq f(x) \leq M \\
+        \implies &m(\alpha(b) - \alpha(a)) \leq \int_a^b f d\alpha \leq M(\alpha(b) - \alpha(a)) \\
+        \implies &m \leq \dfrac{\int_a^b f d\alpha}{\alpha(b)-\alpha(a)} \leq M.
+    \end{align*}
+    Since $f$ is continuous, it follows from the Intermediate Value Theorem
+    $$\exists c \in [a,b] \st f(c) = \dfrac{\int_a^b f d\alpha}{\alpha(b)-\alpha(a)}$$
+    \qed
+\end{proof}
+
+\begin{theorem}[Generalized Mean Value Theorem for Riemann-Stieltjes Integrals] \leavevmode \\
+    \label{Thm6.15}
+    Suppose $f:[a,b] \to \R$ is continuous, $\alpha: [a,b] \to \R$ is increasing, $g \in R_\alpha[a,b]$, and either $g \geq 0$ on $[a,b]$ or $g \leq 0$ on $[a,b]$. Then
+    $$\exists c \in [a,b] \st \int_a^bfg d\alpha = f(c) \int_a^bgd \alpha.$$
+\end{theorem}
+
+\begin{proof}
+    We will prove the claim for the case $g \geq 0$ on $[a,b]$. The proof for the case $g \leq 0$ is analogous. Since $f$ is continuous on $[a,b]$ and $[a,b]$ is compact, $f$ contains its maximum and minimum on $[a,b]$. Let $M = \max\set{f(x) : x \in [a,b]}$ and $m = \min \set{f(x) : x \in [a,b]}$. Then, since $g \leq 0$ on $[a,b]$,
+    \begin{align*}
+        \forall x \in [a,b] &~~m \leq f(x) \leq M \\
+        \implies \forall x \in [a,b] &~~mg(x) \leq f(x)g(x) \leq Mg(x) \\
+        \implies \forall x \in [a,b] &~~m \int_a^b gd\alpha \leq \int_a^b fg d\alpha \leq M \int_a^bg d\alpha.
+    \end{align*}
+    Now, we may consider two cases:
+    \begin{description}
+        \item[Case 1: $\int_a^bgd\alpha = 0$]
+        If $\int_a^bgd\alpha = 0$, it follows that $0 \leq \int_a^b fgd\alpha \leq 0$ and so $\int_a^bfgd \alpha = 0$. So in this case, the claim holds for every $c \in [a,b]$:
+        $$\int_a^b fgd\alpha = f(c) \int_a^b gd\alpha.$$
+
+        \item[Case 2: $\int_a^bg d\alpha \neq 0$]
+        In this case, since $g > 0$, it follows that $\int_a^bgd\alpha > 0$ and
+        $$m \leq \dfrac{\int_a^bfg d\alpha}{\int_a^b g d\alpha} \leq M.$$
+        Since $f$ is continuous, it follows from the Intermediate Value Theorem that
+        $$\exists c \in [a,b] \st f(x) = \dfrac{\int_a^b fg d\alpha}{\int_a^b gd\alpha}.$$
+        That is, $\int_a^b fgd\alpha = f(c) \int_a^b g d\alpha$.
+    \end{description}
+    \qed
+\end{proof}
+
+\begin{theorem}[Additivity for Riemann-Stieltjes Integrals] \leavevmode \\
+  \label{Thm6.16}
+    Suppose $f:[a,b] \to \R$ is continuous, $\alpha:[a,b] \to \R$ is increasing, and $c \in (a,b)$. Then
+    $$f \in R_\alpha[a,b] \iff f\in R_\alpha[a,c] \text{ and } f \in R_\alpha[c,b].$$
+    In this case, we have
+    $$\int_a^b f d\alpha = \int_a^c f d\alpha + \int_c^b f d\alpha.$$
+    \qed
+\end{theorem}
