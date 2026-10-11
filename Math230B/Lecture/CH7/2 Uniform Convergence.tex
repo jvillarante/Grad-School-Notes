@@ -1,0 +1,182 @@
+\begin{definition}[Uniform Convergence] \leavevmode \\
+    We say $(f_n: A \to \R)$ converges uniformly to $f: A \to \R$ if 
+    $$\forall \epsilon > 0 ~~\exists N_\epsilon \st \forall n > N_\epsilon ~\forall c \in A ~~|f_n(c) - f(c)| < \epsilon.$$
+\end{definition}
+
+\begin{notation}
+    $f_n \overset{u}{\to} f.$
+\end{notation}
+
+\begin{example}
+    $\forall n \geq 1~~ f_n: \R \to \R, ~f_n(x) = \dfrac{1}{n(1+x^2)}$.
+
+    \begin{enumerate}
+        \item Prove that $f_n \to f$ pointwise where $f: \R \to \R$ is defined by $f = 0.$
+        
+        At each point $c \in \R$, the corresponding sequence of real numbers is
+        $$(f_n(c))_{n \geq 1} = \left(\frac{1}{n(1+c^2)}\right)_{n\geq 1} = \left(\frac{1}{1+c^2}, \frac{1}{2(1+c^2)}, \frac{1}{3(1+c^2)}, ... \right).$$
+
+        Thus for each $c \in \R$ we have
+        $$\lim_{n\to \infty}f_n(c) = \lim_{n\to \infty}\left[\frac{1}{n(1+c^2)}\right] = \frac{1}{1+c^2}\left(\lim_{n\to \infty}\frac{1}{n}\right) = 0 = f(c).$$
+
+        So, $f_n \to f$ pointwise where $f \equiv 0$.
+
+        \item Prove that $f_n \overset{u}{\to} f.$
+        
+        Our goal is to show that
+        $$\forall \epsilon > 0 ~~\exists N \st \forall n > N ~\forall c \in \R ~|f_n(c) - 0| < \epsilon.$$
+        Let $\epsilon > 0$ be given. Our goal is to find $N$ such that
+        $$\forall n > N ~~\forall c \in \R ~\frac{1}{n(1+c^2)} < \epsilon.$$
+        By Archimedean property, $\exists \hat{N} \st \frac{1}{\hat{N}} < \epsilon.$ Then $\forall n > \hat{N}$ and $\forall c \in \R$, we have
+        $$\frac{1}{n(1+c^2)} \leq \frac{1}{n} < \frac{1}{\hat{N}} < \epsilon$$
+        as desired.
+    \end{enumerate}
+\end{example}
+
+\begin{example}
+    $\forall n \geq 1,$ $f_n:[0,1] \to \R,$ $f_n(x) = \frac{x}{n}.$ Prove that $f_n \to 0$ uniformly on $[0,1]$.
+
+    Our goal is to the show that
+    $$\forall \epsilon > 0 ~~\exists N \st \forall n > N ~~\forall c \in [0,1] ~~ |f_n(0) - 0| < \epsilon.$$
+    Let $\epsilon > 0$ be given. By the Archimedean Property, $\exists \hat{N} \st \frac{1}{\hat{N}} < \epsilon.$ We claim that this $\hat{N}$ can be used as the $N$ that we are looking for. Indeed, $\forall n > \hat{N}$ and $\forall c \in [0,1]$ we have
+    $$\frac{c}{n} \leq \frac{1}{n} < \frac{1}{N} < \epsilon$$
+    as desired.
+\end{example}
+
+\begin{example}
+    $\forall n \geq 1,$ $f_n:[0,\infty) \to \R,$ $f_n(x) = \frac{x}{n}.$
+    \begin{enumerate}
+        \item Prove that $f_n \to 0$ pointwise on $[0, \infty)$.
+        
+        At each point $c \in [0, \infty),$ the corresponding sequence of real numbers is 
+        $$(f_n(c))_{n\geq 1} = \left(\frac{c}{n}\right)_{n\geq 1} = \left(c, \frac{c}{2}, \frac{c}{3}, \frac{c}{4}, ...\right).$$
+        Thus, for each $c \in [0, \infty),$
+        $$\lim_{n\to \infty}f_n(c) = \lim_{n \to \infty}\frac{c}{n} = c \left(\lim_{n\to \infty}\frac{1}{n}\right) = 0.$$
+        So, $f_n \to f$ pointwise where $f \equiv 0.$
+
+        \item Prove that the convergence is not uniform on $[0, \infty)$.
+        
+        Assume for contradiction that $f_n \overset{u}{\to}0$ on $[0,\infty)$. Then
+        $$\forall \epsilon > 0 ~~\exists N \st \forall n > N ~\forall c \in [0,\infty) ~~|f_n(c) - 0| < \epsilon.$$
+        In particular, for $\epsilon = 1,$ $\exists N \in \N$ such that
+        $$\forall n > N ~\forall c \in [0, \infty) ~~\frac{c}{n} < 1.$$
+        Letting $n = N+1$, we get
+        $$\forall c \in [0,\infty) ~~\frac{c}{N+1} < 1.$$
+        Thus,
+        $$\forall c \in [0,\infty) ~~c < N+1.$$
+        This is clearly false.
+    \end{enumerate}
+\end{example}
+
+\begin{theorem}[Uniform Converges Preserves Boundedness] \leavevmode \\
+    \label{Thm7.1}
+    Suppose $A$ is not empty, and for each $n \in \N$ let $f_n: A \to \R$ be bounded, and $f_n \overset{u}{\to}f$ on $A$. Then $f:A \to \R$ is bounded.
+\end{theorem}
+
+\begin{proof}
+    Our goal is to show that
+    $$\exists M \in \R ~~\st \forall c \in A ~~|f(c)| \leq M.$$
+    Since $f_n \overset{u}{\to}f$ on $A$, we have 
+    \begin{align*}
+        &\forall \epsilon > 0 ~~\exists N \st \forall n > N ~\forall c \in A ~~|f_n(c) - f(c)| < \epsilon \\
+        \implies &\forall \epsilon > 0 ~~\exists N \st \forall n > N ~\forall c \in A ~~|f_n(c)| - |f(c)| < \epsilon \\
+        \implies &\forall \epsilon > 0 ~~\exists N \st \forall n > N ~\forall c \in A ~~|f(c)| < \epsilon + |f_n(c)|.
+    \end{align*}
+    In particular, for $\epsilon = 1$, $\exists N \in \N \st$
+    $$\forall n > N ~\forall c \in A ~~|f(c)| < 1 + |f_n(c)|.$$
+    Letting $n = N+1$, we get
+    \[\forall c \in A ~~|f(c)| < 1 + |f_{N+1}(c)|. \tag{1}\]
+    Since, by assumption, $f_{N+1}$ is bounded, $\exists \hat{M}_{N+1} \st$
+    \[\forall c \in A ~~|f_{N+1}(c)| \leq \hat{M}_{N+1}. \tag{2}\]
+    It follows from $(1)$ and $(2)$ that
+    $$\forall c \in A ~~|f(c)| < 1 + \hat{M}_{N+1}.$$
+    Clearly, we can use $1+\hat{M}_{N+1}$ as the $M$ we were looking for.
+    \qed
+\end{proof}
+
+\begin{theorem}[Uniform Convergence Preserves Continuity] \leavevmode \\
+    \label{Thm7.2}
+    Let $(X, d)$ be a metric space. Suppose $A\subseteq (X, d)$, $c \in A$, for each $n \in \N ~~f_n: A \to R$ is continuous at $c$, and $f_n \overset{u}{\to}f$ on $A$. Then $f: A\to \R$ is continuous at $c$.
+\end{theorem}
+
+\begin{proof}
+    Our goal is to show that 
+    $$\forall \epsilon > 0 ~~\exists \delta > 0 \st \text{ if } d(x,c) < \delta \text{ for } x \in A, \text{ then } |f(x) - f(c)| < \epsilon.$$
+    Let $\epsilon > 0$ be given. Our goal is to find $\delta > 0$ satisfying 
+    $$\text{if } d(x,c) < \delta, \text{ then } |f(x) - f(c)| < \epsilon.$$
+
+    \begin{info}
+        Recall that our general strategy to ensure that a quantity of interest is less than $\epsilon$ is as follows:
+        \begin{description}
+            \item[Step 1: ] Bound quantity $1$ with quantity $2$, which is a combination of terms that are easier to deal with or are terms over which we can control.
+            \item[Step 2: ] Make sure quantity $2$ is less than $\epsilon.$  
+        \end{description}
+        According to the hypothesis of this theorem, here is a list of quantities over which we have control:
+        \begin{enumerate}
+            \item $f_n \overset{u}{\to}f$ on $A \implies$ we can make $|f_n(x) - f(x)|$ small $\forall x.$
+            \item $f_n$ is continuous at $c \implies$ we can make $|f_n(x) - f(c)|$ small for each $n$. 
+        \end{enumerate}
+        We have
+        \begin{align*}
+            |f(x) - f(c)| &= |f(x) - f_n(x) + f_n(x) - f_n(c) + f_n(c) - f(c)| \\
+            &\leq |f(x) - f_n(x)| + |f_n(x) - f_n(c)| + |f_n(c) - f(c)|.
+        \end{align*}
+        So, in order to ensure $|f(x) - f(c)| < \epsilon,$ it is enough to make each piece on the RHS less than $\frac{\epsilon}{3}.$ We will first find $f_n$ that forces the first term and the third term to be less than $\frac{\epsilon}{3}.$ Once we establish which $f_n$ we want, we can use the continuity of $f_n$ at $c$ to produce a $\delta$ that makes the middle term be less than $\frac{\epsilon}{3}$ for $x \in \nbhd{\delta}{c} \cap A.$
+    \end{info}
+
+    Since $f_n \overset{u}{\to}f$ on $A$,
+    \[\exists N \in \N \st \forall n > N ~\forall z \in A ~~|f_n(z) - f(z)| < \frac{\epsilon}{3}. \tag{1}\]
+    Also, since $f_{N+1}$ is continuous at $c$,
+    \[\exists \hat{\delta} > 0 \st \forall x \in \nbhd{\hat{\delta}}{c}\cap A ~~|f_{N+1}(x) - f_{N+1}(c)| < \frac{\epsilon}{3}. \tag{2}\]
+    We claim that this $\hat{\delta}$ can be used as the $\delta$ we are looking for. For all $x \in \nbhd{\delta}{c}\cap A$, we have
+    \begin{align*}
+        |f(x) - f(c)| &= |f(x) -f_{N+1}(x) + f_{N+1}(x) - f_{N+1}(c) + f_{N+1}(c) - f(c)| \\
+        &\leq |f(x) - f_{N+1}(x)| + |f_{N+1}(x) - f_{N+1}(c)| + |f_{N+1}(c) - f(c)| \\
+        &< \frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3} \tag{(1) \text{ and } (2)}\\
+        &= \epsilon
+    \end{align*}
+    as desired.
+    \qed
+\end{proof}
+
+\begin{observation}
+    Let $(a_n)$ be a sequence of real numbers. Suppose $a_n \to a \in \R$. Suppose there exists $N$ such that 
+    $$\forall m, n > N ~~|a_n - a_m| \leq \frac{1}{3}.$$
+    Note that, for each fixed $n > N$, we have
+    $$\forall m > N ~~|a_n - a_m| \leq \frac{1}{3}.$$
+    So, by taking the limit as $m \to \infty$, it follows from the Order Limit Theorem that for each $n > N$
+    $$\lim_{m\to \infty}|a_n - a_m| \leq \lim_{m\to infty} \frac{1}{3}.$$
+    Therefore,
+    $$\forall n > N ~~|a_n - a| \leq \frac{1}{3}.$$
+    More generally, given $\epsilon > 0$, if there exists $N \st$
+    $$\forall n,m > N ~~|a_n - a_m| \leq \epsilon$$
+    then by taking the limit as $m \to \infty$, we obtain
+    $$\forall n > N ~~|a_n - a| \leq \epsilon.$$
+\end{observation}
+
+\begin{theorem}[Cauchy Criterion for Uniform Convergence] \leavevmode \\
+    \label{Thm7.3}
+    Let $A \neq \emptyset$. Suppose for each $n \in \N,$ $f_n: A \to \R$ is a function. Then
+    $$(f_n)_{n\geq 1} \text{ converges uniformly} \iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~\forall c \in A ~~|f_n(c) - f_m(c)| < \epsilon.$$
+\end{theorem}
+
+\begin{proof}
+    $(\implies)$ Suppose $\exists f: A \to \R$ such that $f_n \overset{u}{\to}f$ on $A$. Let $\epsilon > 0$ be given. Our goal is to find $N$ such that 
+    $$\forall n,m > N ~\forall c \in A ~~|f_n(c) - f_m(c)| <\epsilon.$$
+    Since $f_n \overset{u}{\to}f$ on $A$, for the given $\epsilon > 0$ $\exists \hat{N} \st$
+    $$\forall k > \hat{N} ~\forall c \in A ~~|f_k(c) - f(c)| < \frac{\epsilon}{2}.$$
+    We claim this $\hat{N}$ can be used as the $N$ we're looking for. Indeed, if $m,n > \hat{N}$ and $c \in A$ then
+    $$|f_n(c) - f_m(c)| \leq |f_n(c) - f(c)| + |f_m(c) - f(c)| < \frac{\epsilon}{2} + \frac{\epsilon}{2} = \epsilon.$$
+
+    $(\impliedby)$ Suppose $\forall \epsilon > 0 ~\exists N \st \forall n,m > N ~\forall c \in A ~~|f_n(c) - f_m(c)| < \epsilon.$ It follows from the assumption that at each point $c \in A$, the sequence of real numbers $(f_n(c))_{n\geq 1}$ is a Cauchy sequence in $\R$. Since $\R$ is complete, we can conclude that for each point $c \in A$, the sequnce of real numbers $(f_n(c))_{n\geq 1}$ converges. This tells us that the sequence of functions $(f_n)_{n\geq 1}$ is pointwise convergent on $A$. Let's denote the pointwise limit of $(f_n)_{n\geq 1}$ by $f: A \to \R$. In what follows, we will prove $f_n \overset{u}{\to}f$ on $A$. To this end, we need to show
+    $$\forall n > N ~\forall c \in A ~~|f_n(c) - f(c)| < \epsilon.$$
+    It follows from the assumption that for the given $\epsilon > 0,$ $\exists \hat{N} \st$
+    $$\forall n,m > \hat{N} ~\forall c \in A ~~|f_n(c) - f_m(c)| < \frac{\epsilon}{2}.$$
+    Then, if $n > \hat{N}$ and $c \in A$ we have 
+    \begin{align*}
+        \forall m > \hat{N} ~~&|f_n(c) - f_m(c)| < \frac{\epsilon}{2} \\
+        \implies \lim_{n\to \infty}&|f_n(c) - f_m(c)| \leq \lim_{n\to \infty} \frac{\epsilon}{2} \\
+        \implies &|f_n(c) - f(c)| \leq \frac{\epsilon}{2} < \epsilon.
+    \end{align*}
+    \qed
+\end{proof}
