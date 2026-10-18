@@ -1,0 +1,178 @@
+\begin{definition}[Series of Functions] \leavevmode \\
+    Let $(f_n: A \to \R)_{n \geq 1}$ be a sequence of functions defined on $A \neq \emptyset.$
+    \begin{enumerate}
+        \item An expression of the form
+        \[\sum_{n=1}^\infty f_n = f_1 + f_2 + ...\]
+        is called an infinite series of functions.
+
+        \item The functions $f_1, f_2, ...$ are the terms of the series.
+        \item The corresponding sequences of partial sums is defined by 
+        \[s_m = \sum_{n=1}^m f_n.\]
+        That is,
+        \begin{align*}
+            s_1 &= f_1 \\
+            s_2 &= f_1 + f_2 \\
+            s_3 &= f_1 + f_2 + f_3 \\
+            &\vdots \\
+            s_m &= f_1 + ... f_m.
+        \end{align*}
+        \item We say the series converges pointwise on $A$ to $f:A \to \R$ $\left(\sum \limits_{n=1}^\infty f_n = f \text{ pointwise}\right)$ if 
+        \[\lim \limits_{n\to \infty}s_m = f \text{ pointwise on } A.\]
+        \item We say that the series converfes uniformly on $A$ to $f: A \to \R$ $\left(\sum \limits_{n=1}^\infty f_n = f \text{ uniformly}\right)$ if 
+        \[s_m \to f \text{ uniformly on } A.\]
+    \end{enumerate}
+\end{definition}
+
+\begin{observation}
+    Note that the convergence of $\sum \limits_{n=1}^\infty f_n$ is defined in terms of the convergence of the corresponding convergence of partial sums. So, all questions about the convergence of series of functions can be viewed as the convergence of sequences of functions.
+
+    As we shall now see, every question about convergence of a sequence can also be translated into a question about convergence of a series.
+\end{observation}
+
+Consider the sequence $(g_n: A \to \R)_{n\geq 1}$. For each $n$, define
+\begin{align*}
+    f_1 &= g_1 \\
+    f_2 &= g_2 - g_1 \\
+    f_3 &= g_3 - g_2 \\
+    &\vdots \\
+    f_n &= g_n - g_{n-1} \\
+    &\vdots
+\end{align*}
+
+Now, consider the series $\sum \limits_{n=1}^\infty f_n.$ The sequence of partial sums for $\sum \limits_{n=1}^\infty f_n$ is exactly the same as $(g_n)$:
+
+\begin{align*}
+    s_1 &= f_1 = g_1 \\
+    s_2 &= f_1 +f_2 = g_2 \\
+    s_3 &= f_1 + f_2 + f_3 = g_3 \\
+    &\vdots \\
+    s_m &= f_1 + ... + f_m = g_m \\
+    &\vdots
+\end{align*}
+
+So, we may conclude that 
+\[\sum_{n=1}^\infty f_n \text{ converges } \iff (s_n) \text{ converges } \iff (g_n) \text{ converges }\]
+
+\begin{example}
+    Let $g_n(x) = \dfrac{\sin(nx)}{n}.$
+    \begin{align*}
+        f_1 &= g_1 = \sin x \\
+        f_2 &= g_2 - g_1 = \dfrac{\sin 2x}{2} - \sin x \\
+        f_3 &= g_3 - g_2 = \dfrac{\sin 3x}{3} - \dfrac{\sin 2x}{2} \\
+        &\vdots \\
+        f_n &= g_n - g_{n-1} = \dfrac{\sin (nx)}{n} - \dfrac{\sin[(n-1)x]}{n-1}
+    \end{align*}
+    Then
+    \[(g_n) \text{ converges } \iff \sum_{n=1}^\infty f_n \text{ converges }\]
+\end{example}
+
+This observation allows us to translate all the interesting examples we studied for sequences of functions into examples of series of functions. For example, we discussed a sequence of continuous functions $(g_n)$ such that $g_N \to g$ pointwise but $g$ is not continuous:
+\[g_n:[0,1] \to \R, ~g_n(x) = x^n, ~g(x) \begin{cases*}
+    0 &if $0 \leq x < 1$ \\
+    1 &if $x = 1$
+\end{cases*}\]
+Now, defining
+\begin{align*}
+    f_1 &= g_1 = x \\
+    f_2 &= g_2 - g_1 = x^2 - x \\
+    f_3 &= g_3 - g_2 = x^3 - x^2 \\
+    &\vdots
+\end{align*}
+then $\sum \limits_{n=1}^\infty f_n$ is a series of continuous functions that converges to $f(x) = \begin{cases*}
+    0 &if $0 \leq x < 1$ \\
+    1 &if $x = 1$
+\end{cases*}$, which is NOT continuous.
+
+\begin{observation}
+    Consider the infinite series $\sum \limits_{n=1}^\infty f_n.$ Let $(s_m)$ be the corresponding sequence of partial sums. Recall that
+    \[\sum_{n=1}^\infty f_n \text{ converges } \iff (s_m) \text{ converges. }\]
+    Note that
+    \begin{enumerate}[$*)$]
+        \item It follows from the algebraic continuity theorem that if each $f_n$ is continuous, then the partial sums $s_1, s_2, s_3, ...$ will be continuous.
+        \item It follows from the algebraic differentiability theorem that if each $f_n$ is differentiable, then the partial sums $s_1, s_2, s_3, ...$ will be differentiable.
+        \item It follows from the algebraic properties of integrals that if each $f_n \in R_\alpha[a,b]$, then the partial sums $s_1, s_2, s_3, ...$ will be $R_\alpha [a,b]$.
+    \end{enumerate}
+    As a result, we can immediately translate the claims about series of functions into claims of sequences of functions and then prove the claims using the results we already proved for sequences.
+\end{observation}
+
+\begin{theorem}[Term-by-term Continuity Theorem] \leavevmode \\
+    Suppose $A \subseteq (X, d)$ is nonempty. For each $n \in \N,$ let $f_n: A \to \R$ is continuous and suppose $\sum \limits_{n=1}^\infty f_n$ converges uniformly to $f:A\to \R$. Then $f: A \to \R$ is continuous.
+\end{theorem}
+
+\begin{proof}
+    Apply the corresponding theorem for sequences of functions to the sequence of partial sums $s_m = f_1 + ... + f_m.$
+    \qed
+\end{proof}
+
+\begin{theorem}[Term-by-term Differentiability Theorem] \leavevmode \\
+    Suppose for each $n \in \N,$ $f_n:[a,b] \to \R$ is differentiable. Suppose $\sum_{n=1}^\infty f_n = f$ pointwise on $[a,b]$, and that $\sum_{n=1}\infty f_n$ converges uniformly on $[a,b].$ Then $f$ is differenitable on $[a,b]$ and $\left(\sum_{n=1}^\infty f_n\right)' = \sum_{n=1}^\infty f_n'.$
+\end{theorem}
+
+\begin{proof}
+    Apply the corresponding theorem for sequences of functions to the sequence of partial sums.
+    \qed
+\end{proof}
+
+\begin{theorem}[Term-by-term Integrability Theorem] \leavevmode \\
+    Suppose $\alpha: [a,b] \to \R$ is increasing. For each $n\geq 1,$ suppose $f_n \in R_\alpha[a,b]$. Suppose $\sum_{n=1}^\infty f_n$ converges uniformly to $f:[a,b] \to \R$. Then $f \in R_\alpha [a,b]$ and $\int_a^b \sum \limits_{n=1}^\infty f_n d\alpha = \sum \limits_{n=1}^\infty \int_a^b f_n d\alpha.$
+\end{theorem}
+
+\begin{proof}
+    Apply the corresponding theorem for sequences of functions to the sequence of partial sums.
+    \qed
+\end{proof}
+
+\begin{theorem}[Cauchy Criterion for Uniform Convergence of Series of Functions] \leavevmode \\
+    Let $A \neq \emptyset$ and suppose for each $k \in \N$, $f_k: A \to \R.$ Then
+    \[\sum_{k=1}^\infty f_k \text{ converges uniformly } \iff \forall \epsilon > 0 ~\exists N \st \forall n > m > N ~\forall c \in A ~~\left|\sum_{k=m+1}^n f_k(c)\right| < \epsilon.\]
+\end{theorem}
+
+\begin{proof}
+    Let $s_m = f_1 + ... + f_m.$ We have
+    \begin{align*}
+        \sum_{k=1}^\infty f_k \text{ converges uniformly } &\iff (s_m) \text{ converges uniformly } \\
+        &\iff (s_m) \text{ satisfies Cauchy Criterion for sequences of functions} \\ 
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~\forall c \in A ~~\left|s_n(c) - s_m(c)\right| < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n > m > N ~\forall c \in A ~~\left|s_n(c) - s_m(c)\right| < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n > m > N ~\forall c \in A ~~\left|\sum_{k=m+1}^nf_k(c)\right| < \epsilon.
+    \end{align*}
+    \qed
+\end{proof}
+
+\begin{theorem}[Weierstrass M-Test] \leavevmode \\
+    \begin{description}
+        \item[Version 1: ] Let $A \neq \emptyset$ and $\forall n \in \N$ let $f_n: A \to \R$. Suppose $\forall n \in \N ~\exists M_n \st \forall c \in A ~~|f_n(c)| \leq M_n,$ and $\sum \limits_{n=1}^\infty M_n$ converges. Then $\sum \limits_{n=1}^\infty f_n$ converges uniformly on $A$.
+        
+        \item[Version 2: ] Let $A \neq \emptyset$ and suppose $\forall n \in \N ~~f_n:A \to \R$ is bounded. $\forall n \in \N,$ let $M_n = \underset{x \in A}{\sup}|f_n(x)|$ and suppose $\sum \limits_{n=1}^\infty M_n$ converges. Then $\sum \limits_{n=1}^\infty f_n$ converges uniformly on $A$.
+    \end{description}
+\end{theorem}
+
+\begin{proof}
+    We prove version 1. According to the Cauchy Criterion of uniform convergence of series of functions, it is enough to show that
+    \[\forall \epsilon > 0 ~\exists N \st \forall n > m > N ~\forall c \in A ~~\left|\sum_{k=m+1}^n f_k(c)\right| < \epsilon \tag{$*$}\]
+    Since, by assumption, $\sum \limits_{n=1}^\infty M_n$ converges, for this $\epsilon$ there exists $\hat{N}$ such that
+    \[\forall n > m > \hat{N} ~~\left|\sum_{k=m+1}^\infty M_k\right|< \epsilon.\]
+    We claim we can use this $\hat{N}$ as the $N$ we're looking for. Indeed, if $N = \hat{N},$ then $(*)$ holds:
+    \[\forall n > m > \hat{N} ~\forall c \in A ~~\left|\sum_{k=m+1}^\infty f_k(c)\right| \leq \sum_{k=m+1}^\infty |f_k(c)| \leq \sum_{k=m+1}^n M_k = \left|\sum_{k=m+1}^{n}M_k\right|< \epsilon.\]
+    \qed
+\end{proof}
+
+\begin{example}
+    \begin{enumerate}
+        \item Prove $\sum \limits_{n=1}^\infty \dfrac{\cos (2^n x)}{2^n}$ converges uniformly on $\R$.
+        \[
+            \begin{rcases}
+                \forall n ~~\left|\dfrac{\cos (2^nx)}{2^n}\right| \leq \dfrac{1}{2^n} \\
+                \sum \limits_{n=1}^\infty \dfrac{1}{2^n} \text{ converges}
+            \end{rcases} \implies \sum_{n=1}^{\infty}\dfrac{\cos (2^nx)}{2^n} \text{ converges uniformly by the Weierstrass M-test.}
+        \]
+
+        \item Let $f_n: \R \to \R$ be defined by $f(x) = \sum \limits_{n=1}\infty \dfrac{\cos (2^nx)}{2^n}.$ Explain why $f$ is continuous.
+        \[
+            \begin{rcases}
+                \forall n ~~\dfrac{\cos (2^n x)}{2^n} \text{ is continuous on $\R$} \\
+                \sum \limits_{n=1}^\infty \dfrac{\cos (2^nx)}{2^n} \text{ converges uniformly}
+            \end{rcases} \implies f(x) = \sum_{n=1}^{\infty}\dfrac{\cos (2^nx)}{2^n} \text{ is continuous.}
+        \]
+    \end{enumerate}
+\end{example}
