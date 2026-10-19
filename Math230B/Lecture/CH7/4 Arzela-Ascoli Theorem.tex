@@ -1,0 +1,230 @@
+Does continuity preserve uniform convergence? No. Consider
+\begin{align*}
+    \forall n \in \N ~~f_n:(0,1) \to \R, ~f_n(x) = \dfrac{1}{nx+1}.
+\end{align*}
+Then
+\begin{enumerate}[$*)$]
+    \item $f_n \to 0$ pointwise.
+    \item Each $f_n$ is continuous.
+    \item $0$ is continuous.
+\end{enumerate}
+But, $f_n \to f$ is not uniform. Note
+\[f_n \overset{u}{\to}0 \iff \lim_{n \to \infty} \underset{x \in (0,1)}{\sup} \left|f_n(x) - 0\right| = 0.\]
+However,
+\begin{align*}
+    &\forall n ~~f_n\left(\frac{1}{n}\right) = \frac{1}{2} \\
+    \implies &\forall n \geq 2 ~~\underset{x \in (0,1)}{\sup}\left|f_n(x)\right| \geq f_n\left(\frac{1}{n}\right) = \frac{1}{2} \\
+    \implies &\lim_{n \to \infty} \underset{x \in (0,1)}{\sup}\left|f_n(x) - 0\right| \neq 0.
+\end{align*}
+
+\begin{theorem}[Dini's Theorem] \leavevmode \\
+    \label{thm7.13}
+    Suppose $(X,d)$ is a metric space, $K\subseteq X$ is compact, for each $n \in \N$ $f_n: K \to \R$ is continuous, $f_n \to f$ pointwise on $K$ where $f:K \to \R$ is a function, and $\forall n \in \N ~~f_{n+1} \leq f_n.$ Then $f_n \overset{u}{\to}f$ on $K$.
+\end{theorem}
+
+\begin{proof}
+    Let $\epsilon > 0$ be given. Our goal is to show there exists $N$ such that 
+    $$\forall n > N ~\forall x \in K ~~\left|f_n(x) - f(x)\right| < \epsilon.$$
+    For each $n \in \N,$ let $g_n = f_n - f.$ So, our goal is to show there exists $N$ such that 
+    $$\forall n > N ~\forall x \in K ~~|g_n| < \epsilon.$$
+
+    \textbf{Observation 1: } $\forall n$ $g_n \geq 0.$
+
+    For each $x \in K,$ $(f_n(x))_{n \geq 1}$ is a decreasing sequence of real numbers that converges to $f(x)$. It follows from the monotone convergence theorem that
+    $$f(x) = \inf \set{f_n(x) : n \in \N}.$$
+    Thus
+    $$\forall n ~~f(x) \leq f_n(x).$$
+    Therefore, for all $n$, $g_n \geq 0$. So, our goal is to show $\exists N \st$
+    $$\forall n > N ~\forall x \in K ~~ g_n(x) < \epsilon.$$
+    That is, our goal is to show $\exists N \st$
+    $$\forall n > N ~~\set{x \in K : g_n(x) \geq \epsilon} = \emptyset.$$
+    Our goal is to show $\exists N \st$
+    $$\forall n > N ~~g_n^{-1}\left([\epsilon, \infty)\right) = \emptyset.$$
+    For each $n \in \N$, let $K_n = g_n^{-1}\left([\epsilon, \infty)\right).$ Our goal is to show $\exists N \st$
+    $$\forall n > N ~~K_n = \emptyset.$$
+
+    \textbf{Observation 2: } For each $n,$ $K_n$ is compact.
+
+    For each $n,$
+    \[
+        \begin{rcases}
+            g_n: K \to \R \text{ is continuous } \\
+            [\epsilon , \infty) \text{ is closed}
+        \end{rcases} \implies K_n = g_n^{-1}\left([\epsilon, \infty)\right) \text{ is closed in } K.
+    \]
+    Thus,
+    \[
+        \begin{rcases}
+            K \text{ is compact } \\
+            K_n \subseteq K \\
+            K_n \text{ is closed}
+        \end{rcases} \implies K_n \text{ is compact.}
+    \]
+
+    \textbf{Observation 3: } $K_1 \supseteq K_2 \supseteq K_3 \supseteq ...$ ($\forall n ~~k_{n+1} \subseteq K_n$).
+    \[x \in K_{n+1} \implies g_{n+1}(x) \geq \epsilon \implies g_n(x) \geq \epsilon \implies x \in K_n.\]
+
+    So, it is enough to show $\exists N \in \N \st K_N = \emptyset.$ ($\forall n > N, K_n \subseteq K_N = \emptyset)$. Assume for contradiction that $\forall n,$ $K_n \neq \emptyset.$ Then
+    \[
+        \begin{rcases}
+            K_1 \supseteq K_2 \supseteq K_3 \supseteq ... \\
+            \forall n ~~K_n \text{ is compact} \\
+            \forall n ~~K_n \neq \emptyset
+        \end{rcases} \implies \bigcap_{n=1}^\infty K_n \neq \emptyset \tag{Nested compact set property}
+    \]
+    Therefore, $\exists x \in \bigcap \limits_{n=1}^\infty K_n,$ that is, $\exists x \in K \st$
+    $$\forall n \in \N ~~g_n(x) \geq \epsilon.$$
+    This contradicts the fact that $g_n(x) \to 0$ pointwise.
+    \qed
+\end{proof}
+
+\begin{example}
+    For all $n \in \N$ let $f_n:[0,2\pi]\to \R,$ $f_n(x) = \sin (nx)$. Clearly,
+    \[\forall n \in \N ~\forall x \in [0, 2\pi] ~~|f_n(x)| = |\sin (nx)| \leq 1.\]
+    So, $(f_n)_{n \geq 1}$ is a uniformly bounded sequence of functions. In homework, we proved that $(f_n)_{n \geq 1}$ does not have any subsequence $(f_{n_k})_{k \geq 1}$ that converges.
+\end{example}
+
+\begin{definition}[Equicontinuous Sequence of Functions] \leavevmode \\
+    Let $A \subseteq (X, d)$. A sequence of functions $(f_n : A \to \R)_{n \geq 1}$ is said to be equicontinuous if
+    $$\forall \epsilon > 0 ~ \exists \delta_\epsilon > 0 \st \forall n \in \N ~\forall x, c \in A \text{ if } d(x,c) < \delta_\epsilon \text{ then } |f_n(x) - f_n(c)| < \epsilon.$$
+\end{definition}
+
+\begin{fact}
+    If $(f_n: K \to \R)$ converges uniformly ($K$ is compact) and each $f_n$ is continuous, then $(f_n)$ is equicontinuous.
+\end{fact}
+
+\begin{fact}
+    If $(f_n:K \to \R)$ is equicontinuous and $f_n \to f$ pointwise, then $f_n \overset{u}{\to} f.$
+\end{fact}
+
+\begin{example}
+    For each $n \in \N$, let $f_n:[0,1] \to \R,$ $f_n(x) = \frac{x}{n}.$ Previously, we proved $f_n \overset{u}{\to} 0.$ We claim that $f_n$ is equicontinuous on $[0,1]$. We need to show that 
+    $$\forall \epsilon > 0 ~\exists \delta > 0 \st \forall n \in \N ~\forall x, c \in [0,1] \text{ if $|x-c| < \delta$ then $|f_n(x) - f_n(c)| < \epsilon$.}$$
+
+    Let $\epsilon > 0$ be given. Our goal is to find $\delta \st$
+    \[\forall n \in \N ~\forall x, c \in [0,1] \text{ if $|x-c| < \delta$ then $\dfrac{|x-c|}{n} < \epsilon$}. \tag{$*$}\]
+    Clearly, $(*)$ holds for $\delta = \epsilon.$
+\end{example}
+
+\begin{example}
+    For all $ n \geq 1,$ let $f_n:[0,1] \to \R,$ $f_n(x) = x^n.$ We claim that $(f_n)_{n\geq 1}$ is not equicontinuous. For the sake of contradiction, suppose $(f_n)_{n\geq 1}$ is equicontinuous. Then
+    \[\forall \epsilon > 0 ~\exists \delta > 0 \st \forall n \in \N ~\forall x ,c \in [0,1] \text{ if $|x-c| < \delta$ then $|f_n(x) - f_n(c)| < \epsilon.$}\]
+    In particular, for $\epsilon = \frac{1}{2},$ ther exists $\delta > 0$ such that 
+    \[\forall n \in \N ~\forall x, c \in [0,1] \text{ if $|x-c| < \delta$ then $|x^n - c^n| < \frac{1}{2}.$}\]
+    In particular, if we let $c = 1,$ we get
+    \[\forall n \in \N ~\forall x\in [0,1] \text{ if $|x-1| < \delta$ then $|x^n - 1| < \frac{1}{2}.$}\]
+    Let $x_0 \in (0,1) \st |x_0 - 1| < \delta.$ Then
+    \begin{align*}
+        &\forall n \in \N ~~|x_0^n - 1| < \frac{1}{2} \\
+        \implies &\lim_{n\to \infty} |x_0^n -1| \leq \lim_{n\to \infty} \frac{1}{2} \\
+        \implies &|0-1| \leq \frac{1}{2} \\
+        \implies &1 \leq \frac{1}{2},
+    \end{align*}
+    a contradiction.
+\end{example}
+
+\begin{theorem}[The Arzela-Ascoli Theorem] \leavevmode \\
+    \label{thm7.25}
+    Suppose $(X, d)$ is a metric space, $K\subseteq X$ is infinite and compact, $(f_n: K \to \R)_{n\geq 1}$ is uniformly bounded, $(f_n: K \to \R)_{n\geq 1}$ is equicontinuous. Then $(f_n)$ has a uniformly convergent subsequence.
+\end{theorem}
+
+\begin{proof}
+    Our proof consists of two main steps.
+
+    \textbf{Step 1: } Let $E$ be a countable dense subset of $K$. We will use the assumption that $(f_n)$ is uniformly bounded to show that there exists a subsequence $(f_{n_k})$ of $(f_n)$ that converges to each point of $E$. To simplify the notation, we let $g_k = f_{n_k}$.
+
+    \textbf{Basic Idea of Proof of Step 1: } Cantor's diagonal process.
+
+    \textbf{Step 2: } We will use the assumption that $(f_n)$ is equicontinuous to prove that $(g_k)$ is uniformly convergent on $K$.
+
+    \textbf{Basic Idea of Proof of Step 2: } $(g_k)$ fulfills the Cauchy Criterion for uniform convergence:
+    $$\forall \epsilon > 0 ~\exists N \st \forall m, n > N ~\forall x \in K ~~|g_m(x) - g_n(x)| < \epsilon.$$
+    Note that for each $x \in K$ and $r \in E$ we have
+    \[|g_m(x) - g_n(x)| \leq |g_m(x) - g_m(r)| + |g_m(r) - g_n(r)| + |g_n(r) - g_n(x)|.\]
+
+    Let's begin with the claim of \textbf{step 2.} Suppose $(g_k)_{k \geq 1}$ is equicontinuous, $E$ is a countable dense subset of $K$, and for each $r \in E$ the sequence of numbers $(g_k(r))_{k\geq 1}$ converges. Let $\epsilon > 0$ be given. Our goal is to find $N$ such that 
+    \[\forall m,n > N, ~\forall x \in K~~|g_m(x) - g_n(x)| < \epsilon. \tag{$*$}\]
+    \begin{enumerate}
+        \item $(g_k)$ is equicontinuous, so for the given $\epsilon$ $\exists \delta > 0$ such that
+        \[\forall k \in \N, ~\forall x, c \in K, \text{ if $d(x,c) < \delta,$ then $|g_k(x) - g_k(c)| < \epsilon / 3.$}\]
+
+        \item For each $r \in E,$ the sequence of numbers $(g_k(r))$ is convergent, and so it's Cauchy. Hence
+        $$\forall r \in E ~\exists N_r \st \forall m, n > N_r ~~|g_m(r) - g_n(r)| < \epsilon / 3.$$
+    \end{enumerate}
+
+    Notice that, since $E$ is dense in $K$,
+    $$K\subseteq \bigcup_{r \in E}B_\delta(r).$$
+    So, $\set{B_\delta(r)}_r \in E$ is an open cover of $K$. Since $K$ is compact, this open cover has a finite subcover: $\exists r_1,...,r_l \in E \st K\subseteq \left[B_\delta(r_1)\cup...\cup B_\delta(r_l)\right]$ (so, every point of $K$ is within $\delta$ of at least one $r_1, ..., r_l$). We claim that $\max \set{N_{r_1}, ..., N_{r_l}}$ can be used as the $N$ we are looking for. Indeed, if we let $N =\max \set{N_{r_1}, ..., N_{r_l}}$, then $(*)$ holds. Suppose $m,n > N$ and $x \in K$. Since $x \in K,$ $\exists i \in \set{1, ..., l}$ such that $x \in B_\delta(r_i)$. We have
+    \begin{align*}
+        |g_m(x) - g_n(x)| &= |g_m(x)- g_m(r_i) + g_m(r_i) - g_n(r_i) + g_n(r_i) - g_n(x)| \\ 
+        &\leq |g_m(x) - g_m(r_i)| + |g_m(r_i) - g_n(r_i)| + |g_n(r_i) - g_n(x)| \\
+        &< \epsilon/3 + \epsilon / 3 + \epsilon / 3 \\
+        &= \epsilon.
+    \end{align*}
+    as desired.
+
+
+    Now, we prove \textbf{step 1}.
+
+    Suppose $E$ is a countable dense subset of $K$ and $(f_n)$ is uniformly bounded. Our goal is to show there is a subsequence of $(f_n)$ that converges at each point of $r \in E$. In what follows, we will prove a more general statement: suppose $E = \set{x_1, x_2, x_3, ...}$ is some countable subset of $K$ and $(f_n: K \to \R)_{n \geq 1}$ is pointwise bounded. Then $(f_n)$ has a subsequence that converges at each point $r \in E.$
+
+    \begin{enumerate}[$*)$]
+        \item The sequence of real numbers $(f_n(x_1))_{n\geq 1}$ is bounded. By Bolzano-Weierstrass, it has a subsequence $(f_{n_k}(x_1))_{n\geq 1}$ that converges. To emphasize that this sequence is generated by considering the values at $x_1$, we use the notation
+        $$f_{1,k}=f_{n_k}.$$
+
+        \item Since $(f_{1,k}(x_2))_{k \geq 1}$ is bounded, by Bolzano-Weierstrass it has a convergent subsequence $(f_{2,k}(x_2))_{k\geq 1}$.
+        
+        \item Since $(f_{2,k}(x_3))_{k \geq 1}$ is bounded, by Bolzano-Weierstrass it has a convergent subsequence $(f_{3,k}(x_2))_{k\geq 1}$.
+    \end{enumerate}
+    In general, $\forall m \geq 2$ the sequence $(f_{m-1,k})_{k\geq 1}$ has a convergent subsequence $(f_{m,k}(x_m))_{k\geq 1}$. In this way, we obtain the following table of functions:
+    \[
+    \begin{array}{ccccc}
+        f_{1,1} & f_{1,2} & f_{1,3} & \dots & \text{(Converges at $x_1$)} \\[6pt]
+        f_{2,1} & f_{2,2} & f_{2,3} & \dots & \text{(Converges at $x_2$)} \\[6pt]
+        f_{3,1} & f_{3,2} & f_{3,3} & \dots & \text{(Converges at $x_3$)} \\[6pt]
+        \vdots & \vdots & \vdots &  &   \\[6pt]
+        f_{m,1} & f_{m,2} & f_{m,3} & \dots & \text{(Converges at $x_m$)} \\[6pt]
+        \vdots & \vdots & \vdots &  &   \\[6pt]
+    \end{array}
+    \]
+    (Note that if $\hat{m} > m,$ then $(f_{\hat{m},k})_{k\geq 1}$ is a subsequence of $(f_{m,k})_{k\geq 1}$). Now, consider the diagonal sequence $f_{1,1}, f_{2,2}, f_{3,3},...$ Let $g_k = f_{k,k}$ for all $ k \in \N$. We claim $(g_k)$ converges at $x_i$ forall $i \in N.$ Indeed, let $i \in \N.$ Note that
+    $$g_{i+1}, g_{i+2}, g_{i+3},...$$
+    is a subsequence of $f_{i,1}, f_{i,2},f_{i,3},...$ By contsruction, $f_{i,1}(x_i), f_{i,2}(x_i), f_{i,3}(x_i),...$ converges. Since $g_{i+1}(x_i), g_{i,2}(x_i),g_{i,3}(x_i),...$ is a subsequence of the above sequence, it also converges. Thus
+    $$g_1(x_i), g_2(x_i), g_3(x_i),..., g_i(x_i), g_{i+1}(x_i), g_{i+2}(x_i),...$$
+    also converges.
+    \qed
+\end{proof}
+
+\begin{remark}
+    Let $A\subseteq (X,d)$ be nonempty. A family $\mathcal{F}$ of real-valued functions defined on $A$ is said to be equicontinuous on $A$ if
+    $$\forall \epsilon > 0 ~\exists \delta > 0 \st \forall f \in \mathcal{F} ~\forall x,c \in A \text{ if $d(x,c) < \delta_\epsilon$ then $|f(x) - f(c)| <\epsilon.$}$$
+    Note that each member of an equicontinuous family is uniformly continuous.
+\end{remark}
+
+\begin{remark}
+    Let $X$ be any infinite set of functions and equip $X$ with a metric $d$. Each such metric "$d$" introduces a mode of convergence for sequences of functions in $X$. The sequence $(f_n)_{n\geq 1}$ in $X$ converges to $f \in X$ if and only if $\forall \epsilon > 0 ~\exists N \st \forall n > N ~~d(f_n,f) < \epsilon.$
+\end{remark}
+
+\begin{example}
+    Let $X = C([a,b]; \R) = \set{f: E \to \R : \text{$f$ is continuous an bounded}}$. The following are examples of metrics on $X$.
+    \begin{enumerate}
+        \item $d_1(f,g) = \int_a^b |f-g| dx$.   ($L^1$ convergence)
+        \item $d_2(f,g) = \left(\int_a^b |f-g|^2 dx\right)^\frac{1}{2}.$.   ($L^2$ convergence)
+    \end{enumerate}
+    More generally, if $p \geq 1$ then
+    \[d_p(f,g) = \left(\int_a^b |f-g|^p dx\right)^\frac{1}{p} \tag{$L^p$ convergence}\]
+\end{example}
+
+\begin{example}
+    Let $(E,d)$ be a metric space. Let $X = BC(E; \R) = \set{f: E \to \R : \text{$f$ is continuous and bounded}}$ and $d_\infty (f,g) = \underset{x \in E}{\sup}|f(x) - g(x)|.$ Note that if $(f_n)_{n\geq 1}$ is a sequence in $BC(E; \R)$ and $f \in BC(E; \R)$, then 
+    \begin{align*}
+        \text{$f_n\to f$ in $BC(E; \R)$} &\iff \forall \epsilon > 0 ~\exists N \st \forall n > N ~~d_\infty(f_n,f) < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n > N ~~\underset{x \in E}{\sup}|f_n(x) - f(x)| < \epsilon \\
+        &\iff f_n \to f \text{ uniformly on the set $E$}
+    \end{align*}
+\end{example}
+
+\begin{note}
+    If $E$ is compact, then by the extreme value theorem 
+    $$BC(E; \R) = C(E ; \R)$$
+\end{note}
