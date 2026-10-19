@@ -228,3 +228,25 @@ However,
     If $E$ is compact, then by the extreme value theorem 
     $$BC(E; \R) = C(E ; \R)$$
 \end{note}
+
+\begin{theorem}[$BC(E; \R)$ is Complete] \leavevmode \\
+    Let $(E,d)$ be a metric space. Let $X = BC(E; \R)$ be equipped with the $d_\infty$ metric. Then $(X, d_\infty)$ is a complete metric space.
+\end{theorem}
+\begin{proof}
+    Let $(f_n)_{n\geq 1}$ be a cauchy sequence in $(X, d_\infty)$. Our goal is to show that $(f_n)_{n\geq 1}$ is convergent in $(X, d_\infty)$. We have
+    \begin{align*}
+        (f_n)_{n\geq 1} \text{ is cauchy} &\iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~~d_\infty(f_n,f_m) < \epsilon \\
+        &\iff \epsilon > 0 ~\exists N \st \forall n , m > N ~~\underset{x\in E}{\sup} |f_n(x) - f_m(x)| < \epsilon \\
+        &\iff \forall \epsilon > 0 ~\exists N \st \forall n,m > N ~\forall x \in E ~~|f_n(x) - f_m(x)| < \epsilon \\
+        &\iff (f_n)_{n\geq 1} \text{ is uniformly convergent on $E$} \tag{Cauchy criterion for uniform convergence}
+    \end{align*}
+    Let $f = \lim \limits_{n\to \infty}f_n.$ Since for each $n$, $f_n$ is bounded and continuous, we conclude that $f$ is bounded and continous. Thus $f \in X.$ We have 
+    \[
+        \begin{rcases*}
+            (f_n) \subseteq X \\
+            f \in X \\
+            f_n \overset{u}{\to} f
+        \end{rcases*} \implies f_n \to f \text{ in $X$.}
+    \]
+    \qed
+\end{proof}
