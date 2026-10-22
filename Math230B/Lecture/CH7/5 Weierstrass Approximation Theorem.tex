@@ -1,0 +1,121 @@
+\begin{definition} [Modulus of Continuity] \leavevmode \\
+    Let $g:[a,b] \to \R$ be a bounded function. The modulusof continuity of $g$ is defined as follows
+    \[\forall 0 < r \leq b-a ~~w_g(r) = \underset{\underset{x,z \in [a,b]}{ |x-z|} \leq r}{\sup}|g(x)-g(z)|\]
+\end{definition}
+
+\begin{fact}
+    If $g:[a,b] \to \R$ is continuous, then $w(r) \to 0$ as $r \to 0^+$.
+\end{fact}
+
+\begin{proof}
+    Our goal is to show
+    \[\forall \epsilon > 0 ~\exists \delta > 0 \st \text{ if } 0 < r < \delta \text{ then } |w(r) - 0| <\epsilon.\]
+    That is, we want to show
+    \[\forall \epsilon > 0 ~\exists \delta > 0 \st \text{ if } 0 < r < \delta, \text{ then for } x,z \in [a,b] \st |x-z| \leq r, ~~\left|\sup |g(x) - g(z) - 0|\right| < \epsilon.\]
+    To this end, it is enough to show that
+    \[\forall \epsilon > 0 ~\exists \delta > 0 \st \text{ if } 0 < r < \delta \text{ then for all }x,z \in [a,b] \text{ with } |x-z| \leq r, ~~|g(x)-g(z)| < \epsilon.\]
+    But this is a direct consequence of uniform continuity of $g$ on $[a,b]$:
+    \[\forall \epsilon > 0 ~\exists \delta > 0 \st \forall x,z \in [a,b] \text{ if } |x-z| < \delta, \text{ then } |g(x) - g(z)| < \epsilon.\]
+    \qed
+\end{proof}
+
+\begin{fact}
+    Let $g:[a,b] \to \R$ be a bounded function. Then 
+    \[\forall x,z \in [a,b], \forall 0 < r \leq b-a ~~ |g(x) - g(z)| \leq \left[\dfrac{|x-z|}{r}+1\right]w(r)\]
+\end{fact}
+
+\begin{proof}
+    \begin{description}
+        \item[Case 1: ] $|x-z| \leq r$ \\
+        \[|g(x) - g(z)| \leq w(r) \leq \left[\dfrac{|x-z|}{r}+1\right]w(r)\]
+        
+        \item[Case 2: ] $|x - z| > r$ (without loss of generality, $x < z$) \\
+        Let $m \in \N$ be such that $x+mr \leq z < x+ (m+1)r.$ We have 
+        \begin{align*}
+            |g(x)-g(z)| &=|g(x)-g(x+r) + g(x+r) - g(x+2r) + ... + g(x+mr) - g(z)| \\
+            &\leq |g(x) - g(x+r)| + |g(x+r) -g(x+2r)| +... + |g(x+mr)-g(z)| \\ 
+            &\leq w(r) + w(r) + ... + w(r) \\
+            &= (m+1)w(r) \\ 
+            &\leq \left[\dfrac{|z-x|}{r}+1\right]w(r). \tag{$x+mr \leq z \implies m \leq \frac{z-x}{r}$}
+        \end{align*}
+    \end{description}
+    \qed
+\end{proof}
+
+\begin{theorem}[Weierstrass Approximation Theorem] \leavevmode \\
+    \label{thm7.26}
+    If $f:[a,b] \to \R$ is continuous, then there exists a sequence of $p_1(x), p_2(x), p_3(x),...$ of polynomials such that $d_\infty (p_n,f) \to 0$. (That is, $p_n \overset{u}{\to}f$ on $[a,b]$) 
+\end{theorem}
+
+\begin{proof}
+    We will consider two cases:
+    Case 1: $[a,b] = [0,1].$ \\ 
+    Case 2: $[a,b] \neq [0,1].$
+
+    \begin{description}
+        \item[Case 1: ] Our proof is constructive. For each $n \in \N,$ we will construct a polynomial $p_n(x)$ in $\mathbb{P}_n$ (the vectors space of all polynomials of degree at most $n$, together with the $0$ polynomial) as follows:
+        \begin{enumerate}
+            \item Consider $n+1$ equally spaced meshpoints in the interval $[0,1]$ as follows:
+            $$0 = x_{0,n} < x_{1,n} < x_{2,n} < ... < x_{n,n} = 1, ~~~x_{j,n} = \frac{j}{n}$$
+
+            \item Associate the $j^{\text{th}}$ meshpoint with a polynomial $\phi_{j,n}(x) \in \mathbb{P}_n$ such that
+            \begin{align*}
+                (1)& ~~\phi_{j,n}(x) \geq 0 ~~\forall x \in [0,1] \\
+                (2)& ~~\sum_{j=0}^n \phi_{j,n}(x) = 1 ~~\forall x \in [0,1] \\
+                (3)& ~~\sum_{j=0}^n\left[x-x_{j,n}\right]^2 \phi_{j,n}(x) \leq \dfrac{M}{n} \text{ for some $M$ independent of $x$ and $n$.}
+            \end{align*}
+
+            \item Define $p_n(x) = \sum_{j=0}^{n}f(x_{j,n})\phi_{j,n}(x).$
+        \end{enumerate}
+        \textbf{Claim 1: } There exists polynomials $\phi_{0,n}(x),...,\phi_{n,n}(x)$ in $\mathbb{P}_n$ that satisfy properties (1) and (3). Indeed, in HW 7, you will show that the functions:
+        \[\phi_{j,n}(x) = \left(\frac{n}{j}\right)x^j(1-x)^{n-j}\]
+        satisfies properties (1) to (3).
+            
+        \textbf{Claim 2: } $d_\infty(f,p_n) \to 0$ as $n \to \infty$.\\
+        We have for all $x \in [0,1]$ and $n \in \N$,
+        \begin{align*}
+            |f(x)-p_n(x)| &= |f(x)-\sum_{j=0}^{n}f(x_{j,n})\phi_{j,n}(x)| \\
+            &= \left|f(x) \sum_{j=0}^{n}\phi_{j,n}(x) - \sum_{j=0}^{n}f(x_{j,n})\phi_{j,n}(x)\right| \tag{By (2) $\sum_{j=0}^{n}\phi_{j,n}(x)$}\\
+            &=\left|\sum_{j=0}^{n}f(x)\phi_{j,n}(x) - \sum_{j=0}^{n}f(x_{j,n})\phi_{j,n}(x)\right| \\
+            &= \left|\sum_{j=0}^{n}(f(x)-f(x_{j,n}))\phi_{j,n}(x)\right| \\ 
+            &\leq \sum_{j=0}^{n}|f(x)-f(x_{j,n})| \cdot \phi_{j,n}(x) \tag{By (1), $\phi_{j,n} \geq 0$}
+        \end{align*}
+        Therefore, for all $x \in [0,1],$ $n \in \N$ and $0 < r \leq 1$ we have 
+        \begin{align*}
+            |f(x) - p_n(x)| &\leq \sum_{j=0}^{n}\left[\dfrac{|x-x_{j,n}|}{r}+1\right]w(r) \phi_{j,n}(x) \\
+            &= w(r) \left(\sum_{j=0}^{n}\dfrac{|x-x_{j,n}|}{r}\phi_{j,n}(x) + \sum_{j=0}^{n}\phi_{j,n}(x)\right) \\ 
+            &=\dfrac{w(r)}{r}\sum_{j=0}^{n}|x-x_{j,n}|\phi_{j,n}(x) + w(r)
+        \end{align*}
+        Since each $\phi_{j,n}$ is greater than or equal to zero,we write
+        \begin{align*}
+            \sum_{j=0}^{n}|x-x_{j,n}|\phi_{j,n}(x) &= \sum_{j=0}^{n}|x-x_{j,n}|\phi^{\frac{1}{2}}_{j,n}(x)\phi^{\frac{1}{2}}_{j,n}(x) \\
+            &\leq \left[\sum_{j=0}^n|x-x_{j,n}|^2 \phi_{j,n}(x)\right]^\frac{1}{2}\left[\sum_{j=0}^{n}\phi_{j,n}(x)\right]^\frac{1}{2} \tag{Cauchy-Schwarz} \\
+            &= \sqrt{\sum_{j=0}^{n}|x-x_{j,n}|^2\phi_{j,n}(x)} \cdot 1 \\
+            &\leq \sqrt{\dfrac{M}{N}} \tag{By (3)}
+        \end{align*}
+        Thus for all $x \in [0,1]$, $n \in \N$, $0 < r \leq 1,$ we have 
+        \begin{align*}
+            |f(x) - p_n(x)| &\leq \dfrac{w(r)}{r}\sqrt{\dfrac{M}{N}} + w(r) \\
+            &= \left[\dfrac{\sqrt{M}}{r\sqrt{n}}+1\right]w(r)
+        \end{align*}
+        In particular, for $r = \frac{1}{\sqrt{n}}$, we will have 
+        \begin{align*}
+            \forall x \in [0,1] ~\forall n \in \N ~~|f(x) - p_n(x)| \leq \left[\sqrt{M} + 1\right]w\left(\frac{1}{\sqrt{n}}\right) \\
+            \implies \forall n \in \N ~~\underset{0 \leq x \leq 1}{\max} |f(x) - p_n(x)| \leq \left[\sqrt{m}+1\right]w\left(\frac{1}{\sqrt{n}}\right) \\
+            \implies 0 \leq d_\infty(f, p_n) \leq \left[\sqrt{m} + 1\right]w\left(\frac{1}{\sqrt{n}}\right)
+        \end{align*}
+        It follows from the squeeze theorem that $\lim \limits_{n\to \infty}d_\infty (f, p_n) = 0$, as desired.
+
+        \item[Case 2: ] $[a,b] \neq [0,1]$ \\
+        Define $T: [0,1] \to [a,b]$ by $T(t) = a+t(b-a)$. Clearly, $T$ and $T^{1}$ are both polynomials. Suppose $f:[a,b] \to \R$ is a continuous function. Then $f \circ T$ will be a continuous function on $[0,1]$. By case 1, there exists a sequence $q_1(x), q_2(x), q_3(x), ...$ of polynomials on $[0,1]$ such that $d_\infty(q_n, f\circ T) \to 0$. For each $n \in \N$, let $p_n = q_n \circ T^{-1}.$ Since both $q_n$ and $T^{-1}$ are polynomials, we can conclude that $p_n$ is also a polynomial on $[a,b]$. We have
+        \begin{align*}
+            d_\infty(p_n, f) &= \underset{a \leq x \leq b}{\max}|p_n(x) - f(x)| \\
+            &= \underset{a \leq x \leq b}{\max}|(q_n \circ T^{-1})-f(x)| \\
+            &= \underset{a \leq x \leq b}{\max}|q_n(T^{-1}) - f(x)| \\
+            &= \underset{a \leq x \leq b}{\max}|q_n(T^{-1}(x)) - (f\circ T)(T^{-1}(x))| \\
+            &= \underset{0 \leq z \leq 1}{\max}|q_n(z) - (f\circ T)(z)| \tag{Let $z = T^{-1}(z)$} \\
+            &= d_\infty(q_n, f\circ T) \to 0 \text{ as } n \to \infty.
+        \end{align*}
+    \end{description}
+    \qed
+\end{proof}
