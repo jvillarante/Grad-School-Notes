@@ -1,0 +1,128 @@
+Consider $\Q(\zeta_n)$, where $\zeta_n = e^\frac{2\pi i}{n}$. We know:
+\begin{enumerate}
+    \item $[\Q(\zeta_n):\Q] = \phi(n)$.
+    \item $\Q(\zeta_n)$ is the splitting field of $\Phi_n(x) = \underset{1 \leq a \leq n}{\Pi} (x-\zeta_n^a)$ where $\gcd(a,n) = 1.$
+\end{enumerate}
+
+By construction, $\Phi_n$ is separable of degree $\phi(n)$. Thus, $\Q(\zeta_n)$ is Galois over $\Q$. Any automorphism in $\Gal{\Q(\zeta_n) / \Q} = G$ is completely determined by where it maps $\zeta_n$. Hence, if $\sigma \in G$, then $\sigma(\zeta_n) = \zeta_n^a$ where $1 \leq a \leq n$ with $\gcd(a,n) = 1$. This gives $\phi(n)$ possible mappings which is exactly $|G| = [\Q(\zeta_n):\Q]$. For each $1 \leq a \leq n$ with $\gcd(a,n)=1$, define $\sigma_{a \text{ mod } n}$ to be the automorphism of $\Q(\zeta_n)$ such that 
+\[\zeta_n \to \zeta_n^a\]
+
+\begin{theorem}
+    \label{thm5.26}
+    The Galois group of $\Q(\zeta_n)$ is isomorphic to $\left(\Z /nZ\right)^\times$, the group of units modulo $n$. The isomorphism is given by the map
+    \begin{align*}
+        \left(\Z/nZ\right)^\times &\to \Q(\zeta_n) \\
+        a (\text{ mod } n) &\mapsto \sigma_{a (\text{ mod } n)}
+    \end{align*}
+    where the $\sigma_a$ is defined as above.
+\end{theorem}
+
+\begin{proof}
+    The discussion above shows that $\sigma_a$ is an automorphism of $\Q(\zeta_n)$ for any $a$ with $\gcd(a,n) = 1$. We will show this is a homomorphism:
+    \[\sigma_a \sigma_b (\zeta_n) = \sigma_a(\zeta_n^b)= (\zeta_n^b)^a = \zeta_n^{ab} = \sigma_{ab}(\zeta_n)\]
+    Thus, $\sigma_a \sigma_b = \sigma_{ab}$, so our mapping is a homomorphism. We know this is bijective since every automorphism of $\Q(\zeta_n)$ is of the form $\sigma_a$ and each $\sigma_a$ is mapped to and from a distinct $a \text{ mod } n$.
+    \qed
+\end{proof}
+
+\begin{example}
+    The field $\Q(\zeta_5)$ is a Galois extension of $\Q$ with
+    \[G = \Gal{\Q(\zeta_5)/\Q} \cong \left(\Z/5\Z\right)^\times \cong \Z/4\Z\]
+    ($\Z_n^\times$ is cyclic when $n = 2, 4, p^\alpha, 2p^\alpha$ where $p$ is an odd prime). Hence, $G = \set{\sigma_1 = 1, \sigma_2, \sigma_3, \sigma_4}.$ Let's find the order of $\sigma_2$:
+    \begin{align*}
+        \sigma_2 : \zeta_5 &\mapsto \zeta_5^2 \\
+        \sigma_2^2 : \zeta_5 &\mapsto \zeta_5^4 \implies \sigma_2^2 = \sigma_4 \\
+        \sigma_2^3 : \zeta_5 &\mapsto \zeta_5^8 \equiv \zeta_5^3 \implies \sigma_2^3 = \sigma_3 \\
+        \sigma_2^4 : \zeta_5 &\mapsto \zeta_5^6 \equiv \zeta_5 \implies \sigma_2^4 = \sigma_1
+    \end{align*}
+    Thus $|\sigma_2| = 4$. What are the subfields of $\Q(\zeta_5)$ which contain $\Q$? \\
+    \[
+     \begin{array}{ccc}
+        \begin{tikzcd}[column sep=small]
+            \cyc{\sigma_1} \arrow[d, dash] \\
+            \cyc{\sigma_4} \arrow[d, dash] \\
+            \Gal{\Q(\zeta_5)/\Q}\cong \Z/4\Z
+        \end{tikzcd} & &
+        \begin{tikzcd}[column sep=small]
+            \Q(\zeta_5) \arrow[d, dash] \\
+            ? \arrow[d, dash] \\
+            \Q
+        \end{tikzcd}
+    \end{array}
+    \]
+    Let $\alpha = \zeta_5 + \sigma_4(\zeta_5)= \zeta_5 + \zeta_5^4 = \zeta_5 + \zeta_5^{-1}$. Then
+    \begin{align*}
+        \sigma_4(\alpha) &= \sigma_4(\zeta_5 + \zeta_5^{-1}) \\ 
+        &= \sigma_4(\zeta_5) +\sigma_4(\zeta_5^{-1}) \\
+        &=\zeta_5^4 + \zeta_5^{-4} \\
+        &= \zeta_5^{-1} + \zeta_5.
+    \end{align*}
+    $\alpha$ is fixed by $\sigma_4$, so $\alpha$ is in the fixed field associated with $\cyc{\sigma_4}$. We know $[\Q(\zeta_5) : \Q] \neq 1$ (basis for $\Q(\zeta_5)$ is $1, \zeta_5, \zeta_5^2, \zeta_5^3, \zeta_5^4,$ if $\zeta_5+\zeta_5^{-1} \in \Q$ this violates the linear independence of the basis). Further, since $\Q(\alpha) \subseteq \R$ ($z \in \C \implies z + \bar{z} \in \R$ and $\zeta_5^{-1} = \bar{\zeta}$), $\Q(\alpha) \neq \Q(\zeta)$. Hence $\Q(\alpha)$ is our quadratic subfield. In this case, we can do better using
+    \[\zeta_5^4 + \zeta_5^3 + \zeta_5^2 + \zeta_5 + 1 = 0 \tag{$m_{\zeta_5,\Q}(x) = x^4+x^3+x^2+x+1$}\]
+    Notice
+    \begin{align*}
+        \alpha^2 &= (\zeta_5 + \zeta_5^{-1})^2 \\
+        &= \zeta_5^2 + 2 + \zeta_5^{-1} \\
+        &= \zeta_5^2 + 2 + \zeta_5^3
+    \end{align*}
+    so
+    \[\alpha^2 + \alpha = \zeta_5^3 + 2 + \zeta_5^3 + \zeta_5 + \zeta_5^4\]
+    Hence, $\alpha^2+\alpha - 1 = 0$, so 
+    \begin{align*}
+        \alpha = \dfrac{-1 \pm \sqrt{1+4}}{2} = \dfrac{-1 \pm \sqrt{5}}{2} = -\dfrac{1}{2} \pm \dfrac{\sqrt{5}}{2} \in \Q(\sqrt{5}) \\ 
+        \implies \Q(\alpha) \subseteq \Q(\sqrt{5}).
+    \end{align*}
+    Finally,\\
+    \begin{center}
+        \begin{tikzcd}[column sep=small]
+            \Q(\zeta_5) \arrow[d, dash] \\
+            \Q(\sqrt{5}) \arrow[d, dash] \\
+            \Q
+        \end{tikzcd}
+    \end{center}
+\end{example}
+
+\begin{example}
+    $\Q(\zeta_p)$ for an odd prime $p$. \\
+    We can construct a generating element for the subfields of $\Q(\zeta_p)$. A basis for $\Q(\zeta_p)$ is given by
+    \[1, \zeta_p, \zeta_p^2, ..., \zeta_p^{p-2}\]
+    since $\zeta_p^{p-1} + \zeta_p^{p-2} + ... + \zeta_p + 1 = 0.$ We can deduce that $\zeta_p, \zeta_p^2, \zeta_p^3, ..., \zeta_p^{p-1}$ form a basis (or else uniqueness of $m_{\zeta_p, \Q}(x)$ would be violated). We use this since any $\sigma \in \Gal{\Q(\zeta_p)/\Q}= G$ will permute this basis. It is important that $p$ is prime here since the primitive 4th-roots of unity are not linearly independent ($i, -i$ are the primitive 4th-roots of unity $e^{\frac{2\pi i k}{4}},$ $\gcd(k,4)=1$). Let $H$ be a subgroup of $G$. Let
+    \[\alpha_H = \sum_{\sigma \in H}\sigma(\zeta_p)\]
+    For any fixed $\tau \in H,$ we have
+    \[\tau(\alpha) = \tau \left(\sum_{\sigma \in H}\sigma(\zeta_p)\right) = \sum_{\sigma \in H}\tau \sigma(\zeta_p)\]
+    Since $H$ acts on itself via left multiplication, we know that $\tau$ permutes the elements of $H$, so
+    \[\sum_{\sigma \in H}\tau\sigma(\zeta_p) = \sum_{\sigma \in H}\sigma(\zeta_p)\]
+    $\alpha$ lies in the fixed field of $H$. Suppose $\tau \not \in H,$ then
+    \[\tau(\alpha) = \sum_{\sigma \in H}\tau \sigma(\zeta_p)\]
+    Since $1 \in H$, a term in this sum is 
+    \[\tau(1(\zeta_p)) = \tau(\zeta_p)\]
+    If we assume that $\tau(\alpha) = \alpha$, then since the elements in this sum are a basis we must have $\tau(\zeta_p) = \sigma(\zeta_p)$ for some $\sigma \in H.$ But then
+    \[\sigma^{-1}\tau (\zeta_p) = \zeta_p.\]
+    Since automorphisms of $\Q(\zeta_p)$ are determined by their actions on $\zeta_p$, we have that 
+    \[\sigma^{-1}\tau = 1 \implies \tau  = \sigma \in H,\]
+    which is a contradiction. So $\alpha$ is not fixed by any automorphisms not contained in $H$. So, $\Q(\alpha)$ is precisely the fixed field of $H$.
+\end{example}
+
+\begin{example}
+    Subfields of $\Q(\zeta_{13})$. \\
+    $13$ is prime, so 
+    \[G = \Gal{\Q(\zeta_{13})/\Q} \cong \Z/12\Z\]
+    since $\left(\Z/13\Z\right)^\times$ is cyclic. $2$ generates $\left(Z/13Z\right)^\times$, hence $\sigma_2$ generates $G$ and $\sigma_2(\zeta_{13}) = \zeta_{13}^2.$ We have subgroups of orders \[12, 6, 4, 3, 2, 1\] which correspond to the generators
+    \[\sigma_2, \sigma_2^2, \sigma_2^3, \sigma_2^4, \sigma_2^6, \sigma_2^{12}\]
+    respectively. The corresponding fixed fields will have degrees
+    \[1, 2, 3, 4, 6, 12 \tag{index of the subgroups of $G$}\]
+    Let's compute the $\alpha$'s:
+    \begin{align*}
+        \sum_{\sigma_2 \in \cyc{\sigma^6}} &= 1(\zeta_{13}) + \sigma_2^6(\zeta_{13}) \\ 
+        &= \zeta_{13} + (\sigma_2(\zeta_{13}))^6 \\
+        &= \zeta_{13} + \zeta_{13}^{2^6} \\ 
+        &= \zeta_{13} + \zeta_{13}^{64} \\ 
+        &= \zeta_{13} + \zeta_{13}^{-1}
+    \end{align*}
+    so the fixed field of $\cyc{\sigma_2^6}$ is $\Q(\zeta_{13} + \zeta_{13}^{-1})$. Now,
+    \begin{align*}
+        \sum_{\sigma\in \cyc{\sigma_2^4}}\sigma(\zeta_{13}) &= 1(\zeta_{13}) + \sigma_2^4(\zeta_{13})+\sigma_2^8 (\zeta_{13}) \\ 
+        &= \zeta_{13} + \zeta_{13}^{2^4} + \zeta_{13}^{2^8} \\ 
+        &= \zeta_{13} + \zeta_{13}^3 + \zeta_{13}^9
+    \end{align*}
+    The fixed field of $\cyc{\sigma_4}$ is $\Q(\zeta_{13} + \zeta_{13}^3 + \zeta_{13}^9)$.
+\end{example}
